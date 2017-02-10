@@ -241,6 +241,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="BLL\GoogleAnalytics.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -251,6 +252,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AnalyticsAllTraffic.cs" />
+    <Compile Include="Models\AnalyticsChannels.cs" />
+    <Compile Include="Models\AnalyticsSocial.cs" />
+    <Compile Include="Models\AnalyticsSocialNetwork.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ContactDetail.cs" />
     <Compile Include="Models\Country.cs" />
@@ -361,7 +366,6 @@
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="BLL\" />
     <Folder Include="fonts\" />
     <Folder Include="ViewModels\" />
     <Folder Include="_bin_deployableAssemblies\App_Data\" />
