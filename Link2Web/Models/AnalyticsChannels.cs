@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Link2Web.Models
 {
@@ -15,6 +12,6 @@ namespace Link2Web.Models
         [ScaffoldColumn(false)]
         public bool Visible { get; set; }
 
-        public ICollection<AnalyticsAllTraffic> AnalyticsAllTraffic { get; set; }
+        public ICollection<AnalyticsVisitors> AnalyticsVisitors { get; set; }
     }
 }
