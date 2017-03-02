@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace Link2Web
 {
@@ -26,6 +25,22 @@ namespace Link2Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-cerulean.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
+                        "~/Scripts/Telerik/kendo.all.min.js",
+                        "~/Scripts/Telerik/kendo.aspnetmvc.min.js",
+                        "~/Scripts/Telerik/kendo.timezones.min.js"));
+
+
+            bundles.Add(new StyleBundle("~/Content/telerik").Include(
+                        "~/Content/Telerik/kendo.common.min.css",
+                        "~/Content/Telerik/kendo.rtl.min.css",
+                        "~/Content/Telerik/kendo.default.min.css",
+                        "~/Content/Telerik/kendo.default.mobile.min.css",
+                        "~/Content/Telerik/kendo.mobile.all.min.css"));
+
+            bundles.Add(new ScriptBundle("~/Content/telerikgrid").Include(
+                        "~/Scripts/Telerik/kendo.grid.min.js"));
         }
     }
 }
