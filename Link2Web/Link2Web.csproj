@@ -118,6 +118,10 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp">
       <Private>True</Private>
     </Reference>
@@ -285,6 +289,7 @@
     <Compile Include="Controllers\AnalyticsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Core\AppFlowMetadata.cs" />
     <Compile Include="DAL\Link2WebInit.cs" />
     <Compile Include="DAL\Link2WebDbContext.cs" />
     <Compile Include="DAL\Migrations\Configuration.cs" />

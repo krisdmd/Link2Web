@@ -11,7 +11,6 @@ namespace Link2Web.BLL
         public AnalyticsService Service { get; set; }
 
 
-
         public AnalyticDataPoint GetAnalyticsData(string profileId, string[] dimensions, string[] metrics, DateTime startDate, DateTime endDate)
         {
             AnalyticDataPoint data = new AnalyticDataPoint();
