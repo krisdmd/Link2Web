@@ -2,13 +2,13 @@
 using Google.Apis.Analytics.v3.Data;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Link2Web.BLL
 {
     public class GoogleAnalytics
     {
         public AnalyticsService Service { get; set; }
+
 
 
         public AnalyticDataPoint GetAnalyticsData(string profileId, string[] dimensions, string[] metrics, DateTime startDate, DateTime endDate)

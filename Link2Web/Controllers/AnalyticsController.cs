@@ -1,11 +1,6 @@
 ﻿using Google.Apis.Analytics.v3;
-using Google.Apis.Auth.OAuth2.Mvc;
-using Google.Apis.Services;
 using Link2Web.BLL;
-using Link2Web.Core;
 using System;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Link2Web.Controllers
@@ -15,7 +10,7 @@ namespace Link2Web.Controllers
         private AnalyticsService _analyticsService { get; set; }
 
 
-        public ActionResult ShowData()
+        public ActionResult Visitors()
         {
             var analyticsData = new GoogleAnalytics();
             var data = analyticsData.GetVisitorsByDate(DateTime.Now.AddDays(-180), DateTime.Now);
@@ -103,30 +98,6 @@ namespace Link2Web.Controllers
             {
                 return View();
             }
-        }
-
-        public async Task<ActionResult> IndexAsync(CancellationToken cancellationToken)
-        {
-            var result = await new AuthorizationCodeMvcApp(this, new AppFlowMetadata()).
-                AuthorizeAsync(cancellationToken);
-
-            if (result.Credential != null)
-            {
-                var service = new AnalyticsService(new BaseClientService.Initializer
-                {
-                    HttpClientInitializer = result.Credential,
-                    ApplicationName = "ASP.NET MVC Sample"
-                });
-  
-                _analyticsService = service;
-
-                return View();
-            }
-            else
-            {
-                return new RedirectResult(result.RedirectUri);
-            }
-
         }
     }
 }
