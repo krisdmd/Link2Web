@@ -15,11 +15,11 @@ namespace Link2Web.DAL
 
         }
 
-        public DbSet<Project> Projects { get; set; }
-        public DbSet<Setting> Settings { get; set; }
-        public DbSet<SettingType> SettingTypes { get; set; }
-        public DbSet<ContactDetail> ContactDetails { get; set; }
-        public DbSet<Country> Countries { get; set; }
+        public IDbSet<Project> Projects { get; set; }
+        public IDbSet<Setting> Settings { get; set; }
+        public IDbSet<SettingType> SettingTypes { get; set; }
+        public IDbSet<ContactDetail> ContactDetails { get; set; }
+        public IDbSet<Country> Countries { get; set; }
 
         
         public static Link2WebDbContext Create()
@@ -27,5 +27,6 @@ namespace Link2Web.DAL
             return new Link2WebDbContext();
         }
 
+        public System.Data.Entity.DbSet<Link2Web.Models.AnalyticsChannels> AnalyticsChannels { get; set; }
     }
 }

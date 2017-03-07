@@ -32,4 +32,5 @@ namespace Link2Web.Controllers
                 get { return new AppFlowMetadata(); }
             }
         }
+    }
 }
