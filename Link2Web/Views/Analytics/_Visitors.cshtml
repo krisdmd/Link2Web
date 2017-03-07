@@ -1,0 +1,31 @@
+﻿@using Kendo.Mvc.UI
+@using Link2Web.Models
+@model Link2Web.Models.AnalyticsVisitors
+
+
+
+@(Html.Kendo().Grid<AnalyticsVisitors>()
+        .Name("grid")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.Hits);
+            columns.Bound(c => c.Clicks);
+            columns.Bound(c => c.Impressions);
+            columns.Bound(c => c.BounceRate).Width(150);
+        })
+        .HtmlAttributes(new { style = "height: 550px;" })
+        .Scrollable()
+        .Groupable()
+        .Sortable()
+        .Pageable(pageable => pageable
+            .Refresh(true)
+            .PageSizes(true)
+            .ButtonCount(5))
+        .DataSource(dataSource => dataSource
+            .Ajax()
+            .Read(read => read.Action("Customers_Read", "Grid"))
+            .PageSize(20)
+        )
+)
+
+@*@Html.Partial("_Visitors")*@

@@ -3,6 +3,8 @@ using Google.Apis.Auth.OAuth2.Mvc;
 using Google.Apis.Services;
 using Link2Web.BLL;
 using Link2Web.Core;
+using Link2Web.Models;
+using Link2Web.ViewModels;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,16 +12,23 @@ using System.Web.Mvc;
 
 namespace Link2Web.Controllers
 {
-    public class AnalyticsController : Controller
+    public class AnalyticsController : BaseController
     {
         private AnalyticsService _analyticsService { get; set; }
 
 
-        public ActionResult ShowData()
+        public ActionResult Visitors()
         {
             var analyticsData = new GoogleAnalytics();
             var data = analyticsData.GetVisitorsByDate(DateTime.Now.AddDays(-180), DateTime.Now);
 
+            var analyticsVisitor = new AnalyticsVisitors();
+            var vm = new AnalyticsViewModel();
+
+            foreach (var v in data.Rows)
+            {
+                //analyticsVisitor.Clicks = 
+            }
 
             //data.ColumnHeaders.FirstOrDefault().Name
 

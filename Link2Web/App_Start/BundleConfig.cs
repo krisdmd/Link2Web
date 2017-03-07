@@ -26,7 +26,7 @@ namespace Link2Web
                       "~/Content/bootstrap-cerulean.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
+            bundles.Add(new ScriptBundle("~/bundles/telerik").Include(
                         "~/Scripts/Telerik/kendo.all.min.js",
                         "~/Scripts/Telerik/kendo.aspnetmvc.min.js",
                         "~/Scripts/Telerik/kendo.timezones.min.js"));

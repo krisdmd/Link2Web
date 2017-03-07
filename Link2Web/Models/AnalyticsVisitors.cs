@@ -2,7 +2,6 @@
 {
     public class AnalyticsVisitors
     {
-        public int AnalyticsVisitorsId { get; set; }
         public double Sessions { get; set; }
         public double NewUsers { get; set; }
         public double Pages { get; set; }
