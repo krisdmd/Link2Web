@@ -1,0 +1,66 @@
+﻿@model Link2Web.Models.Project
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Project</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Country.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Url)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PreviewImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PreviewImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProjectId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

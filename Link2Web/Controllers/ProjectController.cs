@@ -1,113 +1,122 @@
-﻿using Link2Web.DAL;
-using Link2Web.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
+using Link2Web.DAL;
+using Link2Web.Models;
 
 namespace Link2Web.Controllers
 {
-    public class CountryController : BaseController
+    public class ProjectController : Controller
     {
         private Link2WebDbContext db = new Link2WebDbContext();
 
-        // GET: Country
+        // GET: Project
         public ActionResult Index()
         {
-            return View(db.Countries.ToList());
+            var projects = db.Projects.Include(p => p.Country);
+            return View(projects.ToList());
         }
 
-        // GET: Country/Details/5
+        // GET: Project/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Country country = db.Countries.Find(id);
-            if (country == null)
+            Project project = db.Projects.Find(id);
+            if (project == null)
             {
                 return HttpNotFound();
             }
-            return View(country);
+            return View(project);
         }
 
-        // GET: Country/Create
+        // GET: Project/Create
         public ActionResult Create()
         {
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
             return View();
         }
 
-        // POST: Country/Create
+        // POST: Project/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CountryId,Name,Code")] Country country)
+        public ActionResult Create([Bind(Include = "ProjectId,Name,Email,CountryId,Url,PreviewImage,Note,Created,Modified,Visible")] Project project)
         {
             if (ModelState.IsValid)
             {
-                db.Countries.Add(country);
+                db.Projects.Add(project);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(country);
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", project.CountryId);
+            return View(project);
         }
 
-        // GET: Country/Edit/5
+        // GET: Project/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Country country = db.Countries.Find(id);
-            if (country == null)
+            Project project = db.Projects.Find(id);
+            if (project == null)
             {
                 return HttpNotFound();
             }
-            return View(country);
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", project.CountryId);
+            return View(project);
         }
 
-        // POST: Country/Edit/5
+        // POST: Project/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CountryId,Name,Code")] Country country)
+        public ActionResult Edit([Bind(Include = "ProjectId,Name,Email,CountryId,Url,PreviewImage,Note,Created,Modified,Visible")] Project project)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(country).State = EntityState.Modified;
+                db.Entry(project).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(country);
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", project.CountryId);
+            return View(project);
         }
 
-        // GET: Country/Delete/5
+        // GET: Project/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Country country = db.Countries.Find(id);
-            if (country == null)
+            Project project = db.Projects.Find(id);
+            if (project == null)
             {
                 return HttpNotFound();
             }
-            return View(country);
+            return View(project);
         }
 
-        // POST: Country/Delete/5
+        // POST: Project/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Country country = db.Countries.Find(id);
-            db.Countries.Remove(country);
+            Project project = db.Projects.Find(id);
+            db.Projects.Remove(project);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
