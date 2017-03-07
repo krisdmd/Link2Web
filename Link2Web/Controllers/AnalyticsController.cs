@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace Link2Web.Controllers
 {
-    public class AnalyticsController : Controller
+    public class AnalyticsController : BaseController
     {
         private AnalyticsService _analyticsService { get; set; }
 
@@ -29,9 +29,6 @@ namespace Link2Web.Controllers
             {
                 //analyticsVisitor.Clicks = 
             }
-
-
-
 
             //data.ColumnHeaders.FirstOrDefault().Name
 

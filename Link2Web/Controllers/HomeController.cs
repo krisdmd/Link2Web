@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace Link2Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {

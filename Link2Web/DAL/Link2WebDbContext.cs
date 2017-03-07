@@ -1,5 +1,6 @@
 ﻿using Link2Web.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using NLog.Mvc;
 using System.Data.Entity;
 
 namespace Link2Web.DAL
@@ -21,11 +22,19 @@ namespace Link2Web.DAL
         public DbSet<ContactDetail> ContactDetails { get; set; }
         public DbSet<Country> Countries { get; set; }
 
-        
+        public DbSet<LogEntry> LogEntries { get; set; }
+
+
+
         public static Link2WebDbContext Create()
         {
             return new Link2WebDbContext();
         }
+
+//        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+//        {
+//            modelBuilder.Configurations.Add(new LogEntryConfiguration());
+//        }
 
     }
 }
