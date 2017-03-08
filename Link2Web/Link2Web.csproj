@@ -292,13 +292,19 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Core\AppFlowMetadata.cs" />
     <Compile Include="DAL\Link2WebInit.cs" />
     <Compile Include="DAL\Link2WebDbContext.cs" />
+    <Compile Include="DAL\Migrations\201703080925535_AnalyticsVisitors.cs" />
+    <Compile Include="DAL\Migrations\201703080925535_AnalyticsVisitors.Designer.cs">
+      <DependentUpon>201703080925535_AnalyticsVisitors.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Migrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CultureHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AnalyticsVisitors.cs" />
     <Compile Include="Models\AnalyticsChannels.cs" />
@@ -428,7 +434,148 @@
     <Content Include="Content\Telerik\Metro\sprite_2x.png" />
     <Content Include="Content\Telerik\Metro\sprite_kpi.png" />
     <Content Include="Content\Telerik\Metro\sprite_kpi_2x.png" />
+    <Content Include="Content\Theme\bootstrap-progressbar-3.3.4.css" />
+    <Content Include="Content\Theme\bootstrap-progressbar-3.3.4.min.css" />
+    <Content Include="Content\Theme\custom.css" />
+    <Content Include="Content\Theme\custom.min.css" />
+    <Content Include="Content\Theme\daterangepicker.css" />
+    <Content Include="Content\Theme\fonts\font-awesome.css" />
+    <Content Include="Content\Theme\fonts\font-awesome.min.css" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Theme\iCheck\skins\all.css" />
+    <Content Include="Content\Theme\iCheck\skins\flat\aero%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\aero.css" />
+    <Content Include="Content\Theme\iCheck\skins\flat\aero.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\blue%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\blue.css" />
+    <Content Include="Content\Theme\iCheck\skins\flat\blue.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\flat%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\flat.css" />
+    <Content Include="Content\Theme\iCheck\skins\flat\flat.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\green%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\green.css" />
+    <Content Include="Content\Theme\iCheck\skins\flat\green.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\grey%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\grey.css" />
+    <Content Include="Content\Theme\iCheck\skins\flat\grey.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\orange%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\orange.css" />
+    <Content Include="Content\Theme\iCheck\skins\flat\orange.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\pink%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\pink.css" />
+    <Content Include="Content\Theme\iCheck\skins\flat\pink.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\purple%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\purple.css" />
+    <Content Include="Content\Theme\iCheck\skins\flat\purple.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\red%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\red.css" />
+    <Content Include="Content\Theme\iCheck\skins\flat\red.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\yellow%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\yellow.css" />
+    <Content Include="Content\Theme\iCheck\skins\flat\yellow.png" />
+    <Content Include="Content\Theme\iCheck\skins\flat\_all.css" />
+    <Content Include="Content\Theme\iCheck\skins\futurico\futurico%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\futurico\futurico.css" />
+    <Content Include="Content\Theme\iCheck\skins\futurico\futurico.png" />
+    <Content Include="Content\Theme\iCheck\skins\line\aero.css" />
+    <Content Include="Content\Theme\iCheck\skins\line\blue.css" />
+    <Content Include="Content\Theme\iCheck\skins\line\green.css" />
+    <Content Include="Content\Theme\iCheck\skins\line\grey.css" />
+    <Content Include="Content\Theme\iCheck\skins\line\line%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\line\line.css" />
+    <Content Include="Content\Theme\iCheck\skins\line\line.png" />
+    <Content Include="Content\Theme\iCheck\skins\line\orange.css" />
+    <Content Include="Content\Theme\iCheck\skins\line\pink.css" />
+    <Content Include="Content\Theme\iCheck\skins\line\purple.css" />
+    <Content Include="Content\Theme\iCheck\skins\line\red.css" />
+    <Content Include="Content\Theme\iCheck\skins\line\yellow.css" />
+    <Content Include="Content\Theme\iCheck\skins\line\_all.css" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\aero%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\aero.css" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\aero.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\blue%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\blue.css" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\blue.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\green%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\green.css" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\green.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\grey%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\grey.css" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\grey.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\minimal%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\minimal.css" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\minimal.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\orange%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\orange.css" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\orange.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\pink%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\pink.css" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\pink.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\purple%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\purple.css" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\purple.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\red%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\red.css" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\red.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\yellow%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\yellow.css" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\yellow.png" />
+    <Content Include="Content\Theme\iCheck\skins\minimal\_all.css" />
+    <Content Include="Content\Theme\iCheck\skins\polaris\polaris%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\polaris\polaris.css" />
+    <Content Include="Content\Theme\iCheck\skins\polaris\polaris.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\aero%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\aero.css" />
+    <Content Include="Content\Theme\iCheck\skins\square\aero.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\blue%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\blue.css" />
+    <Content Include="Content\Theme\iCheck\skins\square\blue.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\green%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\green.css" />
+    <Content Include="Content\Theme\iCheck\skins\square\green.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\grey%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\grey.css" />
+    <Content Include="Content\Theme\iCheck\skins\square\grey.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\orange%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\orange.css" />
+    <Content Include="Content\Theme\iCheck\skins\square\orange.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\pink%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\pink.css" />
+    <Content Include="Content\Theme\iCheck\skins\square\pink.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\purple%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\purple.css" />
+    <Content Include="Content\Theme\iCheck\skins\square\purple.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\red%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\red.css" />
+    <Content Include="Content\Theme\iCheck\skins\square\red.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\square%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\square.css" />
+    <Content Include="Content\Theme\iCheck\skins\square\square.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\yellow%402x.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\yellow.css" />
+    <Content Include="Content\Theme\iCheck\skins\square\yellow.png" />
+    <Content Include="Content\Theme\iCheck\skins\square\_all.css" />
+    <Content Include="Content\Theme\images\american-express.png" />
+    <Content Include="Content\Theme\images\cropper.jpg" />
+    <Content Include="Content\Theme\images\img.jpg" />
+    <Content Include="Content\Theme\images\inbox.png" />
+    <Content Include="Content\Theme\images\mastercard.png" />
+    <Content Include="Content\Theme\images\media.jpg" />
+    <Content Include="Content\Theme\images\paypal.png" />
+    <Content Include="Content\Theme\images\picture.jpg" />
+    <Content Include="Content\Theme\images\prod-1.jpg" />
+    <Content Include="Content\Theme\images\prod-2.jpg" />
+    <Content Include="Content\Theme\images\prod-3.jpg" />
+    <Content Include="Content\Theme\images\prod-4.jpg" />
+    <Content Include="Content\Theme\images\prod-5.jpg" />
+    <Content Include="Content\Theme\images\user.png" />
+    <Content Include="Content\Theme\images\visa.png" />
+    <Content Include="Content\Theme\jqvmap.css" />
+    <Content Include="Content\Theme\jqvmap.min.css" />
+    <Content Include="Content\Theme\nprogress.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Fonts\fontawesome-webfont.svg" />
+    <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
@@ -642,6 +789,34 @@
     <Content Include="Content\Telerik\kendo.silver.mobile.min.css.map" />
     <Content Include="Content\Telerik\kendo.uniform.min.css.map" />
     <Content Include="Content\Telerik\kendo.uniform.mobile.min.css.map" />
+    <Content Include="Scripts\Theme\bootstrap-progressbar.js" />
+    <Content Include="Scripts\Theme\bootstrap-progressbar.min.js" />
+    <Content Include="Scripts\Theme\Chart.bundle.js" />
+    <Content Include="Scripts\Theme\Chart.bundle.min.js" />
+    <Content Include="Scripts\Theme\Chart.js" />
+    <Content Include="Scripts\Theme\Chart.min.js" />
+    <Content Include="Scripts\Theme\curvedLines.js" />
+    <Content Include="Scripts\Theme\custom.js" />
+    <Content Include="Scripts\Theme\custom.min.js" />
+    <Content Include="Scripts\Theme\date.js" />
+    <Content Include="Scripts\Theme\daterangepicker.js" />
+    <Content Include="Scripts\Theme\fastclick.js" />
+    <Content Include="Scripts\Theme\gauge.js" />
+    <Content Include="Scripts\Theme\gauge.min.js" />
+    <Content Include="Scripts\Theme\icheck.js" />
+    <Content Include="Scripts\Theme\icheck.min.js" />
+    <Content Include="Scripts\Theme\jquery.flot.orderBars.js" />
+    <Content Include="Scripts\Theme\jquery.flot.resize.js" />
+    <Content Include="Scripts\Theme\jquery.flot.spline.js" />
+    <Content Include="Scripts\Theme\jquery.flot.spline.min.js" />
+    <Content Include="Scripts\Theme\jquery.flot.stack.js" />
+    <Content Include="Scripts\Theme\jquery.flot.time.js" />
+    <Content Include="Scripts\Theme\jquery.vmap.js" />
+    <Content Include="Scripts\Theme\jquery.vmap.min.js" />
+    <Content Include="Scripts\Theme\moment.js" />
+    <Content Include="Scripts\Theme\nprogress.js" />
+    <Content Include="Scripts\Theme\skycons.js" />
+    <Content Include="Scripts\Theme\smartresize.js" />
     <Content Include="Views\Country\Create.cshtml" />
     <Content Include="Views\Country\Delete.cshtml" />
     <Content Include="Views\Country\Details.cshtml" />
@@ -652,6 +827,28 @@
     <Content Include="Views\Project\Details.cshtml" />
     <Content Include="Views\Project\Edit.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
+    <Content Include="Content\Theme\fonts\font-awesome.css.map" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Theme\fonts\FontAwesome.otf" />
+    <Content Include="Fonts\fontawesome-webfont.eot" />
+    <Content Include="Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Fonts\fontawesome-webfont.woff" />
+    <Content Include="Fonts\fontawesome-webfont.woff2" />
+    <Content Include="Fonts\FontAwesome.otf" />
+    <Content Include="Fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Views\Shared\_ProfileDropdown.cshtml" />
+    <Content Include="Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Views\Setting\Create.cshtml" />
+    <Content Include="Views\Setting\Delete.cshtml" />
+    <Content Include="Views\Setting\Details.cshtml" />
+    <Content Include="Views\Setting\Edit.cshtml" />
+    <Content Include="Views\Setting\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -669,7 +866,6 @@
     <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\README_ENU.txt" />
     <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\msvcr90.dll" />
     <None Include="Properties\PublishProfiles\krissaelen - Web Deploy.pubxml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -813,7 +1009,9 @@
     <Content Include="Scripts\Telerik\kendo.window.min.js" />
     <Content Include="Scripts\Telerik\pako_deflate.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -851,6 +1049,7 @@
     <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
@@ -871,7 +1070,6 @@
     <Folder Include="Content\Telerik\Silver\" />
     <Folder Include="Content\Telerik\textures\" />
     <Folder Include="Content\Telerik\Uniform\" />
-    <Folder Include="fonts\" />
     <Folder Include="Scripts\Telerik\messages\" />
     <Folder Include="Views\Analytics\" />
     <Folder Include="_bin_deployableAssemblies\App_Data\" />
@@ -884,6 +1082,17 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DAL\Migrations\201703080925535_AnalyticsVisitors.resx">
+      <DependentUpon>201703080925535_AnalyticsVisitors.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{e4a5f38f-14a3-4f94-8fdf-2883acb5c990}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

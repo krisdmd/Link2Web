@@ -16,9 +16,74 @@
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+/*.form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+}
+
+
+.input-group > .form-control {
+    width: 100%;
+}*/
+
+/*@media (min-width: 1600px) {
+  .container {
+      width: 1440px;
+  }
+}*/
+
+
+#my-tab-content {
+    padding-top: 20px;
+}
+
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* DevExpress Grid */
+.dxgvHeader, .dxgvControl, .dxgvDisabled {
+    background-color: #F5F5F5 !important;
+    border: 0 !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
+    height: 40px;
+}
+
+.dxgvHeader, .dxgvHeader table {
+        color: #6B6B6B !important;
+}
+
+
+.dxgvDetailCell, .dxgvEditFormDisplayRow, td.dxgv, td.dxgv, .dxgvDataRow td.dxgv, .dxgvDetailRow.dxgvADR td.dxgvAIC  
+{
+    border: 0 !important; 
+    font-weight: normal !important;
+    font-size: 12px !important;
+}
+
+.dxmLite .dxm-popup .dxm-content {
+    background-color: #FFFFFF !important;
+    padding-left: 0;
+}
+
+.dxmLite .dxm-popup .dxm-gutter {
+    background-image: none !important;
+}
+
+/* End DevExpress Grid */
+
+/* Theme */
+
+.main_container .right_col, .dxgvSearchPanel {
+    background-color: #FFFFFF !important;
+}
+
+form .text-danger {
+    font-weight: bold;
 }

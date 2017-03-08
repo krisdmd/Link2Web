@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Link2Web", "Link2Web\Link2Web.csproj", "{48F779CC-1D30-4B1F-9269-A5A0024F311F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{E4A5F38F-14A3-4F94-8FDF-2883ACB5C990}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{48F779CC-1D30-4B1F-9269-A5A0024F311F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48F779CC-1D30-4B1F-9269-A5A0024F311F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48F779CC-1D30-4B1F-9269-A5A0024F311F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4A5F38F-14A3-4F94-8FDF-2883ACB5C990}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4A5F38F-14A3-4F94-8FDF-2883ACB5C990}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4A5F38F-14A3-4F94-8FDF-2883ACB5C990}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4A5F38F-14A3-4F94-8FDF-2883ACB5C990}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

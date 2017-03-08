@@ -41,6 +41,30 @@ namespace Link2Web
 
             bundles.Add(new ScriptBundle("~/Content/telerikgrid").Include(
                         "~/Scripts/Telerik/kendo.grid.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/custom").Include(
+          "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/theme").Include(
+                      "~/Content/Theme/fonts/font-awesome.css",
+                      "~/Content/Theme/iCheck/skins/flat/green.css",
+                      "~/Content/Theme/bootstrap-progressbar-{version}.css",
+                      "~/Content/Theme/jqvmap.min.css",
+                      "~/Content/Theme/daterangepicker.css",
+                      "~/Content/Theme/custom.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/theme").Include(
+                      "~/Scripts/Theme/smartresize.js",
+                      "~/Scripts/Theme/fastclick.js",
+                      "~/Scripts/Theme/gauge.js",
+                      "~/Scripts/Theme/bootstrap-progressbar.js",
+                      "~/Scripts/Theme/icheck.js",
+                      "~/Scripts/Theme/skycons.js",
+                      "~/Scripts/Theme/date.js",
+                      "~/Scripts/Theme/jquery.vmap.js",
+                      "~/Scripts/Theme/moment.js",
+                      "~/Scripts/Theme/daterangepicker.js",
+                      "~/Scripts/Theme/custom.js"));
         }
     }
 }

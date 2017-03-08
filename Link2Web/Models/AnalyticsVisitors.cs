@@ -2,6 +2,7 @@
 {
     public class AnalyticsVisitors
     {
+        public int Id { get; set; }
         public double Sessions { get; set; }
         public double NewUsers { get; set; }
         public double Pages { get; set; }
