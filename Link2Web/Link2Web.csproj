@@ -133,18 +133,6 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NLog.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.Mvc.1.0.8\lib\net45\NLog.Mvc.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.2.4.0\lib\net45\Serilog.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System">
       <Private>True</Private>
     </Reference>
@@ -300,8 +288,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnalyticsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Core\AppFlowMetadata.cs" />
     <Compile Include="DAL\Link2WebInit.cs" />
     <Compile Include="DAL\Link2WebDbContext.cs" />
@@ -652,8 +642,16 @@
     <Content Include="Content\Telerik\kendo.silver.mobile.min.css.map" />
     <Content Include="Content\Telerik\kendo.uniform.min.css.map" />
     <Content Include="Content\Telerik\kendo.uniform.mobile.min.css.map" />
-    <Content Include="Views\Analytics\_Visitors.cshtml" />
-    <Content Include="Views\Analytics\Index.cshtml" />
+    <Content Include="Views\Country\Create.cshtml" />
+    <Content Include="Views\Country\Delete.cshtml" />
+    <Content Include="Views\Country\Details.cshtml" />
+    <Content Include="Views\Country\Edit.cshtml" />
+    <Content Include="Views\Country\Index.cshtml" />
+    <Content Include="Views\Project\Create.cshtml" />
+    <Content Include="Views\Project\Delete.cshtml" />
+    <Content Include="Views\Project\Details.cshtml" />
+    <Content Include="Views\Project\Edit.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -875,7 +873,7 @@
     <Folder Include="Content\Telerik\Uniform\" />
     <Folder Include="fonts\" />
     <Folder Include="Scripts\Telerik\messages\" />
-    <Folder Include="Views\Base\" />
+    <Folder Include="Views\Analytics\" />
     <Folder Include="_bin_deployableAssemblies\App_Data\" />
   </ItemGroup>
   <ItemGroup>
