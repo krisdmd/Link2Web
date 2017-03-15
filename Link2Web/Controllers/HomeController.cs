@@ -1,5 +1,4 @@
 ﻿using Admin2Web.Helpers;
-using Link2Web.Core;
 using System;
 using System.Web;
 using System.Web.Mvc;
@@ -27,14 +26,6 @@ namespace Link2Web.Controllers
             return View();
         }
 
-
-        public class AuthCallbackController : Google.Apis.Auth.OAuth2.Mvc.Controllers.AuthCallbackController
-        {
-            protected override Google.Apis.Auth.OAuth2.Mvc.FlowMetadata FlowData
-            {
-                get { return new AppFlowMetadata(); }
-            }
-        }
 
         public ActionResult SetCulture(string culture)
         {
