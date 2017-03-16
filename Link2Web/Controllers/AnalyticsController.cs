@@ -27,10 +27,27 @@ namespace Link2Web.Controllers
 
             foreach (var row in data.Rows)
             {
-                foreach (string c in row)
+                var visitor = new AnalyticsVisitors
                 {
-                    var xx = c;
+                    Hits = int.Parse(row[0])
                 }
+                vm.AnalyticsVisitors.Add(visitor);
+            }
+
+
+            foreach (var column in data.ColumnHeaders)
+            {
+                  var c = column;
+
+//                var visitor = new AnalyticsVisitors
+//                {
+//                    Date = (string) row
+//                };
+
+//                foreach (var c in row)
+//                {
+//                    var xx = row;
+//                }
                 //analyticsVisitor.Clicks = 
             }
 

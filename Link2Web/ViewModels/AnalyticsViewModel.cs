@@ -5,6 +5,6 @@ namespace Link2Web.ViewModels
 {
     public class AnalyticsViewModel
     {
-        public IEnumerable<AnalyticsVisitors> AnalyticsVisitors { get; set; }
+        public List<AnalyticsVisitors> AnalyticsVisitors { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Google.Apis.Analytics.v3;
 using Google.Apis.Analytics.v3.Data;
 using Link2Web.Core;
+using Link2Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,7 @@ namespace Link2Web.BLL
                 var request = BuildAnalyticRequest(profileId, dimensions, metrics, startDate, endDate, startIndex);
                 response = request.Execute();
                 data.ColumnHeaders = response.ColumnHeaders;
+                //data.Rows.AddRange(); = response.Rows[0];
                 data.Rows.AddRange(response.Rows);
 
             } while (!string.IsNullOrEmpty(response.NextLink));
@@ -64,11 +66,11 @@ namespace Link2Web.BLL
         {
             public AnalyticDataPoint()
             {
-                Rows = new List<IList<string>>();
+                Rows = new List<List<AnalyticsData>>();
             }
 
             public IList<GaData.ColumnHeadersData> ColumnHeaders { get; set; }
-            public List<IList<string>> Rows { get; set; }
+            public List<List<AnalyticsData>> Rows { get; set; }
         }
 
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿namespace Link2Web.Models
 {
-    public class AnalyticsVisitors
+    public class AnalyticsData
     {
         public int Id { get; set; }
         public string Date { get; set; }
@@ -12,6 +12,5 @@
         public string Hits { get; set; }
         public string Clicks { get; set; }
         public string BounceRate { get; set; }
-
     }
 }
