@@ -26,7 +26,6 @@ namespace Link2Web.Controllers
             return View();
         }
 
-
         public ActionResult SetCulture(string culture)
         {
             // Validate input

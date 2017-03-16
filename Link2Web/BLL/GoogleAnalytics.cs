@@ -1,5 +1,6 @@
 ﻿using Google.Apis.Analytics.v3;
 using Google.Apis.Analytics.v3.Data;
+using Link2Web.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Link2Web.BLL
 
         public AnalyticDataPoint GetAnalyticsData(string profileId, string[] dimensions, string[] metrics, DateTime startDate, DateTime endDate)
         {
+            Service = Settings.AnalyticsService;
             AnalyticDataPoint data = new AnalyticDataPoint();
             if (!profileId.Contains("ga:"))
                 profileId = string.Format("ga:{0}", profileId);
@@ -77,6 +79,7 @@ namespace Link2Web.BLL
         /// <returns>Return a List from Google Analytics with raw data</returns>
         public AnalyticDataPoint GetVisitorsByDate(DateTime startDate, DateTime endDate)
         {
+            Service = Settings.AnalyticsService;
             var data = new AnalyticDataPoint();
             var analyticsData = new GoogleAnalytics();
             var dimensions = new []

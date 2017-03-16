@@ -25,8 +25,12 @@ namespace Link2Web.Controllers
             var analyticsVisitor = new AnalyticsVisitors();
             var vm = new AnalyticsViewModel();
 
-            foreach (var v in data.Rows)
+            foreach (var row in data.Rows)
             {
+                foreach (string c in row)
+                {
+                    var xx = c;
+                }
                 //analyticsVisitor.Clicks = 
             }
 
@@ -62,7 +66,7 @@ namespace Link2Web.Controllers
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Analytics");
             }
             catch
             {
@@ -128,14 +132,24 @@ namespace Link2Web.Controllers
                 });
   
                 _analyticsService = service;
+                Settings.AnalyticsService = service;
 
-                return View();
+                return RedirectToAction("Index", "Analytics");
             }
             else
             {
                 return new RedirectResult(result.RedirectUri);
             }
 
+        }
+
+    }
+
+    public class AuthCallbackController : Google.Apis.Auth.OAuth2.Mvc.Controllers.AuthCallbackController
+    {
+        protected override Google.Apis.Auth.OAuth2.Mvc.FlowMetadata FlowData
+        {
+            get { return new AppFlowMetadata(); }
         }
     }
 }
