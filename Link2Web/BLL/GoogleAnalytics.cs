@@ -17,6 +17,7 @@ namespace Link2Web.BLL
         {
             Service = Settings.AnalyticsService;
             AnalyticDataPoint data = new AnalyticDataPoint();
+            var rowData = new AnalyticsData();
             if (!profileId.Contains("ga:"))
                 profileId = string.Format("ga:{0}", profileId);
 
@@ -38,8 +39,23 @@ namespace Link2Web.BLL
                 var request = BuildAnalyticRequest(profileId, dimensions, metrics, startDate, endDate, startIndex);
                 response = request.Execute();
                 data.ColumnHeaders = response.ColumnHeaders;
+
+                foreach (var row in response.Rows)
+                {
+                    rowData = new AnalyticsData
+                    {
+                        Clicks = row[0],
+                        BounceRate = row[1],
+                        Date = row[2],
+                        AvgSessionDuration = row[3]
+                    };
+
+                    data.Rows.Add(rowData);
+                }
+
                 //data.Rows.AddRange(); = response.Rows[0];
-                data.Rows.AddRange(response.Rows);
+                data.Rows = new List<AnalyticsData>();
+
 
             } while (!string.IsNullOrEmpty(response.NextLink));
 
@@ -66,11 +82,11 @@ namespace Link2Web.BLL
         {
             public AnalyticDataPoint()
             {
-                Rows = new List<List<AnalyticsData>>();
+                Rows = new List<AnalyticsData>();
             }
 
             public IList<GaData.ColumnHeadersData> ColumnHeaders { get; set; }
-            public List<List<AnalyticsData>> Rows { get; set; }
+            public List<AnalyticsData> Rows { get; set; }
         }
 
         /// <summary>
@@ -84,7 +100,7 @@ namespace Link2Web.BLL
             Service = Settings.AnalyticsService;
             var data = new AnalyticDataPoint();
             var analyticsData = new GoogleAnalytics();
-            var dimensions = new []
+            var dimensions = new[]
             {
                 "ga:date"
             };

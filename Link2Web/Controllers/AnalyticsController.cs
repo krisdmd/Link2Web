@@ -1,11 +1,13 @@
 ﻿using Google.Apis.Analytics.v3;
 using Google.Apis.Auth.OAuth2.Mvc;
 using Google.Apis.Services;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
 using Link2Web.BLL;
 using Link2Web.Core;
 using Link2Web.Models;
-using Link2Web.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -17,44 +19,34 @@ namespace Link2Web.Controllers
         private AnalyticsService _analyticsService { get; set; }
 
 
-        public ActionResult Visitors()
+        public ActionResult Visitors([DataSourceRequest]DataSourceRequest request)
         {
             var analyticsData = new GoogleAnalytics();
             var data = analyticsData.GetVisitorsByDate(DateTime.Now.AddDays(-180), DateTime.Now);
 
-            var analyticsVisitor = new AnalyticsVisitors();
-            var vm = new AnalyticsViewModel();
+            List<AnalyticsData> d = data.Rows;
 
-            foreach (var row in data.Rows)
-            {
-                var visitor = new AnalyticsVisitors
-                {
-                    Hits = int.Parse(row[0])
-                }
-                vm.AnalyticsVisitors.Add(visitor);
-            }
+            //var vm = new AnalyticsViewModel {AnalyticsData = data.Rows};
 
+            DataSourceResult result = d.ToDataSourceResult(request);
+            return Json(result);
 
-            foreach (var column in data.ColumnHeaders)
-            {
-                  var c = column;
-
-//                var visitor = new AnalyticsVisitors
-//                {
-//                    Date = (string) row
-//                };
-
-//                foreach (var c in row)
-//                {
-//                    var xx = row;
-//                }
-                //analyticsVisitor.Clicks = 
-            }
-
-            //data.ColumnHeaders.FirstOrDefault().Name
-
-            return View();
         }
+
+        public ActionResult GetVisitors([DataSourceRequest]DataSourceRequest request)
+        {
+            var analyticsData = new GoogleAnalytics();
+            var data = analyticsData.GetVisitorsByDate(DateTime.Now.AddDays(-180), DateTime.Now);
+
+            List<AnalyticsData> d = data.Rows;
+
+            //var vm = new AnalyticsViewModel { AnalyticsData = data.Rows };
+
+            DataSourceResult result = d.ToDataSourceResult(request);
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+        }
+
 
 
         // GET: Analytics
@@ -147,7 +139,7 @@ namespace Link2Web.Controllers
                     HttpClientInitializer = result.Credential,
                     ApplicationName = "ASP.NET MVC Sample"
                 });
-  
+
                 _analyticsService = service;
                 Settings.AnalyticsService = service;
 
