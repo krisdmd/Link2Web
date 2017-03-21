@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Link2Web.ViewModels;
 
 namespace Link2Web.Controllers
 {
@@ -19,18 +20,13 @@ namespace Link2Web.Controllers
         private AnalyticsService _analyticsService { get; set; }
 
 
-        public ActionResult Visitors([DataSourceRequest]DataSourceRequest request)
+        public ActionResult Visitors()
         {
             var analyticsData = new GoogleAnalytics();
             var data = analyticsData.GetVisitorsByDate(DateTime.Now.AddDays(-180), DateTime.Now);
+            var vm = new AnalyticsViewModel { LstAnalyticsData = data.Rows };
 
-            List<AnalyticsData> d = data.Rows;
-
-            //var vm = new AnalyticsViewModel {AnalyticsData = data.Rows};
-
-            DataSourceResult result = d.ToDataSourceResult(request);
-            return Json(result);
-
+            return View(vm);
         }
 
         public ActionResult GetVisitors([DataSourceRequest]DataSourceRequest request)
@@ -38,7 +34,7 @@ namespace Link2Web.Controllers
             var analyticsData = new GoogleAnalytics();
             var data = analyticsData.GetVisitorsByDate(DateTime.Now.AddDays(-180), DateTime.Now);
 
-            List<AnalyticsData> d = data.Rows;
+            IList<AnalyticsData> d = data.Rows;
 
             //var vm = new AnalyticsViewModel { AnalyticsData = data.Rows };
 

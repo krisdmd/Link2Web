@@ -10,12 +10,8 @@ namespace Link2Web.BLL
 {
     public class GoogleAnalytics
     {
-        public AnalyticsService Service { get; set; }
-
-
         public AnalyticDataPoint GetAnalyticsData(string profileId, string[] dimensions, string[] metrics, DateTime startDate, DateTime endDate)
         {
-            Service = Settings.AnalyticsService;
             AnalyticDataPoint data = new AnalyticDataPoint();
             var rowData = new AnalyticsData();
             if (!profileId.Contains("ga:"))
@@ -65,7 +61,7 @@ namespace Link2Web.BLL
         private DataResource.GaResource.GetRequest BuildAnalyticRequest(string profileId, string[] dimensions, string[] metrics,
                                                                             DateTime startDate, DateTime endDate, int startIndex)
         {
-            DataResource.GaResource.GetRequest request = Service.Data.Ga.Get(profileId, startDate.ToString("yyyy-MM-dd"),
+            DataResource.GaResource.GetRequest request = Settings.AnalyticsService.Data.Ga.Get(profileId, startDate.ToString("yyyy-MM-dd"),
                                                                                 endDate.ToString("yyyy-MM-dd"), string.Join(",", metrics));
             request.Dimensions = string.Join(",", dimensions);
             request.StartIndex = startIndex;
@@ -74,7 +70,7 @@ namespace Link2Web.BLL
 
         public IList<Profile> GetAvailableProfiles()
         {
-            var response = Service.Management.Profiles.List("~all", "~all").Execute();
+            var response = Settings.AnalyticsService.Management.Profiles.List("~all", "~all").Execute();
             return response.Items;
         }
 
@@ -86,7 +82,7 @@ namespace Link2Web.BLL
             }
 
             public IList<GaData.ColumnHeadersData> ColumnHeaders { get; set; }
-            public List<AnalyticsData> Rows { get; set; }
+            public IList<AnalyticsData> Rows { get; set; }
         }
 
         /// <summary>
@@ -97,7 +93,6 @@ namespace Link2Web.BLL
         /// <returns>Return a List from Google Analytics with raw data</returns>
         public AnalyticDataPoint GetVisitorsByDate(DateTime startDate, DateTime endDate)
         {
-            Service = Settings.AnalyticsService;
             var data = new AnalyticDataPoint();
             var analyticsData = new GoogleAnalytics();
             var dimensions = new[]
@@ -112,13 +107,10 @@ namespace Link2Web.BLL
             };
 
 
-            if (Service != null)
-            {
-                analyticsData.Service = Service;
-                data = analyticsData.GetAnalyticsData("ga:136022774", dimensions, metrics, startDate, endDate);
-            }
+            data = analyticsData.GetAnalyticsData("ga:136022774", dimensions, metrics, startDate, endDate);
 
             return data;
         }
+
     }
 }
