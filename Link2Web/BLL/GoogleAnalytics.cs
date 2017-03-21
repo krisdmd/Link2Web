@@ -50,7 +50,6 @@ namespace Link2Web.BLL
                 }
 
                 //data.Rows.AddRange(); = response.Rows[0];
-                data.Rows = new List<AnalyticsData>();
 
 
             } while (!string.IsNullOrEmpty(response.NextLink));
@@ -93,7 +92,7 @@ namespace Link2Web.BLL
         /// <returns>Return a List from Google Analytics with raw data</returns>
         public AnalyticDataPoint GetVisitorsByDate(DateTime startDate, DateTime endDate)
         {
-            var data = new AnalyticDataPoint();
+            AnalyticDataPoint data;
             var analyticsData = new GoogleAnalytics();
             var dimensions = new[]
             {

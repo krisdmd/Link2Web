@@ -8,6 +8,7 @@ using Link2Web.Core;
 using Link2Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -34,11 +35,18 @@ namespace Link2Web.Controllers
             var analyticsData = new GoogleAnalytics();
             var data = analyticsData.GetVisitorsByDate(DateTime.Now.AddDays(-180), DateTime.Now);
 
-            IList<AnalyticsData> d = data.Rows;
+            IEnumerable<AnalyticsData> d = data.Rows;
+            var total = d.Count();
+
 
             //var vm = new AnalyticsViewModel { AnalyticsData = data.Rows };
 
-            DataSourceResult result = d.ToDataSourceResult(request);
+            var result = new DataSourceResult()
+            {
+                Data = d,
+                Total = total
+            };
+
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }
