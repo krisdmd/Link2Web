@@ -39,13 +39,14 @@ namespace Link2Web.BLL
 
                 foreach (var row in response.Rows)
                 {
-                    var datum = DateTime.ParseExact(row[0], "yyyyMMdd", DateTimeFormatInfo.InvariantInfo).ToString("dd/MM/yyyy");
+                    var datum = MyFunctions.StringToDateTime(row[0], "yyyMMdd");
+                    var bounceRate = MyFunctions.StringToDouble(row[3]);
 
                     rowData = new AnalyticsData
                     {
                         Clicks = row[2],
                         Date = datum,
-                        BounceRate = string.Format("{0:P1}", row[3]),
+                        BounceRate = bounceRate,
                         Pageviews = row[4],
                         Impressions = row[5],
                         NewUsers = row[1]

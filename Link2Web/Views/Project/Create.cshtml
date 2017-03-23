@@ -1,16 +1,50 @@
-﻿@model Link2Web.Models.Project
+﻿@using Kendo.Mvc.UI
+@model Link2Web.Models.Project
 
 @{
     ViewBag.Title = "Create";
 }
 
+@section AdditionalResources
+{
+    @Styles.Render("~/Content/telerik")
+    @Styles.Render("~/Content/telerikgrid")
+    @Scripts.Render("~/bundles/telerik")
+    @Scripts.Render("~/bundles/telerikgrid")
+
+
+    <script>
+        $(function() {
+            var validator = $("#createProject").kendoValidator().data("kendoValidator");
+            var status = $(".status");
+
+            $("form").submit(function(event) {
+                event.preventDefault();
+                if (validator.validate()) {
+                    status.text("Hooray! Your tickets has been booked!")
+                        .removeClass("invalid")
+                        .addClass("valid");
+                } else {
+                    status.text("Oops! There is invalid data in the form.")
+                        .removeClass("valid")
+                        .addClass("invalid");
+                }
+            });
+        });
+
+    </script>
+}
+
+
+
+
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Project", FormMethod.Post, new { id="createProject"}))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Project</h4>
         <hr />
@@ -18,6 +52,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                @(Html.Kendo().TextBox()
+                              .Name(@Model.Name)
+                              .HtmlAttributes(new { placeholder = "Name", required = "required", validationmessage = "Enter {0}", style = "width:220px" })
+                )
+
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
