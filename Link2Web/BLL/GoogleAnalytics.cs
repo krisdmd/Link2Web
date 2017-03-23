@@ -4,6 +4,7 @@ using Link2Web.Core;
 using Link2Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Link2Web.BLL
@@ -38,21 +39,23 @@ namespace Link2Web.BLL
 
                 foreach (var row in response.Rows)
                 {
+                    var datum = DateTime.ParseExact(row[0], "yyyyMMdd", DateTimeFormatInfo.InvariantInfo).ToString("dd/MM/yyyy");
+
                     rowData = new AnalyticsData
                     {
-                        Clicks = row[0],
-                        BounceRate = row[1],
-                        Date = row[2],
-                        AvgSessionDuration = row[3]
+                        Clicks = row[2],
+                        Date = datum,
+                        BounceRate = string.Format("{0:P1}", row[3]),
+                        Pageviews = row[4],
+                        Impressions = row[5],
+                        NewUsers = row[1]
                     };
 
                     data.Rows.Add(rowData);
                 }
 
-                //data.Rows.AddRange(); = response.Rows[0];
-
-
-            } while (!string.IsNullOrEmpty(response.NextLink));
+            }
+            while (!string.IsNullOrEmpty(response.NextLink));
 
             return data;
         }
@@ -102,7 +105,10 @@ namespace Link2Web.BLL
             {
                 "ga:users",
                 "ga:adClicks",
-                "ga:bounceRate"
+                "ga:bounceRate",
+                "ga:pageviews",
+                "ga:impressions"
+
             };
 
 

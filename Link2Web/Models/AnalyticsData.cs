@@ -12,5 +12,7 @@
         public string Hits { get; set; }
         public string Clicks { get; set; }
         public string BounceRate { get; set; }
+        public string Keywords { get; set; }
+        public string Pageviews { get; set; }
     }
 }

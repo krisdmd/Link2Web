@@ -15,29 +15,4 @@
 }
 
 
-<h2>Visitors</h2>
-
-@*@(Html.Kendo().Grid(@Link2Web.Models.AnalyticsData)*@
-@*    .Name("Grid")*@
-@*    .Columns(columns =>*@
-@*    {*@
-@*        columns.Bound(v => v.Clicks).Title("Clicks");*@
-@*        columns.Bound(v => v.BounceRate).Title("BounceRate").Width(130);*@
-@*        columns.Bound(v => v.Date).Title("Date").Width(130);*@
-@*        columns.Bound(v => v.Hits).Title("Hits").Width(130);*@
-@*    })*@
-@*    .HtmlAttributes(new { style = "height: 550px;" })*@
-@*    .Pageable(pageable => pageable*@
-@*       .Input(true)*@
-@*       .Numeric(false)*@
-@*     )*@
-@*    .Sortable()*@
-@*    .Scrollable(scr => scr.Height(430))*@
-@*    .Filterable()*@
-@*    .DataSource(dataSource => dataSource*@
-@*        .Ajax()*@
-@*        .PageSize(20)*@
-@*        .ServerOperation(false)*@
-@*     )*@
-@*)*@
-
+@Html.Partial("_Visitors")

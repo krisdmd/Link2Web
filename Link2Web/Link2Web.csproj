@@ -181,10 +181,6 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.2.4.0\lib\net45\Serilog.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System">
       <Private>True</Private>
     </Reference>
@@ -312,6 +308,10 @@
     <Compile Include="DAL\Migrations\201703080925535_AnalyticsVisitors.cs" />
     <Compile Include="DAL\Migrations\201703080925535_AnalyticsVisitors.Designer.cs">
       <DependentUpon>201703080925535_AnalyticsVisitors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201703231053106_updatedb.cs" />
+    <Compile Include="DAL\Migrations\201703231053106_updatedb.Designer.cs">
+      <DependentUpon>201703231053106_updatedb.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\Migrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
@@ -1173,6 +1173,7 @@
     <Content Include="Views\Analytics\Visitors.cshtml" />
     <Content Include="Scripts\Telerik\kendo.dialog.min.js.map" />
     <Content Include="Scripts\Telerik\kendo.mediaplayer.min.js.map" />
+    <Content Include="Views\Analytics\_Visitors.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1387,6 +1388,9 @@
   <ItemGroup>
     <EmbeddedResource Include="DAL\Migrations\201703080925535_AnalyticsVisitors.resx">
       <DependentUpon>201703080925535_AnalyticsVisitors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201703231053106_updatedb.resx">
+      <DependentUpon>201703231053106_updatedb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
