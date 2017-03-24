@@ -40,8 +40,9 @@ namespace Link2Web.BLL
                 foreach (var row in response.Rows)
                 {
                     var datum = MyFunctions.StringToDateTime(row[0], "yyyMMdd");
-                    var bounceRate = MyFunctions.StringToDouble(row[3]);
-
+                    var bounceRate = MyFunctions.GetDouble(row[3], 0);
+                    bounceRate = Math.Round(bounceRate, 2);
+ 
                     rowData = new AnalyticsData
                     {
                         Clicks = row[2],
@@ -92,16 +93,17 @@ namespace Link2Web.BLL
         /// Get the GoogleAnalytics visitors from a specific datetime
         /// </summary>
         /// <param name="startDate"></param>
-        /// <param name="endDatet"></param>
+        /// <param name="endDate"></param>
         /// <returns>Return a List from Google Analytics with raw data</returns>
         public AnalyticDataPoint GetVisitorsByDate(DateTime startDate, DateTime endDate)
         {
-            AnalyticDataPoint data;
             var analyticsData = new GoogleAnalytics();
+
             var dimensions = new[]
             {
                 "ga:date"
             };
+
             var metrics = new[]
             {
                 "ga:users",
@@ -109,13 +111,9 @@ namespace Link2Web.BLL
                 "ga:bounceRate",
                 "ga:pageviews",
                 "ga:impressions"
-
             };
 
-
-            data = analyticsData.GetAnalyticsData("ga:136022774", dimensions, metrics, startDate, endDate);
-
-            return data;
+            return analyticsData.GetAnalyticsData("ga:136022774", dimensions, metrics, startDate, endDate);
         }
 
     }

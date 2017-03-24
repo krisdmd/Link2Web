@@ -20,8 +20,9 @@ namespace Link2Web.DAL
         public IDbSet<SettingType> SettingTypes { get; set; }
         public IDbSet<ContactDetail> ContactDetails { get; set; }
         public IDbSet<Country> Countries { get; set; }
+        public IDbSet<Currency> Currencies { get; set; }
 
-        
+
         public static Link2WebDbContext Create()
         {
             return new Link2WebDbContext();

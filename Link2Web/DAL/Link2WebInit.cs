@@ -29,6 +29,15 @@ namespace Link2Web.DAL
             };
 
             settingTypes.ForEach(s => context.SettingTypes.AddOrUpdate(s));
+
+            var currencies = new List<Currency>
+            {
+                new Currency { Name = "Euro", Code = "EUR", Symbol = "€"},
+                new Currency { Name = "US Dollar", Code = "USD", Symbol = "$"},
+                new Currency { Name = "British Pound Sterling", Code = "GBP", Symbol = "£"}
+            };
+
+            currencies.ForEach(c => context.Currencies.AddOrUpdate(c));
         }
     }
 }

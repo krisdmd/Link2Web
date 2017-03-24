@@ -328,6 +328,7 @@
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ContactDetail.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\Facebook.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Project.cs" />

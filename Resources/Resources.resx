@@ -132,17 +132,26 @@
   <data name="Clicks" xml:space="preserve">
     <value>Clicks</value>
   </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
   <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>
   <data name="Created" xml:space="preserve">
     <value>Created</value>
   </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
   <data name="Date" xml:space="preserve">
     <value>Date</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Display name</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
@@ -159,6 +168,15 @@
   <data name="Keywords" xml:space="preserve">
     <value>Keywords</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LostPassword" xml:space="preserve">
+    <value>Lost password</value>
+  </data>
   <data name="Mobile" xml:space="preserve">
     <value>Mobile</value>
   </data>
@@ -174,8 +192,20 @@
   <data name="Pageviews" xml:space="preserve">
     <value>Pageviews</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
   <data name="Phone" xml:space="preserve">
     <value>Phone</value>
+  </data>
+  <data name="PreviewImage" xml:space="preserve">
+    <value>Preview image</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
+  <data name="Symbol" xml:space="preserve">
+    <value>Symbol</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>User</value>

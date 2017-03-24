@@ -87,3 +87,53 @@
 form .text-danger {
     font-weight: bold;
 }
+
+#details, fieldset.for-panel {
+    border: 1px solid #999 !important;
+    border-radius: 4px !important;	
+    padding:15px 10px !important;
+    border-color: #bce8f1 !important;
+    margin-bottom:12px;
+}
+#details, fieldset.for-panel legend {
+    border: 1px solid #cccccc !important;
+    border-radius: 5px;
+    line-height: 36px;
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#dropdownLogoutForm {
+    padding: 6px 12px 12px 0 !important;
+}
+
+form {
+    min-height: 0 !important;
+    min-width: 0 !important;  
+}
+
+#logo {
+    padding-top: 20px;
+    height: 140px;
+    text-align: center;
+}
+
+#logo img {
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 100px;
+}
+
+.bg-gray {
+    background-color: #eeeeee !important;
+    color: #5A739A;
+}
+
+.form-control {
+    background-color: #eee;
+    opacity: 1;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
