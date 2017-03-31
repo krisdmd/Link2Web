@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
 
 namespace Link2Web.Models
@@ -29,11 +30,14 @@ namespace Link2Web.Models
         public LinkContact LinkContactId { get; set; }
 
         [HiddenInput(DisplayValue = false)]
-        public Project ProjectId { get; set; }
+        [Key, ForeignKey("Project")]
+        public int ProjectId { get; set; }
 
         public virtual LinkStatus Status { get; set; }
         public virtual LinkType LinkType { get; set; }
         public virtual WebsiteType WebsiteType { get; set; }
         public virtual LinkContact LinkContact { get; set; }
+
+        public virtual Project Project { get; set; }
     }
 }

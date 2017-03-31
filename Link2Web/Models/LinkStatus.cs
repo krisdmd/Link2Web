@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Link2Web.Models
 {
@@ -14,6 +12,7 @@ namespace Link2Web.Models
         public string Status { get; set; }
 
         [Display(Name = "Visible", ResourceType = typeof (Resources.Resources))]
+        [DefaultValue(true)]
         public bool Visible { get; set; }
 
         public ICollection<Link> Links { get; set; }

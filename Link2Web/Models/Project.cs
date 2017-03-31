@@ -45,5 +45,7 @@ namespace Link2Web.Models
 
         public virtual Country Country { get; set; }
         public virtual Currency Currency { get; set; }
+
+        public virtual Link Links { get; set; }
     }
 }

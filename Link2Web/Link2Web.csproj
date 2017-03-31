@@ -294,6 +294,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CountriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CurrenciesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LinkTypesController.cs" />
     <Compile Include="BLL\GoogleAnalytics.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnalyticsController.cs" />
@@ -319,6 +320,10 @@
     <Compile Include="DAL\Migrations\201703291347528_currencies.cs" />
     <Compile Include="DAL\Migrations\201703291347528_currencies.Designer.cs">
       <DependentUpon>201703291347528_currencies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201703311307127_links.cs" />
+    <Compile Include="DAL\Migrations\201703311307127_links.Designer.cs">
+      <DependentUpon>201703311307127_links.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\Migrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
@@ -687,6 +692,11 @@
     <Content Include="Areas\Admin\Views\Countries\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Countries\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Countries\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LinkTypes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LinkTypes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LinkTypes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\LinkTypes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LinkTypes\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1422,6 +1432,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201703291347528_currencies.resx">
       <DependentUpon>201703291347528_currencies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201703311307127_links.resx">
+      <DependentUpon>201703311307127_links.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
