@@ -36,7 +36,10 @@
                 <a><i class="fa fa-edit"></i> Admin <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li>
-                        @Html.ActionLink("Currencies", "Index", "Currencies", new { Area="Admin" }, new {})
+                        @Html.ActionLink("Currencies", "Index", "Currencies", new {Area = "Admin"}, new {})
+                    </li>
+                    <li>
+                        @Html.ActionLink("Countries", "Index", "Countries", new { Area = "Admin" }, new { })
                     </li>
                 </ul>
             </li>

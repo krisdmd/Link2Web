@@ -123,6 +123,9 @@
   <data name="Address" xml:space="preserve">
     <value>Address</value>
   </data>
+  <data name="AnchorText" xml:space="preserve">
+    <value>AnchorText</value>
+  </data>
   <data name="BounceRate" xml:space="preserve">
     <value>BounceRate</value>
   </data>
@@ -141,6 +144,9 @@
   <data name="Created" xml:space="preserve">
     <value>Created</value>
   </data>
+  <data name="CreatedOn" xml:space="preserve">
+    <value>Created on</value>
+  </data>
   <data name="Currency" xml:space="preserve">
     <value>Currency</value>
   </data>
@@ -150,6 +156,12 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DestinationUrl" xml:space="preserve">
+    <value>Destination URL</value>
+  </data>
   <data name="DisplayName" xml:space="preserve">
     <value>Display name</value>
   </data>
@@ -158,6 +170,12 @@
   </data>
   <data name="Email" xml:space="preserve">
     <value>E-mail</value>
+  </data>
+  <data name="FacebookProfileUrl" xml:space="preserve">
+    <value>Facebook Profile URL</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>FirstName</value>
   </data>
   <data name="Hits" xml:space="preserve">
     <value>Hits</value>
@@ -170,6 +188,9 @@
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>LastName</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
@@ -204,8 +225,17 @@
   <data name="RememberMe" xml:space="preserve">
     <value>Remember me</value>
   </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
   <data name="Symbol" xml:space="preserve">
     <value>Symbol</value>
+  </data>
+  <data name="TwitterProfileUrl" xml:space="preserve">
+    <value>Twitter profile URL</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>User</value>
@@ -218,6 +248,12 @@
   </data>
   <data name="Website" xml:space="preserve">
     <value>Website</value>
+  </data>
+  <data name="WebsiteType" xml:space="preserve">
+    <value>Website Type</value>
+  </data>
+  <data name="WebsiteUrl" xml:space="preserve">
+    <value>Website URL</value>
   </data>
   <data name="ZipCode" xml:space="preserve">
     <value>ZipCode</value>
