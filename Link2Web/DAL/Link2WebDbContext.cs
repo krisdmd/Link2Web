@@ -26,13 +26,11 @@ namespace Link2Web.DAL
         public IDbSet<LinkContact> LinkContacts { get; set; }
         public IDbSet<LinkStatus> LinkStatus { get; set; }
         public IDbSet<LinkType> LinkTypes { get; set; }
-
+ 
 
         public static Link2WebDbContext Create()
         {
             return new Link2WebDbContext();
         }
-
-        public System.Data.Entity.DbSet<Link2Web.Models.AnalyticsChannels> AnalyticsChannels { get; set; }
     }
 }
