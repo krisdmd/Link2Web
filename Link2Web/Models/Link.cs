@@ -10,10 +10,13 @@ namespace Link2Web.Models
         public int LinkId { get; set; }
 
         [Display(Name = "WebsiteUrl", ResourceType = typeof (Resources.Resources))]
+        [Required]
         public string WebsiteUrl { get; set; }
 
         [Display(Name = "AnchorText", ResourceType = typeof (Resources.Resources))]
+        [Required]
         public string AnchorText { get; set; }
+        [Required]
 
         [Display(Name = "DestinationUrl", ResourceType = typeof (Resources.Resources))]
         public string DestinationUrl { get; set; }

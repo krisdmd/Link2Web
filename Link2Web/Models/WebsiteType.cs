@@ -8,6 +8,7 @@ namespace Link2Web.Models
     {
         public int WebsiteTypeId { get; set; }
         [Display(Name = "WebsiteType", ResourceType = typeof(Resources.Resources))]
+        [Required]
         public string Type { get; set; }
         [Display(Name = "Visible", ResourceType = typeof(Resources.Resources))]
         [DefaultValue(true)]

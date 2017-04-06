@@ -5,109 +5,114 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 
-namespace Link2Web.Areas.Admin.Controllers
+namespace Link2Web.Controllers
 {
-    public class CurrenciesController : BaseController
+    public class LinksController : BaseController
     {
         private Link2WebDbContext db = new Link2WebDbContext();
 
-        // GET: Admin/Currencies
+        // GET: Links
         public ActionResult Index()
         {
-            return View(db.Currencies.ToList());
+            var links = db.Links.Include(l => l.Project);
+            return View(links.ToList());
         }
 
-        // GET: Admin/Currencies/Details/5
+        // GET: Links/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Currency currency = db.Currencies.Find(id);
-            if (currency == null)
+            Link link = db.Links.Find(id);
+            if (link == null)
             {
                 return HttpNotFound();
             }
-            return View(currency);
+            return View(link);
         }
 
-        // GET: Admin/Currencies/Create
+        // GET: Links/Create
         public ActionResult Create()
         {
+            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
             return View();
         }
 
-        // POST: Admin/Currencies/Create
+        // POST: Links/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CurrencyId,Code,Name,Symbol")] Currency currency)
+        public ActionResult Create([Bind(Include = "ProjectId,LinkId,WebsiteUrl,AnchorText,DestinationUrl,Description,CreatedOn")] Link link)
         {
             if (ModelState.IsValid)
             {
-                db.Currencies.Add(currency);
+                db.Links.Add(link);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(currency);
+            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", link.ProjectId);
+            return View(link);
         }
 
-        // GET: Admin/Currencies/Edit/5
+        // GET: Links/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Currency currency = db.Currencies.Find(id);
-            if (currency == null)
+            Link link = db.Links.Find(id);
+            if (link == null)
             {
                 return HttpNotFound();
             }
-            return View(currency);
+            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", link.ProjectId);
+            return View(link);
         }
 
-        // POST: Admin/Currencies/Edit/5
+        // POST: Links/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CurrencyId,Code,Name,Symbol")] Currency currency)
+        public ActionResult Edit([Bind(Include = "ProjectId,LinkId,WebsiteUrl,AnchorText,DestinationUrl,Description,CreatedOn")] Link link)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(currency).State = EntityState.Modified;
+                db.Entry(link).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(currency);
+            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", link.ProjectId);
+            return View(link);
         }
 
-        // GET: Admin/Currencies/Delete/5
+        // GET: Links/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Currency currency = db.Currencies.Find(id);
-            if (currency == null)
+            Link link = db.Links.Find(id);
+            if (link == null)
             {
                 return HttpNotFound();
             }
-            return View(currency);
+            return View(link);
         }
 
-        // POST: Admin/Currencies/Delete/5
+        // POST: Links/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Currency currency = db.Currencies.Find(id);
-            db.Currencies.Remove(currency);
+            Link link = db.Links.Find(id);
+            db.Links.Remove(link);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

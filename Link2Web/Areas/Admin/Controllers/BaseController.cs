@@ -6,7 +6,7 @@ using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Link2Web.Controllers
+namespace Link2Web.Areas.Admin.Controllers
 {
     public class BaseController : Controller
     {
@@ -52,5 +52,4 @@ namespace Link2Web.Controllers
         }
 
     }
-
 }

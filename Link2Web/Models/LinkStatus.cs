@@ -9,6 +9,7 @@ namespace Link2Web.Models
         public int LinkStatusId { get; set; }
 
         [Display(Name = "Status", ResourceType = typeof (Resources.Resources))]
+        [Required]
         public string Status { get; set; }
 
         [Display(Name = "Visible", ResourceType = typeof (Resources.Resources))]

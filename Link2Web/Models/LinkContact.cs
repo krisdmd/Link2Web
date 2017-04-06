@@ -9,12 +9,14 @@ namespace Link2Web.Models
         public int LinkContactId { get; set; }
 
         [Display(Name = "FirstName", ResourceType = typeof (Resources.Resources))]
+        [Required]
         public string FirstName { get; set; }
 
         [Display(Name = "LastName", ResourceType = typeof (Resources.Resources))]
         public string LastName { get; set; }
 
         [Display(Name = "Email", ResourceType = typeof (Resources.Resources))]
+        [Required]
         public string Email { get; set; }
 
         [Display(Name = "TwitterProfileUrl", ResourceType = typeof (Resources.Resources))]

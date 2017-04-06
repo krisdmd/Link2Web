@@ -11,20 +11,21 @@ namespace Link2Web.Models
         public ApplicationUser UserId { get; set; }
 
         [Display(Name = "DisplayName", ResourceType = typeof (Resources.Resources))]
+        [Required]
         public string Name { get; set; }
 
         [Display(Name = "Email", ResourceType = typeof (Resources.Resources))]
+        [Required]
         public string Email { get; set; }
 
         [Display(Name = "Country", ResourceType = typeof (Resources.Resources))]
         public int CountryId { get; set; }
 
-        //public TimeZoneInfo TimeZone { get; set; }
         [Display(Name = "Website", ResourceType = typeof (Resources.Resources))]
+        [Required]
         public string Url { get; set; }
 
         [Display(Name = "PreviewImage", ResourceType = typeof (Resources.Resources))]
-        [DisplayName("Preview image")]
         public string PreviewImage { get; set; }
 
         [Display(Name = "Note", ResourceType = typeof (Resources.Resources))]

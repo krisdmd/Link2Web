@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Link2Web.DAL;
+using Link2Web.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Link2Web.DAL;
-using Link2Web.Models;
 
 namespace Link2Web.Areas.Admin.Controllers
 {
-    public class CountriesController : Controller
+    public class CountriesController : BaseController
     {
         private Link2WebDbContext db = new Link2WebDbContext();
 

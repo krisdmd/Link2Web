@@ -5,5 +5,6 @@ namespace Link2Web.Core
     public static class Settings
     {
         public static AnalyticsService AnalyticsService { get; set; }
+        public static string FacebookAccessToken { get; set; }
     }
 }
