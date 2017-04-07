@@ -4,41 +4,38 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Add LinkType</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>LinkType</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="col-md-12 col-sm-12 col-xs-12 personal-info">
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
                 @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Visible, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Visible)
-                    @Html.ValidationMessageFor(model => model.Visible, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Visible, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+            <div class="checkbox col-md-10 col-sm-9 col-xs-12">
+                @Html.CheckBoxFor(model => model.Visible, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
+                @Html.ValidationMessageFor(model => model.Visible, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <input type="submit" class="btn btn-primary" value="Save Changes">
+                <span></span>
+                <input type="reset" class="btn btn-default" value="Cancel">
             </div>
         </div>
     </div>
-}
 
 <div>
     @Html.ActionLink("Back to List", "Index")

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Link2Web.Controllers
 {
+    [Authorize]
     public class BaseController : Controller
     {
         // GET: Base
@@ -44,10 +45,18 @@ namespace Link2Web.Controllers
                 if (!string.IsNullOrEmpty(username))
                 {
                     var user = context.Users.SingleOrDefault(u => u.UserName == username);
-                    string fullName = string.Concat(new string[] { user.FirstName, " ", user.LastName });
-                    ViewData.Add("FullName", fullName);
+                    if (user != null)
+                    {
+                        var fullName = string.Concat(new[] {user.FirstName, " ", user.LastName});
+                        ViewData.Add("FullName", fullName);
+                    }
+                }
+                else
+                {
+                    ViewData.Add("FullName", "");
                 }
             }
+
             base.OnActionExecuted(filterContext);
         }
 

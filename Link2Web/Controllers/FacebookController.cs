@@ -50,6 +50,7 @@ namespace Link2Web.Controllers
             {
                 client_id = "388275924892035",
                 client_secret = "dbe0ce9eaf969beddb4754115868c31d",
+                fb_exchange_token = code,
                 redirect_uri = RedirectUri.AbsoluteUri,
                 code = code
             });
@@ -64,17 +65,21 @@ namespace Link2Web.Controllers
             fb.AccessToken = accessToken;
             Settings.FacebookAccessToken = accessToken;
 
+
+            var pageFeed = string.Format("/v2.4/{0}/feed?fields=id,message,attachments", "2301741419964830");
+            dynamic response = fb.Get(pageFeed);
+
+
+
             // Get the user's information
-            dynamic me = fb.Get("me?fields=first_name,middle_name,last_name,id,email");
-            string email = me.email;
-            string firstname = me.first_name;
-            string middlename = me.middle_name;
-            string lastname = me.last_name;
+//            dynamic me = fb.Get("me?fields=first_name,middle_name,last_name,id,email");
+//            string email = me.email;
+//            string firstname = me.first_name;
+//            string middlename = me.middle_name;
+//            string lastname = me.last_name;
 
             //db.Insert_customer(firstname, email, null, null, null, null, null, null, null, null, null, null, 1, 1, System.DateTime.Now, 1, System.DateTime.Now);
 
-            // Set the auth cookie
-            FormsAuthentication.SetAuthCookie(email, false);
             return RedirectToAction("Index", "Home");
         }
 
