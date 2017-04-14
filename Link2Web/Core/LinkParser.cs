@@ -11,29 +11,9 @@ namespace Link2Web.Helpers
     {
         private string _url;
         private List<Page> _pages = new List<Page>();
-        private bool _isCurrentPage = true; 
+        private bool _isCurrentPage = true;
         private const string LinkRegex = "href=\"[a-zA-Z./:&\\d_-]+\"";
-        private List<string> _badUrls = new List<string>();
-        private List<string> _exceptions = new List<string>();
-        private List<string> _internalUrls { get; set; } = new List<string>();
-
-        /// <summary>
-        /// Bad Urls
-        /// </summary>
-        public List<string> BadUrls
-        {
-            get { return _badUrls; }
-            set { _badUrls = value; }
-        }
-
-        /// <summary>
-        /// Exceptions
-        /// </summary>
-        public List<string> Exceptions
-        {
-            get { return _exceptions; }
-            set { _exceptions = value; }
-        }
+        private List<string> InternalUrls { get; set; } = new List<string>();
 
         public void InitializeCrawl(string url)
         {
@@ -48,10 +28,10 @@ namespace Link2Web.Helpers
         /// <param name="url">The url to crawl.</param>
         private void CrawlPage(string url)
         {
+            if (IsExternalUrl(url)) return;
             if (PageHasBeenCrawled(url)) return;
 
             var htmlText = GetWebText(url);
-            var linkParser = new LinkParser();
             var page = new Page
             {
                 Text = htmlText,
@@ -60,38 +40,28 @@ namespace Link2Web.Helpers
 
             _pages.Add(page);
 
-            linkParser.ParseLinks(page, url);
+            ParseLinks(page, url);
 
-            //Add data to main data lists
-            if (_isCurrentPage)
-            {
-                AddRangeButNoDuplicates(_internalUrls);
-            }
-
-            AddRangeButNoDuplicates(linkParser.BadUrls);
-
-            foreach (string exception in linkParser.Exceptions)
-                _exceptions.Add(exception);
 
             _isCurrentPage = false;
 
 
             //Crawl all the links found on the page.
-            foreach (var link in _internalUrls)
+            foreach (var link in InternalUrls)
             {
-                string formattedLink = link;
+                var formattedLink = link;
                 try
                 {
                     formattedLink = FixPath(url, formattedLink);
 
-                    if (formattedLink != String.Empty)
+                    if (formattedLink != string.Empty)
                     {
                         CrawlPage(formattedLink);
                     }
                 }
                 catch (Exception)
                 {
-                    _badUrls.Add(url);
+
                 }
             }
         }
@@ -101,7 +71,7 @@ namespace Link2Web.Helpers
         /// </summary>
         /// <param name="page">The page whose text is to be parsed.</param>
         /// <param name="sourceUrl">The source url of the page.</param>
-        public void ParseLinks(Page page, string sourceUrl)
+        private void ParseLinks(Page page, string sourceUrl)
         {
             var matches = Regex.Matches(page.Text, LinkRegex);
 
@@ -109,42 +79,20 @@ namespace Link2Web.Helpers
             {
                 var anchorMatch = matches[i];
 
-                if (anchorMatch.Value == string.Empty)
-                {
-                    BadUrls.Add("Blank url value on page " + sourceUrl);
-                    continue;
-                }
+                //                if (anchorMatch.Value == string.Empty)
+                //                {
+                //                    BadUrls.Add("Blank url value on page " + sourceUrl);
+                //                    continue;
+                //                }
 
                 string foundHref = null;
-                try
-                {
-                    foundHref = anchorMatch.Value.Replace("href=\"", "");
-                    foundHref = foundHref.Substring(0, foundHref.IndexOf("\"", StringComparison.Ordinal));
-                }
-                catch (Exception exc)
-                {
-                    Exceptions.Add("Error parsing matched href: " + exc.Message);
-                }
+                foundHref = anchorMatch.Value.Replace("href=\"", "");
+                foundHref = foundHref.Substring(0, foundHref.IndexOf("\"", StringComparison.Ordinal));
 
 
-                if (!_internalUrls.Contains(foundHref))
+                if (!InternalUrls.Contains(foundHref) && !IsExternalUrl(foundHref) && IsAWebPage(foundHref))
                 {
-                    if (foundHref != "/")
-                    {
-                        if (!IsExternalUrl(foundHref) && !_internalUrls.Contains(foundHref))
-                        {
-                            _internalUrls.Add(foundHref);
-                        }
-                        else if (!IsAWebPage(foundHref))
-                        {
-                            foundHref = FixPath(sourceUrl, foundHref);
-                            BadUrls.Add(foundHref);
-                        }
-                        else
-                        {
-                            _internalUrls.Add(foundHref);
-                        }
-                    }
+                    InternalUrls.Add(foundHref);
                 }
             }
         }
@@ -157,7 +105,15 @@ namespace Link2Web.Helpers
         /// <returns>Boolean indicating whether or not the url is to an external destination.</returns>
         private bool IsExternalUrl(string url)
         {
-            return _url.Contains(url);
+            if (GetHostFromUrl(_url).Contains(GetHostFromUrl(url)))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
         }
 
         /// <summary>
@@ -177,6 +133,8 @@ namespace Link2Web.Helpers
                 case "jpg":
                 case "css":
                     return false;
+                case "xml":
+                    return false;
                 default:
                     return true;
             }
@@ -189,7 +147,7 @@ namespace Link2Web.Helpers
         /// <param name="originatingUrl">The url that the link was found in.</param>
         /// <param name="link">The link to be fixed up.</param>
         /// <returns>A fixed url that is fit to be fetched.</returns>
-        public string FixPath(string originatingUrl, string link)
+        private string FixPath(string originatingUrl, string link)
         {
             string formattedLink = string.Empty;
 
@@ -218,12 +176,12 @@ namespace Link2Web.Helpers
         /// <param name="relativeUrl">The relative url.</param>
         /// <param name="originatingUrl">The url that contained the relative url.</param>
         /// <returns>A url that was relative but is now absolute.</returns>
-        public string ResolveRelativePaths(string relativeUrl, string originatingUrl)
+        private string ResolveRelativePaths(string relativeUrl, string originatingUrl)
         {
             var resolvedUrl = string.Empty;
 
-            var relativeUrlArray = relativeUrl.Split(new char[] {'/'}, StringSplitOptions.RemoveEmptyEntries);
-            var originatingUrlElements = originatingUrl.Split(new char[] {'/'},
+            var relativeUrlArray = relativeUrl.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+            var originatingUrlElements = originatingUrl.Split(new char[] { '/' },
                 StringSplitOptions.RemoveEmptyEntries);
             var indexOfFirstNonRelativePathElement = 0;
             for (var i = 0; i <= relativeUrlArray.Length - 1; i++)
@@ -260,25 +218,9 @@ namespace Link2Web.Helpers
         /// </summary>
         /// <param name="url">The url that has potentially been crawled.</param>
         /// <returns>Boolean indicating whether or not the page has been crawled.</returns>
-        public bool PageHasBeenCrawled(string url)
+        private bool PageHasBeenCrawled(string url)
         {
             return _pages.Any(page => page.Url == url);
-        }
-
-        /// <summary>
-        /// Merges a two lists of strings.
-        /// </summary>
-        /// <param name="sourceList">The list whose values need to be merged.</param>
-        private void AddRangeButNoDuplicates(IEnumerable<string> sourceList)
-        {
-            foreach (var str in sourceList.ToList())
-            {
-                if (!IsExternalUrl(str))
-                {
-                    _internalUrls.Add(str);
-                }
-
-            }
         }
 
         /// <summary>
@@ -286,10 +228,10 @@ namespace Link2Web.Helpers
         /// </summary>
         /// <param name="url">The url whose text needs to be fetched.</param>
         /// <returns>The text of the response.</returns>
-        public string GetWebText(string url)
+        private string GetWebText(string url)
         {
             var htmlText = string.Empty;
-            var request = (HttpWebRequest) WebRequest.Create(url);
+            var request = (HttpWebRequest)WebRequest.Create(url);
             request.UserAgent = "A Web Crawler";
 
             var response = request.GetResponse();
@@ -306,5 +248,12 @@ namespace Link2Web.Helpers
 
             return htmlText;
         }
+
+        private string GetHostFromUrl(string url)
+        {
+            var uri = new Uri(url);
+            return uri.Host;
+        }
+
     }
 }
