@@ -94,23 +94,9 @@ namespace Link2Web.BLL
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
         /// <returns>Return a List from Google Analytics with raw data</returns>
-        public AnalyticDataPoint GetVisitorsByDate(DateTime startDate, DateTime endDate)
+        public AnalyticDataPoint GetVisitorsData(DateTime startDate, DateTime endDate, string[] dimensions, string[] metrics)
         {
             var analyticsData = new GoogleAnalytics();
-
-            var dimensions = new[]
-            {
-                "ga:date"
-            };
-
-            var metrics = new[]
-            {
-                "ga:users",
-                "ga:adClicks",
-                "ga:bounceRate",
-                "ga:pageviews",
-                "ga:impressions"
-            };
 
             return analyticsData.GetAnalyticsData("ga:136022774", dimensions, metrics, startDate, endDate);
         }

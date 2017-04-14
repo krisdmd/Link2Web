@@ -6,13 +6,13 @@ using Kendo.Mvc.UI;
 using Link2Web.BLL;
 using Link2Web.Core;
 using Link2Web.Models;
+using Link2Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Link2Web.ViewModels;
 
 namespace Link2Web.Controllers
 {
@@ -25,8 +25,23 @@ namespace Link2Web.Controllers
                 return RedirectToAction("IndexAsync");
             }
 
+            var dimensions = new[]
+            {
+                "ga:date"
+            };
+
+            var metrics = new[]
+{
+                "ga:users",
+                "ga:adClicks",
+                "ga:bounceRate",
+                "ga:pageviews",
+                "ga:organicSearches",
+                "ga:impressions"
+            };
+
             var analyticsData = new GoogleAnalytics();
-            var data = analyticsData.GetVisitorsByDate(DateTime.Now.AddDays(-180), DateTime.Now);
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
             var vm = new AnalyticsViewModel { LstAnalyticsData = data.Rows };
 
             return View(vm);
@@ -34,8 +49,131 @@ namespace Link2Web.Controllers
 
         public ActionResult GetVisitors([DataSourceRequest]DataSourceRequest request)
         {
+            var dimensions = new[]
+{
+                "ga:date"
+            };
+
+            var metrics = new[]
+{
+                "ga:users",
+                "ga:adClicks",
+                "ga:bounceRate",
+                "ga:pageviews",
+                "ga:organicSearches",
+                "ga:impressions"
+            };
+
             var analyticsData = new GoogleAnalytics();
-            var data = analyticsData.GetVisitorsByDate(DateTime.Now.AddDays(-180), DateTime.Now);
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
+
+            IEnumerable<AnalyticsData> d = data.Rows;
+            var total = d.Count();
+
+
+            //var vm = new AnalyticsViewModel { AnalyticsData = data.Rows };
+
+            var result = new DataSourceResult()
+            {
+                Data = d,
+                Total = total
+            };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public ActionResult GetVisitorsByKeyword([DataSourceRequest]DataSourceRequest request)
+        {
+            var dimensions = new[]
+{
+                "ga:keyword"
+            };
+
+            var metrics = new[]
+            {
+                "ga:users",
+                "ga:adClicks",
+                "ga:bounceRate",
+                "ga:pageviews",
+                "ga:organicSearches",
+                "ga:impressions"
+            };
+
+
+            var analyticsData = new GoogleAnalytics();
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
+
+            IEnumerable<AnalyticsData> d = data.Rows;
+            var total = d.Count();
+
+
+            //var vm = new AnalyticsViewModel { AnalyticsData = data.Rows };
+
+            var result = new DataSourceResult()
+            {
+                Data = d,
+                Total = total
+            };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public ActionResult GetVisitorsByTopReferer([DataSourceRequest]DataSourceRequest request)
+        {
+            var dimensions = new[]
+{
+                "ga:fullReferrer"
+            };
+
+            var metrics = new[]
+{
+                "ga:users",
+                "ga:adClicks",
+                "ga:bounceRate",
+                "ga:pageviews",
+                "ga:organicSearches",
+                "ga:impressions"
+            };
+
+            var analyticsData = new GoogleAnalytics();
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
+
+            IEnumerable<AnalyticsData> d = data.Rows;
+            var total = d.Count();
+
+
+            //var vm = new AnalyticsViewModel { AnalyticsData = data.Rows };
+
+            var result = new DataSourceResult()
+            {
+                Data = d,
+                Total = total
+            };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public ActionResult GetVisitorsByBrowser([DataSourceRequest]DataSourceRequest request)
+        {
+            var dimensions = new[]
+{
+                "ga:browser"
+            };
+
+            var metrics = new[]
+{
+                "ga:users",
+                "ga:pageviews",
+                "ga:bounceRate",
+                "ga:organicSearches",
+                "ga:avgTimeOnPage"
+            };
+
+            var analyticsData = new GoogleAnalytics();
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
 
             IEnumerable<AnalyticsData> d = data.Rows;
             var total = d.Count();
