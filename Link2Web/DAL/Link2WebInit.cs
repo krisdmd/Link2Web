@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Link2Web.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
-using Link2Web.Models;
 
 namespace Link2Web.DAL
 {
-    public class Link2WebInit: DropCreateDatabaseAlways<Link2WebDbContext>
+    public class Link2WebInit: CreateDatabaseIfNotExists<Link2WebDbContext>
     {
         protected override void Seed(Link2WebDbContext context)
         {
