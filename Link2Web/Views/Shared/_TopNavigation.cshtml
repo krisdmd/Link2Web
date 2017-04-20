@@ -17,7 +17,7 @@
                         @if (!string.IsNullOrWhiteSpace(ViewData["FullName"].ToString()))
                         {
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="~/Content/Theme/images/img.jpg" alt="">@ViewData["FullName"]
+                                <img src="@Url.Action("ProfilePicture", "Home" )" alt="">@ViewData["FullName"]
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">

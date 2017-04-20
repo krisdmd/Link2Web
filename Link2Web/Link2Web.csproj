@@ -338,6 +338,10 @@
     <Compile Include="DAL\Migrations\201704061335148_AddElmah.Designer.cs">
       <DependentUpon>201704061335148_AddElmah.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Migrations\201704201223548_profile.cs" />
+    <Compile Include="DAL\Migrations\201704201223548_profile.Designer.cs">
+      <DependentUpon>201704201223548_profile.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Migrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -349,6 +353,7 @@
     <Compile Include="Models\AnalyticsData.cs" />
     <Compile Include="Models\AnalyticsVisitors.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\EditProfileViewModel.cs" />
     <Compile Include="Models\LinkContact.cs" />
     <Compile Include="Models\ContactDetail.cs" />
     <Compile Include="Models\Country.cs" />
@@ -372,14 +377,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\Elmah.txt" />
-    <Content Include="Content\bootstrap-cerulean-min.css" />
-    <Content Include="Content\bootstrap-cerulean.css" />
-    <Content Include="Content\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-cerulean-min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bootstrap-cerulean.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bootstrap-grid.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bootstrap-grid.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bootstrap-reboot.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bootstrap-reboot.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\noImg.png" />
     <Content Include="Content\Telerik\Bootstrap\editor.png" />
     <Content Include="Content\Telerik\Bootstrap\imagebrowser.png" />
     <Content Include="Content\Telerik\Bootstrap\indeterminate.gif" />
@@ -684,11 +702,21 @@
     <Content Include="Fonts\fontawesome-webfont.svg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\Site.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bootstrap-reboot.min.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bootstrap-reboot.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bootstrap-grid.min.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bootstrap-grid.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Fonts\glyphicons-halflings-regular.woff" />
@@ -1474,6 +1502,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201704061335148_AddElmah.resx">
       <DependentUpon>201704061335148_AddElmah.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201704201223548_profile.resx">
+      <DependentUpon>201704201223548_profile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

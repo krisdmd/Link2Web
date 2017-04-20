@@ -242,3 +242,9 @@ if (typeof NProgress != 'undefined') {
         NProgress.done();
     });
 }
+
+
+//Custom Colors
+$(document).ready(function() {
+    $("table tr:even").addClass("trcolor");
+});

@@ -222,6 +222,9 @@
   <data name="PreviewImage" xml:space="preserve">
     <value>Preview image</value>
   </data>
+  <data name="ProfilePicture" xml:space="preserve">
+    <value>Profile picture</value>
+  </data>
   <data name="RememberMe" xml:space="preserve">
     <value>Remember me</value>
   </data>

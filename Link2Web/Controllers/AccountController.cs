@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -148,18 +149,79 @@ namespace Link2Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                byte[] imageData = null;
+
+                if (Request.Files.Count > 0)
+                {
+                    var poImgFile = Request.Files["ProfilePicture"];
+
+                    if (poImgFile != null)
+                        using (var binary = new BinaryReader(poImgFile.InputStream))
+                        {
+                            imageData = binary.ReadBytes(poImgFile.ContentLength);
+                        }
+                }
+
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
                     Email = model.Email,
                     FirstName = model.FirstName,
-                    LastName = model.LastName
+                    LastName = model.LastName,
+                    ProfilePicture = imageData
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
+                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        //GET: /Account/Edit
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                byte[] imageData = null;
+
+                if (Request.Files.Count > 0)
+                {
+                    var poImgFile = Request.Files["ProfilePicture"];
+
+                    if (poImgFile != null)
+                        using (var binary = new BinaryReader(poImgFile.InputStream))
+                        {
+                            imageData = binary.ReadBytes(poImgFile.ContentLength);
+                        }
+                }
+
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    ProfilePicture = imageData
+                };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

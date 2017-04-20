@@ -87,6 +87,10 @@ namespace Link2Web.Models
 
         [Required]
         public string LastName { get; set; }
+
+        [Display(Name = "ProfilePicture", ResourceType = typeof(Resources.Resources))]
+
+        public byte[] ProfilePicture { get; set; }
     }
 
     public class ResetPasswordViewModel

@@ -128,7 +128,7 @@ form {
 /* Main */
 
 .right_col {
-    padding-top: 60px !important;
+    padding-top: 90px !important;
 }
 
 .right_col h2 {
@@ -137,3 +137,12 @@ form {
     padding: 6px;
 }
 
+.right_col th {
+    background-color: #0073B7;
+    color: #FFFFFF;
+}
+
+.trcolor {
+    background-color: #eeeeee;
+    color: #000000;
+}

@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Link2Web.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize]
     public class BaseController : Controller
     {
         // GET: Base

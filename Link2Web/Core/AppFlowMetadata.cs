@@ -17,6 +17,9 @@ namespace Link2Web.Core
                 {
                     ClientId = "818431160125-qs1ahg8oemfnkfc3g1l41e7vv85qp0k7.apps.googleusercontent.com",
                     ClientSecret = "kP72hOc2VHvS5zgAkt-v4EdQ"
+
+//                    ClientId = "818431160125-3r7k172uejge70n8kfn6je7qhpa2h7ld.apps.googleusercontent.com",
+//                    ClientSecret = "1q3x3wZMbkqevS47jKAuFdqs" 
                 },
                 Scopes = new[]
                 {
