@@ -29,13 +29,13 @@
                         @Html.ActionLink("Analytics", "Index", "Analytics", new { Area = "" }, null)
                     </li>
                     <li>
-                        @Html.ActionLink("Visitors by browser", "GetVisitorsByBrowser", "Analytics", new {Area = ""}, null)
+                        @Html.ActionLink("Visitors by browser", "GetVisitorsByKeyword", "Analytics", new {Area = ""}, null)
                     </li>
                     <li>
                         @Html.ActionLink("Visitors by keyword", "GetVisitorsByKeyword", "Analytics", new {Area = ""}, null)
                     </li>
                     <li>
-                        @Html.ActionLink("Visitors by top referer", "GetVisitorsByTopReferer", "Analytics", new { Area = "" }, null)
+                        @Html.ActionLink("Visitors by top referer", "VisitorsByTopReferer", "Analytics", new { Area = "" }, null)
                     </li>
                 </ul>
             </li>

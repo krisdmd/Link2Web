@@ -4,6 +4,7 @@ using Google.Apis.Auth.OAuth2.Flows;
 using Google.Apis.Auth.OAuth2.Mvc;
 using Google.Apis.Util.Store;
 using System;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Link2Web.Core
@@ -26,10 +27,10 @@ namespace Link2Web.Core
                     AnalyticsService.Scope.AnalyticsReadonly
                 },
 
-                //DataStore = new FileDataStore(HttpContext.Current.Server.MapPath("~/App_Data/clientsecret.json")),
+                DataStore = new FileDataStore(HttpContext.Current.Server.MapPath("~/App_Data/clientsecret.json")),
 
 
-                DataStore = new FileDataStore("Drive.Api.Auth.Store")
+                //DataStore = new FileDataStore("Drive.Api.Auth.Store")
 
             });
 

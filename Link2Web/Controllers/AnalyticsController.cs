@@ -47,6 +47,93 @@ namespace Link2Web.Controllers
             return View(vm);
         }
 
+        public ActionResult VisitorsByTopReferer()
+        {
+            if (Settings.AnalyticsService == null)
+            {
+                return RedirectToAction("IndexAsync");
+            }
+
+            var dimensions = new[]
+{
+                "ga:fullReferrer"
+            };
+
+            var metrics = new[]
+{
+                "ga:users",
+                "ga:adClicks",
+                "ga:bounceRate",
+                "ga:pageviews",
+                "ga:organicSearches",
+                "ga:impressions"
+            };
+
+            var analyticsData = new GoogleAnalytics();
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
+            var vm = new AnalyticsViewModel { LstAnalyticsData = data.Rows };
+
+            return View(vm);
+        }
+
+        public ActionResult VisitorsByKeyword()
+        {
+            if (Settings.AnalyticsService == null)
+            {
+                return RedirectToAction("IndexAsync");
+            }
+
+            var dimensions = new[]
+{
+                "ga:fullReferrer"
+            };
+
+            var metrics = new[]
+{
+                "ga:users",
+                "ga:adClicks",
+                "ga:bounceRate",
+                "ga:pageviews",
+                "ga:organicSearches",
+                "ga:impressions"
+            };
+
+            var analyticsData = new GoogleAnalytics();
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
+            var vm = new AnalyticsViewModel { LstAnalyticsData = data.Rows };
+
+            return View(vm);
+        }
+
+        public ActionResult VisitorsByBrowser()
+        {
+            if (Settings.AnalyticsService == null)
+            {
+                return RedirectToAction("IndexAsync");
+            }
+
+            var dimensions = new[]
+{
+                "ga:keyword"
+            };
+
+            var metrics = new[]
+            {
+                "ga:users",
+                "ga:adClicks",
+                "ga:bounceRate",
+                "ga:pageviews",
+                "ga:organicSearches",
+                "ga:impressions"
+            };
+
+            var analyticsData = new GoogleAnalytics();
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
+            var vm = new AnalyticsViewModel { LstAnalyticsData = data.Rows };
+
+            return View(vm);
+        }
+
         public ActionResult GetVisitors([DataSourceRequest]DataSourceRequest request)
         {
             var dimensions = new[]
@@ -85,21 +172,20 @@ namespace Link2Web.Controllers
 
         public ActionResult GetVisitorsByKeyword([DataSourceRequest]DataSourceRequest request)
         {
+
             var dimensions = new[]
 {
-                "ga:keyword"
+                "ga:browser"
             };
 
             var metrics = new[]
-            {
+{
                 "ga:users",
-                "ga:adClicks",
-                "ga:bounceRate",
                 "ga:pageviews",
+                "ga:bounceRate",
                 "ga:organicSearches",
-                "ga:impressions"
+                "ga:avgTimeOnPage"
             };
-
 
             var analyticsData = new GoogleAnalytics();
             var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);

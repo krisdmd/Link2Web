@@ -2,7 +2,7 @@
 @model Link2Web.ViewModels.AnalyticsViewModel
 
 @{
-    ViewBag.Title = "Visitors by top referer";
+    ViewBag.Title = "Visitors by browser";
 }
 
 @section AdditionalResources
@@ -41,11 +41,11 @@
     .Navigatable()
     .DataSource(dataSource => dataSource
         .Ajax()
-        .Read(read => read .Action("GetVisitorsByTopReferer", "Analytics"))
+        .Read(read => read.Action("GetVisitorsByKeyword", "Analytics"))
         .PageSize(30)
         .ServerOperation(false)
      )
-      )
+)
 
 @**@
 
