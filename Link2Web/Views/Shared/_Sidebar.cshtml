@@ -17,16 +17,31 @@
                 <a><i class="fa fa-edit"></i> Projects <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li>
-                        @Html.ActionLink("Manage", "Index", "Project", new { Area = "" }, null)
+                        @Html.ActionLink("Manage", "Index", "Project", new {Area = ""}, null)
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a><i class="fa fa-edit"></i> Analytics <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li>
+                        @Html.ActionLink("Analytics", "Index", "Analytics", new { Area = "" }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("Visitors by browser", "GetVisitorsByBrowser", "Analytics", new {Area = ""}, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("Visitors by keyword", "GetVisitorsByKeyword", "Analytics", new {Area = ""}, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("Visitors by top referer", "GetVisitorsByTopReferer", "Analytics", new { Area = "" }, null)
                     </li>
                 </ul>
             </li>
             <li>
-                <a><i class="fa fa-edit"></i> SEO <span class="fa fa-chevron-down"></span></a>
+                <a><i class="fa fa-edit"></i> Links <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li>
-                        @Html.ActionLink("Analytics", "Index", "Analytics", new {Area = ""}, null)
-                    </li>
                     <li>
                         @Html.ActionLink("Link Manager", "Index", "Links", new {Area = ""}, null)
                     </li>
@@ -36,7 +51,7 @@
                 <a><i class="fa fa-edit"></i> Social <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li>
-                        @Html.ActionLink("Facebook", "Index", "Analytics", new { Area = "" }, null)
+                        @Html.ActionLink("Facebook", "Index", "Home", new { Area = "" }, null)
                     </li>
                 </ul>
             </li>

@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Link2Web.Areas.Admin.Controllers
 {
-    public class CurrenciesController : BaseController
+    public class CurrenciesController : Link2Web.Controllers.BaseController
     {
         private Link2WebDbContext db = new Link2WebDbContext();
 

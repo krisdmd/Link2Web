@@ -295,9 +295,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\CountriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CurrenciesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LinkStatusController.cs" />
     <Compile Include="Areas\Admin\Controllers\LinkTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\WebsiteTypesController.cs" />
@@ -313,6 +313,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
+    <Compile Include="Controllers\SiteAuditorController.cs" />
     <Compile Include="Core\AppFlowMetadata.cs" />
     <Compile Include="Core\MyFunctions.cs" />
     <Compile Include="Core\Settings.cs" />
@@ -341,6 +342,10 @@
     <Compile Include="DAL\Migrations\201704201223548_profile.cs" />
     <Compile Include="DAL\Migrations\201704201223548_profile.Designer.cs">
       <DependentUpon>201704201223548_profile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201704201448128_profile1.cs" />
+    <Compile Include="DAL\Migrations\201704201448128_profile1.Designer.cs">
+      <DependentUpon>201704201448128_profile1.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\Migrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
@@ -1463,6 +1468,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Home\" />
     <Folder Include="bin\" />
     <Folder Include="Content\Telerik\Black\" />
     <Folder Include="Content\Telerik\BlueOpal\" />
@@ -1482,6 +1488,7 @@
     <Folder Include="Content\Telerik\themes\" />
     <Folder Include="Content\Telerik\Uniform\" />
     <Folder Include="Scripts\Telerik\messages\" />
+    <Folder Include="Views\SiteAuditor\" />
     <Folder Include="_bin_deployableAssemblies\App_Data\" />
   </ItemGroup>
   <ItemGroup>
@@ -1505,6 +1512,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201704201223548_profile.resx">
       <DependentUpon>201704201223548_profile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201704201448128_profile1.resx">
+      <DependentUpon>201704201448128_profile1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

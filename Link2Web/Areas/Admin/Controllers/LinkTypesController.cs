@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using Link2Web.Controllers;
 
 namespace Link2Web.Areas.Admin.Controllers
 {

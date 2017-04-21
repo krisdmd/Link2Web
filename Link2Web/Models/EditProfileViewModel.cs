@@ -6,6 +6,7 @@ namespace Link2Web.Models
 {
     public class EditProfileViewModel
     {
+        public int Id { get; set; }
         [Required(AllowEmptyStrings = false)]
         [EmailAddress]
         [Display(Name = "Email")]
