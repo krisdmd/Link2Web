@@ -134,7 +134,9 @@ form {
 .right_col h2 {
     background-color: #F39C12;
     color: #FFFFFF;
-    padding: 6px;
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
 }
 
 .right_col th {

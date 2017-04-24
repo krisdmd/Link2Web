@@ -10,7 +10,11 @@ namespace Link2Web.Models
         public int ProjectId { get; set; }
         public ApplicationUser UserId { get; set; }
 
-        [Display(Name = "DisplayName", ResourceType = typeof (Resources.Resources))]
+        [Display(Name = "DisplayName", ResourceType = typeof(Resources.Resources))]
+        [Required]
+        public string ViewProfileId { get; set; }
+
+        [Display(Name = "ViewProfile", ResourceType = typeof (Resources.Resources))]
         [Required]
         public string Name { get; set; }
 
@@ -25,11 +29,19 @@ namespace Link2Web.Models
         [Required]
         public string Url { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
+
         [Display(Name = "PreviewImage", ResourceType = typeof (Resources.Resources))]
         public string PreviewImage { get; set; }
 
         [Display(Name = "Note", ResourceType = typeof (Resources.Resources))]
         public string Note { get; set; }
+
+        [Display(Name = "Currency", ResourceType = typeof(Resources.Resources))]
+        public int CurrencyId { get; set; }
+
+        [Display(Name = "Language", ResourceType = typeof(Resources.Resources))]
+        public int LanguageId { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         [ScaffoldColumn(false)]
@@ -46,6 +58,8 @@ namespace Link2Web.Models
 
         public virtual Country Country { get; set; }
         public virtual Currency Currency { get; set; }
-        public virtual Link Links { get; set; }
+
+        public virtual Language Language { get; set; }
+        public virtual Link Link { get; set; }
     }
 }

@@ -1,7 +1,4 @@
-﻿using Link2Web.Models;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
+﻿using System.Data.Entity;
 
 namespace Link2Web.DAL
 {
@@ -11,32 +8,32 @@ namespace Link2Web.DAL
         {
             //  This method will be called after migrating to the latest version.
 
-            var countries = new List<Country>
-            {
-                new Country {Name = "Belgium", Code = "BEL"},
-                new Country {Name = "Netherlands", Code = "NLD"}
-            };
+//            var countries = new List<Country>
+//            {
+//                new Country {Name = "Belgium", Code = "BEL"},
+//                new Country {Name = "Netherlands", Code = "NLD"}
+//            };
+//
+//            countries.ForEach(c => context.Countries.AddOrUpdate(c));
+//
+//            var settingTypes = new List<SettingType>
+//            {
+//                new SettingType { Type = "Campaign" },
+//                new SettingType { Type = "Facebook" },
+//                new SettingType { Type = "Google" },
+//                new SettingType { Type = "Project" }
+//            };
+//
+//            settingTypes.ForEach(s => context.SettingTypes.AddOrUpdate(s));
 
-            countries.ForEach(c => context.Countries.AddOrUpdate(c));
-
-            var settingTypes = new List<SettingType>
-            {
-                new SettingType { Type = "Campaign" },
-                new SettingType { Type = "Facebook" },
-                new SettingType { Type = "Google" },
-                new SettingType { Type = "Project" }
-            };
-
-            settingTypes.ForEach(s => context.SettingTypes.AddOrUpdate(s));
-
-            var currencies = new List<Currency>
-            {
-                new Currency { Name = "Euro", Code = "EUR", Symbol = "€"},
-                new Currency { Name = "US Dollar", Code = "USD", Symbol = "$"},
-                new Currency { Name = "British Pound Sterling", Code = "GBP", Symbol = "£"}
-            };
-
-            currencies.ForEach(c => context.Currencies.AddOrUpdate(c));
+//            var currencies = new List<Currency>
+//            {
+//                new Currency { Name = "Euro", Code = "EUR", Symbol = "€"},
+//                new Currency { Name = "US Dollar", Code = "USD", Symbol = "$"},
+//                new Currency { Name = "British Pound Sterling", Code = "GBP", Symbol = "£"}
+//            };
+//
+//            currencies.ForEach(c => context.Currencies.AddOrUpdate(c));
         }
     }
 }

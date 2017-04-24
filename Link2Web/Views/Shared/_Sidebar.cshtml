@@ -8,9 +8,6 @@
                     <li>
                         @Html.ActionLink("Home", "Index", "Home", new { Area = "" }, null)
                     </li>
-                    <li>
-                        @Html.ActionLink("Contact", "Contact", "Home", new { Area = "" }, null)
-                    </li>
                 </ul>
             </li>
             <li>
@@ -29,10 +26,10 @@
                         @Html.ActionLink("Analytics", "Index", "Analytics", new { Area = "" }, null)
                     </li>
                     <li>
-                        @Html.ActionLink("Visitors by browser", "GetVisitorsByKeyword", "Analytics", new {Area = ""}, null)
+                        @Html.ActionLink("Visitors by browser", "VisitorsByBrowser", "Analytics", new {Area = ""}, null)
                     </li>
                     <li>
-                        @Html.ActionLink("Visitors by keyword", "GetVisitorsByKeyword", "Analytics", new {Area = ""}, null)
+                        @Html.ActionLink("Visitors by keyword", "VisitorsByKeyword", "Analytics", new {Area = ""}, null)
                     </li>
                     <li>
                         @Html.ActionLink("Visitors by top referer", "VisitorsByTopReferer", "Analytics", new { Area = "" }, null)
@@ -63,6 +60,9 @@
                     </li>
                     <li>
                         @Html.ActionLink("Countries", "Index", "Countries", new {Area = "Admin"}, new {})
+                    </li>
+                    <li>
+                        @Html.ActionLink("Languages", "Index", "Languages", new { Area = "Admin" }, new { })
                     </li>
                     <li>
                         @Html.ActionLink("Link Status", "Index", "LinkStatus", new { Area = "Admin" }, new { })

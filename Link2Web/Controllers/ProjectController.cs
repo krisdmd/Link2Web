@@ -37,6 +37,9 @@ namespace Link2Web.Controllers
         public ActionResult Create()
         {
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
+            ViewBag.LanguageId = new SelectList(db.Languages, "LanguageId", "Name");
+            ViewBag.CurrencyId = new SelectList(db.Currencies, "CurrencyId", "Name");
+
             return View();
         }
 
@@ -45,7 +48,7 @@ namespace Link2Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProjectId,Name,Email,CountryId,Url,PreviewImage,Note,Created,Modified,Visible")] Project project)
+        public ActionResult Create([Bind(Include = "ProjectId,Name,Email,CountryId,CurrencyId,LanguageId,Url,Note")] Project project)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +58,9 @@ namespace Link2Web.Controllers
             }
 
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", project.CountryId);
+            ViewBag.LanguageId = new SelectList(db.Languages, "LanguageId", "Name", project.LanguageId);
+            ViewBag.CurrencyId = new SelectList(db.Currencies, "CurrencyId", "Name", project.CurrencyId);
+
             return View(project);
         }
 
@@ -70,7 +76,10 @@ namespace Link2Web.Controllers
             {
                 return HttpNotFound();
             }
+;
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", project.CountryId);
+            ViewBag.LanguageId = new SelectList(db.Languages, "LanguageId", "Name", project.LanguageId);
+            ViewBag.CurrencyId = new SelectList(db.Currencies, "CurrencyId", "Name", project.CurrencyId);
             return View(project);
         }
 
@@ -79,7 +88,7 @@ namespace Link2Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProjectId,Name,Email,CountryId,Url,PreviewImage,Note,Created,Modified,Visible")] Project project)
+        public ActionResult Edit([Bind(Include = "ProjectId,Name,Email,CountryId,CurrencyId,LanguageId,Url,Note")] Project project)
         {
             if (ModelState.IsValid)
             {
@@ -88,6 +97,9 @@ namespace Link2Web.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", project.CountryId);
+            ViewBag.LanguageId = new SelectList(db.Languages, "LanguageId", "Name", project.LanguageId);
+            ViewBag.CurrencyId = new SelectList(db.Currencies, "CurrencyId", "Name", project.CurrencyId);
+
             return View(project);
         }
 

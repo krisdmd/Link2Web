@@ -153,6 +153,9 @@
   <data name="Date" xml:space="preserve">
     <value>Date</value>
   </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
@@ -242,6 +245,9 @@
   </data>
   <data name="User" xml:space="preserve">
     <value>User</value>
+  </data>
+  <data name="ViewProfile" xml:space="preserve">
+    <value>View (Profile)</value>
   </data>
   <data name="Visible" xml:space="preserve">
     <value>Visible</value>
