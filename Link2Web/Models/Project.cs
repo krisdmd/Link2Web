@@ -10,11 +10,11 @@ namespace Link2Web.Models
         public int ProjectId { get; set; }
         public ApplicationUser UserId { get; set; }
 
-        [Display(Name = "DisplayName", ResourceType = typeof(Resources.Resources))]
+        [Display(Name = "ViewProfile", ResourceType = typeof(Resources.Resources))]
         [Required]
         public string ViewProfileId { get; set; }
 
-        [Display(Name = "ViewProfile", ResourceType = typeof (Resources.Resources))]
+        [Display(Name = "DisplayName", ResourceType = typeof (Resources.Resources))]
         [Required]
         public string Name { get; set; }
 
@@ -61,5 +61,12 @@ namespace Link2Web.Models
 
         public virtual Language Language { get; set; }
         public virtual Link Link { get; set; }
+
+        public Project()
+        {
+            Created = DateTime.Now;
+            Modified = DateTime.Now;
+            Visible = true;
+        }
     }
 }

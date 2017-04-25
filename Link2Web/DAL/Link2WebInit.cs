@@ -1,4 +1,7 @@
-﻿using System.Data.Entity;
+﻿using Link2Web.Models;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 
 namespace Link2Web.DAL
 {
@@ -16,15 +19,16 @@ namespace Link2Web.DAL
 //
 //            countries.ForEach(c => context.Countries.AddOrUpdate(c));
 //
-//            var settingTypes = new List<SettingType>
-//            {
-//                new SettingType { Type = "Campaign" },
-//                new SettingType { Type = "Facebook" },
-//                new SettingType { Type = "Google" },
-//                new SettingType { Type = "Project" }
-//            };
-//
-//            settingTypes.ForEach(s => context.SettingTypes.AddOrUpdate(s));
+            var settingTypes = new List<SettingType>
+            {
+                new SettingType { Type = "User preferences" },
+                new SettingType { Type = "Campaign" },
+                new SettingType { Type = "Facebook" },
+                new SettingType { Type = "Google" },
+                new SettingType { Type = "Project" }
+            };
+
+            settingTypes.ForEach(s => context.SettingTypes.AddOrUpdate(s));
 
 //            var currencies = new List<Currency>
 //            {

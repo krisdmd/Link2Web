@@ -48,10 +48,14 @@ namespace Link2Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProjectId,Name,Email,CountryId,CurrencyId,LanguageId,Url,Note")] Project project)
+        public ActionResult Create([Bind(Include = "ProjectId,Name,Email,CountryId,CurrencyId,LanguageId,Url,Note,ViewProfileId")] Project project)
         {
+
             if (ModelState.IsValid)
             {
+//                project.Created = DateTime.Now;
+//                project.Modified = DateTime.Now;
+//                project.Visible = true;
                 db.Projects.Add(project);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -88,7 +92,7 @@ namespace Link2Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProjectId,Name,Email,CountryId,CurrencyId,LanguageId,Url,Note")] Project project)
+        public ActionResult Edit([Bind(Include = "ProjectId,Name,Email,CountryId,CurrencyId,LanguageId,Url,Note,ViewProfileId")] Project project)
         {
             if (ModelState.IsValid)
             {

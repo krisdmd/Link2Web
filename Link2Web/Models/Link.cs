@@ -42,5 +42,10 @@ namespace Link2Web.Models
         public virtual LinkContact LinkContact { get; set; }
 
         public virtual Project Project { get; set; }
+
+        public Link()
+        {
+            CreatedOn = DateTime.Now;
+        }
     }
 }

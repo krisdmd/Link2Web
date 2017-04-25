@@ -19,11 +19,20 @@
             </div>
         </div>
 
+
         <div class="form-group row">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new {@class = "control-label col-md-2 col-sm-3 col-xs-12"})
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
             <div class="col-md-10 col-sm-9 col-xs-12">
-                @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control col-md-9 col-xs-12"}})
-                @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.ViewProfileId, htmlAttributes: new {@class = "control-label col-md-2 col-sm-3 col-xs-12"})
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.EditorFor(model => model.ViewProfileId, new {htmlAttributes = new {@class = "form-control col-md-9 col-xs-12"}})
+                @Html.ValidationMessageFor(model => model.ViewProfileId, "", new {@class = "text-danger"})
             </div>
         </div>
 

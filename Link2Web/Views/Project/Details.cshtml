@@ -12,46 +12,28 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 col-md-12 alert alert-info alert-dismissible fade in">
+            <div class="col-lg-12 col-md-12 alert alert alert-success alert-dismissible fade in">
                 Project Details
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                @Html.DisplayNameFor(model => model.Country.Name)
+            <div class="col-lg-6">
+                @Html.DisplayNameFor(model => model.Url)
             </div>
-            <div class="col">
-                @Html.DisplayFor(model => model.Country.Name)
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                Website
-            </div>
-            <div class="col">
+            <div class="col-lg-6">
                 Display Name
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col-lg-6">
                 @Html.DisplayFor(model => model.Url)
             </div>
-            <div class="col">
-                @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control"}})
-            </div>
+            <div class="col-lg-6">
+                <div class="col">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 alert alert-info alert-dismissible fade in">
-                Location settings
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                Country
-            </div>
-            <div class="col">
-                Display Name
-            </div>
+  
         </div>
     </div>
 
@@ -112,7 +94,3 @@
 @*    </div>*@
 
 }
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ProjectId }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>

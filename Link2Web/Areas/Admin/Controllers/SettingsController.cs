@@ -1,28 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Link2Web.Controllers;
+using Link2Web.DAL;
+using Link2Web.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Link2Web.DAL;
-using Link2Web.Models;
 
-namespace Link2Web.Controllers
+namespace Link2Web.Areas.Admin.Controllers
 {
-    public class SettingController : Controller
+    public class SettingsController : BaseController
     {
         private Link2WebDbContext db = new Link2WebDbContext();
 
-        // GET: Setting
+        // GET: Admin/Settings
         public ActionResult Index()
         {
             var settings = db.Settings.Include(s => s.SettingType);
             return View(settings.ToList());
         }
 
-        // GET: Setting/Details/5
+        // GET: Admin/Settings/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,19 +34,19 @@ namespace Link2Web.Controllers
             return View(setting);
         }
 
-        // GET: Setting/Create
+        // GET: Admin/Settings/Create
         public ActionResult Create()
         {
             ViewBag.SettingTypeId = new SelectList(db.SettingTypes, "SettingTypeId", "Type");
             return View();
         }
 
-        // POST: Setting/Create
+        // POST: Admin/Settings/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SettingId,SettingTypeId,Name,Value,Visible")] Setting setting)
+        public ActionResult Create([Bind(Include = "SettingId,SettingTypeId,Name,Value,ValueInt,Visible")] Setting setting)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +59,7 @@ namespace Link2Web.Controllers
             return View(setting);
         }
 
-        // GET: Setting/Edit/5
+        // GET: Admin/Settings/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,12 +75,12 @@ namespace Link2Web.Controllers
             return View(setting);
         }
 
-        // POST: Setting/Edit/5
+        // POST: Admin/Settings/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SettingId,SettingTypeId,Name,Value,Visible")] Setting setting)
+        public ActionResult Edit([Bind(Include = "SettingId,SettingTypeId,Name,Value,ValueInt,Visible")] Setting setting)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +92,7 @@ namespace Link2Web.Controllers
             return View(setting);
         }
 
-        // GET: Setting/Delete/5
+        // GET: Admin/Settings/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,7 +107,7 @@ namespace Link2Web.Controllers
             return View(setting);
         }
 
-        // POST: Setting/Delete/5
+        // POST: Admin/Settings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

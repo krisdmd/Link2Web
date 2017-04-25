@@ -301,6 +301,8 @@
     <Compile Include="Areas\Admin\Controllers\LanguagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\LinkStatusController.cs" />
     <Compile Include="Areas\Admin\Controllers\LinkTypesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\WebsiteTypesController.cs" />
     <Compile Include="BLL\Facebook.cs" />
     <Compile Include="BLL\GoogleAnalytics.cs" />
@@ -313,7 +315,6 @@
     <Compile Include="Controllers\LinksController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
-    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SiteAuditorController.cs" />
     <Compile Include="Core\AppFlowMetadata.cs" />
     <Compile Include="Core\MyFunctions.cs" />
@@ -776,6 +777,16 @@
     <Content Include="Areas\Admin\Views\Languages\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Languages\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Languages\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SettingTypes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SettingTypes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SettingTypes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\SettingTypes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SettingTypes\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1174,11 +1185,6 @@
     <Content Include="Fonts\FontAwesome.otf" />
     <Content Include="Views\Shared\_ProfileDropdown.cshtml" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
-    <Content Include="Views\Setting\Create.cshtml" />
-    <Content Include="Views\Setting\Delete.cshtml" />
-    <Content Include="Views\Setting\Details.cshtml" />
-    <Content Include="Views\Setting\Edit.cshtml" />
-    <Content Include="Views\Setting\Index.cshtml" />
     <Content Include="Views\Analytics\Index.cshtml" />
     <Content Include="Content\Telerik\bootstrap-mapper.less" />
     <Content Include="Content\Telerik\kendo.black.less" />

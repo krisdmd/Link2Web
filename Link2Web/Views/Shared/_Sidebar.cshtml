@@ -56,22 +56,28 @@
                 <a><i class="fa fa-edit"></i> Admin <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li>
-                        @Html.ActionLink("Currencies", "Index", "Currencies", new {Area = "Admin"}, new {})
+                        @Html.ActionLink("Currencies", "Index", "Currencies", new { Area = "Admin" }, new { })
                     </li>
                     <li>
-                        @Html.ActionLink("Countries", "Index", "Countries", new {Area = "Admin"}, new {})
+                        @Html.ActionLink("Countries", "Index", "Countries", new { Area = "Admin" }, new { })
                     </li>
                     <li>
                         @Html.ActionLink("Languages", "Index", "Languages", new { Area = "Admin" }, new { })
                     </li>
                     <li>
-                        @Html.ActionLink("Link Status", "Index", "LinkStatus", new { Area = "Admin" }, new { })
+                        @Html.ActionLink("Link status", "Index", "LinkStatus", new { Area = "Admin" }, new { })
                     </li>
                     <li>
-                        @Html.ActionLink("Link Types", "Index", "LinkTypes", new {Area = "Admin"}, new {})
+                        @Html.ActionLink("Settings", "Index", "Settings", new { Area = "Admin" }, new { })
                     </li>
                     <li>
-                        @Html.ActionLink("Website Types", "Index", "WebsiteTypes", new { Area = "Admin" }, new { })
+                        @Html.ActionLink("Setting types", "Index", "SettingTypes", new { Area = "Admin" }, new { })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Link Types", "Index", "LinkTypes", new { Area = "Admin" }, new { })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Website types", "Index", "WebsiteTypes", new { Area = "Admin" }, new { })
                     </li>
                 </ul>
             </li>
