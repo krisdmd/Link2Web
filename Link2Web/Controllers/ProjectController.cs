@@ -1,5 +1,6 @@
 ﻿using Link2Web.DAL;
 using Link2Web.Models;
+using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -56,6 +57,7 @@ namespace Link2Web.Controllers
 //                project.Created = DateTime.Now;
 //                project.Modified = DateTime.Now;
 //                project.Visible = true;
+                project.UserId = User.Identity.GetUserId();
                 db.Projects.Add(project);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -96,6 +98,7 @@ namespace Link2Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                project.UserId = User.Identity.GetUserId();
                 db.Entry(project).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -131,6 +134,13 @@ namespace Link2Web.Controllers
             db.Projects.Remove(project);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public JsonResult ProjectExists()
+        {
+            var userId = User.Identity.GetUserId();
+            var projectCount = db.Projects.Count(p => Equals(p.UserId, userId)) > 0;
+            return Json(projectCount, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

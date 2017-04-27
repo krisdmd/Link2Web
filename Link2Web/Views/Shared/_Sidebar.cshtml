@@ -1,14 +1,10 @@
 ﻿<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     <div class="menu_section">
-        <h3>Rules.General</h3>
+
         <ul class="nav side-menu">
             <li>
-                <a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li>
-                        @Html.ActionLink("Home", "Index", "Home", new { Area = "" }, null)
-                    </li>
-                </ul>
+                <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Home</a>
+                <ul class="nav child_menu"></ul>
             </li>
             <li>
                 <a><i class="fa fa-edit"></i> Projects <span class="fa fa-chevron-down"></span></a>
@@ -48,7 +44,7 @@
                 <a><i class="fa fa-edit"></i> Social <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li>
-                        @Html.ActionLink("Facebook", "Index", "Home", new { Area = "" }, null)
+                        @Html.ActionLink("Facebook", "Facebook", "Facebook", new { Area = "" }, null)
                     </li>
                 </ul>
             </li>

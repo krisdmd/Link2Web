@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
 
 namespace Link2Web.Models
@@ -8,7 +9,7 @@ namespace Link2Web.Models
     public class Project
     {
         public int ProjectId { get; set; }
-        public ApplicationUser UserId { get; set; }
+        public string UserId { get; set; }
 
         [Display(Name = "ViewProfile", ResourceType = typeof(Resources.Resources))]
         [Required]
@@ -61,6 +62,9 @@ namespace Link2Web.Models
 
         public virtual Language Language { get; set; }
         public virtual Link Link { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
         public Project()
         {

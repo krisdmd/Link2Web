@@ -14,7 +14,7 @@ namespace Link2Web.DAL
             Database.SetInitializer(new Link2WebInit());
 
         }
-
+        
         public IDbSet<Project> Projects { get; set; }
         public IDbSet<Setting> Settings { get; set; }
         public IDbSet<SettingType> SettingTypes { get; set; }

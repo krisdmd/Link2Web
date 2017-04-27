@@ -361,6 +361,14 @@
     <Compile Include="DAL\Migrations\201704241410549_adminlanguages.Designer.cs">
       <DependentUpon>201704241410549_adminlanguages.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Migrations\201704251404530_updatingsettings.cs" />
+    <Compile Include="DAL\Migrations\201704251404530_updatingsettings.Designer.cs">
+      <DependentUpon>201704251404530_updatingsettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201704271237308_fixingproject.cs" />
+    <Compile Include="DAL\Migrations\201704271237308_fixingproject.Designer.cs">
+      <DependentUpon>201704271237308_fixingproject.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Migrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -404,6 +412,7 @@
     <Content Include="Content\bootstrap-cerulean.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\bootstrap-dialog.css" />
     <Content Include="Content\bootstrap-grid.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -787,8 +796,11 @@
     <Content Include="Areas\Admin\Views\SettingTypes\Details.cshtml" />
     <Content Include="Areas\Admin\Views\SettingTypes\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\SettingTypes\Index.cshtml" />
+    <Content Include="Content\bootstrap-dialog.less" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap-dialog.js" />
+    <Content Include="Scripts\Init.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -1550,6 +1562,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201704241410549_adminlanguages.resx">
       <DependentUpon>201704241410549_adminlanguages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201704251404530_updatingsettings.resx">
+      <DependentUpon>201704251404530_updatingsettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201704271237308_fixingproject.resx">
+      <DependentUpon>201704271237308_fixingproject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
