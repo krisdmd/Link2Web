@@ -10,12 +10,8 @@ namespace Link2Web.BLL
 {
     public class GoogleAnalytics
     {
-        public AnalyticsService Service { get; set; }
-
-
         public AnalyticDataPoint GetAnalyticsData(string profileId, string[] dimensions, string[] metrics, DateTime startDate, DateTime endDate)
         {
-            Service = Settings.AnalyticsService;
             AnalyticDataPoint data = new AnalyticDataPoint();
             var rowData = new AnalyticsData();
             if (!profileId.Contains("ga:"))
@@ -42,22 +38,25 @@ namespace Link2Web.BLL
 
                 foreach (var row in response.Rows)
                 {
+                    var datum = MyFunctions.StringToDateTime(row[0], "yyyMMdd");
+                    var bounceRate = MyFunctions.GetDouble(row[3], 0);
+                    bounceRate = Math.Round(bounceRate, 2);
+ 
                     rowData = new AnalyticsData
                     {
-                        Clicks = row[0],
-                        BounceRate = row[1],
-                        Date = row[2],
-                        AvgSessionDuration = row[3]
+                        Clicks = row[2],
+                        Date = datum,
+                        BounceRate = bounceRate,
+                        Pageviews = row[4],
+                        Impressions = row[5],
+                        NewUsers = row[1]
                     };
 
                     data.Rows.Add(rowData);
                 }
 
-                //data.Rows.AddRange(); = response.Rows[0];
-                data.Rows = new List<AnalyticsData>();
-
-
-            } while (!string.IsNullOrEmpty(response.NextLink));
+            }
+            while (!string.IsNullOrEmpty(response.NextLink));
 
             return data;
         }
@@ -65,7 +64,7 @@ namespace Link2Web.BLL
         private DataResource.GaResource.GetRequest BuildAnalyticRequest(string profileId, string[] dimensions, string[] metrics,
                                                                             DateTime startDate, DateTime endDate, int startIndex)
         {
-            DataResource.GaResource.GetRequest request = Service.Data.Ga.Get(profileId, startDate.ToString("yyyy-MM-dd"),
+            DataResource.GaResource.GetRequest request = Settings.AnalyticsService.Data.Ga.Get(profileId, startDate.ToString("yyyy-MM-dd"),
                                                                                 endDate.ToString("yyyy-MM-dd"), string.Join(",", metrics));
             request.Dimensions = string.Join(",", dimensions);
             request.StartIndex = startIndex;
@@ -74,7 +73,7 @@ namespace Link2Web.BLL
 
         public IList<Profile> GetAvailableProfiles()
         {
-            var response = Service.Management.Profiles.List("~all", "~all").Execute();
+            var response = Settings.AnalyticsService.Management.Profiles.List("~all", "~all").Execute();
             return response.Items;
         }
 
@@ -86,39 +85,21 @@ namespace Link2Web.BLL
             }
 
             public IList<GaData.ColumnHeadersData> ColumnHeaders { get; set; }
-            public List<AnalyticsData> Rows { get; set; }
+            public IList<AnalyticsData> Rows { get; set; }
         }
 
         /// <summary>
         /// Get the GoogleAnalytics visitors from a specific datetime
         /// </summary>
         /// <param name="startDate"></param>
-        /// <param name="endDatet"></param>
+        /// <param name="endDate"></param>
         /// <returns>Return a List from Google Analytics with raw data</returns>
-        public AnalyticDataPoint GetVisitorsByDate(DateTime startDate, DateTime endDate)
+        public AnalyticDataPoint GetVisitorsData(DateTime startDate, DateTime endDate, string[] dimensions, string[] metrics)
         {
-            Service = Settings.AnalyticsService;
-            var data = new AnalyticDataPoint();
             var analyticsData = new GoogleAnalytics();
-            var dimensions = new[]
-            {
-                "ga:date"
-            };
-            var metrics = new[]
-            {
-                "ga:users",
-                "ga:adClicks",
-                "ga:bounceRate"
-            };
 
-
-            if (Service != null)
-            {
-                analyticsData.Service = Service;
-                data = analyticsData.GetAnalyticsData("ga:136022774", dimensions, metrics, startDate, endDate);
-            }
-
-            return data;
+            return analyticsData.GetAnalyticsData("ga:136022774", dimensions, metrics, startDate, endDate);
         }
+
     }
 }

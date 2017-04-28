@@ -79,6 +79,18 @@ namespace Link2Web.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "FirstName", ResourceType = typeof(Resources.Resources))]
+        [Required]
+        public string FirstName { get; set; }
+        [Display(Name = "LastName", ResourceType = typeof(Resources.Resources))]
+
+        [Required]
+        public string LastName { get; set; }
+
+        [Display(Name = "ProfilePicture", ResourceType = typeof(Resources.Resources))]
+
+        public byte[] ProfilePicture { get; set; }
     }
 
     public class ResetPasswordViewModel

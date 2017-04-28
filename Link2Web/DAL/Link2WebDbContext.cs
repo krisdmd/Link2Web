@@ -14,19 +14,24 @@ namespace Link2Web.DAL
             Database.SetInitializer(new Link2WebInit());
 
         }
-
+        
         public IDbSet<Project> Projects { get; set; }
         public IDbSet<Setting> Settings { get; set; }
         public IDbSet<SettingType> SettingTypes { get; set; }
         public IDbSet<ContactDetail> ContactDetails { get; set; }
         public IDbSet<Country> Countries { get; set; }
+        public IDbSet<Currency> Currencies { get; set; }
+        public IDbSet<Link> Links { get; set; }
+        public IDbSet<WebsiteType> WebsiteTypes { get; set; }
+        public IDbSet<LinkContact> LinkContacts { get; set; }
+        public IDbSet<LinkStatus> LinkStatus { get; set; }
+        public IDbSet<LinkType> LinkTypes { get; set; }
+        public IDbSet<Language> Languages { get; set; }
+ 
 
-        
         public static Link2WebDbContext Create()
         {
             return new Link2WebDbContext();
         }
-
-        public System.Data.Entity.DbSet<Link2Web.Models.AnalyticsChannels> AnalyticsChannels { get; set; }
     }
 }

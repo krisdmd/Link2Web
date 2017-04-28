@@ -1,22 +1,23 @@
-﻿using Link2Web.Models;
+﻿using Link2Web.DAL;
+using Link2Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Linq;
-using System.Security.Policy;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.ModelBinding;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 
 namespace Link2Web.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private Link2WebDbContext _db = new Link2WebDbContext();
 
         public ManageController()
         {
@@ -243,6 +244,56 @@ namespace Link2Web.Controllers
                 return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
             }
             AddErrors(result);
+            return View(model);
+        }
+
+        // GET: /Manage/EditProfile/1
+        public async Task<ActionResult> EditProfile(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var user = await UserManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            var vm = new EditProfileViewModel
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Address = user.Address,
+                City = user.City,
+                Zipcode = user.Zipcode,
+                CountryId = user.CountryId,
+                Phone = user.Phone
+            };
+
+            return View(vm);
+        }
+
+        // POST: /Manage/EditProfile
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditProfile(EditProfileViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindByEmailAsync(model.Email);
+
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.ProfilePicture = model.ProfilePicture;
+                ViewBag.CountryId = new SelectList(_db.Countries, "CountryId", "Name", model.CountryId);
+
+                return View(model);
+            }
+
             return View(model);
         }
 

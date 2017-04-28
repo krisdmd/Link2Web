@@ -1,0 +1,88 @@
+﻿@model Link2Web.Models.Link
+
+@{
+    ViewBag.Title = "Add Link";
+}
+
+<h2>Add Link</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="col-md-12 col-sm-12 col-xs-12 personal-info">
+        <div class="form-group row">
+            @Html.LabelFor(model => model.ProjectId, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.DropDownList("ProjectId", null, htmlAttributes: new { @class = "form-control col-md-9 col-xs-12" })
+                @Html.ValidationMessageFor(model => model.ProjectId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.LinkId, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.EditorFor(model => model.LinkId, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
+                @Html.ValidationMessageFor(model => model.LinkId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.WebsiteUrl, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.EditorFor(model => model.WebsiteUrl, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
+                @Html.ValidationMessageFor(model => model.WebsiteUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.AnchorText, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.EditorFor(model => model.AnchorText, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
+                @Html.ValidationMessageFor(model => model.AnchorText, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.DestinationUrl, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.EditorFor(model => model.DestinationUrl, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
+                @Html.ValidationMessageFor(model => model.DestinationUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.CreatedOn, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.EditorFor(model => model.CreatedOn, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
+                @Html.ValidationMessageFor(model => model.CreatedOn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <input type="submit" class="btn btn-primary" value="Save Changes">
+                <span></span>
+                <input type="reset" class="btn btn-default" value="Cancel">
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

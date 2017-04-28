@@ -6,8 +6,10 @@ using Kendo.Mvc.UI;
 using Link2Web.BLL;
 using Link2Web.Core;
 using Link2Web.Models;
+using Link2Web.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -16,115 +18,263 @@ namespace Link2Web.Controllers
 {
     public class AnalyticsController : BaseController
     {
-        private AnalyticsService _analyticsService { get; set; }
-
-
-        public ActionResult Visitors([DataSourceRequest]DataSourceRequest request)
+        public ActionResult Index()
         {
+            if (Settings.AnalyticsService == null)
+            {
+                return RedirectToAction("IndexAsync");
+            }
+
+            var dimensions = new[]
+            {
+                "ga:date"
+            };
+
+            var metrics = new[]
+{
+                "ga:users",
+                "ga:adClicks",
+                "ga:bounceRate",
+                "ga:pageviews",
+                "ga:organicSearches",
+                "ga:impressions"
+            };
+
             var analyticsData = new GoogleAnalytics();
-            var data = analyticsData.GetVisitorsByDate(DateTime.Now.AddDays(-180), DateTime.Now);
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
+            var vm = new AnalyticsViewModel { LstAnalyticsData = data.Rows };
 
-            List<AnalyticsData> d = data.Rows;
+            return View(vm);
+        }
 
-            //var vm = new AnalyticsViewModel {AnalyticsData = data.Rows};
+        public ActionResult VisitorsByTopReferer()
+        {
+            if (Settings.AnalyticsService == null)
+            {
+                return RedirectToAction("IndexAsync");
+            }
 
-            DataSourceResult result = d.ToDataSourceResult(request);
-            return Json(result);
+            var dimensions = new[]
+{
+                "ga:fullReferrer"
+            };
 
+            var metrics = new[]
+{
+                "ga:users",
+                "ga:adClicks",
+                "ga:bounceRate",
+                "ga:pageviews",
+                "ga:organicSearches",
+                "ga:impressions"
+            };
+
+            var analyticsData = new GoogleAnalytics();
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
+            var vm = new AnalyticsViewModel { LstAnalyticsData = data.Rows };
+
+            return View(vm);
+        }
+
+        public ActionResult VisitorsByKeyword()
+        {
+            if (Settings.AnalyticsService == null)
+            {
+                return RedirectToAction("IndexAsync");
+            }
+
+            var dimensions = new[]
+{
+                "ga:fullReferrer"
+            };
+
+            var metrics = new[]
+{
+                "ga:users",
+                "ga:adClicks",
+                "ga:bounceRate",
+                "ga:pageviews",
+                "ga:organicSearches",
+                "ga:impressions"
+            };
+
+            var analyticsData = new GoogleAnalytics();
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
+            var vm = new AnalyticsViewModel { LstAnalyticsData = data.Rows };
+
+            return View(vm);
+        }
+
+        public ActionResult VisitorsByBrowser()
+        {
+            if (Settings.AnalyticsService == null)
+            {
+                return RedirectToAction("IndexAsync");
+            }
+
+            var dimensions = new[]
+{
+                "ga:keyword"
+            };
+
+            var metrics = new[]
+            {
+                "ga:users",
+                "ga:adClicks",
+                "ga:bounceRate",
+                "ga:pageviews",
+                "ga:organicSearches",
+                "ga:impressions"
+            };
+
+            var analyticsData = new GoogleAnalytics();
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
+            var vm = new AnalyticsViewModel { LstAnalyticsData = data.Rows };
+
+            return View(vm);
         }
 
         public ActionResult GetVisitors([DataSourceRequest]DataSourceRequest request)
         {
-            var analyticsData = new GoogleAnalytics();
-            var data = analyticsData.GetVisitorsByDate(DateTime.Now.AddDays(-180), DateTime.Now);
+            var dimensions = new[]
+{
+                "ga:date"
+            };
 
-            List<AnalyticsData> d = data.Rows;
+            var metrics = new[]
+{
+                "ga:users",
+                "ga:adClicks",
+                "ga:bounceRate",
+                "ga:pageviews",
+                "ga:organicSearches",
+                "ga:impressions"
+            };
+
+            var analyticsData = new GoogleAnalytics();
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
+
+            IEnumerable<AnalyticsData> d = data.Rows;
+            var total = d.Count();
+
 
             //var vm = new AnalyticsViewModel { AnalyticsData = data.Rows };
 
-            DataSourceResult result = d.ToDataSourceResult(request);
+            var result = new DataSourceResult()
+            {
+                Data = d,
+                Total = total
+            };
+
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }
 
-
-
-        // GET: Analytics
-        public ActionResult Index()
+        public ActionResult GetVisitorsByKeyword([DataSourceRequest]DataSourceRequest request)
         {
-            return View();
-        }
 
-        // GET: Analytics/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+            var dimensions = new[]
+{
+                "ga:browser"
+            };
 
-        // GET: Analytics/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+            var metrics = new[]
+{
+                "ga:users",
+                "ga:pageviews",
+                "ga:bounceRate",
+                "ga:organicSearches",
+                "ga:avgTimeOnPage"
+            };
 
-        // POST: Analytics/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
+            var analyticsData = new GoogleAnalytics();
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
+
+            IEnumerable<AnalyticsData> d = data.Rows;
+            var total = d.Count();
+
+
+            //var vm = new AnalyticsViewModel { AnalyticsData = data.Rows };
+
+            var result = new DataSourceResult()
             {
-                // TODO: Add insert logic here
+                Data = d,
+                Total = total
+            };
 
-                return RedirectToAction("Index", "Analytics");
-            }
-            catch
-            {
-                return View();
-            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+
         }
 
-        // GET: Analytics/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult GetVisitorsByTopReferer([DataSourceRequest]DataSourceRequest request)
         {
-            return View();
+            var dimensions = new[]
+{
+                "ga:fullReferrer"
+            };
+
+            var metrics = new[]
+{
+                "ga:users",
+                "ga:adClicks",
+                "ga:bounceRate",
+                "ga:pageviews",
+                "ga:organicSearches",
+                "ga:impressions"
+            };
+
+            var analyticsData = new GoogleAnalytics();
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
+
+            IEnumerable<AnalyticsData> d = data.Rows;
+            var total = d.Count();
+
+
+            //var vm = new AnalyticsViewModel { AnalyticsData = data.Rows };
+
+            var result = new DataSourceResult()
+            {
+                Data = d,
+                Total = total
+            };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+
         }
 
-        // POST: Analytics/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult GetVisitorsByBrowser([DataSourceRequest]DataSourceRequest request)
         {
-            try
-            {
-                // TODO: Add update logic here
+            var dimensions = new[]
+{
+                "ga:browser"
+            };
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+            var metrics = new[]
+{
+                "ga:users",
+                "ga:pageviews",
+                "ga:bounceRate",
+                "ga:organicSearches",
+                "ga:avgTimeOnPage"
+            };
 
-        // GET: Analytics/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+            var analyticsData = new GoogleAnalytics();
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
 
-        // POST: Analytics/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
+            IEnumerable<AnalyticsData> d = data.Rows;
+            var total = d.Count();
 
-                return RedirectToAction("Index");
-            }
-            catch
+
+            //var vm = new AnalyticsViewModel { AnalyticsData = data.Rows };
+
+            var result = new DataSourceResult()
             {
-                return View();
-            }
+                Data = d,
+                Total = total
+            };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+
         }
 
         public async Task<ActionResult> IndexAsync(CancellationToken cancellationToken)
@@ -140,25 +290,17 @@ namespace Link2Web.Controllers
                     ApplicationName = "ASP.NET MVC Sample"
                 });
 
-                _analyticsService = service;
                 Settings.AnalyticsService = service;
 
                 return RedirectToAction("Index", "Analytics");
             }
-            else
-            {
-                return new RedirectResult(result.RedirectUri);
-            }
-
+            return new RedirectResult(result.RedirectUri);
         }
 
     }
 
     public class AuthCallbackController : Google.Apis.Auth.OAuth2.Mvc.Controllers.AuthCallbackController
     {
-        protected override Google.Apis.Auth.OAuth2.Mvc.FlowMetadata FlowData
-        {
-            get { return new AppFlowMetadata(); }
-        }
+        protected override Google.Apis.Auth.OAuth2.Mvc.FlowMetadata FlowData => new AppFlowMetadata();
     }
 }

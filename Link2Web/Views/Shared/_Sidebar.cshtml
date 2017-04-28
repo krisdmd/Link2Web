@@ -1,34 +1,79 @@
 ﻿<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     <div class="menu_section">
-        <h3>Rules.General</h3>
+
         <ul class="nav side-menu">
             <li>
-                <a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li>
-                        @Html.ActionLink("Home", "Index", "Home")
-                    </li>
-                    <li>
-                        @Html.ActionLink("About", "About", "Home")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Contact", "Contact", "Home")
-                    </li>
-                </ul>
+                <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Home</a>
+                <ul class="nav child_menu"></ul>
             </li>
             <li>
                 <a><i class="fa fa-edit"></i> Projects <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li>
-                        @Html.ActionLink("Manage", "Index", "Project")
+                        @Html.ActionLink("Manage", "Index", "Project", new {Area = ""}, null)
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a><i class="fa fa-edit"></i> Analytics <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li>
+                        @Html.ActionLink("Analytics", "Index", "Analytics", new { Area = "" }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("Visitors by browser", "VisitorsByBrowser", "Analytics", new {Area = ""}, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("Visitors by keyword", "VisitorsByKeyword", "Analytics", new {Area = ""}, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("Visitors by top referer", "VisitorsByTopReferer", "Analytics", new { Area = "" }, null)
                     </li>
                 </ul>
             </li>
             <li>
-                <a><i class="fa fa-edit"></i> Settings <span class="fa fa-chevron-down"></span></a>
+                <a><i class="fa fa-edit"></i> Links <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li>
-                        @Html.ActionLink("Manage", "Index", "Setting")
+                        @Html.ActionLink("Link Manager", "Index", "Links", new {Area = ""}, null)
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a><i class="fa fa-edit"></i> Social <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li>
+                        @Html.ActionLink("Facebook", "Facebook", "Facebook", new { Area = "" }, null)
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a><i class="fa fa-edit"></i> Admin <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li>
+                        @Html.ActionLink("Currencies", "Index", "Currencies", new { Area = "Admin" }, new { })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Countries", "Index", "Countries", new { Area = "Admin" }, new { })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Languages", "Index", "Languages", new { Area = "Admin" }, new { })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Link status", "Index", "LinkStatus", new { Area = "Admin" }, new { })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Settings", "Index", "Settings", new { Area = "Admin" }, new { })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Setting types", "Index", "SettingTypes", new { Area = "Admin" }, new { })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Link Types", "Index", "LinkTypes", new { Area = "Admin" }, new { })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Website types", "Index", "WebsiteTypes", new { Area = "Admin" }, new { })
                     </li>
                 </ul>
             </li>

@@ -44,5 +44,6 @@ namespace Link2Web.Controllers
             Response.Cookies.Add(cookie);
             return RedirectToAction("Index");
         }
+
     }
 }

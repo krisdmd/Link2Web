@@ -1,0 +1,74 @@
+﻿@model Link2Web.Models.Link
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Link</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LinkId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LinkId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WebsiteUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WebsiteUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnchorText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnchorText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DestinationUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DestinationUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProjectId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

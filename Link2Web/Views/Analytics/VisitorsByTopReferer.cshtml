@@ -1,0 +1,51 @@
+﻿@using Kendo.Mvc.UI
+@model Link2Web.ViewModels.AnalyticsViewModel
+
+@{
+    ViewBag.Title = "Visitors by top referer";
+}
+
+@section AdditionalResources
+{
+    @Styles.Render("~/Content/telerik")
+    @Styles.Render("~/Content/telerikgrid")
+    @Scripts.Render("~/bundles/telerik")
+    @Scripts.Render("~/bundles/telerikgrid")
+
+}
+
+
+<h2>Visitors</h2>
+
+@(Html.Kendo().Grid(Model.LstAnalyticsData)
+    .Name("gridVisitors")
+    .Columns(columns =>
+    {
+        columns.Bound(v => v.Date).Title("Date").Width(130).Format("{0:MM/dd/yyyy}");
+        columns.Bound(v => v.Clicks).Title("Clicks").Width(100);
+        columns.Bound(v => v.Pageviews).Title("Pageviews").Width(110);
+        columns.Bound(v => v.BounceRate).Title("BounceRate").Width(130).MinScreenWidth(520).Format("#.00");
+        columns.Bound(v => v.BounceRate).Title("BounceRate").Width(130).MinScreenWidth(520).Format("{0:P2}");
+        columns.Bound(v => v.Keywords).Title("Impressions").Width(130).MinScreenWidth(720);
+        columns.Bound(v => v.NewUsers).Title("NewUsers").Width(130).MinScreenWidth(720);
+    })
+    .HtmlAttributes(new { style = "min-height: 450px" })
+    .Pageable(pageable => pageable
+       .Input(true)
+       .Numeric(false)
+     )
+    .Sortable()
+    .Scrollable(scr => scr.Height(430))
+    .Selectable(selectable => selectable
+    .Mode(GridSelectionMode.Multiple))
+    .Navigatable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Read(read => read .Action("GetVisitorsByTopReferer", "Analytics"))
+        .PageSize(30)
+        .ServerOperation(false)
+     )
+      )
+
+@**@
+

@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -15,23 +17,6 @@
 .dl-horizontal dt {
     white-space: normal;
 }
-
-/*.form-control {
-    display: inline-block;
-    width: auto;
-    vertical-align: middle;
-}
-
-
-.input-group > .form-control {
-    width: 100%;
-}*/
-
-/*@media (min-width: 1600px) {
-  .container {
-      width: 1440px;
-  }
-}*/
 
 
 #my-tab-content {
@@ -86,4 +71,80 @@
 
 form .text-danger {
     font-weight: bold;
+}
+
+#details, fieldset.for-panel {
+    border: 1px solid #999 !important;
+    border-radius: 4px !important;	
+    padding:15px 10px !important;
+    border-color: #bce8f1 !important;
+    margin-bottom:12px;
+}
+#details, fieldset.for-panel legend {
+    border: 1px solid #cccccc !important;
+    border-radius: 5px;
+    line-height: 36px;
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#dropdownLogoutForm {
+    padding: 6px 12px 12px 0 !important;
+}
+
+form {
+    min-height: 0 !important;
+    min-width: 0 !important;  
+}
+
+#logo {
+    padding-top: 20px;
+    height: 140px;
+    text-align: center;
+}
+
+#logo img {
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 100px;
+}
+
+.bg-gray {
+    background-color: #eeeeee !important;
+    color: #5A739A;
+}
+
+.form-control {
+    background-color: #eee;
+    opacity: 1;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+
+/* Custom */
+
+/* Main */
+
+.right_col {
+    padding-top: 90px !important;
+}
+
+.right_col h2 {
+    background-color: #F39C12;
+    color: #FFFFFF;
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.right_col th {
+    background-color: #0073B7;
+    color: #FFFFFF;
+}
+
+.trcolor {
+    background-color: #eeeeee;
+    color: #000000;
 }
