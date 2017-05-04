@@ -1,15 +1,19 @@
-﻿//Init
+﻿"use strict";
+
+//Custom Link2Web
 $(document).ready(function () {
+
+    //Custom Colors
+    $("table tr:even").addClass("trcolor");
+    
+    //Show dialog if no project exists
     $.ajax({
         url: '/Project/ProjectExists',
         type: 'Get',
         contentType: 'application/json;',
         success: function (data) {
-            var currentAction = '@ViewContext.RouteData.Values["action"].ToString()';
-            var currentController = '@ViewContext.RouteData.Values["controller"].ToString()';
-
-            console.log(currentAction + ' ' + currentController);
-            if (!data) {
+            if (data) {
+                console.log('create porject');
                 BootstrapDialog.show({
                     title: 'Project',
                     message: 'Create a project first before going on.',

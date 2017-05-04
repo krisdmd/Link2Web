@@ -138,6 +138,9 @@
   <data name="Code" xml:space="preserve">
     <value>Code</value>
   </data>
+  <data name="Count" xml:space="preserve">
+    <value>Count</value>
+  </data>
   <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>
@@ -236,6 +239,12 @@
   </data>
   <data name="Symbol" xml:space="preserve">
     <value>Symbol</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
   </data>
   <data name="TwitterProfileUrl" xml:space="preserve">
     <value>Twitter profile URL</value>

@@ -16,11 +16,18 @@ namespace Link2Web.Models
         public string ViewProfileId { get; set; }
 
         [Display(Name = "DisplayName", ResourceType = typeof (Resources.Resources))]
-        [Required]
+        [Required (ErrorMessage = "Name is required")]
+        [MaxLength(60, ErrorMessage = "Name cannot be longer than 60 characters.")]
         public string Name { get; set; }
 
         [Display(Name = "Email", ResourceType = typeof (Resources.Resources))]
-        [Required]
+        [MaxLength(60, ErrorMessage = "Email cannot be longer than 60 characters.")]
+        [Required(ErrorMessage = "Email is required")]
+        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                            @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                            @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
+                            ErrorMessage = "Email is not valid")]
+ 
         public string Email { get; set; }
 
         [Display(Name = "Country", ResourceType = typeof (Resources.Resources))]
@@ -41,6 +48,7 @@ namespace Link2Web.Models
         [Display(Name = "Currency", ResourceType = typeof(Resources.Resources))]
         public int CurrencyId { get; set; }
 
+        [Required]
         [Display(Name = "Language", ResourceType = typeof(Resources.Resources))]
         public int LanguageId { get; set; }
 

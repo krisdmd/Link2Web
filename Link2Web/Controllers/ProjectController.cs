@@ -5,12 +5,19 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using Link2Web.Helpers;
 
 namespace Link2Web.Controllers
 {
     public class ProjectController : BaseController
     {
         private Link2WebDbContext db = new Link2WebDbContext();
+
+        public ProjectController()
+        {
+            GlobalSettings.HideCreateProjectDialog = true;
+
+        }
 
         // GET: Project
         public ActionResult Index()
@@ -37,6 +44,7 @@ namespace Link2Web.Controllers
         // GET: Project/Create
         public ActionResult Create()
         {
+            GlobalSettings.HideCreateProjectDialog = true;
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
             ViewBag.LanguageId = new SelectList(db.Languages, "LanguageId", "Name");
             ViewBag.CurrencyId = new SelectList(db.Currencies, "CurrencyId", "Name");
@@ -51,7 +59,7 @@ namespace Link2Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProjectId,Name,Email,CountryId,CurrencyId,LanguageId,Url,Note,ViewProfileId")] Project project)
         {
-
+            GlobalSettings.HideCreateProjectDialog = true;
             if (ModelState.IsValid)
             {
 //                project.Created = DateTime.Now;

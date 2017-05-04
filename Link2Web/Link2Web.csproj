@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.Net.Compilers.2.0.0-rc2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.0.0-rc2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -369,17 +368,22 @@
     <Compile Include="DAL\Migrations\201704271237308_fixingproject.Designer.cs">
       <DependentUpon>201704271237308_fixingproject.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Migrations\201704281523173_globalsettings.cs" />
+    <Compile Include="DAL\Migrations\201704281523173_globalsettings.Designer.cs">
+      <DependentUpon>201704281523173_globalsettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Migrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CultureHelper.cs" />
     <Compile Include="Core\LinkParser.cs" />
-    <Compile Include="Helpers\Page.cs" />
+    <Compile Include="Helpers\GlobalSettings.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AnalyticsData.cs" />
     <Compile Include="Models\AnalyticsVisitors.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\CrawledLinkStatus.cs" />
     <Compile Include="Models\EditProfileViewModel.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\LinkContact.cs" />
@@ -391,12 +395,12 @@
     <Compile Include="Models\CrawledLink.cs" />
     <Compile Include="Models\LinkStatus.cs" />
     <Compile Include="Models\LinkType.cs" />
-    <Compile Include="Models\LogEntry.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\ProjectSetting.cs" />
     <Compile Include="Models\Setting.cs" />
     <Compile Include="Models\SettingType.cs" />
+    <Compile Include="Models\UserSetting.cs" />
     <Compile Include="Models\WebsiteCrawler.cs" />
     <Compile Include="Models\WebsiteType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -800,7 +804,7 @@
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-dialog.js" />
-    <Content Include="Scripts\Init.js" />
+    <Content Include="Scripts\custom-link2web.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -1569,6 +1573,9 @@
     <EmbeddedResource Include="DAL\Migrations\201704271237308_fixingproject.resx">
       <DependentUpon>201704271237308_fixingproject.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201704281523173_globalsettings.resx">
+      <DependentUpon>201704281523173_globalsettings.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Resources\Resources.csproj">
@@ -1604,12 +1611,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.0.0-rc2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.0.0-rc2\build\Microsoft.Net.Compilers.props'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
