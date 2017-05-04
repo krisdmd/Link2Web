@@ -171,6 +171,7 @@
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -318,6 +319,7 @@
     <Compile Include="Core\AppFlowMetadata.cs" />
     <Compile Include="Core\MyFunctions.cs" />
     <Compile Include="Core\Settings.cs" />
+    <Compile Include="DAL\DbAddOrUpdate.cs" />
     <Compile Include="DAL\Link2WebInit.cs" />
     <Compile Include="DAL\Link2WebDbContext.cs" />
     <Compile Include="DAL\Migrations\201703080925535_AnalyticsVisitors.cs" />
@@ -371,6 +373,10 @@
     <Compile Include="DAL\Migrations\201704281523173_globalsettings.cs" />
     <Compile Include="DAL\Migrations\201704281523173_globalsettings.Designer.cs">
       <DependentUpon>201704281523173_globalsettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201705041929574_usersettingsupdated.cs" />
+    <Compile Include="DAL\Migrations\201705041929574_usersettingsupdated.Designer.cs">
+      <DependentUpon>201705041929574_usersettingsupdated.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\Migrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
@@ -1575,6 +1581,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201704281523173_globalsettings.resx">
       <DependentUpon>201704281523173_globalsettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201705041929574_usersettingsupdated.resx">
+      <DependentUpon>201705041929574_usersettingsupdated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

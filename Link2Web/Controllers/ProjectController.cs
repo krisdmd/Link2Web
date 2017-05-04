@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using Kendo.Mvc.Extensions;
 using Link2Web.Helpers;
 
 namespace Link2Web.Controllers
@@ -12,6 +13,7 @@ namespace Link2Web.Controllers
     public class ProjectController : BaseController
     {
         private Link2WebDbContext db = new Link2WebDbContext();
+        private DbAddOrUpdate dbAddorUpdate = new DbAddOrUpdate();
 
         public ProjectController()
         {
@@ -65,9 +67,20 @@ namespace Link2Web.Controllers
 //                project.Created = DateTime.Now;
 //                project.Modified = DateTime.Now;
 //                project.Visible = true;
+
                 project.UserId = User.Identity.GetUserId();
                 db.Projects.Add(project);
                 db.SaveChanges();
+
+                var userSettings = new UserSetting
+                {
+                    UserId = User.Identity.GetUserId(),
+                    Setting = "CurrentProject",
+                    ValueInt = project.ProjectId
+            };
+
+                dbAddorUpdate.AddOrUpdateUserSetting(db, userSettings);
+
                 return RedirectToAction("Index");
             }
 
@@ -109,6 +122,16 @@ namespace Link2Web.Controllers
                 project.UserId = User.Identity.GetUserId();
                 db.Entry(project).State = EntityState.Modified;
                 db.SaveChanges();
+
+                var userSettings = new UserSetting
+                {
+                    UserId = User.Identity.GetUserId(),
+                    Setting = "CurrentProject",
+                    ValueInt = project.ProjectId
+                };
+
+                dbAddorUpdate.AddOrUpdateUserSetting(db, userSettings);
+
                 return RedirectToAction("Index");
             }
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", project.CountryId);
