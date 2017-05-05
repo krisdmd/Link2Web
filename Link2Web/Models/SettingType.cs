@@ -8,6 +8,7 @@ namespace Link2Web.Models
     public class SettingType
     {
         public int SettingTypeId { get; set; }
+        [Required]
         public string Type { get; set; }
         [DefaultValue(true)]
         [ScaffoldColumn(false)]

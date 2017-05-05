@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using Link2Web.Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
@@ -18,6 +19,7 @@ namespace Link2Web.Controllers
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
         {
             string cultureName = null;
+            GlobalSettings.HideCreateProjectDialog = false;
 
             // Attempt to read the culture cookie from Request
             HttpCookie cultureCookie = Request.Cookies["_culture"];

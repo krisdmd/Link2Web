@@ -27,7 +27,8 @@ namespace Link2Web.DAL
         public IDbSet<LinkStatus> LinkStatus { get; set; }
         public IDbSet<LinkType> LinkTypes { get; set; }
         public IDbSet<Language> Languages { get; set; }
- 
+        public IDbSet<UserSetting> UserSettings { get; set; }
+        public IDbSet<CrawledLinkStatus> CrawledLinkStatuses { get; set; }
 
         public static Link2WebDbContext Create()
         {

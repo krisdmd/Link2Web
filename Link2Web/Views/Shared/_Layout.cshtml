@@ -1,5 +1,6 @@
 ﻿@using Admin2Web.Helpers
 @using Kendo.Mvc.UI
+@using Link2Web.Helpers
 <!DOCTYPE html>
 <html lang="@CultureHelper.GetCurrentNeutralCulture()">
 <head>
@@ -75,8 +76,14 @@
 
 
 @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/theme")
-    @Scripts.Render("~/bundles/jqueryval")   
-    @RenderSection("scripts", required: false)
+@Scripts.Render("~/bundles/theme")
+@Scripts.Render("~/bundles/jqueryval")
+    
+    @if (GlobalSettings.HideCreateProjectDialog == false)
+    {
+        @Scripts.Render("~/bundles/link2web")
+    }
+
+@RenderSection("scripts", required: false)
 </body>
 </html>

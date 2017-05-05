@@ -14,6 +14,7 @@ namespace Link2Web.Models
         public string WebsiteUrl { get; set; }
 
         [Display(Name = "AnchorText", ResourceType = typeof (Resources.Resources))]
+        [MaxLength(40, ErrorMessage = "AnchorText cannot be longer than 40 characters.")]
         [Required]
         public string AnchorText { get; set; }
         [Required]
