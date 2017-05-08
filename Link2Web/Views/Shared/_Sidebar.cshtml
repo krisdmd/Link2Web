@@ -38,6 +38,9 @@
                     <li>
                         @Html.ActionLink("Link Manager", "Index", "Links", new {Area = ""}, null)
                     </li>
+                    <li>
+                        @Html.ActionLink("Contacts", "Index", "Contacts", new { Area = "" }, null)
+                    </li>
                 </ul>
             </li>
             <li>
@@ -61,19 +64,17 @@
                         @Html.ActionLink("Languages", "Index", "Languages", new { Area = "Admin" }, new { })
                     </li>
                     <li>
-                        @Html.ActionLink("Link status", "Index", "LinkStatus", new { Area = "Admin" }, new { })
+                        @Html.ActionLink("Link status", "Index", "LinkStatus", new {Area = "Admin"}, new {})
+
+                    </li>
+                    <li>
+                        @Html.ActionLink("Link Types", "Index", "LinkTypes", new { Area = "Admin" }, new { })
                     </li>
                     <li>
                         @Html.ActionLink("Settings", "Index", "Settings", new { Area = "Admin" }, new { })
                     </li>
                     <li>
                         @Html.ActionLink("Setting types", "Index", "SettingTypes", new { Area = "Admin" }, new { })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Link Types", "Index", "LinkTypes", new { Area = "Admin" }, new { })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Website types", "Index", "WebsiteTypes", new { Area = "Admin" }, new { })
                     </li>
                 </ul>
             </li>

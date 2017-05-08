@@ -1,8 +1,7 @@
 namespace Link2Web.DAL.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class contact : DbMigration
     {
         public override void Up()
@@ -45,7 +44,6 @@ namespace Link2Web.DAL.Migrations
                 .PrimaryKey(t => t.ContactId)
                 .ForeignKey("dbo.Countries", t => t.CountryId, cascadeDelete: true)
                 .ForeignKey("dbo.Links", t => t.Links_ProjectId)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId_Id)
                 .Index(t => t.CountryId)
                 .Index(t => t.Links_ProjectId)
                 .Index(t => t.UserId_Id);
@@ -56,9 +54,7 @@ namespace Link2Web.DAL.Migrations
             CreateIndex("dbo.Links", "Contact_ContactId");
             CreateIndex("dbo.Links", "ContactId_ContactId");
             AddForeignKey("dbo.Links", "Contact_ContactId", "dbo.Contacts", "ContactId");
-            AddForeignKey("dbo.Links", "ContactId_ContactId", "dbo.Contacts", "ContactId");
             DropColumn("dbo.Links", "LinkContact_LinkContactId");
-            DropColumn("dbo.Links", "LinkContact_LinkContactId1");
             DropColumn("dbo.Links", "LinkContactId_LinkContactId");
             DropColumn("dbo.Links", "WebsiteType_WebsiteTypeId");
             DropColumn("dbo.Links", "WebsiteType_WebsiteTypeId1");
@@ -139,7 +135,6 @@ namespace Link2Web.DAL.Migrations
             CreateIndex("dbo.Links", "LinkContact_LinkContactId");
             CreateIndex("dbo.ContactDetails", "UserId_Id");
             CreateIndex("dbo.ContactDetails", "CountryId");
-            AddForeignKey("dbo.ContactDetails", "UserId_Id", "dbo.AspNetUsers", "Id");
             AddForeignKey("dbo.Links", "WebsiteTypeId_WebsiteTypeId", "dbo.WebsiteTypes", "WebsiteTypeId");
             AddForeignKey("dbo.Links", "WebsiteType_WebsiteTypeId1", "dbo.WebsiteTypes", "WebsiteTypeId");
             AddForeignKey("dbo.Links", "WebsiteType_WebsiteTypeId", "dbo.WebsiteTypes", "WebsiteTypeId");
