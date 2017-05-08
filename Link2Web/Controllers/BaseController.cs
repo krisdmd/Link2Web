@@ -61,6 +61,35 @@ namespace Link2Web.Controllers
                 }
             }
 
+            if (!GlobalSettings.Active && User != null)
+            {
+                var db = new Link2WebDbContext();
+                var userId = User.Identity.GetUserId();
+                var userSettings = db.UserSettings.Where(u => u.UserId.Contains(userId));
+
+                foreach (var u in userSettings)
+                {
+                    switch (u.Setting)
+                    {
+                        case "GoogleClientId":
+                            GlobalSettings.GoogleClientId = u.Value;
+                            break;
+                        case "GoogleClientSecret":
+                            GlobalSettings.GoogleClientSecret = u.Value;
+                            break;
+                        case "FacebookClientId":
+                            GlobalSettings.FacebookClientId = u.Value;
+                            break;
+                        case "FacebookClientSecret":
+                            GlobalSettings.FacebookSecret = u.Value;
+                            break;
+                    }
+                }
+
+                GlobalSettings.Active = true;
+
+            }
+
             base.OnActionExecuted(filterContext);
         }
 
@@ -106,6 +135,10 @@ namespace Link2Web.Controllers
                 return File(imageData, "image/png");
 
             }
+        }
+
+        public BaseController()
+        {
         }
 
     }

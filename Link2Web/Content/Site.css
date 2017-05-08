@@ -139,10 +139,14 @@ form {
     border-radius: 4px;
 }
 
-.right_col th, #gridList #gridHeader {
-    background-color: #0073B7;
-    color: #FFFFFF;
-}
+    .right_col th, #gridList #gridHeader {
+        background-color: #0073B7;
+        color: #FFFFFF;
+        padding: 15px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        font-weight: bold;
+    }
 
 .trcolor {
     background-color: #eeeeee;
@@ -153,10 +157,20 @@ form {
     margin-right: 5px;
 }
 
-#gridList .row:nth-child(even) div:nth-child(even) {
+#gridHeader, #gridList {
+    margin-bottom: 12px;
+}
+
+#gridList .row:nth-child(even) {
     background-color: #eeeeee;
 }
 
-#gridList .row:nth-child(even) div:nth-child(odd) {
+#gridList .row:nth-child(odd) {
     background-color: #ffffff;
+}
+
+#gridList .row {
+
+    font-weight: normal;
+    padding: 4px;
 }
