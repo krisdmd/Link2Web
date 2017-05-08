@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
   <data name="Active" xml:space="preserve">
     <value>Active</value>
   </data>
@@ -125,6 +128,9 @@
   </data>
   <data name="AnchorText" xml:space="preserve">
     <value>AnchorText</value>
+  </data>
+  <data name="BacklinkFound" xml:space="preserve">
+    <value>Backlink found</value>
   </data>
   <data name="BounceRate" xml:space="preserve">
     <value>BounceRate</value>
@@ -137,6 +143,9 @@
   </data>
   <data name="Code" xml:space="preserve">
     <value>Code</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
   </data>
   <data name="Count" xml:space="preserve">
     <value>Count</value>
@@ -188,6 +197,9 @@
   </data>
   <data name="Impressions" xml:space="preserve">
     <value>Impressions</value>
+  </data>
+  <data name="IsRequired" xml:space="preserve">
+    <value>{0} is required!</value>
   </data>
   <data name="Keywords" xml:space="preserve">
     <value>Keywords</value>

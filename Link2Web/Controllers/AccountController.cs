@@ -1,4 +1,5 @@
-﻿using Link2Web.Models;
+﻿using Link2Web.Helpers;
+using Link2Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -18,6 +19,8 @@ namespace Link2Web.Controllers
 
         public AccountController()
         {
+            GlobalSettings.HideCreateProjectDialog = true;
+
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )

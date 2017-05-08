@@ -16,5 +16,9 @@ namespace Link2Web.Models
         public double BounceRate { get; set; }
         public string Keywords { get; set; }
         public string Pageviews { get; set; }
+        public string Browser { get; set; }
+        public string OrganicSearches { get; set; }
+        public double AvgTimeOnPage { get; set; }
+        public string FullReferer { get; set; }
     }
 }

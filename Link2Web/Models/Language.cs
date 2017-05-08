@@ -9,7 +9,8 @@ namespace Link2Web.Models
         public int LanguageId { get; set; }
 
         [Display(Name = "Name", ResourceType = typeof(Resources.Resources))]
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resources),
+            ErrorMessageResourceName = "IsRequired")]
         public string Name { get; set; }
 
         [DefaultValue(false)]

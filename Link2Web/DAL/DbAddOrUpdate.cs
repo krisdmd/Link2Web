@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Link2Web.Models;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
-using Link2Web.Models;
 
 namespace Link2Web.DAL
 {
@@ -11,9 +8,19 @@ namespace Link2Web.DAL
     {
         public void AddOrUpdateUserSetting(Link2WebDbContext context, UserSetting userSetting)
         {
-
             var userSettingInDb = context.UserSettings.Count(u => u.Setting == userSetting.Setting) > 0;
-            context.Entry(userSetting).State = (userSettingInDb ? EntityState.Modified : EntityState.Added);
+
+            if (userSettingInDb)
+            {
+                context.UserSettings.Add(userSetting);
+            }
+            else
+            {
+                context.Entry(userSetting).State = EntityState.Modified;
+            }
+
+
+           // context.Entry(userSetting).State = (userSettingInDb ? EntityState.Modified : EntityState.Added);
             context.SaveChanges();
         }
     }

@@ -303,12 +303,12 @@
     <Compile Include="Areas\Admin\Controllers\LinkTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingTypesController.cs" />
-    <Compile Include="Areas\Admin\Controllers\WebsiteTypesController.cs" />
     <Compile Include="BLL\Facebook.cs" />
     <Compile Include="BLL\GoogleAnalytics.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnalyticsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\FacebookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -378,6 +378,10 @@
     <Compile Include="DAL\Migrations\201705041929574_usersettingsupdated.Designer.cs">
       <DependentUpon>201705041929574_usersettingsupdated.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Migrations\201705081313427_contact.cs" />
+    <Compile Include="DAL\Migrations\201705081313427_contact.Designer.cs">
+      <DependentUpon>201705081313427_contact.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Migrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -387,13 +391,11 @@
     <Compile Include="Helpers\GlobalSettings.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AnalyticsData.cs" />
-    <Compile Include="Models\AnalyticsVisitors.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\CrawledLinkStatus.cs" />
     <Compile Include="Models\EditProfileViewModel.cs" />
     <Compile Include="Models\Language.cs" />
-    <Compile Include="Models\LinkContact.cs" />
-    <Compile Include="Models\ContactDetail.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\Facebook.cs" />
@@ -408,7 +410,6 @@
     <Compile Include="Models\SettingType.cs" />
     <Compile Include="Models\UserSetting.cs" />
     <Compile Include="Models\WebsiteCrawler.cs" />
-    <Compile Include="Models\WebsiteType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AnalyticsViewModel.cs" />
@@ -1332,6 +1333,11 @@
     <Content Include="Views\Analytics\VisitorsByKeyword.cshtml" />
     <Content Include="Views\Analytics\VisitorsByTopReferer.cshtml" />
     <Content Include="Views\Analytics\VisitorsByBrowser.cshtml" />
+    <Content Include="Views\Contacts\Create.cshtml" />
+    <Content Include="Views\Contacts\Delete.cshtml" />
+    <Content Include="Views\Contacts\Details.cshtml" />
+    <Content Include="Views\Contacts\Edit.cshtml" />
+    <Content Include="Views\Contacts\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1584,6 +1590,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201705041929574_usersettingsupdated.resx">
       <DependentUpon>201705041929574_usersettingsupdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201705081313427_contact.resx">
+      <DependentUpon>201705081313427_contact.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

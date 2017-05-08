@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Link2Web.Models
 {
@@ -7,15 +6,17 @@ namespace Link2Web.Models
     {
         public int CrawledLinkId { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resources),
+          ErrorMessageResourceName = "IsRequired")]
         [Display(Name = "WebsiteUrl", ResourceType = typeof(Resources.Resources))]
         public string Url { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resources),
+            ErrorMessageResourceName = "IsRequired")]
         [Display(Name = "Title", ResourceType = typeof(Resources.Resources))]
         public string Title { get; set; }
-
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resources),
+            ErrorMessageResourceName = "IsRequired")]
         [Display(Name = "Status", ResourceType = typeof(Resources.Resources))]
         public string Status { get; set; }
 

@@ -139,7 +139,7 @@ form {
     border-radius: 4px;
 }
 
-.right_col th {
+.right_col th, #gridList #gridHeader {
     background-color: #0073B7;
     color: #FFFFFF;
 }
@@ -147,4 +147,16 @@ form {
 .trcolor {
     background-color: #eeeeee;
     color: #000000;
+}
+
+.lnk-space {
+    margin-right: 5px;
+}
+
+#gridList .row:nth-child(even) div:nth-child(even) {
+    background-color: #eeeeee;
+}
+
+#gridList .row:nth-child(even) div:nth-child(odd) {
+    background-color: #ffffff;
 }

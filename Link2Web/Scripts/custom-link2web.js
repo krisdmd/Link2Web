@@ -5,6 +5,7 @@ $(document).ready(function () {
 
     //Custom Colors
     $("table tr:even").addClass("trcolor");
+   
     
     //Show dialog if no project exists
     $.ajax({

@@ -1,12 +1,12 @@
-﻿using Link2Web.DAL;
+﻿using Kendo.Mvc.Extensions;
+using Link2Web.DAL;
+using Link2Web.Helpers;
 using Link2Web.Models;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using Kendo.Mvc.Extensions;
-using Link2Web.Helpers;
 
 namespace Link2Web.Controllers
 {
@@ -172,6 +172,33 @@ namespace Link2Web.Controllers
             var userId = User.Identity.GetUserId();
             var projectCount = db.Projects.Count(p => Equals(p.UserId, userId)) > 0;
             return Json(projectCount, JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: Project/Select/5
+        public ActionResult Select(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var project = db.Projects.Find(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+
+            var userSettings = new UserSetting
+            {
+                UserId = User.Identity.GetUserId(),
+                Setting = "CurrentProject",
+                ValueInt = project.ProjectId
+            };
+
+
+            dbAddorUpdate.AddOrUpdateUserSetting(db, userSettings);
+
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

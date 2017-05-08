@@ -29,7 +29,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Created)
         </th>
-        <th></th>
+        <th>@Resources.Resources.Actions</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -53,7 +53,15 @@
             @item.Created.ToString("dd/MM/yyyy")
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {id = item.ProjectId})
+
+            <a class="lnk-space" href='@Url.Action("Select", "Project", new {id = item.ProjectId})'>
+                <span class="glyphicon glyphicon-new-window"></span> Select
+            </a>
+
+            <a href='@Url.Action("Edit", "Project", new {id = item.ProjectId})'>
+                <span class="glyphicon glyphicon-edit"></span> Edit
+            </a>
+
         </td>
     </tr>
 }

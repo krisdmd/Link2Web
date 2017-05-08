@@ -4,111 +4,115 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using Link2Web.Controllers;
 
-namespace Link2Web.Areas.Admin.Controllers
+namespace Link2Web.Controllers
 {
-    public class WebsiteTypesController : BaseController
+    public class ContactsController : BaseController
     {
         private Link2WebDbContext db = new Link2WebDbContext();
 
-        // GET: Admin/WebsiteTypes
+        // GET: Contacts
         public ActionResult Index()
         {
-            return View(db.WebsiteTypes.ToList());
+            var contacts = db.Contacts.Include(c => c.Country);
+            return View(contacts.ToList());
         }
 
-        // GET: Admin/WebsiteTypes/Details/5
+        // GET: Contacts/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WebsiteType websiteType = db.WebsiteTypes.Find(id);
-            if (websiteType == null)
+            Contact contact = db.Contacts.Find(id);
+            if (contact == null)
             {
                 return HttpNotFound();
             }
-            return View(websiteType);
+            return View(contact);
         }
 
-        // GET: Admin/WebsiteTypes/Create
+        // GET: Contacts/Create
         public ActionResult Create()
         {
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
             return View();
         }
 
-        // POST: Admin/WebsiteTypes/Create
+        // POST: Contacts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "WebsiteTypeId,Type,Visible")] WebsiteType websiteType)
+        public ActionResult Create([Bind(Include = "ContactId,CountryId,Name,ScreenName,Email,Address,City,Zipcode,Phone")] Contact contact)
         {
             if (ModelState.IsValid)
             {
-                db.WebsiteTypes.Add(websiteType);
+                db.Contacts.Add(contact);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(websiteType);
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", contact.CountryId);
+            return View(contact);
         }
 
-        // GET: Admin/WebsiteTypes/Edit/5
+        // GET: Contacts/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WebsiteType websiteType = db.WebsiteTypes.Find(id);
-            if (websiteType == null)
+            Contact contact = db.Contacts.Find(id);
+            if (contact == null)
             {
                 return HttpNotFound();
             }
-            return View(websiteType);
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", contact.CountryId);
+            return View(contact);
         }
 
-        // POST: Admin/WebsiteTypes/Edit/5
+        // POST: Contacts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "WebsiteTypeId,Type,Visible")] WebsiteType websiteType)
+        public ActionResult Edit([Bind(Include = "ContactId,CountryId,Name,ScreenName,Email,Address,City,Zipcode,Phone")] Contact contact)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(websiteType).State = EntityState.Modified;
+                db.Entry(contact).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(websiteType);
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", contact.CountryId);
+            return View(contact);
         }
 
-        // GET: Admin/WebsiteTypes/Delete/5
+        // GET: Contacts/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WebsiteType websiteType = db.WebsiteTypes.Find(id);
-            if (websiteType == null)
+            Contact contact = db.Contacts.Find(id);
+            if (contact == null)
             {
                 return HttpNotFound();
             }
-            return View(websiteType);
+            return View(contact);
         }
 
-        // POST: Admin/WebsiteTypes/Delete/5
+        // POST: Contacts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            WebsiteType websiteType = db.WebsiteTypes.Find(id);
-            db.WebsiteTypes.Remove(websiteType);
+            Contact contact = db.Contacts.Find(id);
+            db.Contacts.Remove(contact);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
