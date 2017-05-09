@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Web;
+using HtmlAgilityPack;
 
 namespace Link2Web.Core
 {
@@ -67,6 +68,17 @@ namespace Link2Web.Core
                 result = double.Parse(output, CultureInfo.InvariantCulture);
             }
             return result;
+        }
+
+        public static bool CheckUrlExists(string url, string anchor)
+        {
+            var page = new HtmlWeb().Load(url);
+            var linkExists = page.DocumentNode.Descendants("a")
+                           .Where(a => a.InnerText == url )
+                           .Select(a => a.Attributes["href"].Value)
+                           .ToList().Count > 0;
+
+            return linkExists;
         }
     }
 }

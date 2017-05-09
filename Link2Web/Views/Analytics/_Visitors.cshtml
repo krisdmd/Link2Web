@@ -27,7 +27,7 @@
         columns.Bound(v => v.BounceRate).Title("BounceRate").Width(130).MinScreenWidth(520).Format("#.00");
         columns.Bound(v => v.BounceRate).Title("BounceRate").Width(130).MinScreenWidth(520).Format("{0:P2}");
         columns.Bound(v => v.Keywords).Title("Impressions").Width(130).MinScreenWidth(720);
-        columns.Bound(v => v.NewUsers).Title("NewUsers").Width(130).MinScreenWidth(720);
+        columns.Bound(v => v.OrganicSearches).Title("Organic searches").Width(130).MinScreenWidth(720);
     })
     .HtmlAttributes(new { style = "min-height: 450px" })
     .Pageable(pageable => pageable

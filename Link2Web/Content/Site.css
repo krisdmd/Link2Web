@@ -139,7 +139,7 @@ form {
     border-radius: 4px;
 }
 
-    .right_col th, #gridList #gridHeader {
+     #gridList #gridHeader {
         background-color: #0073B7;
         color: #FFFFFF;
         padding: 15px;

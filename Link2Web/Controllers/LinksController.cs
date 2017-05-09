@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using Link2Web.Core;
 
 namespace Link2Web.Controllers
 {
@@ -49,6 +50,10 @@ namespace Link2Web.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                link.BacklinkFound = MyFunctions.CheckUrlExists("url", "anchor");
+
+
                 db.Links.Add(link);
                 db.SaveChanges();
                 return RedirectToAction("Index");

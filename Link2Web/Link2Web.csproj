@@ -117,6 +117,9 @@
       <HintPath>..\packages\Google.Apis.1.21.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Kendo.Mvc">
       <HintPath>..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET MVC R1 2017\wrappers\aspnetmvc\Binaries\Mvc5\Kendo.Mvc.dll</HintPath>
     </Reference>
@@ -200,6 +203,7 @@
     <Reference Include="System.Drawing">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Web.DynamicData">
       <Private>True</Private>
     </Reference>
@@ -282,6 +286,9 @@
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="XPath2, Version=1.0.3.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XPath2.1.0.3.1\lib\net45\XPath2.dll</HintPath>
     </Reference>
     <Reference Include="Zlib.Portable, Version=1.11.0.0, Culture=neutral, PublicKeyToken=431cba815f6a8b5b, processorArchitecture=MSIL">
       <HintPath>..\packages\Zlib.Portable.Signed.1.11.0\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid\Zlib.Portable.dll</HintPath>
@@ -385,6 +392,10 @@
     <Compile Include="DAL\Migrations\201705081332005_contact1.cs" />
     <Compile Include="DAL\Migrations\201705081332005_contact1.Designer.cs">
       <DependentUpon>201705081332005_contact1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201705091644052_links1.cs" />
+    <Compile Include="DAL\Migrations\201705091644052_links1.Designer.cs">
+      <DependentUpon>201705091644052_links1.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\Migrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
@@ -1590,6 +1601,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201705081332005_contact1.resx">
       <DependentUpon>201705081332005_contact1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201705091644052_links1.resx">
+      <DependentUpon>201705091644052_links1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

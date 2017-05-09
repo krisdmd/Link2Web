@@ -61,6 +61,7 @@ namespace Link2Web.Controllers
                 }
             }
 
+            // Add the user settings if not exists
             if (!GlobalSettings.Active && User != null)
             {
                 var db = new Link2WebDbContext();
