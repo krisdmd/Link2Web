@@ -13,6 +13,11 @@ namespace Link2Web.Models
             ErrorMessageResourceName = "IsRequired")]
         public string Name { get; set; }
 
+        [Display(Name = "Code", ResourceType = typeof(Resources.Resources))]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resources),
+            ErrorMessageResourceName = "IsRequired")]
+        public string Code { get; set; }
+
         [DefaultValue(false)]
         [Display(Name = "Default", ResourceType = typeof(Resources.Resources))]
         public bool Default { get; set; }

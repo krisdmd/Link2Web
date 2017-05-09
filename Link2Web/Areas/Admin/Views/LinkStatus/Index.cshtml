@@ -1,39 +1,35 @@
 ﻿@model IEnumerable<Link2Web.Models.LinkStatus>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Link statuses";
 }
 
 <h2>Link statuses</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add linkstatus", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Visible)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Visible)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LinkStatusId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LinkStatusId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LinkStatusId })
-        </td>
-    </tr>
-}
+<div class="container" id="gridList">
+    <!--Row with two equal columns-->
+    <div class="row" id="gridHeader">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">@Html.DisplayNameFor(model => model.Status)</div>
+    </div>
 
-</table>
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">@Html.DisplayFor(modelItem => item.Status)</div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <a class="lnk-space" href='@Url.Action("Edit", "LinkStatus", new {id = item.LinkStatusId})'>
+                    <span class="glyphicon glyphicon-edit"></span> Edit
+                </a>
+
+                <a href='@Url.Action("Delete", "LinkStatus", new {id = item.LinkStatusId})'>
+                    <span class="glyphicon glyphicon-remove"></span> Delete
+                </a>
+            </div>
+        </div>
+    }
+
+</div>

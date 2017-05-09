@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Link2Web.Models.Project>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Projects";
 }
 
 <h2>Projects</h2>
@@ -9,61 +9,34 @@
 <p>
     @Html.ActionLink("Create project", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ViewProfileId)
-        </th>        
-        <th>
-            @Html.DisplayNameFor(model => model.Country.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Url)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Created)
-        </th>
-        <th>@Resources.Resources.Actions</th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ViewProfileId)
-        </td>        
-        <td>
-            @Html.DisplayFor(modelItem => item.Country.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Url)
-        </td>
-        <td>
-            @item.Created.ToString("dd/MM/yyyy")
-        </td>
-        <td>
+<div class="container" id="gridList">
+    <!--Row with two equal columns-->
+    <div class="row" id="gridHeader">
+        <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">@Html.DisplayNameFor(model => model.ViewProfileId)</div>        
+        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">@Html.DisplayNameFor(model => model.Name)</div>
+        <div class="hidden-xs col-sm-3 col-md-3 col-lg-3">@Html.DisplayNameFor(model => model.Email)</div>
+        <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">@Resources.Resources.Country</div>
+    </div>
 
-            <a class="lnk-space" href='@Url.Action("Select", "Project", new {id = item.ProjectId})'>
-                <span class="glyphicon glyphicon-new-window"></span> Select
-            </a>
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">@Html.DisplayFor(modelItem => item.ViewProfileId)</div>            
+            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.Name)</div>
+            <div class="hidden-xs col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.Email)</div>
+            <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">@Html.DisplayFor(modelItem => item.Country.Name)</div>
+            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <a class="lnk-space" href='@Url.Action("Select", "Project", new {id = item.ProjectId})'>
+                    <span class="glyphicon glyphicon-new-window"></span> Select
+                </a>
 
-            <a href='@Url.Action("Edit", "Project", new {id = item.ProjectId})'>
-                <span class="glyphicon glyphicon-edit"></span> Edit
-            </a>
+                <a href='@Url.Action("Edit", "Project", new {id = item.ProjectId})'>
+                    <span class="glyphicon glyphicon-edit"></span> Edit
+                </a>
+            </div>
+        </div>
+    }
 
-        </td>
-    </tr>
-}
+</div>
 
-</table>

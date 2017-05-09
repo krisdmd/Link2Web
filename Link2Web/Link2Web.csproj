@@ -791,11 +791,6 @@
     <Content Include="Areas\Admin\Views\LinkStatus\Details.cshtml" />
     <Content Include="Areas\Admin\Views\LinkStatus\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\LinkStatus\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\WebsiteTypes\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\WebsiteTypes\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\WebsiteTypes\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\WebsiteTypes\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\WebsiteTypes\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Languages\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Languages\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Languages\Details.cshtml" />
@@ -1189,11 +1184,6 @@
     <Content Include="Scripts\Theme\nprogress.js" />
     <Content Include="Scripts\Theme\skycons.js" />
     <Content Include="Scripts\Theme\smartresize.js" />
-    <Content Include="Views\Country\Create.cshtml" />
-    <Content Include="Views\Country\Delete.cshtml" />
-    <Content Include="Views\Country\Details.cshtml" />
-    <Content Include="Views\Country\Edit.cshtml" />
-    <Content Include="Views\Country\Index.cshtml" />
     <Content Include="Views\Project\Create.cshtml" />
     <Content Include="Views\Project\Delete.cshtml" />
     <Content Include="Views\Project\Details.cshtml" />

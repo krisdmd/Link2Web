@@ -6688,7 +6688,6 @@ button.close {
   }
 }
 @media (max-width: 767px) {
-  .hidden-xs {
     display: none !important;
   }
 }

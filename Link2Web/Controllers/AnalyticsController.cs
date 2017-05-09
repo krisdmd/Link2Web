@@ -37,7 +37,9 @@ namespace Link2Web.Controllers
                 "ga:bounceRate",
                 "ga:pageviews",
                 "ga:organicSearches",
-                "ga:impressions"
+                "ga:impressions",
+                "ga:percentNewSessions",
+                "ga:avgTimeOnPage"
             };
 
             var analyticsData = new GoogleAnalytics();
@@ -66,7 +68,9 @@ namespace Link2Web.Controllers
                 "ga:bounceRate",
                 "ga:pageviews",
                 "ga:organicSearches",
-                "ga:impressions"
+                "ga:impressions",
+                "ga:percentNewSessions",
+                "ga:avgTimeOnPage"
             };
 
             var analyticsData = new GoogleAnalytics();
@@ -95,7 +99,9 @@ namespace Link2Web.Controllers
                 "ga:bounceRate",
                 "ga:pageviews",
                 "ga:organicSearches",
-                "ga:impressions"
+                "ga:impressions",
+                "ga:percentNewSessions",
+                "ga:avgTimeOnPage"
             };
 
             var analyticsData = new GoogleAnalytics();
@@ -124,7 +130,9 @@ namespace Link2Web.Controllers
                 "ga:bounceRate",
                 "ga:pageviews",
                 "ga:organicSearches",
-                "ga:impressions"
+                "ga:impressions",
+                "ga:percentNewSessions",
+                "ga:avgTimeOnPage"
             };
 
             var analyticsData = new GoogleAnalytics();
@@ -148,7 +156,9 @@ namespace Link2Web.Controllers
                 "ga:bounceRate",
                 "ga:pageviews",
                 "ga:organicSearches",
-                "ga:impressions"
+                "ga:impressions",
+                "ga:percentNewSessions",
+                "ga:avgTimeOnPage"
             };
 
             var analyticsData = new GoogleAnalytics();
@@ -181,9 +191,12 @@ namespace Link2Web.Controllers
             var metrics = new[]
 {
                 "ga:users",
-                "ga:pageviews",
+                "ga:adClicks",
                 "ga:bounceRate",
+                "ga:pageviews",
                 "ga:organicSearches",
+                "ga:impressions",
+                "ga:percentNewSessions",
                 "ga:avgTimeOnPage"
             };
 
@@ -220,7 +233,9 @@ namespace Link2Web.Controllers
                 "ga:bounceRate",
                 "ga:pageviews",
                 "ga:organicSearches",
-                "ga:impressions"
+                "ga:impressions",
+                "ga:percentNewSessions",
+                "ga:avgTimeOnPage"
             };
 
             var analyticsData = new GoogleAnalytics();
@@ -252,9 +267,12 @@ namespace Link2Web.Controllers
             var metrics = new[]
 {
                 "ga:users",
-                "ga:pageviews",
+                "ga:adClicks",
                 "ga:bounceRate",
+                "ga:pageviews",
                 "ga:organicSearches",
+                "ga:impressions",
+                "ga:percentNewSessions",
                 "ga:avgTimeOnPage"
             };
 

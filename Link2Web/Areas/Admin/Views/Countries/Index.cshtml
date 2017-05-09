@@ -7,23 +7,23 @@
 <h2>Countries</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add country", "Create")
 </p>
 
 <div class="container" id="gridList">
     <!--Row with two equal columns-->
     <div class="row" id="gridHeader">
-        <div class="col-md-4 col-sm-4">@Html.DisplayNameFor(model => model.Name)</div>
-        <div class="col-md-4 col-sm-4">@Html.DisplayNameFor(model => model.Code)</div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">@Html.DisplayNameFor(model => model.Name)</div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">@Html.DisplayNameFor(model => model.Code)</div>
     </div>
 
     @foreach (var item in Model)
     {
         <div class="row">
-            <div class="col-md-4 col-sm-4">@Html.DisplayFor(modelItem => item.Name)</div>
-            <div class="col-md-4 col-sm-4">@Html.DisplayFor(modelItem => item.Code)</div>
-            <div class="col-md-4 col-sm-4">
-                <a href='@Url.Action("Edit", "Countries", new {id = item.CountryId})'>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">@Html.DisplayFor(modelItem => item.Name)</div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">@Html.DisplayFor(modelItem => item.Code)</div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <a class="lnk-space" href='@Url.Action("Edit", "Countries", new {id = item.CountryId})'>
                     <span class="glyphicon glyphicon-edit"></span> Edit
                 </a>
 
