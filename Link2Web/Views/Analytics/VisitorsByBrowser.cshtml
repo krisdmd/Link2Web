@@ -19,15 +19,14 @@
                 'data': function(data) {
                     return JSON.stringify(data);
                 },
-                "dataSrc": ""
+                "dataSrc": "data"
             },
             "columns": [
                 { data: 'Dimension' },
                 { data: 'Users' },
                 { data: 'Pageviews' },
                 { data: 'BounceRate' },
-                { data: 'OrganicSearches' },
-                { data: 'pageLoadTime' }
+                { data: 'OrganicSearches' }
             ]
         });
 
@@ -36,7 +35,7 @@
             "type": "POST",
             cache: false,
             success: function (data) {
-                console.log(data);
+                console.log(JSON.stringify(data.data));
             }
         });
 
@@ -56,7 +55,6 @@
         <th>BounceRate</th>
         <th>Pageviews</th>
         <th>OrganicSearches</th>
-        <th>pageLoadTime</th>
     </tr>
     </thead>
     <tfoot>
@@ -66,7 +64,6 @@
         <th>BounceRate</th>
         <th>Pageviews</th>
         <th>OrganicSearches</th>
-        <th>pageLoadTime</th>
     </tr>
     </tfoot>
 </table>

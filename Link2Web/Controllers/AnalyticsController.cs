@@ -125,8 +125,8 @@ namespace Link2Web.Controllers
             var metrics = new[]
             {
                 "ga:users",
-                "ga:bounceRate",
                 "ga:pageviews",
+                "ga:bounceRate",
                 "ga:organicSearches",
                 "ga:pageLoadTime",
                 "ga:percentNewSessions",
@@ -271,8 +271,8 @@ namespace Link2Web.Controllers
             var metrics = new[]
             {
                 "ga:users",
-                "ga:bounceRate",
                 "ga:pageviews",
+                "ga:bounceRate",
                 "ga:organicSearches",
                 "ga:pageLoadTime",
                 "ga:percentNewSessions",
@@ -284,27 +284,31 @@ namespace Link2Web.Controllers
 
             var d = data.Rows;
 
-//            if (!string.IsNullOrEmpty(search) &&
-//                !string.IsNullOrWhiteSpace(search))
-//            {
-//                // Apply search   
-//                d = d.Where(s => s.Dimension.ToString().ToLower().Contains(search.ToLower()) ||
-//                                 s.OrganicSearches.ToLower().Contains(search.ToLower()) ||
-//                                 s.Pageviews.ToString().ToLower().Contains(search.ToLower()) ||
-//                                 s.PageLoadTime.ToString().ToLower().Contains(search.ToLower())).ToList();
-//            }
+            //            if (!string.IsNullOrEmpty(search) &&
+            //                !string.IsNullOrWhiteSpace(search))
+            //            {
+            //                // Apply search   
+            //                d = d.Where(s => s.Dimension.ToString().ToLower().Contains(search.ToLower()) ||
+            //                                 s.OrganicSearches.ToLower().Contains(search.ToLower()) ||
+            //                                 s.Pageviews.ToString().ToLower().Contains(search.ToLower()) ||
+            //                                 s.PageLoadTime.ToString().ToLower().Contains(search.ToLower())).ToList();
+            //            }
 
             // Sorting.   
             // d = SortByColumnWithOrder(order, orderDir, d);
             //draw = Convert.ToInt32(draw)
 
-            return Json(new
-            {
-//                draw = 10,
-                recordsTotal = d.Count,
-                recordsFiltered = d.Count,
-                data = d
-            }, JsonRequestBehavior.AllowGet);
+
+            var res =
+                new
+                {
+                    recordsTotal = d.Count,
+                    //recordsFiltered = 5,
+                    data = d.ToArray()
+                };
+
+
+            return Json(res, JsonRequestBehavior.AllowGet);
 
         }
 
