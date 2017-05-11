@@ -34,25 +34,26 @@ namespace Link2Web.BLL
 
                 var request = BuildAnalyticRequest(profileId, dimensions, metrics, startDate, endDate, startIndex);
                 response = request.Execute();
-                data.ColumnHeaders = response.ColumnHeaders;
+                data.ColumnHeaders = response.ColumnHeaders.ToList();
 
                 foreach (var row in response.Rows)
                 {
                     //var datum = MyFunctions.StringToDateTime(row[0], "yyyMMdd");
-                    var bounceRate = MyFunctions.GetDouble(row[3], 0);
+                    var bounceRate = MyFunctions.GetDouble(row[2], 0);
                     bounceRate = Math.Round(bounceRate, 2);
  
                     rowData = new AnalyticsData
                     {
                         Dimension = row[0],
                         Users = row[1],
-                        Clicks = row[2],
+                        //Clicks = row[2],
                         BounceRate = bounceRate,
-                        Pageviews = row[4],
-                        OrganicSearches = row[5],
-                        Impressions = row[6],
-                        PercentNewSessions = row[7],
-                        AvgTimeOnPage = row[8]
+                        Pageviews = row[3],
+                        OrganicSearches = row[4],
+                        PageLoadTime = row[5],
+                        //Impressions = row[6],
+                        PercentNewSessions = row[6],
+                        AvgTimeOnPage = row[7]
                         //Date        = datum
 
 
@@ -77,10 +78,10 @@ namespace Link2Web.BLL
             return request;
         }
 
-        public IList<Profile> GetAvailableProfiles()
+        public List<Profile> GetAvailableProfiles()
         {
             var response = Settings.AnalyticsService.Management.Profiles.List("~all", "~all").Execute();
-            return response.Items;
+            return response.Items.ToList();
         }
 
         public class AnalyticDataPoint
@@ -90,8 +91,8 @@ namespace Link2Web.BLL
                 Rows = new List<AnalyticsData>();
             }
 
-            public IList<GaData.ColumnHeadersData> ColumnHeaders { get; set; }
-            public IList<AnalyticsData> Rows { get; set; }
+            public List<GaData.ColumnHeadersData> ColumnHeaders { get; set; }
+            public List<AnalyticsData> Rows { get; set; }
         }
 
         /// <summary>

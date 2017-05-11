@@ -14,6 +14,7 @@
     @Styles.Render("~/Content/custom")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/datatables")
     @RenderSection("AdditionalResources", false)
 </head>
 <body class="nav-md">
@@ -82,6 +83,9 @@
     {
         @Scripts.Render("~/bundles/link2web")
     }
+
+
+    @Scripts.Render("~/bundles/datatables")
 
 @RenderSection("scripts", required: false)
 </body>

@@ -1,50 +1,72 @@
-﻿@using Kendo.Mvc.UI
-@model Link2Web.ViewModels.AnalyticsViewModel
+﻿@model Link2Web.ViewModels.AnalyticsViewModel
 
 @{
     ViewBag.Title = "Visitors by browser";
 }
 
-@section AdditionalResources
+@section scripts
 {
-    @Styles.Render("~/Content/telerik")
-    @Styles.Render("~/Content/telerikgrid")
-    @Scripts.Render("~/bundles/telerik")
-    @Scripts.Render("~/bundles/telerikgrid")
+    @Styles.Render("~/Content/datatables")
+    @Scripts.Render("~/bundles/datatables")
+
+    <script>
+        $('#visitors').DataTable({
+            "serverSide": true,
+            "processing": true,
+            "ajax": {
+                "type": "POST",
+                "url": '/Analytics/GetVisitorsByBrowser/',
+                'data': function(data) {
+                    return JSON.stringify(data);
+                },
+                "dataSrc": ""
+            },
+            "columns": [
+                { data: 'Dimension' },
+                { data: 'Users' },
+                { data: 'Pageviews' },
+                { data: 'BounceRate' },
+                { data: 'OrganicSearches' },
+                { data: 'pageLoadTime' }
+            ]
+        });
+
+        $.ajax({
+            url: "/Analytics/GetVisitorsByBrowser/",
+            "type": "POST",
+            cache: false,
+            success: function (data) {
+                console.log(data);
+            }
+        });
+
+    </script>
 
 }
 
 
 <h2>Visitors by browser</h2>
 
-@(Html.Kendo().Grid(Model.LstAnalyticsData)
-    .Name("gridVisitors")
-    .Columns(columns =>
-    {
-        columns.Bound(v => v.Dimension).Title("Browser").Width(130);
-        columns.Bound(v => v.Date).Title("Date").Width(130).Format("{0:MM/dd/yyyy}");
-        columns.Bound(v => v.Clicks).Title("Clicks").Width(100);
-        columns.Bound(v => v.Pageviews).Title("Pageviews").Width(110).MinScreenWidth(720);
-        columns.Bound(v => v.BounceRate).Title("BounceRate").Width(130).MinScreenWidth(520).Format("#.00");
-        columns.Bound(v => v.BounceRate).Title("BounceRate").Width(130).MinScreenWidth(520).Format("{0:P2}");
-        columns.Bound(v => v.Keywords).Title("Impressions").Width(130).MinScreenWidth(720);
-        columns.Bound(v => v.OrganicSearches).Title("Organic searches").Width(130).MinScreenWidth(720);
-    })
-    .HtmlAttributes(new { style = "min-height: 650px" })
-    .Pageable(pageable => pageable
-       .Input(true)
-       .Numeric(false)
-     )
-    .Sortable()
-    .Scrollable(scr => scr.Height(430))
-    .Selectable(selectable => selectable
-    .Mode(GridSelectionMode.Multiple))
-    .Navigatable()
-    .DataSource(dataSource => dataSource
-        .Ajax()
-        .Read(read => read.Action("GetVisitorsByKeyword", "Analytics"))
-        .PageSize(30)
-        .ServerOperation(false)
-     )
-)
 
+<table id="visitors" class="display">
+    <thead>
+    <tr>
+        <th>Dimension</th>
+        <th>Users</th>
+        <th>BounceRate</th>
+        <th>Pageviews</th>
+        <th>OrganicSearches</th>
+        <th>pageLoadTime</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <th>Dimension</th>
+        <th>Users</th>
+        <th>BounceRate</th>
+        <th>Pageviews</th>
+        <th>OrganicSearches</th>
+        <th>pageLoadTime</th>
+    </tr>
+    </tfoot>
+</table>

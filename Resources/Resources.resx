@@ -216,6 +216,9 @@
   <data name="LostPassword" xml:space="preserve">
     <value>Lost password</value>
   </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
   <data name="Mobile" xml:space="preserve">
     <value>Mobile</value>
   </data>

@@ -1,6 +1,10 @@
 ﻿using Facebook;
 using Link2Web.Core;
+using Link2Web.Helpers;
+using Link2Web.Models;
+using Link2Web.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -26,8 +30,8 @@ namespace Link2Web.Controllers
             var fb = new FacebookClient();
             var loginUrl = fb.GetLoginUrl(new
             {
-                client_id = "388275924892035",
-                client_secret = "dbe0ce9eaf969beddb4754115868c31d",
+                client_id = GlobalSettings.FacebookClientId,
+                client_secret = GlobalSettings.FacebookSecret,
                 redirect_uri = RedirectUri.AbsoluteUri,
                 response_type = "code",
                 scope = "email" // Add other permissions as needed
@@ -46,10 +50,12 @@ namespace Link2Web.Controllers
         public ActionResult FacebookCallback(string code)
         {
             var fb = new FacebookClient();
+            var vm = new FacebookViewModel();
+
             dynamic result = fb.Post("oauth/access_token", new
             {
-                client_id = "388275924892035",
-                client_secret = "dbe0ce9eaf969beddb4754115868c31d",
+                client_id = GlobalSettings.FacebookClientId,
+                client_secret = GlobalSettings.FacebookSecret,
                 fb_exchange_token = code,
                 redirect_uri = RedirectUri.AbsoluteUri,
                 code = code
@@ -65,22 +71,33 @@ namespace Link2Web.Controllers
             fb.AccessToken = accessToken;
             Settings.FacebookAccessToken = accessToken;
 
-
-            var pageFeed = string.Format("/v2.4/{0}/feed?fields=id,message,attachments", "2301741419964830");
+            //id,message,attachments,picture,created_time,description,
+            var pageFeed = $"/v2.8/{"2301741419964830"}/feed?fields=name,link,caption";
             dynamic response = fb.Get(pageFeed);
 
+            //var fbResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<FacebookData>(response.ToString());
+
+            var facebookPosts = new List<FacebookPost>();
+
+            foreach (var p in response.data)
+            {
+                facebookPosts.Add(new FacebookPost
+                {
+                    Link = p.link != null ? p.link.ToString() : "",
+                    Caption = p.link != null ? p.link.ToString() : "",
+                    Message = p.link != null ? p.link.ToString() : "",
+                    Createdtime = p.link != null ? p.link.ToString() : "",
+                    Description = p.link != null ? p.link.ToString() : "",
+                    Picture = p.link != null ? p.link.ToString() : "",
+                    Name = p.link != null ? p.link.ToString() : ""
+
+                });
+            }
+
+            vm.FacebookPosts = facebookPosts;
 
 
-            // Get the user's information
-//            dynamic me = fb.Get("me?fields=first_name,middle_name,last_name,id,email");
-//            string email = me.email;
-//            string firstname = me.first_name;
-//            string middlename = me.middle_name;
-//            string lastname = me.last_name;
-
-            //db.Insert_customer(firstname, email, null, null, null, null, null, null, null, null, null, null, 1, 1, System.DateTime.Now, 1, System.DateTime.Now);
-
-            return RedirectToAction("Index", "Home");
+            return View("Index", vm);
         }
 
         // GET: Facebook

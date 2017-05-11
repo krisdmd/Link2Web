@@ -7,6 +7,6 @@ namespace Link2Web.ViewModels
     {
         public int Id { get; set; }
         public AnalyticsData AnalyticsData { get; set; }
-        public IList<AnalyticsData> LstAnalyticsData { get; set; }
+        public List<AnalyticsData> LstAnalyticsData { get; set; }
     }
 }

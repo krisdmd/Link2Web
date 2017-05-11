@@ -20,5 +20,6 @@ namespace Link2Web.Models
         public string OrganicSearches { get; set; }
         public string AvgTimeOnPage { get; set; }
         public string PercentNewSessions { get; set; }
+        public string PageLoadTime { get; set; }
     }
 }
