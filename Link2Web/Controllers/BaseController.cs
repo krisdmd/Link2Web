@@ -17,7 +17,7 @@ namespace Link2Web.Controllers
         // GET: Base
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
         {
-            string cultureName = null;
+            string cultureName = string.Empty;
             GlobalSettings.HideCreateProjectDialog = false;
 
             // Attempt to read the culture cookie from Request
@@ -37,6 +37,17 @@ namespace Link2Web.Controllers
 
 
             return base.BeginExecuteCore(callback, state);
+        }
+
+        protected override void Initialize(System.Web.Routing.RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+
+            if (User == null) return;
+            if (!GlobalSettings.Initialized)
+            {
+                new GlobalSettings(User.Identity.GetUserId()).Init();
+            }
         }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
@@ -61,36 +72,6 @@ namespace Link2Web.Controllers
                 }
             }
 
-            // Add the user settings if not exists
-            if (!GlobalSettings.Active && User != null)
-            {
-                var db = new Link2WebDbContext();
-                var userId = User.Identity.GetUserId();
-                var userSettings = db.UserSettings.Where(u => u.UserId.Contains(userId));
-
-                foreach (var u in userSettings)
-                {
-                    switch (u.Setting)
-                    {
-                        case "GoogleClientId":
-                            GlobalSettings.GoogleClientId = u.Value;
-                            break;
-                        case "GoogleClientSecret":
-                            GlobalSettings.GoogleClientSecret = u.Value;
-                            break;
-                        case "FacebookClientId":
-                            GlobalSettings.FacebookClientId = u.Value;
-                            break;
-                        case "FacebookClientSecret":
-                            GlobalSettings.FacebookSecret = u.Value;
-                            break;
-                    }
-                }
-
-                GlobalSettings.Active = true;
-
-            }
-
             base.OnActionExecuted(filterContext);
         }
 
@@ -101,8 +82,6 @@ namespace Link2Web.Controllers
                 var userId = User.Identity.GetUserId();
                 var bdUsers = HttpContext.GetOwinContext().Get<Link2WebDbContext>();
                 var userImage = bdUsers.Users.FirstOrDefault(x => x.Id == userId)?.ProfilePicture;
-
-
 
 
                 if (userImage == null)

@@ -5,6 +5,7 @@ using Google.Apis.Auth.OAuth2.Mvc;
 using Google.Apis.Util.Store;
 using Link2Web.Helpers;
 using System;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,13 +13,14 @@ namespace Link2Web.Core
 {
     public class AppFlowMetadata : FlowMetadata
     {
+
         private static readonly IAuthorizationCodeFlow flow =
             new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer
             {
                 ClientSecrets = new ClientSecrets
                 {
-                    ClientId = GlobalSettings.GoogleClientId,
-                    ClientSecret = GlobalSettings.GoogleClientSecret
+                    ClientId = GlobalSettings.UserSettings.Where(s => s.Setting == "GoogleClientId").Select(s => s.Value).SingleOrDefault(),
+                    ClientSecret = GlobalSettings.UserSettings.Where(s => s.Setting == "GoogleClientSecret").Select(s => s.Value).SingleOrDefault(),
 
                     //                    ClientId = "818431160125-3r7k172uejge70n8kfn6je7qhpa2h7ld.apps.googleusercontent.com",
                     //                    ClientSecret = "1q3x3wZMbkqevS47jKAuFdqs" 
@@ -27,7 +29,6 @@ namespace Link2Web.Core
                 {
                     AnalyticsService.Scope.AnalyticsReadonly
                 },
-
                 DataStore = new FileDataStore(HttpContext.Current.Server.MapPath("~/App_Data/clientsecret.json")),
 
 
@@ -48,6 +49,7 @@ namespace Link2Web.Core
                 user = Guid.NewGuid();
                 controller.Session["user"] = user;
             }
+
             return user.ToString();
 
         }

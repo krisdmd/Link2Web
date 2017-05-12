@@ -5,6 +5,7 @@ using Link2Web.Models;
 using Link2Web.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -30,8 +31,8 @@ namespace Link2Web.Controllers
             var fb = new FacebookClient();
             var loginUrl = fb.GetLoginUrl(new
             {
-                client_id = GlobalSettings.FacebookClientId,
-                client_secret = GlobalSettings.FacebookSecret,
+                client_id = GlobalSettings.UserSettings.Where(s => s.Setting == "FacebookClientId").Select(s => s.Value).SingleOrDefault(),
+                client_secret = GlobalSettings.UserSettings.Where(s => s.Setting == "FacebookClientSecret").Select(s => s.Value).SingleOrDefault(),
                 redirect_uri = RedirectUri.AbsoluteUri,
                 response_type = "code",
                 scope = "email" // Add other permissions as needed
@@ -54,8 +55,8 @@ namespace Link2Web.Controllers
 
             dynamic result = fb.Post("oauth/access_token", new
             {
-                client_id = GlobalSettings.FacebookClientId,
-                client_secret = GlobalSettings.FacebookSecret,
+                client_id = GlobalSettings.UserSettings.Where(s => s.Setting == "FacebookClientId").Select(s => s.Value).SingleOrDefault(),
+                client_secret = GlobalSettings.UserSettings.Where(s => s.Setting == "FacebookClientSecret").Select(s => s.Value).SingleOrDefault(),
                 fb_exchange_token = code,
                 redirect_uri = RedirectUri.AbsoluteUri,
                 code = code
