@@ -21,9 +21,6 @@ namespace Link2Web.Core
                 {
                     ClientId = GlobalSettings.UserSettings.Where(s => s.Setting == "GoogleClientId").Select(s => s.Value).SingleOrDefault(),
                     ClientSecret = GlobalSettings.UserSettings.Where(s => s.Setting == "GoogleClientSecret").Select(s => s.Value).SingleOrDefault(),
-
-                    //                    ClientId = "818431160125-3r7k172uejge70n8kfn6je7qhpa2h7ld.apps.googleusercontent.com",
-                    //                    ClientSecret = "1q3x3wZMbkqevS47jKAuFdqs" 
                 },
                 Scopes = new[]
                 {

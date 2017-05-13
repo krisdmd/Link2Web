@@ -14,7 +14,6 @@ $(document).ready(function () {
         contentType: 'application/json;',
         success: function (data) {
             if (!data) {
-                alert(data);
                 BootstrapDialog.show({
                     title: 'Project',
                     message: 'Create a project first before going on.',

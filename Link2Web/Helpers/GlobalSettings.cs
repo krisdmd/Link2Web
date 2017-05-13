@@ -31,6 +31,11 @@ namespace Link2Web.Helpers
             UserId = userId;
         }
 
+        public GlobalSettings()
+        {
+            Initialized = false;
+        }
+
 
         /// Loads all the settings from the db
         private void RetrieveAllSettings()

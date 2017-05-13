@@ -58,6 +58,7 @@ namespace Link2Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            GlobalSettings.HideCreateProjectDialog = true;
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -69,6 +70,8 @@ namespace Link2Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            GlobalSettings.HideCreateProjectDialog = true;
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -140,6 +143,7 @@ namespace Link2Web.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            GlobalSettings.HideCreateProjectDialog = true;
             return View();
         }
 
@@ -150,6 +154,8 @@ namespace Link2Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            GlobalSettings.HideCreateProjectDialog = true;
+
             if (ModelState.IsValid)
             {
                 byte[] imageData = null;
@@ -245,6 +251,8 @@ namespace Link2Web.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
+            GlobalSettings.HideCreateProjectDialog = true;
+
             if (userId == null || code == null)
             {
                 return View("Error");
@@ -268,6 +276,8 @@ namespace Link2Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
+            GlobalSettings.HideCreateProjectDialog = true;
+
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByNameAsync(model.Email);
@@ -294,6 +304,8 @@ namespace Link2Web.Controllers
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
+            GlobalSettings.HideCreateProjectDialog = true;
+
             return View();
         }
 
@@ -302,6 +314,8 @@ namespace Link2Web.Controllers
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
+            GlobalSettings.HideCreateProjectDialog = true;
+
             return code == null ? View("Error") : View();
         }
 
