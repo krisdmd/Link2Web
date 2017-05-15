@@ -162,15 +162,35 @@ form {
 }
 
 #gridList .row:nth-child(even) {
-    background-color: #eeeeee;
-}
+    background-color: #eeeeee; }
 
-#gridList .row:nth-child(odd) {
-    background-color: #ffffff;
-}
+#gridList .row:nth-child(odd) { background-color: #ffffff; }
 
 #gridList .row {
 
     font-weight: normal;
     padding: 4px;
+}
+
+table.dataTable tbody tr.selected {
+    color: white !important;
+    background-color: #F39C12 !important; /* Not working */
+}
+
+#datatable .even {
+     background-color: #eeeeee;
+}
+
+#datatable .odd {
+     background-color: #ffffff;
+}
+
+#datatable th {
+     background-color: #0073B7;
+    color: #fff;
+}
+
+#dataTables_info, .dataTables_paginate a {
+    background-color: #F39C12 !important;
+background: #F39C12 !important;        
 }

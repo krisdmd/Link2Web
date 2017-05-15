@@ -1,6 +1,4 @@
-﻿@model Link2Web.ViewModels.AnalyticsViewModel
-
-@{
+﻿@{
     ViewBag.Title = "Visitors by browser";
 }
 
@@ -10,11 +8,11 @@
     @Scripts.Render("~/bundles/datatables")
 
     <script>
-        $('#visitors').DataTable({
+        $('#datatable').DataTable({
             "serverSide": true,
-            "processing": true,
+            //"processing": true,
             "ajax": {
-                "type": "POST",
+                "type": "GET",
                 "url": '/Analytics/GetVisitorsByBrowser/',
                 'data': function(data) {
                     return JSON.stringify(data);
@@ -22,20 +20,44 @@
                 "dataSrc": "data"
             },
             "columns": [
-                { data: 'Dimension' },
-                { data: 'Users' },
-                { data: 'Pageviews' },
-                { data: 'BounceRate' },
-                { data: 'OrganicSearches' }
+                {
+                    data: 'Dimension',
+                    sortable: false,
+                    searchable: true
+                },
+                {
+                    data: 'Users',
+                    sortable: false,
+                    searchable: false
+                },
+                {
+                    data: 'Pageviews',
+                    sortable: false,
+                    searchable: false
+                },
+                {
+                    data: 'BounceRate',
+                    sortable: false,
+                    searchable: false
+                },
+                {
+                    data: 'OrganicSearches',
+                    sortable: false,
+                    searchable: false
+                }
             ]
         });
 
+
         $.ajax({
+            type: "GET",
             url: "/Analytics/GetVisitorsByBrowser/",
-            "type": "POST",
-            cache: false,
-            success: function (data) {
-                console.log(JSON.stringify(data.data));
+            'data': function (data) {
+                console.log(data);
+                return JSON.stringify(data);
+            },
+            success: function(resultData) {
+                console.log(resultData);
             }
         });
 
@@ -44,10 +66,15 @@
 }
 
 
+@*$('#users-table').dataTable({*@
+@*  'serverSide': true,*@
+@*  'ajax': '@Url.Action("ListUsers", "Businesses", null, Request.Url.Scheme)'*@
+@*});*@
+
 <h2>Visitors by browser</h2>
 
 
-<table id="visitors" class="display">
+<table id="datatable" class="table table-striped table-bordered" cellspacing="0"  width="100%">
     <thead>
     <tr>
         <th>Dimension</th>

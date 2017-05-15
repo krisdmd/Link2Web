@@ -65,12 +65,16 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DataTables.AspNet.Mvc5, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DataTables.AspNet.Mvc5.2.0.0\lib\net45\DataTables.AspNet.Mvc5.dll</HintPath>
+    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DataTables.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\datatables.mvc5.0.1.0\lib\net45\DataTables.Mvc.dll</HintPath>
+    <Reference Include="DataTables.AspNet.Core, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DataTables.AspNet.Core.2.0.2\lib\net45\DataTables.AspNet.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DataTables.AspNet.Mvc5, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DataTables.AspNet.Mvc5.2.0.2\lib\net45\DataTables.AspNet.Mvc5.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
@@ -93,36 +97,36 @@
       <HintPath>..\packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis, Version=1.21.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.1.21.0\lib\net45\Google.Apis.dll</HintPath>
+    <Reference Include="Google.Apis, Version=1.25.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.25.0\lib\net45\Google.Apis.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Analytics.v3, Version=1.21.0.791, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Analytics.v3.1.21.0.791\lib\net45\Google.Apis.Analytics.v3.dll</HintPath>
+    <Reference Include="Google.Apis.Analytics.v3, Version=1.25.0.810, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Analytics.v3.1.25.0.810\lib\net45\Google.Apis.Analytics.v3.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Auth, Version=1.21.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Auth.1.21.0\lib\net45\Google.Apis.Auth.dll</HintPath>
+    <Reference Include="Google.Apis.Auth, Version=1.25.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.25.0\lib\net45\Google.Apis.Auth.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Auth.Mvc4, Version=1.21.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Auth.Mvc.1.21.0\lib\net45\Google.Apis.Auth.Mvc4.dll</HintPath>
+    <Reference Include="Google.Apis.Auth.Mvc4, Version=1.25.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.Mvc.1.25.0\lib\net45\Google.Apis.Auth.Mvc4.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.21.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Auth.1.21.0\lib\net45\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.25.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.25.0\lib\net45\Google.Apis.Auth.PlatformServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Core, Version=1.21.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Core.1.21.0\lib\net45\Google.Apis.Core.dll</HintPath>
+    <Reference Include="Google.Apis.Core, Version=1.25.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.25.0\lib\net45\Google.Apis.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Oauth2.v2, Version=1.21.0.672, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Oauth2.v2.1.21.0.672\lib\net45\Google.Apis.Oauth2.v2.dll</HintPath>
+    <Reference Include="Google.Apis.Oauth2.v2, Version=1.25.0.859, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Oauth2.v2.1.25.0.859\lib\net45\Google.Apis.Oauth2.v2.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.PlatformServices, Version=1.21.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.1.21.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.25.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.25.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
@@ -146,40 +150,40 @@
     <Reference Include="Microsoft.CSharp">
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.1.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.Google, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.1.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
@@ -187,8 +191,8 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
@@ -987,8 +991,47 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-14cc11d0-efab-4c14-a40e-613259340fe2" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-186c5e7b-ecf7-44a5-86bf-4cab2bf84984" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-278474c0-bb90-48e2-89d3-ab80a898820a" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-2ea34c80-0928-457c-92c9-758b9c48f950" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-32bd8028-e23f-4e10-80d0-b4e6faf5f6c1" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-398bb1dc-0b11-4c6e-8056-3f5b814a8287" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-43dedd0f-d6ca-491d-8b3c-1a13cce4f05b" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-4c4170a7-5110-414b-b873-80b8ed462681" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-531acd51-0f94-4c1f-8e98-908ae52b53ac" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-556dd3a8-d6ab-423e-8622-8bca3be7bf00" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-5984b5cc-e487-481c-b598-67ed4c238550" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-643db335-5aab-4343-ac45-db8e48b2e7a7" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-76d315fb-46d8-411e-8935-bf24435539c8" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-803e21b6-b54a-489f-b490-163c6dad7233" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-819b3bc2-44f5-46dc-a072-1ab661741763" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-877ed552-c0e4-424a-ba20-bf91ee0f7d19" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-8fb926d1-40c5-48fb-8c11-6c51c6e11deb" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-a0e257fb-f56d-4feb-9384-4b7608fde5a2" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-a19caab9-010d-4ec5-94e4-c53012a5ec90" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-a23a8bde-f7d3-480b-8ea1-1323d0072309" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-a2f7812d-3168-4483-a869-103028b421e6" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-a47a92e7-36f6-4657-be65-3415f9859ae6" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-b2680d38-01f7-4a60-bbd5-fa0374f44c6d" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-b339b5c0-61ea-4968-9595-ae6f1b0d13a7" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-d4a404cd-3b13-4590-99dc-37510b6f7e4d" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-d72a011c-282c-4c2f-8d68-6612cc054063" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-d9834dc3-4b00-40c3-b3d4-402ae8b2b756" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-da06fae9-7e4a-4e27-8382-13f6bf7d24b5" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-dcfedd6c-e70a-4083-904f-18cbf7cafabe" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-e08ff369-cf32-4ead-8a20-77e7a83ebcb8" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-e17968c6-1489-4597-b471-72a48e04abad" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-e5a8f89c-f061-45e7-8d73-83f52f94ba92" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-e8ec207b-4548-41ee-bbd4-fdf45cbef8d7" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-ee823bfe-24c7-4453-8b11-d1344dc278b3" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-fc5dee73-f966-403e-a6ec-d4a76c876a9c" />
+    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-ff032e2d-8801-4fb5-bd79-33f6d9d82db4" />
+    <Content Include="App_Data\clientsecret.json\System.String-oauth_49ac179b-492f-44a5-a665-387e4e307abc" />
+    <Content Include="App_Data\clientsecret.json\System.String-oauth_e32379e5-de7c-448b-9ac6-e6e7c7e27f7e" />
+    <Content Include="App_Data\clientsecret.json\System.String-oauth_f71f4549-c2c9-450c-9e69-891c1a0c611b" />
+    <Content Include="App_Data\clientsecret.json\System.String-oauth_faf14a49-1b48-463d-9dfc-43cda7d894c4" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-dialog.js" />
     <Content Include="Scripts\custom-link2web.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
@@ -1067,9 +1110,6 @@
     <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1082,7 +1122,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />

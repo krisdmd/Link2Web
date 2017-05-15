@@ -18,7 +18,6 @@ namespace Link2Web.Models
 
         public virtual ICollection<Contact> Contacts { get; set; }
         public virtual ICollection<Project> Projects { get; set; }
-
         public virtual ICollection<ApplicationUser> ApplicationUser { get; set; }
         public virtual ICollection<EditProfileViewModel> EditProfileViewModels { get; set; }
     }

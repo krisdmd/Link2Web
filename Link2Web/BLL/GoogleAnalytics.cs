@@ -13,7 +13,6 @@ namespace Link2Web.BLL
         public AnalyticDataPoint GetAnalyticsData(string profileId, string[] dimensions, string[] metrics, DateTime startDate, DateTime endDate)
         {
             AnalyticDataPoint data = new AnalyticDataPoint();
-            var rowData = new AnalyticsData();
             if (!profileId.Contains("ga:"))
                 profileId = string.Format("ga:{0}", profileId);
 
@@ -42,7 +41,7 @@ namespace Link2Web.BLL
                     var bounceRate = MyFunctions.GetDouble(row[2], 0);
                     bounceRate = Math.Round(bounceRate, 2);
  
-                    rowData = new AnalyticsData
+                    var rowData = new AnalyticsData
                     {
                         Dimension = row[0],
                         Users = row[1],
