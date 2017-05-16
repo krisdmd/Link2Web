@@ -13,10 +13,11 @@
             //"processing": true,
             "ajax": {
                 "type": "GET",
-                "url": '/Analytics/GetVisitorsByBrowser/',
+                'ajax': '@Url.Action("GetVisitorsByBrowser", "Analytics", null, Request.Url.Scheme)',
+                //"url": '/Analytics/GetVisitorsByBrowser/',
                 'data': function(data) {
                     return JSON.stringify(data);
-                },
+                                },
                 "dataSrc": "data"
             },
             "columns": [

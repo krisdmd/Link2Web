@@ -1,5 +1,4 @@
-﻿using DataTables.AspNet.Core;
-using DataTables.AspNet.Mvc5;
+﻿using DataTables.Mvc;
 using Google.Apis.Analytics.v3;
 using Google.Apis.Auth.OAuth2.Mvc;
 using Google.Apis.Services;
@@ -176,7 +175,7 @@ namespace Link2Web.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetVisitorsByBrowser(IDataTablesRequest request)
+        public JsonResult GetVisitorsByBrowser([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest request)
         {
 //            JsonResult result = new JsonResult();
 
@@ -245,18 +244,18 @@ namespace Link2Web.Controllers
             //draw = Convert.ToInt32(draw)
 
 
-                        var res =
-                            new
-                            {
-                                recordsTotal = d.Count,
-                                //recordsFiltered = 5,
-                                data = d.ToArray()
-                            };
-            
-            
-                        return Json(res, JsonRequestBehavior.AllowGet);
+            //            var res =
+            //                new
+            //                {
+            //                    recordsTotal = d.Count,
+            //                    //recordsFiltered = 5,
+            //                    data = d.ToArray()
+            //                };
+            //
+            //
+            //            return Json(res, JsonRequestBehavior.AllowGet);
 
-            //return new DataTablesJsonResult(response, JsonRequestBehavior.AllowGet);
+            return new DataTablesJsonResult(response, JsonRequestBehavior.AllowGet);
 
         }
 

@@ -1,31 +1,36 @@
-﻿using Link2Web.DAL;
+﻿using Link2Web.Controllers;
+using Link2Web.DAL;
 using Link2Web.Models;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
 using System.Web.Mvc;
-using Link2Web.Controllers;
 
 namespace Link2Web.Areas.Admin.Controllers
 {
     public class CountriesController : BaseController
     {
-        private Link2WebDbContext db = new Link2WebDbContext();
+        private ICountryRepository db;
 
-        // GET: Admin/Countries
+        public CountriesController()
+        {
+            db = new CountryRepository();
+        }
+
+        public CountriesController(ICountryRepository countryRepository)
+        {
+            db = countryRepository;
+        }
+
+
+        // GET: Country
         public ActionResult Index()
         {
-            return View(db.Countries.ToList());
+            return View(db.GetCountries());
         }
 
         // GET: Admin/Countries/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Country country = db.Countries.Find(id);
+            Country country = db.GetCountryById(id);
+
             if (country == null)
             {
                 return HttpNotFound();
@@ -48,8 +53,8 @@ namespace Link2Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Countries.Add(country);
-                db.SaveChanges();
+                db.InsertCountry(country);
+                db.Save();
                 return RedirectToAction("Index");
             }
 
@@ -57,13 +62,9 @@ namespace Link2Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/Countries/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Country country = db.Countries.Find(id);
+            Country country = db.GetCountryById(id);
             if (country == null)
             {
                 return HttpNotFound();
@@ -80,25 +81,23 @@ namespace Link2Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(country).State = EntityState.Modified;
-                db.SaveChanges();
+                db.UpdateCountry(country);
+                db.Save();
                 return RedirectToAction("Index");
             }
             return View(country);
         }
 
         // GET: Admin/Countries/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Country country = db.Countries.Find(id);
+            Country country = db.GetCountryById(id);
+
             if (country == null)
             {
                 return HttpNotFound();
             }
+
             return View(country);
         }
 
@@ -107,18 +106,15 @@ namespace Link2Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Country country = db.Countries.Find(id);
-            db.Countries.Remove(country);
-            db.SaveChanges();
+            Country country = db.GetCountryById(id);
+            db.DeleteCountry(id);
+            db.Save();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
+            db.Dispose();
             base.Dispose(disposing);
         }
     }
