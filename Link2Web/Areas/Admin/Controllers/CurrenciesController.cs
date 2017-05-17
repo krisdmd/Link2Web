@@ -1,7 +1,6 @@
 ﻿using Link2Web.DAL;
+using Link2Web.DAL.Repositories;
 using Link2Web.Models;
-using System.Data.Entity;
-using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 
@@ -9,22 +8,28 @@ namespace Link2Web.Areas.Admin.Controllers
 {
     public class CurrenciesController : Link2Web.Controllers.BaseController
     {
-        private Link2WebDbContext db = new Link2WebDbContext();
+        private ICurrencyRepository _context;
+
+        public CurrenciesController()
+        {
+            _context = new CurrencyRepository(new Link2WebDbContext());
+        }
+
+        public CurrenciesController(ICurrencyRepository currencyRepository)
+        {
+            _context = currencyRepository;
+        }
 
         // GET: Admin/Currencies
         public ActionResult Index()
         {
-            return View(db.Currencies.ToList());
+            return View(_context.GetCurrencies());
         }
 
         // GET: Admin/Currencies/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Currency currency = db.Currencies.Find(id);
+            Currency currency = _context.GetCurrencyById(id);
             if (currency == null)
             {
                 return HttpNotFound();
@@ -47,8 +52,8 @@ namespace Link2Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Currencies.Add(currency);
-                db.SaveChanges();
+                _context.InsertCurrency(currency);
+                _context.Save();
                 return RedirectToAction("Index");
             }
 
@@ -56,13 +61,9 @@ namespace Link2Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/Currencies/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Currency currency = db.Currencies.Find(id);
+            Currency currency = _context.GetCurrencyById(id);
             if (currency == null)
             {
                 return HttpNotFound();
@@ -79,21 +80,21 @@ namespace Link2Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(currency).State = EntityState.Modified;
-                db.SaveChanges();
+                _context.UpdateCurrency(currency);
+                _context.Save();
                 return RedirectToAction("Index");
             }
             return View(currency);
         }
 
         // GET: Admin/Currencies/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Currency currency = db.Currencies.Find(id);
+            Currency currency = _context.GetCurrencyById(id);
             if (currency == null)
             {
                 return HttpNotFound();
@@ -106,18 +107,14 @@ namespace Link2Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Currency currency = db.Currencies.Find(id);
-            db.Currencies.Remove(currency);
-            db.SaveChanges();
+            _context.DeleteCurrency(id);
+            _context.Save();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
+            _context.Dispose();
             base.Dispose(disposing);
         }
     }

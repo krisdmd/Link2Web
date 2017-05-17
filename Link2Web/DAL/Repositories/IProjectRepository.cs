@@ -1,0 +1,16 @@
+﻿using Link2Web.Models;
+using System;
+using System.Collections.Generic;
+
+namespace Link2Web.DAL.Repositories
+{
+    public interface IProjectRepository: IDisposable
+    {
+        IEnumerable<Project> GetProjects();
+        Project GetProjectById(int id);
+        void InsertProject(Project project);
+        void DeleteProject(int id);
+        void UpdateProject(Project project);
+        void Save();
+    }
+}

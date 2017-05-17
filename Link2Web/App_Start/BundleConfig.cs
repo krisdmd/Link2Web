@@ -31,22 +31,6 @@ namespace Link2Web
             bundles.Add(new StyleBundle("~/Content/datatables").Include(
                 "~/Content/DataTables/css/dataTables.bootstrap.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/telerik").Include(
-                "~/Scripts/Telerik/kendo.all.min.js",
-                "~/Scripts/Telerik/kendo.aspnetmvc.min.js",
-                "~/Scripts/Telerik/kendo.timezones.min.js"));
-
-
-            bundles.Add(new StyleBundle("~/Content/telerik").Include(
-                "~/Content/Telerik/kendo.common.min.css",
-                "~/Content/Telerik/kendo.rtl.min.css",
-                "~/Content/Telerik/kendo.default.min.css",
-                "~/Content/Telerik/kendo.default.mobile.min.css",
-                "~/Content/Telerik/kendo.mobile.all.min.css"));
-
-            bundles.Add(new ScriptBundle("~/Content/telerikgrid").Include(
-                "~/Scripts/Telerik/kendo.grid.min.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/link2web").Include(
                 "~/Scripts/custom-link2web.js"));
 

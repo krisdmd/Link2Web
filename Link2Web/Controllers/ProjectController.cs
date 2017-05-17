@@ -1,5 +1,4 @@
-﻿using Kendo.Mvc.Extensions;
-using Link2Web.DAL;
+﻿using Link2Web.DAL;
 using Link2Web.Helpers;
 using Link2Web.Models;
 using Microsoft.AspNet.Identity;

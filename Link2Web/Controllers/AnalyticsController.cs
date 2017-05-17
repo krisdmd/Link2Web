@@ -2,13 +2,13 @@
 using Google.Apis.Analytics.v3;
 using Google.Apis.Auth.OAuth2.Mvc;
 using Google.Apis.Services;
-using Kendo.Mvc.UI;
 using Link2Web.BLL;
 using Link2Web.Core;
 using Link2Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -92,13 +92,8 @@ namespace Link2Web.Controllers
 
             //var vm = new AnalyticsViewModel { AnalyticsData = data.Rows };
 
-            var result = new DataSourceResult()
-            {
-                Data = d,
-                Total = total
-            };
 
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetVisitorsByKeyword()
@@ -129,13 +124,7 @@ namespace Link2Web.Controllers
 
             //var vm = new AnalyticsViewModel { AnalyticsData = data.Rows };
 
-            var result = new DataSourceResult()
-            {
-                Data = d,
-                Total = total
-            };
-
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetVisitorsByTopReferer()
@@ -166,16 +155,10 @@ namespace Link2Web.Controllers
 
             //var vm = new AnalyticsViewModel { AnalyticsData = data.Rows };
 
-            var result = new DataSourceResult()
-            {
-                Data = d,
-                Total = total
-            };
-
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetVisitorsByBrowser([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest request)
+        public JsonResult GetVisitorsByBrowser([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
 //            JsonResult result = new JsonResult();
 
@@ -206,108 +189,36 @@ namespace Link2Web.Controllers
             };
 
             var analyticsData = new GoogleAnalytics();
-            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics).Rows;
 
-            var d = data.Rows;
-
-
-            var response = DataTablesResponse.Create(request, d.Count, 0, 0);
-
-            if (request != null)
+            // Apply filters
+            if (requestModel.Search.Value != String.Empty)
             {
-                var filteredData = d.Where(item => item.Dimension.Contains(request.Search.Value));
-                var dataPage = filteredData.Skip(request.Start).Take(request.Length);
-                response = DataTablesResponse.Create(request, d.Count, filteredData.Count(), dataPage);
+                var value = requestModel.Search.Value.Trim();
+                data = data.Where(a => a.Dimension.Contains(value)).ToList();
             }
-            else
+
+            var filteredCount = data.Count;
+
+            // Sort
+            var sortedColumns = requestModel.Columns.GetSortedColumns();
+            var orderByString = string.Empty;
+
+            foreach (var column in sortedColumns)
             {
-                response = DataTablesResponse.Create(request, d.Count, 0, 0);
+                orderByString += orderByString != string.Empty ? "," : "";
+                orderByString += (column.Data == "Dimension" ? "Dimension" : column.Data) + (column.SortDirection == Column.OrderDirection.Ascendant ? " asc" : " desc");
             }
-        
+
+            data = data.OrderBy(orderByString == string.Empty ? "dimension asc" : orderByString).ToList();
+
+            // Paging
+            data = data.Skip(requestModel.Start).Take(requestModel.Length).ToList();
 
 
 
+            return Json(new DataTablesResponse(requestModel.Draw, data, filteredCount, data.Count), JsonRequestBehavior.AllowGet);
 
-
-            //            if (!string.IsNullOrEmpty(search) &&
-            //                !string.IsNullOrWhiteSpace(search))
-            //            {
-            //                // Apply search   
-            //                d = d.Where(s => s.Dimension.ToString().ToLower().Contains(search.ToLower()) ||
-            //                                 s.OrganicSearches.ToLower().Contains(search.ToLower()) ||
-            //                                 s.Pageviews.ToString().ToLower().Contains(search.ToLower()) ||
-            //                                 s.PageLoadTime.ToString().ToLower().Contains(search.ToLower())).ToList();
-            //            }
-
-            // Sorting.   
-            // d = SortByColumnWithOrder(order, orderDir, d);
-            //draw = Convert.ToInt32(draw)
-
-
-            //            var res =
-            //                new
-            //                {
-            //                    recordsTotal = d.Count,
-            //                    //recordsFiltered = 5,
-            //                    data = d.ToArray()
-            //                };
-            //
-            //
-            //            return Json(res, JsonRequestBehavior.AllowGet);
-
-            return new DataTablesJsonResult(response, JsonRequestBehavior.AllowGet);
-
-        }
-
-
-        private List<AnalyticsData> SortByColumnWithOrder(string order, string orderDir, List<AnalyticsData> data)
-        {
-            // Initialization.   
-            List<AnalyticsData> lst = new List<AnalyticsData>();
-            try
-            {
-                // Sorting   
-                switch (order)
-                {
-                    case "0":
-                        // Setting.   
-                        lst = orderDir.Equals("DESC", StringComparison.CurrentCultureIgnoreCase)
-                            ? data.OrderByDescending(p => p.Dimension).ToList()
-                            : data.OrderBy(p => p.Dimension).ToList();
-                        break;
-                    case "1":
-                        // Setting.   
-                        lst = orderDir.Equals("DESC", StringComparison.CurrentCultureIgnoreCase)
-                            ? data.OrderByDescending(p => p.Users).ToList()
-                            : data.OrderBy(p => p.Users).ToList();
-                        break;
-                    case "2":
-                        // Setting.   
-                        lst = orderDir.Equals("DESC", StringComparison.CurrentCultureIgnoreCase)
-                            ? data.OrderByDescending(p => p.BounceRate).ToList()
-                            : data.OrderBy(p => p.BounceRate).ToList();
-                        break;
-                    case "3":
-                        // Setting.   
-                        lst = orderDir.Equals("DESC", StringComparison.CurrentCultureIgnoreCase)
-                            ? data.OrderByDescending(p => p.OrganicSearches).ToList()
-                            : data.OrderBy(p => p.OrganicSearches).ToList();
-                        break;
-                    default:
-                        // Setting.   
-                        lst = orderDir.Equals("DESC", StringComparison.CurrentCultureIgnoreCase)
-                            ? data.OrderByDescending(p => p.Dimension).ToList()
-                            : data.OrderBy(p => p.Dimension).ToList();
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                // info.   
-                Console.Write(ex);
-            }
-            // info.   
-            return lst;
         }
 
         public async Task<ActionResult> IndexAsync(CancellationToken cancellationToken)
