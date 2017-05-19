@@ -432,6 +432,7 @@
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Currency.cs" />
+    <Compile Include="Models\Mail.cs" />
     <Compile Include="ViewModels\FacebookViewModel.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\CrawledLink.cs" />
