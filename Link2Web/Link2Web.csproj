@@ -333,7 +333,6 @@
     <Compile Include="Controllers\SiteAuditorController.cs" />
     <Compile Include="Core\AppFlowMetadata.cs" />
     <Compile Include="Core\MyFunctions.cs" />
-    <Compile Include="Core\Settings.cs" />
     <Compile Include="DAL\Repositories\CurrencyRepository.cs" />
     <Compile Include="DAL\Repositories\CountryRepository.cs" />
     <Compile Include="DAL\DbAddOrUpdate.cs" />

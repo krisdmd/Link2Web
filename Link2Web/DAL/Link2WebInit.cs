@@ -1,7 +1,4 @@
-﻿using Link2Web.Models;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
+﻿using System.Data.Entity;
 
 namespace Link2Web.DAL
 {
@@ -11,34 +8,34 @@ namespace Link2Web.DAL
         {
             //  This method will be called after migrating to the latest version.
 
-            var userSettings = new List<UserSetting>
-            {
-                new UserSetting
-                {
-                    Setting = "ClientId",
-                    Value = "818431160125-qs1ahg8oemfnkfc3g1l41e7vv85qp0k7.apps.googleusercontent.com",
-                    UserId = "6884d1c8-4b72-42d4-8927-973d9a88b906"
-                },
-                new UserSetting
-                {
-                    Setting = "CLientSecret",
-                    Value = "kP72hOc2VHvS5zgAkt-v4EdQ",
-                    UserId = "6884d1c8-4b72-42d4-8927-973d9a88b906"
-                }
-            };
+//            var userSettings = new List<UserSetting>
+//            {
+//                new UserSetting
+//                {
+//                    Setting = "ClientId",
+//                    Value = "818431160125-qs1ahg8oemfnkfc3g1l41e7vv85qp0k7.apps.googleusercontent.com",
+//                    UserId = "6884d1c8-4b72-42d4-8927-973d9a88b906"
+//                },
+//                new UserSetting
+//                {
+//                    Setting = "CLientSecret",
+//                    Value = "kP72hOc2VHvS5zgAkt-v4EdQ",
+//                    UserId = "6884d1c8-4b72-42d4-8927-973d9a88b906"
+//                }
+//            };
+//
+//            userSettings.ForEach(s => context.UserSettings.AddOrUpdate(s));
+//
+//            var linktypes = new List<LinkType>
+//            {
+//                new LinkType { Type = "None" },
+//                new LinkType { Type = "Blog comment" },
+//                new LinkType { Type = "Competitor backlink" },
+//                new LinkType { Type = "Paid permanent" },
+//                new LinkType { Type = "Paid temporary" }
+//            };
 
-            userSettings.ForEach(s => context.UserSettings.AddOrUpdate(s));
-
-            var linktypes = new List<LinkType>
-            {
-                new LinkType { Type = "None" },
-                new LinkType { Type = "Blog comment" },
-                new LinkType { Type = "Competitor backlink" },
-                new LinkType { Type = "Paid permanent" },
-                new LinkType { Type = "Paid temporary" }
-            };
-
-            linktypes.ForEach(t => context.LinkTypes.AddOrUpdate(t));
+//            linktypes.ForEach(t => context.LinkTypes.AddOrUpdate(t));
 
 
             //            var countries = new List<Country>

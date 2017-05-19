@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Link2Web.DAL.Repositories
 {
-    public class CountryRepository: ICountryRepository, IDisposable
+    public class CountryRepository: ICountryRepository
     {
         private Link2WebDbContext _context;
         private bool _disposed;

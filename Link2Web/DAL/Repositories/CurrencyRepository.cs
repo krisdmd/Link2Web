@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Link2Web.DAL.Repositories
 {
-    public class CurrencyRepository: ICurrencyRepository, IDisposable
+    public class CurrencyRepository: ICurrencyRepository
     {
         private Link2WebDbContext _context;
         private bool _disposed;

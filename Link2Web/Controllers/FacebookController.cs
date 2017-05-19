@@ -1,11 +1,9 @@
 ﻿using Facebook;
-using Link2Web.Core;
 using Link2Web.Helpers;
 using Link2Web.Models;
 using Link2Web.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -31,8 +29,8 @@ namespace Link2Web.Controllers
             var fb = new FacebookClient();
             var loginUrl = fb.GetLoginUrl(new
             {
-                client_id = GlobalSettings.UserSettings.Where(s => s.Setting == "FacebookClientId").Select(s => s.Value).SingleOrDefault(),
-                client_secret = GlobalSettings.UserSettings.Where(s => s.Setting == "FacebookClientSecret").Select(s => s.Value).SingleOrDefault(),
+                client_id = System.Web.HttpContext.Current.Session["FacebookClientId"].ToString(),
+                client_secret = System.Web.HttpContext.Current.Session["FacebookClientSecret"].ToString(),
                 redirect_uri = RedirectUri.AbsoluteUri,
                 response_type = "code",
                 scope = "email" // Add other permissions as needed
@@ -55,8 +53,8 @@ namespace Link2Web.Controllers
 
             dynamic result = fb.Post("oauth/access_token", new
             {
-                client_id = GlobalSettings.UserSettings.Where(s => s.Setting == "FacebookClientId").Select(s => s.Value).SingleOrDefault(),
-                client_secret = GlobalSettings.UserSettings.Where(s => s.Setting == "FacebookClientSecret").Select(s => s.Value).SingleOrDefault(),
+                client_id = System.Web.HttpContext.Current.Session["FacebookClientId"].ToString(),
+                client_secret = System.Web.HttpContext.Current.Session["FacebookClientSecret"].ToString(),
                 fb_exchange_token = code,
                 redirect_uri = RedirectUri.AbsoluteUri,
                 code = code
@@ -70,7 +68,7 @@ namespace Link2Web.Controllers
             // update the facebook client with the access token so 
             // we can make requests on behalf of the user
             fb.AccessToken = accessToken;
-            Settings.FacebookAccessToken = accessToken;
+            GlobalSettings.FacebookAccessToken = accessToken;
 
             //id,message,attachments,picture,created_time,description,
             var pageFeed = $"/v2.8/{"2301741419964830"}/feed?fields=name,link,caption";

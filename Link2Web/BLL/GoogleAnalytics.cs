@@ -1,10 +1,12 @@
 ﻿using Google.Apis.Analytics.v3;
 using Google.Apis.Analytics.v3.Data;
 using Link2Web.Core;
+using Link2Web.Helpers;
 using Link2Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace Link2Web.BLL
 {
@@ -70,7 +72,7 @@ namespace Link2Web.BLL
         private DataResource.GaResource.GetRequest BuildAnalyticRequest(string profileId, string[] dimensions, string[] metrics,
                                                                             DateTime startDate, DateTime endDate, int startIndex)
         {
-            DataResource.GaResource.GetRequest request = Settings.AnalyticsService.Data.Ga.Get(profileId, startDate.ToString("yyyy-MM-dd"),
+            DataResource.GaResource.GetRequest request = GlobalSettings.AnalyticsService.Data.Ga.Get(profileId, startDate.ToString("yyyy-MM-dd"),
                                                                                 endDate.ToString("yyyy-MM-dd"), string.Join(",", metrics));
             request.Dimensions = string.Join(",", dimensions);
             request.StartIndex = startIndex;
@@ -79,7 +81,7 @@ namespace Link2Web.BLL
 
         public List<Profile> GetAvailableProfiles()
         {
-            var response = Settings.AnalyticsService.Management.Profiles.List("~all", "~all").Execute();
+            var response = GlobalSettings.AnalyticsService.Management.Profiles.List("~all", "~all").Execute();
             return response.Items.ToList();
         }
 
@@ -104,7 +106,7 @@ namespace Link2Web.BLL
         {
             var analyticsData = new GoogleAnalytics();
 
-            return analyticsData.GetAnalyticsData("ga:136022774", dimensions, metrics, startDate, endDate);
+            return analyticsData.GetAnalyticsData(HttpContext.Current.Session["ViewProjectId"].ToString(), dimensions, metrics, startDate, endDate);
         }
 
     }

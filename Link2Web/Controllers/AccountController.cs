@@ -83,6 +83,9 @@ namespace Link2Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    var userSettings = new GlobalSettings();
+                    userSettings.GetSettings(HttpContext.User.Identity.GetUserId());
+                    //userSettings.GetIntSettings(HttpContext.User.Identity.GetUserId());
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -474,6 +477,8 @@ namespace Link2Web.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session.Abandon();
+            GlobalSettings.Clear();
             return RedirectToAction("Index", "Home");
         }
 

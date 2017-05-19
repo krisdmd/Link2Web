@@ -43,11 +43,11 @@ namespace Link2Web.Controllers
         {
             base.Initialize(requestContext);
 
-            if (User == null) return;
-            if (!GlobalSettings.Initialized)
-            {
-                new GlobalSettings(User.Identity.GetUserId()).Init();
-            }
+            if (User == null || GlobalSettings.Init) return;
+
+            var userSettings = new GlobalSettings();
+            userSettings.GetSettings(HttpContext.User.Identity.GetUserId());
+            //userSettings.GetIntSettings(HttpContext.User.Identity.GetUserId());
         }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)

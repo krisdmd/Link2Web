@@ -1,69 +1,80 @@
-﻿using Link2Web.DAL;
-using Link2Web.Models;
-using System.Collections.Generic;
+﻿using Google.Apis.Analytics.v3;
+using Link2Web.DAL;
 using System.Linq;
+using System.Web;
 
 namespace Link2Web.Helpers
 {
     public class GlobalSettings
     {
         public static bool HideCreateProjectDialog { get; set; }
-        public static string UserId { get; set; }
 
-        public static bool Initialized;
-
-        public static int ProjectId { get; set; }
-        public static string ProjectViewId { get; set; }
-        public static string GoogleClientId { get; set; }
-        public static string GoogleClientSecret { get; set; }
-        public static string FacebookClientId { get; set; }
-        public static string FacebookSecret { get; set; }
-
-        //Set active when the settings are initialised.
-        public static bool Active { get; set; }
+        public static bool Init;
 
 
-        public static List<UserSetting> UserSettings = new List<UserSetting>();
+        public static AnalyticsService AnalyticsService { get; set; }
 
-        public GlobalSettings(string userId)
+        public static string FacebookAccessToken
         {
-            Initialized = false;
-            UserId = userId;
-        }
-
-        public GlobalSettings()
-        {
-            Initialized = false;
-        }
-
-
-        /// Loads all the settings from the db
-        private void RetrieveAllSettings()
-        {
-            if (UserId != null)
+            get
             {
-                var db = new Link2WebDbContext();
+                return HttpContext.Current.Session["FaceBookAccessToken"] == null
+                    ? string.Empty
+                    : HttpContext.Current.Session["FaceBookAccessToken"].ToString();
+            }
+            set { System.Web.HttpContext.Current.Session["FaceBookAccessToken"] = value; }
+        }
 
-                var userSettings = db.UserSettings.Where(u => u.UserId.Contains(UserId));
 
-                foreach (var s in userSettings)
+        public void GetSettings(string userId)
+        {
+            var db = new Link2WebDbContext();
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return;
+            }
+
+            var userSettings = db.UserSettings.Where(u => u.UserId.Contains(userId) && u.Value != null).ToList();
+
+            foreach (var s in userSettings)
+            {
+                HttpContext.Current.Session[s.Setting] = s.Value;
+
+                if (s.Setting == "CurrentProject")
                 {
-                    UserSettings.Add(new UserSetting
-                    {
-                        UserId = s.UserId,
-                        Value = s.Value,
-                        ValueInt = s.ValueInt,
-                        Setting = s.Setting
-                    });
+                    HttpContext.Current.Session["ViewProjectId"] = db.Projects.FirstOrDefault(p => p.ProjectId == s.ValueInt).ViewProfileId;
                 }
             }
+
+            Init = true;
         }
 
-        public void Init()
+//        public void GetIntSettings(string userId)
+//        {
+//            var db = new Link2WebDbContext();
+//
+//            if (string.IsNullOrEmpty(userId))
+//            {
+//                return;
+//            }
+//
+//            var userSettings = db.UserSettings.Where(u => u.UserId.Contains(userId) && string.IsNullOrEmpty(u.Value)).ToList();
+//
+//            foreach (var s in userSettings)
+//            {
+//                HttpContext.Current.Session[s.Setting] = s.ValueInt;
+//            }
+//
+//            Init = true;
+//        }
+
+
+        public static void Clear()
         {
-            if (!Initialized)
-                RetrieveAllSettings();
-            Initialized = true;
+            FacebookAccessToken = null;
+            AnalyticsService = null;
+            Init = false;
         }
     }
 }

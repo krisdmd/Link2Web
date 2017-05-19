@@ -4,6 +4,7 @@ using Google.Apis.Auth.OAuth2.Mvc;
 using Google.Apis.Services;
 using Link2Web.BLL;
 using Link2Web.Core;
+using Link2Web.Helpers;
 using Link2Web.Models;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace Link2Web.Controllers
     {
         public ActionResult Index()
         {
-            if (Settings.AnalyticsService == null)
+            if (GlobalSettings.AnalyticsService == null)
             {
                 return RedirectToAction("IndexAsync");
             }
@@ -29,7 +30,7 @@ namespace Link2Web.Controllers
 
         public ActionResult VisitorsByTopReferer()
         {
-            if (Settings.AnalyticsService == null)
+            if (GlobalSettings.AnalyticsService == null)
             {
                 TempData["LastController"] = "Analytics";
                 TempData["LastAction"] = "VisitorsByTopReferer";
@@ -41,7 +42,7 @@ namespace Link2Web.Controllers
 
         public ActionResult VisitorsByKeyword()
         {
-            if (Settings.AnalyticsService == null)
+            if (GlobalSettings.AnalyticsService == null)
             {
                 TempData["LastController"] = "Analytics";
                 TempData["LastAction"] = "VisitorsByKeyword";
@@ -54,7 +55,7 @@ namespace Link2Web.Controllers
         public ActionResult VisitorsByBrowser()
         {
 
-            if (Settings.AnalyticsService == null)
+            if (GlobalSettings.AnalyticsService == null)
             {
                 TempData["LastController"] = "Analytics";
                 TempData["LastAction"] = "VisitorsByBrowser";
@@ -234,7 +235,7 @@ namespace Link2Web.Controllers
                     ApplicationName = "Analytics"
                 });
 
-                Settings.AnalyticsService = service;
+                GlobalSettings.AnalyticsService = service;
 
                 return RedirectToAction(TempData["LastAction"] != null ? TempData["LastAction"].ToString() : "Index",
                     TempData["LastController"] != null ? TempData["LastController"].ToString() : "Analytics");
