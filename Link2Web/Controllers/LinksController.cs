@@ -1,10 +1,12 @@
-﻿using Link2Web.DAL;
+﻿using DataTables.Mvc;
+using Link2Web.Core;
+using Link2Web.DAL;
 using Link2Web.Models;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Net;
 using System.Web.Mvc;
-using Link2Web.Core;
 
 namespace Link2Web.Controllers
 {
@@ -120,6 +122,42 @@ namespace Link2Web.Controllers
             db.Links.Remove(link);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public JsonResult GetLinks([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
+        {
+            var links = db.Links.Select(l => new { l.AnchorText, l.WebsiteUrl, l.Description }).ToList();
+
+            // Apply filters
+            if (requestModel.Search.Value != string.Empty)
+            {
+                var value = requestModel.Search.Value.Trim();
+
+                links = links.Where(l => l.AnchorText.Contains(value) || l.WebsiteUrl.Contains(value) || l.Description.Contains(value)).ToList();
+
+            }
+
+            var filteredCount = links.Count();
+
+            // Sort
+            var sortedColumns = requestModel.Columns.GetSortedColumns();
+            var orderByString = string.Empty;
+
+            foreach (var column in sortedColumns)
+            {
+                orderByString += orderByString != string.Empty ? "," : "";
+                orderByString += (column.Data == "WebsiteUrl" ? "WebsiteUrl" : column.Data) + (column.SortDirection == Column.OrderDirection.Ascendant ? " asc" : " desc");
+            }
+
+            links = links.OrderBy(orderByString == string.Empty ? "WebsiteUrl asc" : orderByString).ToList();
+
+            // links
+            links = links.Skip(requestModel.Start).Take(requestModel.Length).ToList();
+
+
+
+            return Json(new DataTablesResponse(requestModel.Draw, links, filteredCount, links.Count), JsonRequestBehavior.AllowGet);
+
         }
 
         protected override void Dispose(bool disposing)

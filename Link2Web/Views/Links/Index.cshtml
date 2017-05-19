@@ -9,61 +9,47 @@
 <p>
     @Html.ActionLink("Add link", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Project.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LinkId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WebsiteUrl)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AnchorText)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DestinationUrl)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </th>
-        <th></th>
-    </tr>
+@section scripts
+{
+    @Styles.Render("~/Content/datatables")
+    @Scripts.Render("~/bundles/datatables")
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Project.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LinkId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WebsiteUrl)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AnchorText)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DestinationUrl)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedOn)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProjectId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProjectId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProjectId })
-        </td>
-    </tr>
+    <script>
+        $(function() {
+
+            $('#datatable').DataTable({
+                "serverSide": true,
+                "processing": true,
+                "ajax": "@Url.Action("GetLinks", "Links", null, Request.Url.Scheme)",
+                "columns": [
+                    {
+                        data: 'WebsiteUrl'
+                    },
+                    {
+                        data: 'AnchorText'
+                    }
+                ]
+            });
+
+        });
+
+    </script>
+
 }
 
+
+
+<table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>WebsiteUrl</th>
+            <th>AnchorText</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>WebsiteUrl</th>
+            <th>AnchorText</th>
+        </tr>
+    </tfoot>
 </table>

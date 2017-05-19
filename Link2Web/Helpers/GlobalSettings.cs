@@ -35,7 +35,7 @@ namespace Link2Web.Helpers
                 return;
             }
 
-            var userSettings = db.UserSettings.Where(u => u.UserId.Contains(userId) && u.Value != null).ToList();
+            var userSettings = db.UserSettings.Where(u => u.UserId.Contains(userId)).ToList();
 
             foreach (var s in userSettings)
             {

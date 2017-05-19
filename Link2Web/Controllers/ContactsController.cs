@@ -1,7 +1,9 @@
-﻿using Link2Web.DAL;
+﻿using DataTables.Mvc;
+using Link2Web.DAL;
 using Link2Web.Models;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Net;
 using System.Web.Mvc;
 
@@ -14,8 +16,7 @@ namespace Link2Web.Controllers
         // GET: Contacts
         public ActionResult Index()
         {
-            var contacts = db.Contacts.Include(c => c.Country);
-            return View(contacts.ToList());
+            return View();
         }
 
         // GET: Contacts/Details/5
@@ -115,6 +116,42 @@ namespace Link2Web.Controllers
             db.Contacts.Remove(contact);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public JsonResult GetContacts([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
+        {
+            var contacts = db.Contacts.Select(c => new {c.Name, c.Email, c.City}).ToList();
+
+            // Apply filters
+            if (requestModel.Search.Value != string.Empty)
+            {
+                var value = requestModel.Search.Value.Trim();
+
+                contacts = contacts.Where(c => c.Name.Contains(value) || c.City.Contains(value) || c.Email.Contains(value)).ToList();
+
+            }
+
+            var filteredCount = contacts.Count();
+
+            // Sort
+            var sortedColumns = requestModel.Columns.GetSortedColumns();
+            var orderByString = string.Empty;
+
+            foreach (var column in sortedColumns)
+            {
+                orderByString += orderByString != string.Empty ? "," : "";
+                orderByString += (column.Data == "Name" ? "Name" : column.Data) + (column.SortDirection == Column.OrderDirection.Ascendant ? " asc" : " desc");
+            }
+
+            contacts = contacts.OrderBy(orderByString == string.Empty ? "Name asc" : orderByString).ToList();
+
+            // Paging
+            contacts = contacts.Skip(requestModel.Start).Take(requestModel.Length).ToList();
+
+
+
+            return Json(new DataTablesResponse(requestModel.Draw, contacts, filteredCount, contacts.Count), JsonRequestBehavior.AllowGet);
+
         }
 
         protected override void Dispose(bool disposing)

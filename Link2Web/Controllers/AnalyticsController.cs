@@ -5,9 +5,7 @@ using Google.Apis.Services;
 using Link2Web.BLL;
 using Link2Web.Core;
 using Link2Web.Helpers;
-using Link2Web.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Threading;
@@ -65,7 +63,7 @@ namespace Link2Web.Controllers
             return View();
         }
 
-        public ActionResult GetVisitors()
+        public ActionResult GetVisitors([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
             var dimensions = new[]
             {
@@ -85,19 +83,37 @@ namespace Link2Web.Controllers
             };
 
             var analyticsData = new GoogleAnalytics();
-            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics).Rows;
 
-            IEnumerable<AnalyticsData> d = data.Rows;
-            var total = d.Count();
+            // Apply filters
+            if (requestModel.Search.Value != string.Empty)
+            {
+                var value = requestModel.Search.Value.Trim();
+                data = data.Where(a => a.Dimension.Contains(value) || a.OrganicSearches.Contains(value) || a.Users.Contains(value)).ToList();
+            }
+
+            var filteredCount = data.Count;
+
+            // Sort
+            var sortedColumns = requestModel.Columns.GetSortedColumns();
+            var orderByString = string.Empty;
+
+            foreach (var column in sortedColumns)
+            {
+                orderByString += orderByString != string.Empty ? "," : "";
+                orderByString += (column.Data == "Dimension" ? "Dimension" : column.Data) + (column.SortDirection == Column.OrderDirection.Ascendant ? " asc" : " desc");
+            }
+
+            data = data.OrderBy(orderByString == string.Empty ? "dimension asc" : orderByString).ToList();
+
+            // Paging
+            data = data.Skip(requestModel.Start).Take(requestModel.Length).ToList();
 
 
-            //var vm = new AnalyticsViewModel { AnalyticsData = data.Rows };
-
-
-            return Json(JsonRequestBehavior.AllowGet);
+            return Json(new DataTablesResponse(requestModel.Draw, data, filteredCount, data.Count), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetVisitorsByKeyword()
+        public ActionResult GetVisitorsByKeyword([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
             var dimensions = new[]
             {
@@ -117,18 +133,38 @@ namespace Link2Web.Controllers
             };
 
             var analyticsData = new GoogleAnalytics();
-            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics).Rows;
 
-            IEnumerable<AnalyticsData> d = data.Rows;
-            var total = d.Count();
+            // Apply filters
+            if (requestModel.Search.Value != string.Empty)
+            {
+                var value = requestModel.Search.Value.Trim();
+                data = data.Where(a => a.Dimension.Contains(value) || a.OrganicSearches.Contains(value) || a.Users.Contains(value)).ToList();
+            }
+
+            var filteredCount = data.Count;
+
+            // Sort
+            var sortedColumns = requestModel.Columns.GetSortedColumns();
+            var orderByString = string.Empty;
+
+            foreach (var column in sortedColumns)
+            {
+                orderByString += orderByString != string.Empty ? "," : "";
+                orderByString += (column.Data == "Dimension" ? "Dimension" : column.Data) + (column.SortDirection == Column.OrderDirection.Ascendant ? " asc" : " desc");
+            }
+
+            data = data.OrderBy(orderByString == string.Empty ? "dimension asc" : orderByString).ToList();
+
+            // Paging
+            data = data.Skip(requestModel.Start).Take(requestModel.Length).ToList();
 
 
-            //var vm = new AnalyticsViewModel { AnalyticsData = data.Rows };
 
-            return Json(JsonRequestBehavior.AllowGet);
+            return Json(new DataTablesResponse(requestModel.Draw, data, filteredCount, data.Count), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetVisitorsByTopReferer()
+        public ActionResult GetVisitorsByTopReferer([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
             var dimensions = new[]
             {
@@ -148,15 +184,35 @@ namespace Link2Web.Controllers
             };
 
             var analyticsData = new GoogleAnalytics();
-            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics);
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics).Rows;
 
-            IEnumerable<AnalyticsData> d = data.Rows;
-            var total = d.Count();
+            // Apply filters
+            if (requestModel.Search.Value != String.Empty)
+            {
+                var value = requestModel.Search.Value.Trim();
+                data = data.Where(a => a.Dimension.Contains(value) || a.OrganicSearches.Contains(value) || a.Users.Contains(value)).ToList();
+            }
+
+            var filteredCount = data.Count;
+
+            // Sort
+            var sortedColumns = requestModel.Columns.GetSortedColumns();
+            var orderByString = string.Empty;
+
+            foreach (var column in sortedColumns)
+            {
+                orderByString += orderByString != string.Empty ? "," : "";
+                orderByString += (column.Data == "Dimension" ? "Dimension" : column.Data) + (column.SortDirection == Column.OrderDirection.Ascendant ? " asc" : " desc");
+            }
+
+            data = data.OrderBy(orderByString == string.Empty ? "dimension asc" : orderByString).ToList();
+
+            // Paging
+            data = data.Skip(requestModel.Start).Take(requestModel.Length).ToList();
 
 
-            //var vm = new AnalyticsViewModel { AnalyticsData = data.Rows };
 
-            return Json(JsonRequestBehavior.AllowGet);
+            return Json(new DataTablesResponse(requestModel.Draw, data, filteredCount, data.Count), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetVisitorsByBrowser([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
@@ -196,7 +252,7 @@ namespace Link2Web.Controllers
             if (requestModel.Search.Value != String.Empty)
             {
                 var value = requestModel.Search.Value.Trim();
-                data = data.Where(a => a.Dimension.Contains(value)).ToList();
+                data = data.Where(a => a.Dimension.Contains(value) || a.OrganicSearches.Contains(value) || a.Users.Contains(value)).ToList();
             }
 
             var filteredCount = data.Count;

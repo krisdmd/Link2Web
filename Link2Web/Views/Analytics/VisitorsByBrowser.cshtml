@@ -14,55 +14,24 @@
                 "serverSide": true,
                 "processing": true,
                 "ajax": "@Url.Action("GetVisitorsByBrowser", "Analytics", null, Request.Url.Scheme)",
-//                "ajax": {
-//                    "type": "GET",
-//
-//
-//                    'data': function(data) {
-//                        return JSON.stringify(data);
-//                    }
-//                    //"dataSrc": "data"
-//                },
                 "columns": [
                     {
                         data: 'Dimension',
-                        sortable: false,
-                        searchable: true
                     },
                     {
                         data: 'Users',
-                        sortable: false,
-                        searchable: false
                     },
                     {
                         data: 'Pageviews',
-                        sortable: false,
-                        searchable: false
                     },
                     {
                         data: 'BounceRate',
-                        sortable: false,
-                        searchable: false
                     },
                     {
-                        data: 'OrganicSearches',
-                        sortable: false,
-                        searchable: false
+                        data: 'OrganicSearches'
                     }
                 ]
             });
-
-
-//        $.ajax({
-//            type: "GET",
-//            'data': function (data) {
-//                console.log(data);
-//                return JSON.stringify(data);
-//            },
-//            success: function(resultData) {
-//                console.log(resultData);
-//            }
-//                    });
 
         });
 
