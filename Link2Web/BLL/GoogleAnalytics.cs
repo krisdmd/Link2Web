@@ -72,8 +72,9 @@ namespace Link2Web.BLL
         private DataResource.GaResource.GetRequest BuildAnalyticRequest(string profileId, string[] dimensions, string[] metrics,
                                                                             DateTime startDate, DateTime endDate, int startIndex)
         {
-            DataResource.GaResource.GetRequest request = GlobalSettings.AnalyticsService.Data.Ga.Get(profileId, startDate.ToString("yyyy-MM-dd"),
-                                                                                endDate.ToString("yyyy-MM-dd"), string.Join(",", metrics));
+            var service = new GlobalSettings().GetAnalyticsService();
+            DataResource.GaResource.GetRequest request = service.Data.Ga.Get(profileId, startDate.ToString("yyyy-MM-dd"),
+                endDate.ToString("yyyy-MM-dd"), string.Join(",", metrics));
             request.Dimensions = string.Join(",", dimensions);
             request.StartIndex = startIndex;
             return request;
@@ -81,7 +82,9 @@ namespace Link2Web.BLL
 
         public List<Profile> GetAvailableProfiles()
         {
-            var response = GlobalSettings.AnalyticsService.Management.Profiles.List("~all", "~all").Execute();
+
+            var service = new GlobalSettings().GetAnalyticsService();  
+            var response = service.Management.Profiles.List("~all", "~all").Execute();
             return response.Items.ToList();
         }
 
@@ -101,6 +104,7 @@ namespace Link2Web.BLL
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
+        /// <param name="dimensions"></param>
         /// <returns>Return a List from Google Analytics with raw data</returns>
         public AnalyticDataPoint GetVisitorsData(DateTime startDate, DateTime endDate, string[] dimensions, string[] metrics)
         {

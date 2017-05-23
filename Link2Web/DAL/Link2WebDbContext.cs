@@ -1,4 +1,5 @@
-﻿using Link2Web.Models;
+﻿using Link2Web.DAL.Entities;
+using Link2Web.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
@@ -27,6 +28,8 @@ namespace Link2Web.DAL
         public IDbSet<Language> Languages { get; set; }
         public IDbSet<UserSetting> UserSettings { get; set; }
         public IDbSet<CrawledLinkStatus> CrawledLinkStatuses { get; set; }
+
+        public IDbSet<Email> Emails { get; set; }
 
         public static Link2WebDbContext Create()
         {

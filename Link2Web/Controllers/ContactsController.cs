@@ -131,7 +131,7 @@ namespace Link2Web.Controllers
 
             }
 
-            var filteredCount = contacts.Count();
+            var filteredCount = contacts.Count;
 
             // Sort
             var sortedColumns = requestModel.Columns.GetSortedColumns();

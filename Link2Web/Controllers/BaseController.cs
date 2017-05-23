@@ -17,7 +17,7 @@ namespace Link2Web.Controllers
         // GET: Base
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
         {
-            string cultureName = string.Empty;
+            string cultureName;
             GlobalSettings.HideCreateProjectDialog = false;
 
             // Attempt to read the culture cookie from Request
@@ -46,7 +46,7 @@ namespace Link2Web.Controllers
             if (User == null || GlobalSettings.Init) return;
 
             var userSettings = new GlobalSettings();
-            userSettings.GetSettings(HttpContext.User.Identity.GetUserId());
+            userSettings.GetSettingsFromDb(HttpContext.User.Identity.GetUserId());
             //userSettings.GetIntSettings(HttpContext.User.Identity.GetUserId());
         }
 
@@ -106,19 +106,14 @@ namespace Link2Web.Controllers
             {
                 string fileName = HttpContext.Server.MapPath(@"~/Content/Images/noImg.png");
 
-                byte[] imageData = null;
                 var fileInfo = new FileInfo(fileName);
                 long imageFileLength = fileInfo.Length;
                 var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
                 var br = new BinaryReader(fs);
-                imageData = br.ReadBytes((int)imageFileLength);
+                var imageData = br.ReadBytes((int)imageFileLength);
                 return File(imageData, "image/png");
 
             }
-        }
-
-        public BaseController()
-        {
         }
 
     }

@@ -14,7 +14,6 @@ namespace Link2Web.Core
         private static readonly IAuthorizationCodeFlow flow =
             new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer
             {
-
                 ClientSecrets = new ClientSecrets
                 {
                     ClientId = HttpContext.Current.Session["GoogleClientId"].ToString(),
@@ -22,7 +21,7 @@ namespace Link2Web.Core
                 },
                 Scopes = new[]
                 {
-                    AnalyticsService.Scope.AnalyticsReadonly
+                    AnalyticsService.Scope.AnalyticsReadonly,
                 },
 
                 DataStore = new FileDataStore(HttpContext.Current.Server.MapPath("~/App_Data/clientsecret.json")),

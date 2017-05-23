@@ -31,6 +31,9 @@
                     },
                     {
                         data: 'City'
+                    },
+                    {
+                        mRender: function (o) { return '<a class="lnk-space" href="@Url.Action("Edit", "Contacts", new {id = Model.GetEnumerator().Current.ContactId})"><span class="glyphicon glyphicon-edit"></span> Edit</a> <span class="glyphicon glyphicon-remove"></span> Delete'; }
                     }
                 ]
             });
@@ -49,6 +52,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>City</th>
+            <th></th>
         </tr>
     </thead>
     <tfoot>
@@ -56,6 +60,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>City</th>
+            <th></th>
         </tr>
     </tfoot>
 </table>

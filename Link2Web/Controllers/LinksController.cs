@@ -2,10 +2,12 @@
 using Link2Web.Core;
 using Link2Web.DAL;
 using Link2Web.Models;
+using Link2Web.ViewModels;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Net;
+using System.Net.Mail;
 using System.Web.Mvc;
 
 namespace Link2Web.Controllers
@@ -13,6 +15,15 @@ namespace Link2Web.Controllers
     public class LinksController : BaseController
     {
         private Link2WebDbContext db = new Link2WebDbContext();
+
+        public LinksController()
+        {
+            Mail.Host = "smtp.gmail.com";
+            Mail.Username = "ivolink2web@gmail.com";
+            Mail.Password = "#IVO#2017";
+            Mail.Port = 587;
+            Mail.SSL = true;
+        }
 
         // GET: Links
         public ActionResult Index()
@@ -158,6 +169,30 @@ namespace Link2Web.Controllers
 
             return Json(new DataTablesResponse(requestModel.Draw, links, filteredCount, links.Count), JsonRequestBehavior.AllowGet);
 
+        }
+
+        [HttpPost]
+        public ActionResult SendMail(MailViewModel model)
+        {
+            var smtp = new SmtpClient
+            {
+                Host = Mail.Host,
+                Port = Mail.Port,
+                EnableSsl = Mail.SSL,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(Mail.Username, Mail.Password)
+            };
+
+            using (var message = new MailMessage(Mail.Username, Mail.Password))
+            {
+                message.Subject = model.Subject;
+                message.Body = model.Body;
+                message.IsBodyHtml = false;
+                smtp.Send(message);
+            }
+
+            return View();
         }
 
         protected override void Dispose(bool disposing)

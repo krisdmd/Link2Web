@@ -45,5 +45,11 @@ namespace Link2Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public JsonResult KeepSessionAlive()
+        {
+            return new JsonResult { Data = "Success" };
+        }
+
     }
 }

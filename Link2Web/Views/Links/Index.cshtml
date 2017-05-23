@@ -27,9 +27,14 @@
                     },
                     {
                         data: 'AnchorText'
+                    },
+                    {
+                        mRender: function(o) { return '<i class="ui-tooltip fa fa-pencil" style="font-size: 22px;" data-original-title="Edit"></i><i class="ui-tooltip fa fa-trash-o" style="font-size: 22px;" data-original-title="Delete"></i>'; }
                     }
                 ]
             });
+
+            $('#mailModal').modal();
 
         });
 
@@ -44,12 +49,14 @@
         <tr>
             <th>WebsiteUrl</th>
             <th>AnchorText</th>
+            <th></th>
         </tr>
     </thead>
     <tfoot>
         <tr>
             <th>WebsiteUrl</th>
             <th>AnchorText</th>
+            <th></th>
         </tr>
     </tfoot>
 </table>

@@ -333,6 +333,11 @@
     <Compile Include="Controllers\SiteAuditorController.cs" />
     <Compile Include="Core\AppFlowMetadata.cs" />
     <Compile Include="Core\MyFunctions.cs" />
+    <Compile Include="DAL\Entities\Email.cs" />
+    <Compile Include="DAL\Migrations\201705230836239_EmailEntity.cs" />
+    <Compile Include="DAL\Migrations\201705230836239_EmailEntity.Designer.cs">
+      <DependentUpon>201705230836239_EmailEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Repositories\CurrencyRepository.cs" />
     <Compile Include="DAL\Repositories\CountryRepository.cs" />
     <Compile Include="DAL\DbAddOrUpdate.cs" />
@@ -448,6 +453,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AnalyticsViewModel.cs" />
+    <Compile Include="ViewModels\MailViewModel.cs" />
     <Compile Include="ViewModels\ProjectViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -837,46 +843,6 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-14cc11d0-efab-4c14-a40e-613259340fe2" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-186c5e7b-ecf7-44a5-86bf-4cab2bf84984" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-278474c0-bb90-48e2-89d3-ab80a898820a" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-2ea34c80-0928-457c-92c9-758b9c48f950" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-32bd8028-e23f-4e10-80d0-b4e6faf5f6c1" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-398bb1dc-0b11-4c6e-8056-3f5b814a8287" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-43dedd0f-d6ca-491d-8b3c-1a13cce4f05b" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-4c4170a7-5110-414b-b873-80b8ed462681" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-531acd51-0f94-4c1f-8e98-908ae52b53ac" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-556dd3a8-d6ab-423e-8622-8bca3be7bf00" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-5984b5cc-e487-481c-b598-67ed4c238550" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-643db335-5aab-4343-ac45-db8e48b2e7a7" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-76d315fb-46d8-411e-8935-bf24435539c8" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-803e21b6-b54a-489f-b490-163c6dad7233" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-819b3bc2-44f5-46dc-a072-1ab661741763" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-877ed552-c0e4-424a-ba20-bf91ee0f7d19" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-8fb926d1-40c5-48fb-8c11-6c51c6e11deb" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-a0e257fb-f56d-4feb-9384-4b7608fde5a2" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-a19caab9-010d-4ec5-94e4-c53012a5ec90" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-a23a8bde-f7d3-480b-8ea1-1323d0072309" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-a2f7812d-3168-4483-a869-103028b421e6" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-a47a92e7-36f6-4657-be65-3415f9859ae6" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-b2680d38-01f7-4a60-bbd5-fa0374f44c6d" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-b339b5c0-61ea-4968-9595-ae6f1b0d13a7" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-d4a404cd-3b13-4590-99dc-37510b6f7e4d" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-d72a011c-282c-4c2f-8d68-6612cc054063" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-d9834dc3-4b00-40c3-b3d4-402ae8b2b756" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-da06fae9-7e4a-4e27-8382-13f6bf7d24b5" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-dcfedd6c-e70a-4083-904f-18cbf7cafabe" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-e08ff369-cf32-4ead-8a20-77e7a83ebcb8" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-e17968c6-1489-4597-b471-72a48e04abad" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-e5a8f89c-f061-45e7-8d73-83f52f94ba92" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-e8ec207b-4548-41ee-bbd4-fdf45cbef8d7" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-ee823bfe-24c7-4453-8b11-d1344dc278b3" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-fc5dee73-f966-403e-a6ec-d4a76c876a9c" />
-    <Content Include="App_Data\clientsecret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-ff032e2d-8801-4fb5-bd79-33f6d9d82db4" />
-    <Content Include="App_Data\clientsecret.json\System.String-oauth_49ac179b-492f-44a5-a665-387e4e307abc" />
-    <Content Include="App_Data\clientsecret.json\System.String-oauth_e32379e5-de7c-448b-9ac6-e6e7c7e27f7e" />
-    <Content Include="App_Data\clientsecret.json\System.String-oauth_f71f4549-c2c9-450c-9e69-891c1a0c611b" />
-    <Content Include="App_Data\clientsecret.json\System.String-oauth_faf14a49-1b48-463d-9dfc-43cda7d894c4" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <Content Include="Scripts\bootstrap-dialog.js" />
     <Content Include="Scripts\custom-link2web.js" />
@@ -1038,6 +1004,7 @@
     <Content Include="Views\Contacts\Details.cshtml" />
     <Content Include="Views\Contacts\Edit.cshtml" />
     <Content Include="Views\Contacts\Index.cshtml" />
+    <Content Include="Views\Links\GetEmailForm.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1096,6 +1063,7 @@
     <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\clientsecret.json\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Home\" />
     <Folder Include="bin\" />
@@ -1156,6 +1124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201705091644052_links1.resx">
       <DependentUpon>201705091644052_links1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201705230836239_EmailEntity.resx">
+      <DependentUpon>201705230836239_EmailEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

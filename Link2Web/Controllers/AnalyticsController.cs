@@ -16,9 +16,16 @@ namespace Link2Web.Controllers
 {
     public class AnalyticsController : BaseController
     {
+        private AnalyticsService _service;
+
+        public AnalyticsController()
+        {
+            _service = new GlobalSettings().GetAnalyticsService();
+        }
         public ActionResult Index()
         {
-            if (GlobalSettings.AnalyticsService == null)
+
+            if (_service == null)
             {
                 return RedirectToAction("IndexAsync");
             }
@@ -28,7 +35,8 @@ namespace Link2Web.Controllers
 
         public ActionResult VisitorsByTopReferer()
         {
-            if (GlobalSettings.AnalyticsService == null)
+            if (_service == null)
+
             {
                 TempData["LastController"] = "Analytics";
                 TempData["LastAction"] = "VisitorsByTopReferer";
@@ -40,7 +48,7 @@ namespace Link2Web.Controllers
 
         public ActionResult VisitorsByKeyword()
         {
-            if (GlobalSettings.AnalyticsService == null)
+            if (_service == null)
             {
                 TempData["LastController"] = "Analytics";
                 TempData["LastAction"] = "VisitorsByKeyword";
@@ -53,7 +61,7 @@ namespace Link2Web.Controllers
         public ActionResult VisitorsByBrowser()
         {
 
-            if (GlobalSettings.AnalyticsService == null)
+            if (_service == null)
             {
                 TempData["LastController"] = "Analytics";
                 TempData["LastAction"] = "VisitorsByBrowser";
@@ -217,18 +225,6 @@ namespace Link2Web.Controllers
 
         public JsonResult GetVisitorsByBrowser([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
-//            JsonResult result = new JsonResult();
-
-//            //var search = Request.Form.GetValues("search[value]")?[0];
-//            var draw = Request.Form.GetValues("draw")?[0];
-//            var order = Request.Form.GetValues("order[0][column]")?[0];
-//            var orderDir = Request.Form.GetValues("order[0][dir]")?[0];
-//            var startRec = Convert.ToInt32(Request.Form.GetValues("start")?[0]);
-//            var pageSize = Convert.ToInt32(Request.Form.GetValues("length")?[0]);
-//
-//            //var sortColumn = Request.Form.GetValues(name: "columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
-//            var search = Request.Form.GetValues("search")?.FirstOrDefault();
-
             var dimensions = new[]
             {
                 "ga:browser"
@@ -249,7 +245,7 @@ namespace Link2Web.Controllers
             var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics).Rows;
 
             // Apply filters
-            if (requestModel.Search.Value != String.Empty)
+            if (requestModel.Search.Value != string.Empty)
             {
                 var value = requestModel.Search.Value.Trim();
                 data = data.Where(a => a.Dimension.Contains(value) || a.OrganicSearches.Contains(value) || a.Users.Contains(value)).ToList();
@@ -272,8 +268,6 @@ namespace Link2Web.Controllers
             // Paging
             data = data.Skip(requestModel.Start).Take(requestModel.Length).ToList();
 
-
-
             return Json(new DataTablesResponse(requestModel.Draw, data, filteredCount, data.Count), JsonRequestBehavior.AllowGet);
 
         }
@@ -291,12 +285,13 @@ namespace Link2Web.Controllers
                     ApplicationName = "Analytics"
                 });
 
-                GlobalSettings.AnalyticsService = service;
+                _service = service;
 
                 return RedirectToAction(TempData["LastAction"] != null ? TempData["LastAction"].ToString() : "Index",
                     TempData["LastController"] != null ? TempData["LastController"].ToString() : "Analytics");
 
             }
+
             return new RedirectResult(result.RedirectUri);
         }
     }
