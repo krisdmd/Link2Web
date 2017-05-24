@@ -4,33 +4,34 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Facebook Page Posts</h2>
+<span id="main">
+    <h2>Facebook Page Posts</h2>
 
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="x_panel">
-        <div class="x_title">
-            <ul class="nav navbar-right panel_toolbox">
-                <li>
-                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                </li>
-            </ul>
-            <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-            <ul class="list-unstyled timeline">
-
-                @foreach (var p in Model.FacebookPosts)
-                {
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <ul class="nav navbar-right panel_toolbox">
                     <li>
-                        <div class="block">
-                            <div class="tags">
-                                <a href="" class="tag">
-                                    <span>@p.Createdtime.ToString("dd/MM/yyyy")</span>
-                                </a>
-                            </div>
-                            <div class="block_content">
-                                <h2 class="title">
-                                    @p.Name
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <ul class="list-unstyled timeline">
+
+                    @foreach (var p in Model.FacebookPosts)
+                    {
+                        <li>
+                            <div class="block">
+                                <div class="tags">
+                                    <a href="" class="tag">
+                                        <span>@p.Createdtime.ToString("dd/MM/yyyy")</span>
+                                    </a>
+                                </div>
+                                <div class="block_content">
+                                    <h2 class="title">
+                                        @p.Name
                                 </h2>
                                 <div class="byline">
                                     <span>@p.Description </span>
@@ -41,10 +42,10 @@
                             </div>
                         </div>
                     </li>
-                }
-            </ul>
+                    }
+                </ul>
 
+            </div>
         </div>
     </div>
-</div>
-
+</span>

@@ -4,63 +4,66 @@
     ViewBag.Title = "Contacts";
 }
 
-<h2>Contacts</h2>
+<span id="main">
+    <h2>Contacts</h2>
 
-<p>
-    @Html.ActionLink("Add contact", "Create")
-</p>
+    <p>
+        @Html.ActionLink("Add contact", "Create")
+    </p>
 
-@section scripts
+    @section scripts
 {
-    @Styles.Render("~/Content/datatables")
-    @Scripts.Render("~/bundles/datatables")
+        @Styles.Render("~/Content/datatables")
+        @Scripts.Render("~/bundles/datatables")
 
-    <script>
-        $(function() {
+        <script>
+            $(function () {
 
-            $('#datatable').DataTable({
-                "serverSide": true,
-                "processing": true,
-                "ajax": "@Url.Action("GetContacts", "Contacts", null, Request.Url.Scheme)",
-                "columns": [
-                    {
-                        data: 'Name'
-                    },
-                    {
-                        data: 'Email'
-                    },
-                    {
-                        data: 'City'
-                    },
-                    {
-                        mRender: function (o) { return '<a class="lnk-space" href="@Url.Action("Edit", "Contacts", new {id = Model.GetEnumerator().Current.ContactId})"><span class="glyphicon glyphicon-edit"></span> Edit</a> <span class="glyphicon glyphicon-remove"></span> Delete'; }
-                    }
-                ]
+                $('#datatable').DataTable({
+                    "serverSide": true,
+                    "processing": true,
+                    "ajax": "@Url.Action("GetContacts", "Contacts", null, Request.Url.Scheme)",
+                    "columns": [
+                        {
+                            data: 'Name'
+                        },
+                        {
+                            data: 'Email'
+                        },
+                        {
+                            data: 'City'
+                        },
+                        {
+                            mRender: function (o) { return '<a class="lnk-space" href="@Url.Action("Edit", "Contacts", new {id = Model.GetEnumerator().Current.ContactId})"><span class="glyphicon glyphicon-edit"></span> Edit</a> <span class="glyphicon glyphicon-remove"></span> Delete'; }
+                        }
+                    ]
+                });
+
             });
 
-        });
+        </script>
 
-    </script>
-
-}
+    }
 
 
 
-<table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>City</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tfoot>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>City</th>
-            <th></th>
-        </tr>
-    </tfoot>
-</table>
+    <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>City</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>City</th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+
+</span>

@@ -3,60 +3,64 @@
 @{
     ViewBag.Title = Resources.Login;
 }
-<h2>@ViewBag.Title</h2>
 
-<section id="loginForm">
+<span id="main">
+    <h2>@ViewBag.Title</h2>
 
-    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-        <div class="container">
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div id="loginbox" style="margin-top: 50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <div class="panel-title">@Resources.Login</div>
-                        <div style="float: right; font-size: 80%; position: relative; top: -10px">
-                            <a href="#">@(Resources.LostPassword).</a>
-                        </div>
-                    </div>
-                    <div style="padding-top: 30px" class="panel-body">
-                        <div style="display: none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                        <div style="margin-bottom: 15px" class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", Placeholder = Resources.Email, @required = true })
-                        </div>
-                        <div style="margin-bottom: 10px" class="input-group">
-                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                        </div>
-                        <div style="margin-bottom: 15px" class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", Placeholder = Resources.Password, @required = true })
-                        </div>
-                        <div style="margin-bottom: 10px" class="input-group">
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                        </div>
+    <section id="loginForm">
 
-                        <div class="input-group">
-                            <div class="checkbox">
-                                <label>
-                                    @Html.CheckBoxFor(m => m.RememberMe) @Resources.RememberMe
-                                </label>
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            <div class="container">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div id="loginbox" style="margin-top: 50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">@Resources.Login</div>
+                            <div style="float: right; font-size: 80%; position: relative; top: -10px">
+                                <a href="#">@(Resources.LostPassword).</a>
                             </div>
                         </div>
-                        <div style="margin-top: 10px" class="form-group">
-                            <!-- Button -->
-                            <div class="col-sm-12 controls">
-                                <input type="submit" value="@Resources.Login" class="btn btn-success" />
+                        <div style="padding-top: 30px" class="panel-body">
+                            <div style="display: none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                            <div style="margin-bottom: 15px" class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", Placeholder = Resources.Email, @required = true })
+                            </div>
+                            <div style="margin-bottom: 10px" class="input-group">
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div style="margin-bottom: 15px" class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", Placeholder = Resources.Password, @required = true })
+                            </div>
+                            <div style="margin-bottom: 10px" class="input-group">
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="input-group">
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBoxFor(m => m.RememberMe) @Resources.RememberMe
+                                    </label>
+                                </div>
+                            </div>
+                            <div style="margin-top: 10px" class="form-group">
+                                <!-- Button -->
+                                <div class="col-sm-12 controls">
+                                    <input type="submit" value="@Resources.Login" class="btn btn-success" />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
+        }
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
-</section>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+    </section>
+    
+</span>

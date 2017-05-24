@@ -4,34 +4,38 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Countries</h2>
+<span id="main">
 
-<p>
-    @Html.ActionLink("Add country", "Create")
-</p>
+    <h2>Countries</h2>
 
-<div class="container" id="gridList">
-    <!--Row with two equal columns-->
-    <div class="row" id="gridHeader">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">@Html.DisplayNameFor(model => model.Name)</div>
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">@Html.DisplayNameFor(model => model.Code)</div>
-    </div>
+    <p>
+        @Html.ActionLink("Add country", "Create")
+    </p>
 
-    @foreach (var item in Model)
-    {
-        <div class="row">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">@Html.DisplayFor(modelItem => item.Name)</div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">@Html.DisplayFor(modelItem => item.Code)</div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a class="lnk-space" href='@Url.Action("Edit", "Countries", new {id = item.CountryId})'>
-                    <span class="glyphicon glyphicon-edit"></span> Edit
-                </a>
-
-                <a href='@Url.Action("Delete", "Countries", new {id = item.CountryId})'>
-                    <span class="glyphicon glyphicon-remove"></span> Delete
-                </a>
-            </div>
+    <div class="container" id="gridList">
+        <!--Row with two equal columns-->
+        <div class="row" id="gridHeader">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">@Html.DisplayNameFor(model => model.Name)</div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">@Html.DisplayNameFor(model => model.Code)</div>
         </div>
-    }
 
-</div>
+        @foreach (var item in Model)
+        {
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">@Html.DisplayFor(modelItem => item.Name)</div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">@Html.DisplayFor(modelItem => item.Code)</div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a class="lnk-space" href='@Url.Action("Edit", "Countries", new {id = item.CountryId})'>
+                        <span class="glyphicon glyphicon-edit"></span> Edit
+                    </a>
+
+                    <a href='@Url.Action("Delete", "Countries", new {id = item.CountryId})'>
+                        <span class="glyphicon glyphicon-remove"></span> Delete
+                    </a>
+                </div>
+            </div>
+        }
+
+    </div>
+    
+    </span>

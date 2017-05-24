@@ -131,7 +131,7 @@ form {
     padding-top: 90px !important;
 }
 
-.right_col h2 {
+.right_col #main h2 {
     background-color: #F39C12;
     color: #FFFFFF;
     padding: 15px;
