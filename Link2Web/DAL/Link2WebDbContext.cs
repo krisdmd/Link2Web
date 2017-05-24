@@ -30,6 +30,7 @@ namespace Link2Web.DAL
         public IDbSet<CrawledLinkStatus> CrawledLinkStatuses { get; set; }
 
         public IDbSet<Email> Emails { get; set; }
+        public IDbSet<GoogleUser> GoogleUsers { get; set; }
 
         public static Link2WebDbContext Create()
         {

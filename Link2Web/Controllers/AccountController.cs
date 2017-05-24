@@ -479,7 +479,6 @@ namespace Link2Web.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             Session.Clear();
             Session.Abandon();
-            GlobalSettings.Clear();
             return RedirectToAction("Index", "Home");
         }
 

@@ -9,7 +9,6 @@
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Facebook Posts</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
                     <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -26,18 +25,18 @@
                         <div class="block">
                             <div class="tags">
                                 <a href="" class="tag">
-                                    <span>@p.Name</span>
+                                    <span>@p.Createdtime.ToString("dd/MM/yyyy")</span>
                                 </a>
                             </div>
                             <div class="block_content">
                                 <h2 class="title">
-                                    @p.Description
+                                    @p.Name
                                 </h2>
                                 <div class="byline">
-                                    <span>@p.Createdtime</span>
+                                    <span>@p.Description </span>
                                 </div>
                                 <p class="excerpt">
-                                    <a href="@p.Link">@p.Caption<a>Read&nbsp;More</a>
+                                    <a href="@p.PermalinkUrl">@p.PermalinkUrl</a>
                                 </p>
                             </div>
                         </div>

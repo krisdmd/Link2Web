@@ -9,35 +9,35 @@
     @Styles.Render("~/Content/datatables")
     @Scripts.Render("~/bundles/datatables")
 
-    <script>
-        $(function() {
-
-            $('#datatable').DataTable({
-                "serverSide": true,
-                "processing": true,
-                "ajax": "@Url.Action("GetVisitors", "Analytics", null, Request.Url.Scheme)",
-                "columns": [
-                    {
-                        data: 'Dimension'
-                    },
-                    {
-                        data: 'Users'
-                    },
-                    {
-                        data: 'Pageviews'
-                    },
-                    {
-                        data: 'BounceRate'
-                    },
-                    {
-                        data: 'OrganicSearches'
-                    }
-                ]
-            });
-
-        });
-
-    </script>
+@*    <script>*@
+@*        $(function() {*@
+@**@
+@*            $('#datatable').DataTable({*@
+@*                "serverSide": true,*@
+@*                "processing": true,*@
+@*                "ajax": "@Url.Action("GetVisitors", "Analytics", null, Request.Url.Scheme)",*@
+@*                "columns": [*@
+@*                    {*@
+@*                        data: 'Dimension'*@
+@*                    },*@
+@*                    {*@
+@*                        data: 'Users'*@
+@*                    },*@
+@*                    {*@
+@*                        data: 'Pageviews'*@
+@*                    },*@
+@*                    {*@
+@*                        data: 'BounceRate'*@
+@*                    },*@
+@*                    {*@
+@*                        data: 'OrganicSearches'*@
+@*                    }*@
+@*                ]*@
+@*            });*@
+@**@
+@*        });*@
+@**@
+@*    </script>*@
 
 }
 

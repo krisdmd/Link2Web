@@ -68,29 +68,33 @@ namespace Link2Web.Controllers
             // update the facebook client with the access token so 
             // we can make requests on behalf of the user
             fb.AccessToken = accessToken;
-            GlobalSettings.FacebookAccessToken = accessToken;
+            new GlobalSettings().FacebookAccessToken = accessToken;
 
             //id,message,attachments,picture,created_time,description,
-            var pageFeed = $"/v2.8/{"2301741419964830"}/feed?fields=name,link,caption";
+            var pageFeed = $"/v2.9/{"2301741419964830"}/posts/?fields=name,link,caption,created_time,message,description,picture,story,permalink_url,place,from";
             dynamic response = fb.Get(pageFeed);
-
-            //var fbResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<FacebookData>(response.ToString());
 
             var facebookPosts = new List<FacebookPost>();
 
             foreach (var p in response.data)
             {
-                facebookPosts.Add(new FacebookPost
+                if (!string.IsNullOrWhiteSpace(p.name))
                 {
-                    Link = p.link != null ? p.link.ToString() : "",
-                    Caption = p.link != null ? p.link.ToString() : "",
-                    Message = p.link != null ? p.link.ToString() : "",
-                    Createdtime = p.link != null ? p.link.ToString() : "",
-                    Description = p.link != null ? p.link.ToString() : "",
-                    Picture = p.link != null ? p.link.ToString() : "",
-                    Name = p.link != null ? p.link.ToString() : ""
-
-                });
+                    facebookPosts.Add(new FacebookPost
+                    {
+                        Link = p.link != null ? p.link.ToString() : "",
+                        Caption = p.caption != null ? p.caption.ToString() : "",
+                        Message = p.message != null ? p.message.ToString() : "",
+                        Createdtime = p.created_time != null ? Convert.ToDateTime(p.created_time) : DateTime.Now,
+                        Description = p.description != null ? p.description.ToString() : "",
+                        Story = p.story != null ? p.story.ToString() : "",
+                        Picture = p.link != null ? p.link.ToString() : "",
+                        PermalinkUrl = p.permalink_url != null ? p.permalink_url.ToString() : "",
+                        From = p.@from != null ? p.@from.ToString() : "",
+                        Place = p.place != null ? p.place.ToString() : "",
+                        Name = p.name != null ? p.name.ToString() : ""
+                    });
+                }
             }
 
             vm.FacebookPosts = facebookPosts;

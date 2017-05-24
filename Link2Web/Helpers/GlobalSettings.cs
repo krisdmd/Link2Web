@@ -1,6 +1,5 @@
 ﻿using Google.Apis.Analytics.v3;
 using Google.Apis.Auth.OAuth2;
-using Google.Apis.Services;
 using Google.Apis.Util.Store;
 using Link2Web.DAL;
 using System.Linq;
@@ -15,7 +14,11 @@ namespace Link2Web.Helpers
 
         public static bool Init;
 
-        public static string FacebookAccessToken
+        public static bool InitAnalytics;
+
+        public static AnalyticsService AnalyticsService { get; set; }
+
+        public string FacebookAccessToken
         {
             get
             {
@@ -26,29 +29,37 @@ namespace Link2Web.Helpers
             set { HttpContext.Current.Session["FaceBookAccessToken"] = value; }
         }
 
-        public AnalyticsService GetAnalyticsService()
+        public UserCredential GetAnalyticsService()
         {
+            string[] scopes = new string[]
+            {
+                AnalyticsService.Scope.AnalyticsReadonly,
+            };
+
             var credential = GoogleWebAuthorizationBroker.AuthorizeAsync(new ClientSecrets
             {
                 ClientId = HttpContext.Current.Session["GoogleClientId"].ToString(),
                 ClientSecret = HttpContext.Current.Session["GoogleClientSecret"].ToString()
             },
-                new[]
-                {
-                    AnalyticsService.Scope.Analytics,
-                },
+                scopes,
                 "user", CancellationToken.None,
                 new FileDataStore(HttpContext.Current.Server.MapPath("~/App_Data/clientsecret.json"))).Result;
 
 
-            var service = new AnalyticsService
-                (new BaseClientService.Initializer()
-                {
-                    HttpClientInitializer = credential,
-                    ApplicationName = "Analytics",
-                });
+            return credential;
+        }
 
-            return service;
+        public void GetAccessToken()
+        {
+//            var token = "";
+//            // Oauth2 Autentication.
+//            using (var stream = new System.IO.FileStream("client_secret.json", System.IO.FileMode.Open, System.IO.FileAccess.Read))
+//            {
+//                var credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+//                GoogleClientSecrets.Load(stream).Secrets,
+//                new[] { AnalyticsService.Scope.AnalyticsReadonly },
+//                HttpContext.Current.Session["User"].ToString(), CancellationToken.None, StoredRefreshToken).Result;
+//            }
         }
 
 
@@ -73,13 +84,8 @@ namespace Link2Web.Helpers
                 }
             }
 
-            Init = true;
-        }
-
-        public static void Clear()
-        {
-            FacebookAccessToken = null;
             Init = false;
         }
+
     }
 }

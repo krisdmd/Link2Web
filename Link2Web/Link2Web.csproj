@@ -332,11 +332,21 @@
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\SiteAuditorController.cs" />
     <Compile Include="Core\AppFlowMetadata.cs" />
+    <Compile Include="DAL\EFDataStore.cs" />
     <Compile Include="Core\MyFunctions.cs" />
+    <Compile Include="DAL\Entities\GoogleUser.cs" />
     <Compile Include="DAL\Entities\Email.cs" />
     <Compile Include="DAL\Migrations\201705230836239_EmailEntity.cs" />
     <Compile Include="DAL\Migrations\201705230836239_EmailEntity.Designer.cs">
       <DependentUpon>201705230836239_EmailEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201705240856531_AnalyticsToken.cs" />
+    <Compile Include="DAL\Migrations\201705240856531_AnalyticsToken.Designer.cs">
+      <DependentUpon>201705240856531_AnalyticsToken.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201705240920596_GoogleUser.cs" />
+    <Compile Include="DAL\Migrations\201705240920596_GoogleUser.Designer.cs">
+      <DependentUpon>201705240920596_GoogleUser.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\Repositories\CurrencyRepository.cs" />
     <Compile Include="DAL\Repositories\CountryRepository.cs" />
@@ -1127,6 +1137,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201705230836239_EmailEntity.resx">
       <DependentUpon>201705230836239_EmailEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201705240856531_AnalyticsToken.resx">
+      <DependentUpon>201705240856531_AnalyticsToken.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201705240920596_GoogleUser.resx">
+      <DependentUpon>201705240920596_GoogleUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

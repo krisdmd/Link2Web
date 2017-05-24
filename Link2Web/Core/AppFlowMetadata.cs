@@ -2,7 +2,8 @@
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Auth.OAuth2.Flows;
 using Google.Apis.Auth.OAuth2.Mvc;
-using Google.Apis.Util.Store;
+using Google.Apis.Auth.OAuth2.Requests;
+using Link2Web.DAL;
 using System;
 using System.Web;
 using System.Web.Mvc;
@@ -24,10 +25,8 @@ namespace Link2Web.Core
                     AnalyticsService.Scope.AnalyticsReadonly,
                 },
 
-                DataStore = new FileDataStore(HttpContext.Current.Server.MapPath("~/App_Data/clientsecret.json")),
-
-
-                //DataStore = new FileDataStore("Drive.Api.Auth.Store")
+                //HttpContext.Current.Server.MapPath("~/App_Data/clientsecret.json")
+                DataStore = new EfDataStore(),
 
             });
 
@@ -43,6 +42,7 @@ namespace Link2Web.Core
             {
                 user = Guid.NewGuid();
                 controller.Session["user"] = user;
+                HttpContext.Current.Session["User"] = user.ToString();
             }
 
             return user.ToString();
@@ -52,6 +52,23 @@ namespace Link2Web.Core
         public override IAuthorizationCodeFlow Flow
         {
             get { return flow; }
+        }
+    }
+
+    public class CustomAuthorizationCodeFlow : GoogleAuthorizationCodeFlow
+    {
+        public CustomAuthorizationCodeFlow(GoogleAuthorizationCodeFlow.Initializer initializer) : base(initializer) { }
+
+        public override AuthorizationCodeRequestUrl CreateAuthorizationCodeRequest(String redirectUri)
+        {
+            return new GoogleAuthorizationCodeRequestUrl(new Uri(AuthorizationServerUrl))
+            {
+                ClientId = ClientSecrets.ClientId,
+                Scope = string.Join(" ", Scopes),
+                RedirectUri = redirectUri,
+                AccessType = "offline",
+                ApprovalPrompt = "auto"
+            };
         }
     }
 }

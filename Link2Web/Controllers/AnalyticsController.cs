@@ -16,16 +16,9 @@ namespace Link2Web.Controllers
 {
     public class AnalyticsController : BaseController
     {
-        private AnalyticsService _service;
-
-        public AnalyticsController()
-        {
-            _service = new GlobalSettings().GetAnalyticsService();
-        }
         public ActionResult Index()
         {
-
-            if (_service == null)
+            if (GlobalSettings.AnalyticsService == null)
             {
                 return RedirectToAction("IndexAsync");
             }
@@ -35,8 +28,7 @@ namespace Link2Web.Controllers
 
         public ActionResult VisitorsByTopReferer()
         {
-            if (_service == null)
-
+            if (GlobalSettings.AnalyticsService == null)
             {
                 TempData["LastController"] = "Analytics";
                 TempData["LastAction"] = "VisitorsByTopReferer";
@@ -48,7 +40,7 @@ namespace Link2Web.Controllers
 
         public ActionResult VisitorsByKeyword()
         {
-            if (_service == null)
+            if (GlobalSettings.AnalyticsService == null)
             {
                 TempData["LastController"] = "Analytics";
                 TempData["LastAction"] = "VisitorsByKeyword";
@@ -61,7 +53,7 @@ namespace Link2Web.Controllers
         public ActionResult VisitorsByBrowser()
         {
 
-            if (_service == null)
+            if (GlobalSettings.AnalyticsService == null)
             {
                 TempData["LastController"] = "Analytics";
                 TempData["LastAction"] = "VisitorsByBrowser";
@@ -70,7 +62,6 @@ namespace Link2Web.Controllers
 
             return View();
         }
-
         public ActionResult GetVisitors([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
             var dimensions = new[]
@@ -282,16 +273,17 @@ namespace Link2Web.Controllers
                 var service = new AnalyticsService(new BaseClientService.Initializer
                 {
                     HttpClientInitializer = result.Credential,
-                    ApplicationName = "Analytics"
+                    ApplicationName = "K2Web"
                 });
 
-                _service = service;
+                GlobalSettings.AnalyticsService = service;
+                
 
                 return RedirectToAction(TempData["LastAction"] != null ? TempData["LastAction"].ToString() : "Index",
                     TempData["LastController"] != null ? TempData["LastController"].ToString() : "Analytics");
 
-            }
 
+            }
             return new RedirectResult(result.RedirectUri);
         }
     }
