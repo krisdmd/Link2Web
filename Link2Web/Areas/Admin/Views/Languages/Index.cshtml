@@ -4,36 +4,38 @@
     ViewBag.Title = "Languages";
 }
 
-<h2>Languages</h2>
+<div id="main">
+    <h2>Languages</h2>
 
-<p>
-    @Html.ActionLink("Add language", "Create")
-</p>
+    <p>
+        @Html.ActionLink("Add language", "Create")
+    </p>
 
 
-<div class="container" id="gridList">
-    <!--Row with two equal columns-->
-    <div class="row" id="gridHeader">
-        <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">@Html.DisplayNameFor(model => model.Name)</div>
-        <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">@Html.DisplayNameFor(model => model.Code)</div>
+    <div class="container" id="gridList">
+        <!--Row with two equal columns-->
+        <div class="row" id="gridHeader">
+            <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">@Html.DisplayNameFor(model => model.Name)</div>
+            <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">@Html.DisplayNameFor(model => model.Code)</div>
+        </div>
+
+        @foreach (var item in Model)
+        {
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">@Html.DisplayFor(modelItem => item.Name)</div>
+                <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">@Html.DisplayFor(modelItem => item.Code)</div>
+                <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
+                    <a class="lnk-space" href='@Url.Action("Edit", "Languages", new {id = item.LanguageId})'>
+                        <span class="glyphicon glyphicon-edit"></span> Edit
+                    </a>
+
+                    <a href='@Url.Action("Delete", "Languages", new {id = item.LanguageId})'>
+                        <span class="glyphicon glyphicon-remove"></span> Delete
+                    </a>
+                </div>
+            </div>
+        }
+
     </div>
 
-    @foreach (var item in Model)
-    {
-        <div class="row">
-            <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">@Html.DisplayFor(modelItem => item.Name)</div>
-            <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">@Html.DisplayFor(modelItem => item.Code)</div>
-            <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
-                <a class="lnk-space" href='@Url.Action("Edit", "Languages", new {id = item.LanguageId})'>
-                    <span class="glyphicon glyphicon-edit"></span> Edit
-                </a>
-
-                <a href='@Url.Action("Delete", "Languages", new {id = item.LanguageId})'>
-                    <span class="glyphicon glyphicon-remove"></span> Delete
-                </a>
-            </div>
-        </div>
-    }
-
 </div>
-

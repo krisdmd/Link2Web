@@ -4,7 +4,7 @@
     ViewBag.Title = "Contacts";
 }
 
-<span id="main">
+<div id="main">
     <h2>Contacts</h2>
 
     <p>
@@ -34,7 +34,7 @@
                             data: 'City'
                         },
                         {
-                            mRender: function (o) { return '<a class="lnk-space" href="@Url.Action("Edit", "Contacts", new {id = Model.GetEnumerator().Current.ContactId})"><span class="glyphicon glyphicon-edit"></span> Edit</a> <span class="glyphicon glyphicon-remove"></span> Delete'; }
+                           // mRender: function (o) { return '<a class="lnk-space" href="@Url.Action("Edit", "Contacts", new {id = Model.GetEnumerator().Current.ContactId})"><span class="glyphicon glyphicon-edit"></span> Edit</a> <span class="glyphicon glyphicon-remove"></span> Delete'; }
                         }
                     ]
                 });
@@ -66,4 +66,4 @@
         </tfoot>
     </table>
 
-</span>
+</div>

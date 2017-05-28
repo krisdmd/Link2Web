@@ -23,8 +23,9 @@ namespace Link2Web.Core
                 Scopes = new[]
                 {
                     AnalyticsService.Scope.AnalyticsReadonly,
+                    AnalyticsService.Scope.Analytics
                 },
-
+               
                 //HttpContext.Current.Server.MapPath("~/App_Data/clientsecret.json")
                 DataStore = new EfDataStore(),
 
@@ -57,7 +58,7 @@ namespace Link2Web.Core
 
     public class CustomAuthorizationCodeFlow : GoogleAuthorizationCodeFlow
     {
-        public CustomAuthorizationCodeFlow(GoogleAuthorizationCodeFlow.Initializer initializer) : base(initializer) { }
+        public CustomAuthorizationCodeFlow(Initializer initializer) : base(initializer) { }
 
         public override AuthorizationCodeRequestUrl CreateAuthorizationCodeRequest(String redirectUri)
         {
@@ -67,7 +68,7 @@ namespace Link2Web.Core
                 Scope = string.Join(" ", Scopes),
                 RedirectUri = redirectUri,
                 AccessType = "offline",
-                ApprovalPrompt = "auto"
+                ApprovalPrompt = "force"
             };
         }
     }

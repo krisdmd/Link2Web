@@ -4,31 +4,33 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div id="main">
+    <h2>Details</h2>
 
-<div>
-    <h4>LinkStatus</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
+    <div>
+        <h4>LinkStatus</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Visible)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Visible)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Visible)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Visible)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new {id = Model.LinkStatusId}) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.LinkStatusId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

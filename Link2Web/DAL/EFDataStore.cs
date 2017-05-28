@@ -1,6 +1,6 @@
-﻿using Google.Apis.Json;
-using Google.Apis.Util.Store;
+﻿using Google.Apis.Util.Store;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -55,7 +55,7 @@ namespace Link2Web.DAL
             using (var context = new Link2WebDbContext())
             {
                 var item = context.GoogleUsers.FirstOrDefault(x => x.UserId == _userId);
-                T value = item == null ? default(T) : NewtonsoftJsonSerializer.Instance.Deserialize<T>(item.RefreshToken);
+                T value = item == null ? default(T) : JsonConvert.DeserializeObject<T>(item.RefreshToken);
                 return Task.FromResult<T>(value);
             }
         }
@@ -69,7 +69,7 @@ namespace Link2Web.DAL
 
             using (var context = new Link2WebDbContext())
             {
-                string json = NewtonsoftJsonSerializer.Instance.Serialize(value);
+                string json = JsonConvert.SerializeObject(value);
 
                 var item = await context.GoogleUsers.SingleOrDefaultAsync(x => x.UserId == _userId);
 

@@ -4,37 +4,39 @@
     ViewBag.Title = "Currencies";
 }
 
-<h2>Currencies</h2>
+<div id="main">
+    <h2>Currencies</h2>
 
-<p>
-    @Html.ActionLink("Add currency", "Create")
-</p>
+    <p>
+        @Html.ActionLink("Add currency", "Create")
+    </p>
 
 
-<div class="container" id="gridList">
-    <!--Row with two equal columns-->
-    <div class="row" id="gridHeader">
-        <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">@Html.DisplayNameFor(model => model.Code)</div>
-        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">@Html.DisplayNameFor(model => model.Name)</div>
-        <div class="hidden-xs col-sm-3 col-md-3 col-lg-3">@Html.DisplayNameFor(model => model.Symbol)</div>
-        <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">@Resources.Resources.Country</div>
-    </div>
-
-    @foreach (var item in Model)
-    {
-        <div class="row">
-            <div class="hidden-xs col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.Code)</div>
-            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.Name)</div>
-            <div class="hidden-xs col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.Symbol)</div>
-            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                <a class="lnk-space" href='@Url.Action("Edit", "Currencies", new {id = item.CurrencyId})'>
-                    <span class="glyphicon glyphicon-edit"></span> Edit
-                </a>
-                <a href='@Url.Action("Delete", "Currencies", new {id = item.CurrencyId})'>
-                    <span class="glyphicon glyphicon-remove"></span> Delete
-                </a>
-            </div>
+    <div class="container" id="gridList">
+        <!--Row with two equal columns-->
+        <div class="row" id="gridHeader">
+            <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">@Html.DisplayNameFor(model => model.Code)</div>
+            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">@Html.DisplayNameFor(model => model.Name)</div>
+            <div class="hidden-xs col-sm-3 col-md-3 col-lg-3">@Html.DisplayNameFor(model => model.Symbol)</div>
+            <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">@Resources.Resources.Country</div>
         </div>
-    }
 
+        @foreach (var item in Model)
+        {
+            <div class="row">
+                <div class="hidden-xs col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.Code)</div>
+                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.Name)</div>
+                <div class="hidden-xs col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.Symbol)</div>
+                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                    <a class="lnk-space" href='@Url.Action("Edit", "Currencies", new {id = item.CurrencyId})'>
+                        <span class="glyphicon glyphicon-edit"></span> Edit
+                    </a>
+                    <a href='@Url.Action("Delete", "Currencies", new {id = item.CurrencyId})'>
+                        <span class="glyphicon glyphicon-remove"></span> Delete
+                    </a>
+                </div>
+            </div>
+        }
+
+    </div>
 </div>
