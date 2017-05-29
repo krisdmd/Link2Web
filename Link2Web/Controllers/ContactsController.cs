@@ -120,7 +120,7 @@ namespace Link2Web.Controllers
 
         public JsonResult GetContacts([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
-            var contacts = db.Contacts.Select(c => new {c.Name, c.Email, c.City}).ToList();
+            var contacts = db.Contacts.Select(c => new {c.ContactId, c.Name, c.Email, c.City}).ToList();
 
             // Apply filters
             if (requestModel.Search.Value != string.Empty)

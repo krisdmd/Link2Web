@@ -10,6 +10,9 @@ using System.Web;
 
 namespace Link2Web.DAL
 {
+    /// <summary>
+    /// Implementation off the IDataStore from Google to save and retrieve the current access and refresh tokens. 
+    /// </summary>
     public class EfDataStore: IDataStore
     {
         private string _userId;

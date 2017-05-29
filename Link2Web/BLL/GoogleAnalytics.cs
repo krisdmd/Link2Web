@@ -16,7 +16,7 @@ namespace Link2Web.BLL
         {
             AnalyticDataPoint data = new AnalyticDataPoint();
             if (!profileId.Contains("ga:"))
-                profileId = string.Format("ga:{0}", profileId);
+                profileId = $"ga:{profileId}";
 
             //Make initial call to service.
             //Then check if a next link exists in the response,
@@ -29,7 +29,7 @@ namespace Link2Web.BLL
                 {
                     Uri uri = new Uri(response.NextLink);
                     var paramerters = uri.Query.Split('&');
-                    string s = paramerters.First(i => i.Contains("start-index")).Split('=')[1];
+                    var s = paramerters.First(i => i.Contains("start-index")).Split('=')[1];
                     startIndex = int.Parse(s);
                 }
 
@@ -72,7 +72,7 @@ namespace Link2Web.BLL
         private DataResource.GaResource.GetRequest BuildAnalyticRequest(string profileId, string[] dimensions, string[] metrics,
                                                                             DateTime startDate, DateTime endDate, int startIndex)
         {
-            DataResource.GaResource.GetRequest request = GlobalSettings.AnalyticsService.Data.Ga.Get(profileId, startDate.ToString("yyyy-MM-dd"),
+            DataResource.GaResource.GetRequest request = GlobalSettings.AuthenticateOauth().Data.Ga.Get(profileId, startDate.ToString("yyyy-MM-dd"),
                                                                                 endDate.ToString("yyyy-MM-dd"), string.Join(",", metrics));
             request.Dimensions = string.Join(",", dimensions);
             request.StartIndex = startIndex;

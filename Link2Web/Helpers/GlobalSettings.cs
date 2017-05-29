@@ -1,7 +1,8 @@
 ﻿using Google.Apis.Analytics.v3;
 using Google.Apis.Auth.OAuth2;
-using Google.Apis.Util.Store;
+using Google.Apis.Services;
 using Link2Web.DAL;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -16,8 +17,6 @@ namespace Link2Web.Helpers
 
         public static bool InitAnalytics;
 
-        public static AnalyticsService AnalyticsService { get; set; }
-
         public string FacebookAccessToken
         {
             get
@@ -29,39 +28,46 @@ namespace Link2Web.Helpers
             set { HttpContext.Current.Session["FaceBookAccessToken"] = value; }
         }
 
-        public UserCredential GetAnalyticsService()
+
+        /// <summary>
+        /// Authenticate to Google Using Oauth2
+        /// Documentation https://developers.google.com/accounts/docs/OAuth2
+        /// </summary>
+        /// <param name="datastore">datastore to use </param>
+        /// <returns></returns>
+        public static AnalyticsService AuthenticateOauth()
         {
-            string[] scopes = new string[]
+            var db = new EfDataStore();
+            string[] scopes = {AnalyticsService.Scope.AnalyticsReadonly}; // view your basic profile info.
+
+            try
             {
-                AnalyticsService.Scope.AnalyticsReadonly,
-            };
+                // here is where we Request the user to give us access, or use the Refresh Token that was previously stored in %AppData%
+                UserCredential credential =
+                    GoogleWebAuthorizationBroker.AuthorizeAsync(
+                        new ClientSecrets
+                        {
+                            ClientId = HttpContext.Current.Session["GoogleClientId"].ToString(),
+                            ClientSecret = HttpContext.Current.Session["GoogleClientSecret"].ToString()
+                        }
+                        , scopes
+                        , HttpContext.Current.Session["User"].ToString()
+                        , CancellationToken.None
+                        , db).Result;
 
-            var credential = GoogleWebAuthorizationBroker.AuthorizeAsync(new ClientSecrets
+                AnalyticsService service = new AnalyticsService(new BaseClientService.Initializer()
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = "K2Web",
+                });
+                return service;
+            }
+            catch (Exception ex)
             {
-                ClientId = HttpContext.Current.Session["GoogleClientId"].ToString(),
-                ClientSecret = HttpContext.Current.Session["GoogleClientSecret"].ToString()
-            },
-                scopes,
-                "user", CancellationToken.None,
-                new FileDataStore(HttpContext.Current.Server.MapPath("~/App_Data/clientsecret.json"))).Result;
-
-
-            return credential;
+                Console.WriteLine(ex.InnerException);
+                return null;
+            }
         }
-
-        public void GetAccessToken()
-        {
-//            var token = "";
-//            // Oauth2 Autentication.
-//            using (var stream = new System.IO.FileStream("client_secret.json", System.IO.FileMode.Open, System.IO.FileAccess.Read))
-//            {
-//                var credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-//                GoogleClientSecrets.Load(stream).Secrets,
-//                new[] { AnalyticsService.Scope.AnalyticsReadonly },
-//                HttpContext.Current.Session["User"].ToString(), CancellationToken.None, StoredRefreshToken).Result;
-//            }
-        }
-
 
         public void GetSettingsFromDb(string userId)
         {

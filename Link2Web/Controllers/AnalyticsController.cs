@@ -18,7 +18,7 @@ namespace Link2Web.Controllers
     {
         public ActionResult Index()
         {
-            if (GlobalSettings.AnalyticsService == null)
+            if (GlobalSettings.AuthenticateOauth() == null)
             {
                 return RedirectToAction("IndexAsync");
             }
@@ -28,7 +28,7 @@ namespace Link2Web.Controllers
 
         public ActionResult VisitorsByTopReferer()
         {
-            if (GlobalSettings.AnalyticsService == null)
+            if (GlobalSettings.AuthenticateOauth() == null)
             {
                 TempData["LastController"] = "Analytics";
                 TempData["LastAction"] = "VisitorsByTopReferer";
@@ -40,7 +40,7 @@ namespace Link2Web.Controllers
 
         public ActionResult VisitorsByKeyword()
         {
-            if (GlobalSettings.AnalyticsService == null)
+            if (GlobalSettings.AuthenticateOauth() == null)
             {
                 TempData["LastController"] = "Analytics";
                 TempData["LastAction"] = "VisitorsByKeyword";
@@ -53,7 +53,7 @@ namespace Link2Web.Controllers
         public ActionResult VisitorsByBrowser()
         {
 
-            if (GlobalSettings.AnalyticsService == null)
+            if (GlobalSettings.AuthenticateOauth() == null)
             {
                 TempData["LastController"] = "Analytics";
                 TempData["LastAction"] = "VisitorsByBrowser";
@@ -275,9 +275,7 @@ namespace Link2Web.Controllers
                     HttpClientInitializer = result.Credential,
                     ApplicationName = "K2Web"
                 });
-
-                GlobalSettings.AnalyticsService = service;
-                
+              
 
                 return RedirectToAction(TempData["LastAction"] != null ? TempData["LastAction"].ToString() : "Index",
                     TempData["LastController"] != null ? TempData["LastController"].ToString() : "Analytics");
