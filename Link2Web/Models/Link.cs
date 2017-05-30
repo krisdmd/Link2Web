@@ -8,6 +8,10 @@ namespace Link2Web.Models
 {
     public class Link
     {
+
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        [Required]
+     
         public int LinkId { get; set; }
         public string UserId { get; set; }
 
@@ -48,6 +52,8 @@ namespace Link2Web.Models
         [Display(Name = "Contact", ResourceType = typeof (Resources.Resources))]
         public Contact ContactId { get; set; }
 
+
+        [Display(Name = "Project", ResourceType = typeof(Resources.Resources))]
         [HiddenInput(DisplayValue = false)]
         [Key, ForeignKey("Project")]
         public int ProjectId { get; set; }

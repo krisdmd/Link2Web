@@ -141,7 +141,7 @@ namespace Link2Web.Controllers
         {
             var userId = User.Identity.GetUserId();
             var links =
-                db.Links.Select(l => new {l.AnchorText, l.WebsiteUrl, l.Description, l.UserId})
+                db.Links.Select(l => new {l.LinkId, l.AnchorText, l.WebsiteUrl, l.Description, l.UserId})
                     .Where(l => l.UserId.Equals(userId))
                     .ToList();
 

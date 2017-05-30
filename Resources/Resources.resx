@@ -210,6 +210,9 @@
   <data name="LastName" xml:space="preserve">
     <value>LastName</value>
   </data>
+  <data name="Link" xml:space="preserve">
+    <value>Link</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
@@ -245,6 +248,9 @@
   </data>
   <data name="ProfilePicture" xml:space="preserve">
     <value>Profile picture</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>Project</value>
   </data>
   <data name="RememberMe" xml:space="preserve">
     <value>Remember me</value>
