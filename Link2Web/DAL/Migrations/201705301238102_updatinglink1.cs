@@ -3,7 +3,7 @@ namespace Link2Web.DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class contact1 : DbMigration
+    public partial class updatinglink1 : DbMigration
     {
         public override void Up()
         {

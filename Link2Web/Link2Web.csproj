@@ -351,6 +351,10 @@
     <Compile Include="DAL\Migrations\201705300926050_updatinglink.Designer.cs">
       <DependentUpon>201705300926050_updatinglink.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Migrations\201705301238102_updatinglink1.cs" />
+    <Compile Include="DAL\Migrations\201705301238102_updatinglink1.Designer.cs">
+      <DependentUpon>201705301238102_updatinglink1.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Repositories\CurrencyRepository.cs" />
     <Compile Include="DAL\Repositories\CountryRepository.cs" />
     <Compile Include="DAL\DbAddOrUpdate.cs" />
@@ -376,10 +380,6 @@
     <Compile Include="DAL\Migrations\201703291347528_currencies.cs" />
     <Compile Include="DAL\Migrations\201703291347528_currencies.Designer.cs">
       <DependentUpon>201703291347528_currencies.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201703311307127_links.cs" />
-    <Compile Include="DAL\Migrations\201703311307127_links.Designer.cs">
-      <DependentUpon>201703311307127_links.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\Migrations\201704061335148_AddElmah.cs" />
     <Compile Include="DAL\Migrations\201704061335148_AddElmah.Designer.cs">
@@ -424,14 +424,6 @@
     <Compile Include="DAL\Migrations\201705081313427_contact.cs" />
     <Compile Include="DAL\Migrations\201705081313427_contact.Designer.cs">
       <DependentUpon>201705081313427_contact.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201705081332005_contact1.cs" />
-    <Compile Include="DAL\Migrations\201705081332005_contact1.Designer.cs">
-      <DependentUpon>201705081332005_contact1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201705091644052_links1.cs" />
-    <Compile Include="DAL\Migrations\201705091644052_links1.Designer.cs">
-      <DependentUpon>201705091644052_links1.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\Migrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
@@ -1096,9 +1088,6 @@
     <EmbeddedResource Include="DAL\Migrations\201703291347528_currencies.resx">
       <DependentUpon>201703291347528_currencies.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201703311307127_links.resx">
-      <DependentUpon>201703311307127_links.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201704061335148_AddElmah.resx">
       <DependentUpon>201704061335148_AddElmah.cs</DependentUpon>
     </EmbeddedResource>
@@ -1132,12 +1121,6 @@
     <EmbeddedResource Include="DAL\Migrations\201705081313427_contact.resx">
       <DependentUpon>201705081313427_contact.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201705081332005_contact1.resx">
-      <DependentUpon>201705081332005_contact1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201705091644052_links1.resx">
-      <DependentUpon>201705091644052_links1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201705230836239_EmailEntity.resx">
       <DependentUpon>201705230836239_EmailEntity.cs</DependentUpon>
     </EmbeddedResource>
@@ -1149,6 +1132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201705300926050_updatinglink.resx">
       <DependentUpon>201705300926050_updatinglink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201705301238102_updatinglink1.resx">
+      <DependentUpon>201705301238102_updatinglink1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,16 +1,14 @@
 namespace Link2Web.DAL.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class updatinglink : DbMigration
     {
         public override void Up()
         {
             DropForeignKey("dbo.Contacts", "UserId_Id", "dbo.AspNetUsers");
-            DropIndex("dbo.Contacts", new[] { "UserId_Id" });
+            DropColumn("dbo.Contacts", "UserId");
             AddColumn("dbo.Contacts", "UserId", c => c.String());
-            DropColumn("dbo.Contacts", "UserId_Id");
         }
         
         public override void Down()

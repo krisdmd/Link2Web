@@ -28,8 +28,7 @@ namespace Link2Web.Controllers
         // GET: Links
         public ActionResult Index()
         {
-            var links = db.Links.Include(l => l.Project);
-            return View(links.ToList());
+            return View();
         }
 
         // GET: Links/Details/5
@@ -67,7 +66,7 @@ namespace Link2Web.Controllers
             {
                 //link.BacklinkFound = MyFunctions.CheckUrlExists("url", "anchor");
 
-
+                link.UserId = User.Identity.GetUserId();
                 db.Links.Add(link);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -103,6 +102,7 @@ namespace Link2Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                link.UserId = User.Identity.GetUserId();
                 db.Entry(link).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

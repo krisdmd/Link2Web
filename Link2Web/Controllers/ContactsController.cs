@@ -51,6 +51,7 @@ namespace Link2Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                contact.UserId = User.Identity.GetUserId();
                 db.Contacts.Add(contact);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -85,6 +86,7 @@ namespace Link2Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                contact.UserId = User.Identity.GetUserId();
                 db.Entry(contact).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

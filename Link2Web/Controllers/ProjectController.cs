@@ -64,10 +64,6 @@ namespace Link2Web.Controllers
             GlobalSettings.HideCreateProjectDialog = true;
             if (ModelState.IsValid)
             {
-//                project.Created = DateTime.Now;
-//                project.Modified = DateTime.Now;
-//                project.Visible = true;
-
                 project.UserId = User.Identity.GetUserId();
                 db.Projects.Add(project);
                 db.SaveChanges();
