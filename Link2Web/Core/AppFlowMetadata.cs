@@ -26,7 +26,6 @@ namespace Link2Web.Core
                     AnalyticsService.Scope.Analytics
                 },
                
-                //HttpContext.Current.Server.MapPath("~/App_Data/clientsecret.json")
                 DataStore = new EfDataStore(),
 
             });

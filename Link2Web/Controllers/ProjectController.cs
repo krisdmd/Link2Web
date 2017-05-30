@@ -23,7 +23,7 @@ namespace Link2Web.Controllers
         // GET: Project
         public ActionResult Index()
         {
-            var userId = User.Identity.GetUserId().ToString();
+            var userId = User.Identity.GetUserId();
             var projects = db.Projects.Include(p => p.Country).Where(p => p.UserId.Equals(userId));
             return View(projects.ToList());
         }

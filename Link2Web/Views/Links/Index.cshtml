@@ -4,46 +4,118 @@
     ViewBag.Title = "Links";
 }
 
-<span id="main">
+<div id="main">
     <h2>Links</h2>
 
     <p>
         @Html.ActionLink("Add link", "Create")
     </p>
-    @section scripts
-{
-        @Styles.Render("~/Content/datatables")
-        @Scripts.Render("~/bundles/datatables")
 
-        <script>
-            $(function () {
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+    {
+        @Html.AntiForgeryToken()
+        @section scripts {
+            @Styles.Render("~/Content/datatables")
+            @Scripts.Render("~/bundles/datatables")
 
-                $('#datatable').DataTable({
-                    "serverSide": true,
-                    "processing": true,
-                    "ajax": "@Url.Action("GetLinks", "Links", null, Request.Url.Scheme)",
-                    "columns": [
-                        {
-                            data: 'WebsiteUrl'
-                        },
-                        {
-                            data: 'AnchorText'
-                        },
-                        {
-                            mRender: function (o) { return '<i class="ui-tooltip fa fa-pencil" style="font-size: 22px;" data-original-title="Edit"></i><i class="ui-tooltip fa fa-trash-o" style="font-size: 22px;" data-original-title="Delete"></i>'; }
-                        }
-                    ]
+            <script>
+                $(function () {
+
+                    $('#datatable').DataTable({
+                        "serverSide": true,
+                        "processing": true,
+                        "ajax": "@Url.Action("GetLinks", "Links", null, Request.Url.Scheme)",
+                        "columns": [
+                            {
+                                data: 'WebsiteUrl'
+                            },
+                            {
+                                data: 'AnchorText'
+                            },
+                            {
+                                "title": "Edit",
+                                "data": "ContactId",
+                                "searchable": false,
+                                "sortable": false,
+                                "render": function (data, type, full, meta) {
+                                    return '<a class="lnk-space" href="@Url.Action("Edit", "Links")?id=' + data + '"><span class="glyphicon glyphicon-edit"></span> Edit</a>' +
+                                        ' <a href="#" class="lnk-space" data-id="' + data + '" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-remove"></span> Delete</a>';
+                                }
+                            }
+                        ]
+                    });
+
+                    $('#mailModal').modal();
+
                 });
 
-                $('#mailModal').modal();
+                $('#btnConfirmDelete').click(function () {
+                    var id = $('#id').val();
+                    var token = $("input[name=__RequestVerificationToken]").val();
+                    var headers = {};
+                    headers["__RequestVerificationToken"] = token;
+                    var data = {};
+                    data["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val();
+                    data["id"] = id;
+                    if (id != '') {
+                        $.ajax({
+                            url: '/Links/Delete',
+                            type: 'POST',
+                            cache: false,
+                            headers: headers,
+                            dataType: 'html',
+                            data: data,
+                            success: function (data) {
 
-            });
+                                //now re-using the boostrap modal popup to show success message.
+                                //dynamically we will change background colour
+                                if ($('.modal-header').hasClass('alert-danger')) {
+                                    $('.modal-header').removeClass('alert-danger').addClass('alert-success');
+                                    $('#btnConfirmDelete').hide();
+                                    $('#btnCancel').hide();
+                                    $('#btnClose').show();
+                                    //hide ok button as it is not necessary
+                                    $('.delete-confirm').css('display', 'none');
+                                    $('.success-message').html('').html('The contact has been successfully removed.');
+                                }
+                            },
+                            error: function (err) {
+                                alert(err);
+                                if (!$('.modal-header').hasClass('alert-danger')) {
+                                    $('.modal-header').removeClass('alert-success').addClass('alert-danger');
+                                    $('.delete-confirm').css('display', 'none');
+                                }
+                                $('.success-message').html(err.statusText);
+                            }
+                        });
+                    }
+                });
 
-        </script>
+                $('#btnClose').click(function () {
+                    $('#myModal').modal('toggle');
+                });
 
+                $('#myModal').on('show.bs.modal', function (e) {
+                    var id = $(e.relatedTarget).data('id');
+                    $('#id').val(id);
+                    $('#btnCancel').show();
+                    $('#btnConfirmDelete').show();
+                    $('#btnClose').hide();
+                });
+
+
+                //function to reset bootstrap modal popups
+                $("#myModal").on("hidden.bs.modal", function () {
+                    $(".modal-header").removeClass(' ').addClass('alert-danger');
+                    $('.delete-confirm').css('display', 'inline-block');
+                    $('.success-message').html('').html('Are you sure you want to delete this contact ?');
+                });
+
+
+            </script>
+
+        }
     }
-
-
 
     <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
@@ -61,4 +133,28 @@
             </tr>
         </tfoot>
     </table>
-    </span>
+
+    <!-- Bootstrap modal popup -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header alert alert-danger">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Delete link</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="success-message">Are you sure you want to delete this link? </p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="id" />
+                    <button class="btn btn-primary" id="btnConfirmDelete">Ok</button>
+                    <button class="btn btn-default" id="btnCancel" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" id="btnClose">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of the boostrap modal popup -->
+</div>

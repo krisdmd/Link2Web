@@ -2,7 +2,6 @@
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Link2Web.DAL;
-using System;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -62,9 +61,8 @@ namespace Link2Web.Helpers
                 });
                 return service;
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.InnerException);
                 return null;
             }
         }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -13,7 +12,5 @@ namespace Link2Web.Models
         [DefaultValue(true)]
         [ScaffoldColumn(false)]
         public Boolean Visible { get; set; }
-
-        public ICollection<Setting> Settings { get; set; }
     }
 }

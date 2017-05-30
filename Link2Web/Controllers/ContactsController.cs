@@ -1,6 +1,7 @@
 ﻿using DataTables.Mvc;
 using Link2Web.DAL;
 using Link2Web.Models;
+using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Dynamic;
@@ -120,7 +121,8 @@ namespace Link2Web.Controllers
 
         public JsonResult GetContacts([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
-            var contacts = db.Contacts.Select(c => new {c.ContactId, c.Name, c.Email, c.City}).ToList();
+            var userId = User.Identity.GetUserId();
+            var contacts = db.Contacts.Select(c => new {c.ContactId, c.Name, c.Email, c.City, c.UserId}).Where(c => c.UserId.Equals(userId)).ToList();
 
             // Apply filters
             if (requestModel.Search.Value != string.Empty)

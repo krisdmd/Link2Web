@@ -9,6 +9,7 @@ namespace Link2Web.Models
     public class Link
     {
         public int LinkId { get; set; }
+        public string UserId { get; set; }
 
         [Display(Name = "WebsiteUrl", ResourceType = typeof (Resources.Resources))]
         [Required(ErrorMessageResourceType = typeof(Resources.Resources),
@@ -28,6 +29,8 @@ namespace Link2Web.Models
 
         [Display(Name = "Description", ResourceType = typeof (Resources.Resources))]
         public string Description { get; set; }
+        [HiddenInput(DisplayValue = false)]
+        [ScaffoldColumn(false)]
 
         [Display(Name = "CreatedOn", ResourceType = typeof (Resources.Resources))]
         public DateTime CreatedOn { get; set; }

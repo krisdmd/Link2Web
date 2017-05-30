@@ -1,8 +1,8 @@
 ﻿using DataTables.Mvc;
-using Link2Web.Core;
 using Link2Web.DAL;
 using Link2Web.Models;
 using Link2Web.ViewModels;
+using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Dynamic;
@@ -59,12 +59,13 @@ namespace Link2Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProjectId,LinkId,WebsiteUrl,AnchorText,DestinationUrl,Description,CreatedOn")] Link link)
+        public ActionResult Create(
+            [Bind(Include = "ProjectId,LinkId,UserId,WebsiteUrl,AnchorText,DestinationUrl,Description,CreatedOn")] Link
+                link)
         {
             if (ModelState.IsValid)
             {
-
-                link.BacklinkFound = MyFunctions.CheckUrlExists("url", "anchor");
+                //link.BacklinkFound = MyFunctions.CheckUrlExists("url", "anchor");
 
 
                 db.Links.Add(link);
@@ -97,7 +98,8 @@ namespace Link2Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProjectId,LinkId,WebsiteUrl,AnchorText,DestinationUrl,Description,CreatedOn")] Link link)
+        public ActionResult Edit(
+            [Bind(Include = "ProjectId,LinkId,WebsiteUrl,AnchorText,DestinationUrl,Description,CreatedOn")] Link link)
         {
             if (ModelState.IsValid)
             {
@@ -135,17 +137,24 @@ namespace Link2Web.Controllers
             return RedirectToAction("Index");
         }
 
-        public JsonResult GetLinks([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
+        public JsonResult GetLinks([ModelBinder(typeof (DataTablesBinder))] IDataTablesRequest requestModel)
         {
-            var links = db.Links.Select(l => new { l.AnchorText, l.WebsiteUrl, l.Description }).ToList();
+            var userId = User.Identity.GetUserId();
+            var links =
+                db.Links.Select(l => new {l.AnchorText, l.WebsiteUrl, l.Description, l.UserId})
+                    .Where(l => l.UserId.Equals(userId))
+                    .ToList();
 
             // Apply filters
             if (requestModel.Search.Value != string.Empty)
             {
                 var value = requestModel.Search.Value.Trim();
 
-                links = links.Where(l => l.AnchorText.Contains(value) || l.WebsiteUrl.Contains(value) || l.Description.Contains(value)).ToList();
-
+                links =
+                    links.Where(
+                        l =>
+                            l.AnchorText.Contains(value) || l.WebsiteUrl.Contains(value) ||
+                            l.Description.Contains(value)).ToList();
             }
 
             var filteredCount = links.Count();
@@ -157,7 +166,8 @@ namespace Link2Web.Controllers
             foreach (var column in sortedColumns)
             {
                 orderByString += orderByString != string.Empty ? "," : "";
-                orderByString += (column.Data == "WebsiteUrl" ? "WebsiteUrl" : column.Data) + (column.SortDirection == Column.OrderDirection.Ascendant ? " asc" : " desc");
+                orderByString += (column.Data == "WebsiteUrl" ? "WebsiteUrl" : column.Data) +
+                                 (column.SortDirection == Column.OrderDirection.Ascendant ? " asc" : " desc");
             }
 
             links = links.OrderBy(orderByString == string.Empty ? "WebsiteUrl asc" : orderByString).ToList();
@@ -166,9 +176,8 @@ namespace Link2Web.Controllers
             links = links.Skip(requestModel.Start).Take(requestModel.Length).ToList();
 
 
-
-            return Json(new DataTablesResponse(requestModel.Draw, links, filteredCount, links.Count), JsonRequestBehavior.AllowGet);
-
+            return Json(new DataTablesResponse(requestModel.Draw, links, filteredCount, links.Count),
+                JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

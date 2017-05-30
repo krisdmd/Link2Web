@@ -11,7 +11,7 @@ namespace Link2Web.Models
         [Display(Name = "Country", ResourceType = typeof (Resources.Resources))]
         public int CountryId { get; set; }
 
-        public ApplicationUser UserId { get; set; }
+        public string UserId { get; set; }
 
         [Display(Name = "Name", ResourceType = typeof (Resources.Resources))]
         [Required(ErrorMessageResourceType = typeof(Resources.Resources),

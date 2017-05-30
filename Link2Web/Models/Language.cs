@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Link2Web.Models
@@ -21,7 +20,5 @@ namespace Link2Web.Models
         [DefaultValue(false)]
         [Display(Name = "Default", ResourceType = typeof(Resources.Resources))]
         public bool Default { get; set; }
-
-        public ICollection<Project> Projects { get; set; }
     }
 }
