@@ -113,8 +113,8 @@ namespace Link2Web.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Contact contact = db.Contacts.Find(id);
-            db.Contacts.Remove(contact);
-            db.SaveChanges();
+            //db.Contacts.Remove(contact);
+            //db.SaveChanges();
             return RedirectToAction("Index");
         }
 

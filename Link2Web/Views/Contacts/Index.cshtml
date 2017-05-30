@@ -5,13 +5,6 @@
 }
 
 
-@using (Html.BeginForm(null, null, FormMethod.Post, new {id = "__AjaxAntiForgeryForm"}))
-{
-    @Html.AntiForgeryToken()
-
-
-
-
 <div id="main">
     <h2>Contacts</h2>
 
@@ -19,99 +12,112 @@
         @Html.ActionLink("Add contact", "Create")
     </p>
 
-    @section scripts
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
     {
-        @Styles.Render("~/Content/datatables")
-        @Scripts.Render("~/bundles/datatables")
+        @Html.AntiForgeryToken()
 
-        <script>
-            $(function() {
+        @section scripts {
+            @Styles.Render("~/Content/datatables")
+            @Scripts.Render("~/bundles/datatables")
 
-                $('#datatable').DataTable({
-                    "serverSide": true,
-                    "processing": true,
-                    "ajax": "@Url.Action("GetContacts", "Contacts", null, Request.Url.Scheme)",
-                    "columns": [
-                        {
-                            data: 'Name'
-                        },
-                        {
-                            data: 'Email'
-                        },
-                        {
-                            data: 'City'
-                        },
-                        {
-                            "title": "Edit",
-                            "data": "ContactId",
-                            "searchable": false,
-                            "sortable": false,
-                            "render": function(data, type, full, meta) {
-                                return '<a class="lnk-space" href="@Url.Action("Edit", "Contacts")?id=' + data + '"><span class="glyphicon glyphicon-edit"></span> Edit</a>' +
-                                    ' <a href="#" class="lnk-space" data-id="' + data + '" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-remove"></span> Delete</a>';
+            <script>
+                $(function() {
+
+                    $('#datatable').DataTable({
+                        "serverSide": true,
+                        "processing": true,
+                        "ajax": "@Url.Action("GetContacts", "Contacts", null, Request.Url.Scheme)",
+                        "columns": [
+                            {
+                                data: 'Name'
+                            },
+                            {
+                                data: 'Email'
+                            },
+                            {
+                                data: 'City'
+                            },
+                            {
+                                "title": "Edit",
+                                "data": "ContactId",
+                                "searchable": false,
+                                "sortable": false,
+                                "render": function(data, type, full, meta) {
+                                    return '<a class="lnk-space" href="@Url.Action("Edit", "Contacts")?id=' + data + '"><span class="glyphicon glyphicon-edit"></span> Edit</a>' +
+                                        ' <a href="#" class="lnk-space" data-id="' + data + '" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-remove"></span> Delete</a>';
+                                }
                             }
+                        ]
+                    });
+
+
+                    $('#btnConfirmDelete').click(function() {
+                        var id = $('#id').val();
+                        var token = $("input[name=__RequestVerificationToken]").val();
+                        var headers = {};
+                        headers["__RequestVerificationToken"] = token;
+                        var data = {};
+                        data["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val();
+                        data["id"] = id;
+                        if (id != '') {
+                            $.ajax({
+                                url: '/Contacts/Delete',
+                                type: 'POST',
+                                cache: false,
+                                headers: headers,
+                                dataType: 'html',
+                                data: data,
+                                success: function(data) {
+
+                                    //now re-using the boostrap modal popup to show success message.
+                                    //dynamically we will change background colour
+                                    if ($('.modal-header').hasClass('alert-danger')) {
+                                        $('.modal-header').removeClass('alert-danger').addClass('alert-success');
+                                        $('#btnConfirmDelete').hide();
+                                        $('#btnCancel').hide();
+                                        $('#btnClose').show();
+                                        //hide ok button as it is not necessary
+                                        $('.delete-confirm').css('display', 'none');
+                                        $('.success-message').html('').html('The contact has been successfully removed.');
+                                    }
+                                },
+                                error: function(err) {
+                                    alert(err);
+                                    if (!$('.modal-header').hasClass('alert-danger')) {
+                                        $('.modal-header').removeClass('alert-success').addClass('alert-danger');
+                                        $('.delete-confirm').css('display', 'none');
+                                    }
+                                    $('.success-message').html(err.statusText);
+                                }
+                            });
                         }
-                    ]
+                    });
+
+                    $('#btnClose').click(function () {
+                        $('#myModal').modal('toggle');
+                    });
+
+                    $('#myModal').on('show.bs.modal', function(e) {
+                        var id = $(e.relatedTarget).data('id');
+                        $('#id').val(id);
+                        $('#btnCancel').show();
+                        $('#btnConfirmDelete').show();
+                        $('#btnClose').hide();
+                    });
+
+
+                    //function to reset bootstrap modal popups
+                    $("#myModal").on("hidden.bs.modal", function() {
+                        $(".modal-header").removeClass(' ').addClass('alert-danger');
+                        $('.delete-confirm').css('display', 'inline-block');
+                        $('.success-message').html('').html('Are you sure you want to delete this contact ?');
+                    });
+
                 });
 
-
-                $('#btnConfirmDelete').click(function() {
-                    var id = $(this).data('id');
-                    var token = $("input[name=__RequestVerificationToken]").val();
-                    var headers = {};
-                    headers["__RequestVerificationToken"] = token;
-
-                    alert(id);
-
-                    if (id != '') {
-                        $.ajax({
-                            url: '/Contacts/Delete',
-                            contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-                            type: 'POST',
-                            cache: false,
-                            headers: headers,
-                            dataType: dataType,
-                            data: { id: id
-                    },
-                    success: function(data) {
-                        alert(data);
-                        if (data) {
-                            alert(data);
-                            //now re-using the boostrap modal popup to show success message.
-                            //dynamically we will change background colour
-                            if ($('.modal-header').hasClass('alert-danger')) {
-                                $('.modal-header').removeClass('alert-danger').addClass('alert-success');
-                                //hide ok button as it is not necessary
-                                $('.delete-confirm').css('display', 'none');
-                            }
-                            $('.success-message').html('Contact deleted successfully');
-                        }
-                    },
-                    error: function (err) {
-                        alert(err);
-                        if (!$('.modal-header').hasClass('alert-danger')) {
-                            $('.modal-header').removeClass('alert-success').addClass('alert-danger');
-                            $('.delete-confirm').css('display', 'none');
-                        }
-                        $('.success-message').html(err.statusText);
-                    }
-                });
-            }
-            });
-
-            //function to reset bootstrap modal popups
-            $("#myModal").on("hidden.bs.modal", function() {
-                $(".modal-header").removeClass(' ').addClass('alert-danger');
-                $('.delete-confirm').css('display', 'inline-block');
-                $('.success-message').html('').html('Are you sure you want to delete this contact ?');
-            });
-
-            //end of the docuement ready function
-            });
-
-        </script>
+            </script>
+        }
     }
-
 
     <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
@@ -132,9 +138,8 @@
         </tfoot>
     </table>
 
-</div>
 
-<!-- Bootstrap modal popup -->
+    <!-- Bootstrap modal popup -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -148,14 +153,13 @@
                     <p class="success-message">Are you sure you want to delete this contact? </p>
                 </div>
                 <div class="modal-footer">
+                    <input type="hidden" id="id" />
                     <button class="btn btn-primary" id="btnConfirmDelete">Ok</button>
-                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-default" id="btnCancel" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" id="btnClose">Close</button>
                 </div>
             </div>
         </div>
     </div>
-
-}
-
-
+</div>
 <!-- End of the boostrap modal popup -->
