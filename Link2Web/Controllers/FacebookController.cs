@@ -45,7 +45,7 @@ namespace Link2Web.Controllers
             return View(vm);
         }
 
-        public ActionResult Connect()
+        public void Connect()
         {
             Session["LastController"] = "Facebook";
             Session["LastAction"] = "FacebookCallback";
@@ -53,7 +53,6 @@ namespace Link2Web.Controllers
             var fbData = new FacebookData();
 
             fbData.FacebookOAuth();
-            return View();
         }
     }
 }

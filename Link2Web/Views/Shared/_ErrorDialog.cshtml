@@ -1,0 +1,26 @@
+﻿@model Link2Web.Models.Error
+
+
+<!-- Bootstrap modal popup -->
+<div class="modal fade" id="myErrorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header alert alert-danger">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">@Model.Title</h4>
+            </div>
+            <div class="modal-body">
+                <p class="success-message">
+                    @Model.Message
+                </p>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="id"/>
+                <button class="btn btn-primary" id="btnErrorModelOk">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of the boostrap modal popup -->

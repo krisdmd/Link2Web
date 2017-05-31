@@ -2,6 +2,7 @@
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Link2Web.DAL;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -61,8 +62,17 @@ namespace Link2Web.Helpers
                 });
                 return service;
             }
-            catch
+            catch(Exception e)
             {
+                //Load error modal dialog
+//                var error = new Error
+//                {
+//                    Message = e.Message,
+//                    Title = "Fout",
+//                    IsError = true
+//                };
+//
+//                HttpContext.Current.Session["Error"] = error;
                 return null;
             }
         }

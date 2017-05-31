@@ -1,5 +1,6 @@
 ﻿@using System.Security.Policy
 @using Link2Web.Helpers
+@using Link2Web.Models
 <!DOCTYPE html>
 <html lang="@CultureHelper.GetCurrentNeutralCulture()">
 <head>
@@ -18,6 +19,7 @@
     @RenderSection("AdditionalResources", false)
 </head>
 <body class="nav-md">
+
 <div class="container body">
     <div class="main_container">
         <div class="col-md-3 left_col">
@@ -54,15 +56,14 @@
         <!-- top navigation -->
         @Html.Partial("_TopNavigation")
         <!-- /top navigation -->
-
         <!-- page content -->
         <div class="right_col" role="main">
-            
+
             @RenderBody()
         </div>
 
     </div>
-+
+    +
     <!-- /page content -->
     <!-- footer content -->
     <footer>
@@ -75,10 +76,26 @@
 </div>
 
 
-@Scripts.Render("~/bundles/bootstrap")
-@Scripts.Render("~/bundles/theme")
-@Scripts.Render("~/bundles/jqueryval")
-    
+@if (Session["Error"] != null && ((Error)Session["Error"]).IsError)
+{
+
+    @Html.Partial("_ErrorDialog", (Error)ViewBag.Error)
+
+    <script>
+        $(function() {
+            $('#myErrorModal').modal('show');
+            $('#btnErrorModelOk').click(function() {
+                $('#myErrorModal').modal('toggle');
+            });
+
+        });
+    </script>
+}
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/theme")
+    @Scripts.Render("~/bundles/jqueryval")
+
     @if (GlobalSettings.HideCreateProjectDialog == false)
     {
         @Scripts.Render("~/bundles/link2web")
@@ -87,6 +104,7 @@
 
     @Scripts.Render("~/bundles/datatables")
 
-@RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false)
+
 </body>
 </html>

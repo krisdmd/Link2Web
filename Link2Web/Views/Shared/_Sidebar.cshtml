@@ -47,37 +47,44 @@
                 <a><i class="fa fa-facebook"></i> Social <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li>
-                        @Html.ActionLink("Facebook", "Index", "Facebook", new { Area = "" }, null)
+                        @Html.ActionLink("Facebook", "Index", "Facebook", new {Area = ""}, null)
                     </li>
                 </ul>
+            </li>
+
+@if (this.User.IsInRole("Admin"))
+{
+    <li>
+        <a><i class="fa fa-lock"></i> Admin <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+            <li>
+                @Html.ActionLink("Currencies", "Index", "Currencies", new {Area = "Admin"}, new {})
             </li>
             <li>
-                <a><i class="fa fa-lock"></i> Admin <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li>
-                        @Html.ActionLink("Currencies", "Index", "Currencies", new { Area = "Admin" }, new { })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Countries", "Index", "Countries", new { Area = "Admin" }, new { })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Languages", "Index", "Languages", new { Area = "Admin" }, new { })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Link status", "Index", "LinkStatus", new {Area = "Admin"}, new {})
-
-                    </li>
-                    <li>
-                        @Html.ActionLink("Link Types", "Index", "LinkTypes", new { Area = "Admin" }, new { })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Settings", "Index", "Settings", new { Area = "Admin" }, new { })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Setting types", "Index", "SettingTypes", new { Area = "Admin" }, new { })
-                    </li>
-                </ul>
+                @Html.ActionLink("Countries", "Index", "Countries", new {Area = "Admin"}, new {})
             </li>
+            <li>
+                @Html.ActionLink("Languages", "Index", "Languages", new {Area = "Admin"}, new {})
+            </li>
+            <li>
+                @Html.ActionLink("Link status", "Index", "LinkStatus", new {Area = "Admin"}, new {})
+
+            </li>
+            <li>
+                @Html.ActionLink("Link Types", "Index", "LinkTypes", new {Area = "Admin"}, new {})
+            </li>
+            <li>
+                @Html.ActionLink("Settings", "Index", "Settings", new {Area = "Admin"}, new {})
+            </li>
+            <li>
+                @Html.ActionLink("Setting types", "Index", "SettingTypes", new {Area = "Admin"}, new {})
+            </li>
+            <li>
+                <a href="@Url.Content("~/elmah.axd")" target="_blank">Error logging</a>
+            </li>
+        </ul>
+    </li>
+}
         </ul>
     </div>
 </div>
