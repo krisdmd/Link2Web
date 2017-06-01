@@ -18,8 +18,8 @@ namespace Link2Web.BLL
                 var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
                 uriBuilder.Query = null;
                 uriBuilder.Fragment = null;
-                uriBuilder.Path = urlHelper.Action(HttpContext.Current.Session["LastAction"].ToString(),
-                    HttpContext.Current.Session["LastController"].ToString());
+                uriBuilder.Path = urlHelper.Action(HttpContext.Current.Session["FbCallbackAction"].ToString(),
+                    HttpContext.Current.Session["FbCallbackController"].ToString());
                 return uriBuilder.Uri;
             }
         }

@@ -4,7 +4,31 @@
     ViewBag.Title = "Index";
 }
 
-<span id="main">
+
+@if (@Model.FacebookPosts == null){
+    @section scripts {
+        <script>
+            $(function() {
+
+                $('#myModal').modal('show');
+
+                $('#btnConnect').click(function () {
+
+                    $(location).attr('href', '/Facebook/Connect/');
+
+                });
+
+                    $('#btnCancel').click(function() {
+                        $('#myModal').modal('toggle');
+                    });
+            });
+
+        </script>
+    }
+}
+
+
+<div id="main">
     <h2>Facebook Page Posts</h2>
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -19,33 +43,58 @@
             </div>
             <div class="x_content">
                 <ul class="list-unstyled timeline">
-
-                    @foreach (var p in Model.FacebookPosts)
+                    @if (@Model.FacebookPosts != null)
                     {
-                        <li>
-                            <div class="block">
-                                <div class="tags">
-                                    <a href="" class="tag">
-                                        <span>@p.Createdtime.ToString("dd/MM/yyyy")</span>
-                                    </a>
-                                </div>
-                                <div class="block_content">
-                                    <h2 class="title">
-                                        @p.Name
-                                </h2>
-                                <div class="byline">
-                                    <span>@p.Description </span>
-                                </div>
-                                <p class="excerpt">
-                                    <a href="@p.PermalinkUrl">@p.PermalinkUrl</a>
-                                </p>
-                            </div>
-                        </div>
-                    </li>
+                         foreach (var p in Model.FacebookPosts)
+                         {
+                             <li>
+                                 <div class="block">
+                                     <div class="tags">
+                                         <a href="" class="tag">
+                                             <span>@p.Createdtime.ToString("dd/MM/yyyy")</span>
+                                         </a>
+                                     </div>
+                                     <div class="block_content">
+                                         <h2 class="title">
+                                             @p.Name
+                                         </h2>
+                                         <div class="byline">
+                                             <span>@p.Description </span>
+                                         </div>
+                                         <p class="excerpt">
+                                             <a href="@p.PermalinkUrl">@p.PermalinkUrl</a>
+                                         </p>
+                                     </div>
+                                 </div>
+                             </li>
+                         }
                     }
                 </ul>
 
             </div>
         </div>
     </div>
-</span>
+</div>
+
+<!-- Bootstrap modal popup -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header alert alert-danger">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Connect to Facebook</h4>
+            </div>
+            <div class="modal-body">
+                <p class="success-message">Are you sure you want to connect to Facebook? </p>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="id"/>
+                <button class="btn btn-primary" id="btnConnect">Ok</button>
+                <button class="btn btn-default" id="btnCancel" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of the boostrap modal popup -->

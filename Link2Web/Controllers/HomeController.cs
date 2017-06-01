@@ -1,4 +1,6 @@
-﻿using Link2Web.Helpers;
+﻿using Link2Web.BLL;
+using Link2Web.Helpers;
+using Link2Web.ViewModels;
 using System;
 using System.Web;
 using System.Web.Mvc;
@@ -9,21 +11,16 @@ namespace Link2Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }
+            var vm = new HomeViewModel();
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
+            if (Session["fbInit"] != null)
+            {
+                var fbData = new FacebookData();
+                vm.FacebookPosts = fbData.GetFacebookPosts("").GetRange(0,5);
+            }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(vm);
         }
 
         public ActionResult SetCulture(string culture)
@@ -49,6 +46,29 @@ namespace Link2Web.Controllers
         public JsonResult KeepSessionAlive()
         {
             return new JsonResult { Data = "Success" };
+        }
+
+        // GET: Facebook
+        public ActionResult CallBack(string code)
+        {
+            Session["LastController"] = "Home";
+            Session["LastAction"] = "Index";
+            Session["fbInit"] = true;
+
+            var fbData = new FacebookData();
+            fbData.GetFacebookPosts(code);
+
+            return RedirectToAction("Index");
+        }
+
+        public void Connect()
+        {
+            Session["FbCallbackAction"] = "Callback";
+            Session["FbCallbackController"] = "Home";
+
+            var fbData = new FacebookData();
+
+            fbData.FacebookOAuth();
         }
 
     }
