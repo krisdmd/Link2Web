@@ -1,4 +1,4 @@
-﻿using Link2Web.Models;
+﻿using Link2Web.DAL.Entities;
 using System;
 using System.Collections.Generic;
 
@@ -6,7 +6,7 @@ namespace Link2Web.DAL.Repositories
 {
     public interface ICurrencyRepository: IDisposable
     {
-        IEnumerable<Currency> GetCurrencies();
+        List<Currency> GetCurrencies();
         Currency GetCurrencyById(int id);
         void InsertCurrency(Currency currency);
         void DeleteCurrency(int id);

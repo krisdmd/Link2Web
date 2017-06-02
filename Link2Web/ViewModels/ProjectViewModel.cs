@@ -37,7 +37,7 @@ namespace Link2Web.ViewModels
         public int LanguageId { get; set; }
 
         public virtual Country Country { get; set; }
-        public virtual Currency Currency { get; set; }
+        //public virtual CurrencyModel CurrencyModel { get; set; }
         public virtual Language Language { get; set; }
         public virtual Link Link { get; set; }
     }

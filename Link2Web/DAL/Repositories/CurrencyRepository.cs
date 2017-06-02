@@ -1,4 +1,4 @@
-﻿using Link2Web.Models;
+﻿using Link2Web.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -32,7 +32,7 @@ namespace Link2Web.DAL.Repositories
             GC.SuppressFinalize(this);
         }
 
-        public IEnumerable<Currency> GetCurrencies()
+        public List<Currency> GetCurrencies()
         {
             return _context.Currencies.ToList();
         }

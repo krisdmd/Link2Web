@@ -319,6 +319,7 @@
     <Compile Include="Areas\Admin\Controllers\LinkTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingTypesController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\CurrencyViewModel.cs" />
     <Compile Include="BLL\FacebookData.cs" />
     <Compile Include="BLL\GoogleAnalytics.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -373,6 +374,10 @@
     <Compile Include="DAL\Migrations\201705301412118_links2.cs" />
     <Compile Include="DAL\Migrations\201705301412118_links2.Designer.cs">
       <DependentUpon>201705301412118_links2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201706021220347_currencyEntity.cs" />
+    <Compile Include="DAL\Migrations\201706021220347_currencyEntity.Designer.cs">
+      <DependentUpon>201706021220347_currencyEntity.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\Repositories\CurrencyRepository.cs" />
     <Compile Include="DAL\Repositories\ProjectRepository.cs" />
@@ -459,13 +464,13 @@
     <Compile Include="Models\AnalyticsData.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\CrawledLinkStatus.cs" />
+    <Compile Include="Areas\Admin\Models\CurrencyModel.cs" />
     <Compile Include="Models\EditProfileViewModel.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\FacebookPost.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Country.cs" />
-    <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\Mail.cs" />
     <Compile Include="ViewModels\FacebookViewModel.cs" />
     <Compile Include="Models\Link.cs" />
@@ -1095,7 +1100,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\clientsecret.json\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Home\" />
     <Folder Include="bin\" />
     <Folder Include="Views\SiteAuditor\" />
@@ -1167,6 +1171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201705301412118_links2.resx">
       <DependentUpon>201705301412118_links2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201706021220347_currencyEntity.resx">
+      <DependentUpon>201706021220347_currencyEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

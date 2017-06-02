@@ -21,7 +21,7 @@ namespace Link2Web.DAL
         public IDbSet<Models.SettingType> SettingTypes { get; set; }
         public IDbSet<Models.Contact> Contacts { get; set; }
         public IDbSet<Models.Country> Countries { get; set; }
-        public IDbSet<Models.Currency> Currencies { get; set; }
+        public IDbSet<Currency> Currencies { get; set; }
         public IDbSet<Models.Link> Links { get; set; }
         public IDbSet<Models.LinkStatus> LinkStatus { get; set; }
         public IDbSet<Models.LinkType> LinkTypes { get; set; }

@@ -12,7 +12,7 @@ namespace Link2Web.DAL.Entities
 
         public string UserId { get; set; }
 
-        [ForeignKey("Projects")]
+        [ForeignKey("Project")]
         public int ProjectId { get; set; }
 
         public Models.Project Project { get; set; }

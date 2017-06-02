@@ -66,7 +66,7 @@ namespace Link2Web.Models
         public bool Visible { get; set; }
 
         public virtual Country Country { get; set; }
-        public virtual Currency Currency { get; set; }
+        //public virtual CurrencyModel CurrencyModel { get; set; }
 
         public virtual Language Language { get; set; }
         public virtual Link Link { get; set; }
