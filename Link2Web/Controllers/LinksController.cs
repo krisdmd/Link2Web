@@ -86,7 +86,7 @@ namespace Link2Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Link link = db.Links.Find(id);
+            var link = db.Links.Find(id);
             if (link == null)
             {
                 return HttpNotFound();
@@ -140,7 +140,7 @@ namespace Link2Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Link link = db.Links.Find(id);
+            var link = db.Links.Find(id);
             db.Links.Remove(link);
             db.SaveChanges();
             return RedirectToAction("Index");

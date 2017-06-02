@@ -1,5 +1,4 @@
-﻿using Link2Web.Models;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,14 +7,15 @@ namespace Link2Web.DAL.Entities
     public class Email
     {
         [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int MailId { get; set; }
 
         public string UserId { get; set; }
 
-        [ForeignKey("Project")]
+        [ForeignKey("Projects")]
         public int ProjectId { get; set; }
 
-        public Project Project { get; set; }
+        public Models.Project Project { get; set; }
 
         public string FromEmail { get; set; }
         public string ToEmail { get; set; }

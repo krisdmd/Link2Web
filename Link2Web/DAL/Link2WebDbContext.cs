@@ -16,18 +16,18 @@ namespace Link2Web.DAL
 
         }
         
-        public IDbSet<Project> Projects { get; set; }
-        public IDbSet<Setting> Settings { get; set; }
-        public IDbSet<SettingType> SettingTypes { get; set; }
-        public IDbSet<Contact> Contacts { get; set; }
-        public IDbSet<Country> Countries { get; set; }
-        public IDbSet<Currency> Currencies { get; set; }
-        public IDbSet<Link> Links { get; set; }
-        public IDbSet<LinkStatus> LinkStatus { get; set; }
-        public IDbSet<LinkType> LinkTypes { get; set; }
-        public IDbSet<Language> Languages { get; set; }
-        public IDbSet<UserSetting> UserSettings { get; set; }
-        public IDbSet<CrawledLinkStatus> CrawledLinkStatuses { get; set; }
+        public IDbSet<Models.Project> Projects { get; set; }
+        public IDbSet<Models.Setting> Settings { get; set; }
+        public IDbSet<Models.SettingType> SettingTypes { get; set; }
+        public IDbSet<Models.Contact> Contacts { get; set; }
+        public IDbSet<Models.Country> Countries { get; set; }
+        public IDbSet<Models.Currency> Currencies { get; set; }
+        public IDbSet<Models.Link> Links { get; set; }
+        public IDbSet<Models.LinkStatus> LinkStatus { get; set; }
+        public IDbSet<Models.LinkType> LinkTypes { get; set; }
+        public IDbSet<Models.Language> Languages { get; set; }
+        public IDbSet<Models.UserSetting> UserSettings { get; set; }
+        public IDbSet<Models.CrawledLinkStatus> CrawledLinkStatuses { get; set; }
 
         public IDbSet<Email> Emails { get; set; }
         public IDbSet<GoogleUser> GoogleUsers { get; set; }

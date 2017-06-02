@@ -334,8 +334,17 @@
     <Compile Include="Core\AppFlowMetadata.cs" />
     <Compile Include="DAL\EFDataStore.cs" />
     <Compile Include="Core\MyFunctions.cs" />
+    <Compile Include="DAL\Entities\Contact.cs" />
+    <Compile Include="DAL\Entities\Country.cs" />
+    <Compile Include="DAL\Entities\Currency.cs" />
     <Compile Include="DAL\Entities\GoogleUser.cs" />
     <Compile Include="DAL\Entities\Email.cs" />
+    <Compile Include="DAL\Entities\Language.cs" />
+    <Compile Include="DAL\Entities\Link.cs" />
+    <Compile Include="DAL\Entities\LinkStatus.cs" />
+    <Compile Include="DAL\Entities\LinkType.cs" />
+    <Compile Include="DAL\Entities\Project.cs" />
+    <Compile Include="DAL\Entities\Setting.cs" />
     <Compile Include="DAL\Migrations\201705230836239_EmailEntity.cs" />
     <Compile Include="DAL\Migrations\201705230836239_EmailEntity.Designer.cs">
       <DependentUpon>201705230836239_EmailEntity.cs</DependentUpon>
