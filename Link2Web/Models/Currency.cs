@@ -1,10 +1,9 @@
-﻿using Link2Web.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Link2Web.Areas.Admin.Models
+namespace Link2Web.Models
 {
-    public class CurrencyModel
+    public class Currency
     {
         public int CurrencyId { get; set; }
         [Required(ErrorMessageResourceType = typeof(Resources.Resources),

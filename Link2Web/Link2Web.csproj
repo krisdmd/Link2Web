@@ -319,7 +319,7 @@
     <Compile Include="Areas\Admin\Controllers\LinkTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingTypesController.cs" />
-    <Compile Include="Areas\Admin\ViewModels\CurrencyViewModel.cs" />
+    <Compile Include="ViewModels\CurrencyViewModel.cs" />
     <Compile Include="BLL\FacebookData.cs" />
     <Compile Include="BLL\GoogleAnalytics.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -335,17 +335,8 @@
     <Compile Include="Core\AppFlowMetadata.cs" />
     <Compile Include="DAL\EFDataStore.cs" />
     <Compile Include="Core\MyFunctions.cs" />
-    <Compile Include="DAL\Entities\Contact.cs" />
-    <Compile Include="DAL\Entities\Country.cs" />
-    <Compile Include="DAL\Entities\Currency.cs" />
     <Compile Include="DAL\Entities\GoogleUser.cs" />
     <Compile Include="DAL\Entities\Email.cs" />
-    <Compile Include="DAL\Entities\Language.cs" />
-    <Compile Include="DAL\Entities\Link.cs" />
-    <Compile Include="DAL\Entities\LinkStatus.cs" />
-    <Compile Include="DAL\Entities\LinkType.cs" />
-    <Compile Include="DAL\Entities\Project.cs" />
-    <Compile Include="DAL\Entities\Setting.cs" />
     <Compile Include="DAL\Migrations\201705230836239_EmailEntity.cs" />
     <Compile Include="DAL\Migrations\201705230836239_EmailEntity.Designer.cs">
       <DependentUpon>201705230836239_EmailEntity.cs</DependentUpon>
@@ -378,6 +369,10 @@
     <Compile Include="DAL\Migrations\201706021220347_currencyEntity.cs" />
     <Compile Include="DAL\Migrations\201706021220347_currencyEntity.Designer.cs">
       <DependentUpon>201706021220347_currencyEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201706021321201_currencies1.cs" />
+    <Compile Include="DAL\Migrations\201706021321201_currencies1.Designer.cs">
+      <DependentUpon>201706021321201_currencies1.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\Repositories\CurrencyRepository.cs" />
     <Compile Include="DAL\Repositories\ProjectRepository.cs" />
@@ -464,7 +459,7 @@
     <Compile Include="Models\AnalyticsData.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\CrawledLinkStatus.cs" />
-    <Compile Include="Areas\Admin\Models\CurrencyModel.cs" />
+    <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\EditProfileViewModel.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\FacebookPost.cs" />
@@ -879,6 +874,7 @@
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
     <Content Include="Views\Shared\_ErrorDialog.cshtml" />
+    <Content Include="Views\Home\Elmah.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1100,6 +1096,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\clientsecret.json\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\ViewModels\" />
     <Folder Include="Areas\Admin\Views\Home\" />
     <Folder Include="bin\" />
     <Folder Include="Views\SiteAuditor\" />
@@ -1174,6 +1172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201706021220347_currencyEntity.resx">
       <DependentUpon>201706021220347_currencyEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201706021321201_currencies1.resx">
+      <DependentUpon>201706021321201_currencies1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

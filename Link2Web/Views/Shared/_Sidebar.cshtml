@@ -3,7 +3,7 @@
 
         <ul class="nav side-menu">
             <li>
-                <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Home</a>
+                <a href="@Url.Action("Index", "Home",  new {Area = ""}, null)"><i class="fa fa-home"></i> Home</a>
                 <ul class="nav child_menu"></ul>
             </li>
             <li>
@@ -80,7 +80,9 @@
                 @Html.ActionLink("Setting types", "Index", "SettingTypes", new {Area = "Admin"}, new {})
             </li>
             <li>
-                <a href="@Url.Content("~/elmah.axd")" target="_blank">Error logging</a>
+                @Html.ActionLink("Error Logging", "Elmah", "Home", new { Area = "" }, null)
+
+
             </li>
         </ul>
     </li>

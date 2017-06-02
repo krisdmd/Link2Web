@@ -1,4 +1,4 @@
-﻿using Link2Web.DAL.Entities;
+﻿using Link2Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

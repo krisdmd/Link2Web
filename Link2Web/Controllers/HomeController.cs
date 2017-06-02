@@ -91,6 +91,11 @@ namespace Link2Web.Controllers
             return RedirectToAction("Index");
         }
 
+        public ViewResult Elmah()
+        {
+            return View();
+        }
+
         public void Connect()
         {
             Session["FbCallbackAction"] = "Callback";
