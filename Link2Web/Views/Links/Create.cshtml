@@ -14,10 +14,18 @@
 
         <div class="col-md-12 col-sm-12 col-xs-12 personal-info">
             <div class="form-group row">
-                @Html.LabelFor(model => model.ProjectId, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                @Html.LabelFor(model => model.ProjectId, htmlAttributes: new {@class = "control-label col-md-2 col-sm-3 col-xs-12"})
                 <div class="col-md-10 col-sm-9 col-xs-12">
-                    @Html.DropDownList("ProjectId", null, htmlAttributes: new { @class = "form-control col-md-9 col-xs-12" })
-                    @Html.ValidationMessageFor(model => model.ProjectId, "", new { @class = "text-danger" })
+                    @Html.DropDownList("ProjectId", null, htmlAttributes: new {@class = "form-control col-md-9 col-xs-12"})
+                    @Html.ValidationMessageFor(model => model.ProjectId, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                @Html.LabelFor(model => model.ContactId, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                    @Html.DropDownList("ContactId", null, htmlAttributes: new { @class = "form-control col-md-9 col-xs-12" })
+                    @Html.ValidationMessageFor(model => model.ContactId, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -46,10 +54,18 @@
             </div>
 
             <div class="form-group row">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                @Html.LabelFor(model => model.Description, htmlAttributes: new {@class = "control-label col-md-2 col-sm-3 col-xs-12"})
                 <div class="col-md-10 col-sm-9 col-xs-12">
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Description, new {htmlAttributes = new {@class = "form-control col-md-9 col-xs-12"}})
+                    @Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                @Html.LabelFor(model => model.LinkTypeId, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                    @Html.DropDownList("LinkTypeId", null, htmlAttributes: new { @class = "form-control col-md-9 col-xs-12" })
+                    @Html.ValidationMessageFor(model => model.LinkTypeId, "", new { @class = "text-danger" })
                 </div>
             </div>
 

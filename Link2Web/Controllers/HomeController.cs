@@ -11,14 +11,44 @@ namespace Link2Web.Controllers
     {
         public ActionResult Index()
         {
+            TempData["LastController"] = "Home";
+            TempData["LastAction"] = "Index";
+
             var vm = new HomeViewModel();
 
 
             if (Session["fbInit"] != null)
             {
                 var fbData = new FacebookData();
-                vm.FacebookPosts = fbData.GetFacebookPosts("").GetRange(0,5);
+                vm.FacebookPosts = fbData.GetFacebookPosts("").GetRange(0,9);
             }
+
+            if (GlobalSettings.AuthenticateOauth() == null)
+            {
+                return RedirectToAction("IndexAsync", "Analytics");
+            }
+
+            var dimensions = new[]
+{
+                "ga:date"
+            };
+
+            var metrics = new[]
+            {
+                "ga:users",
+                "ga:adClicks",
+                "ga:bounceRate",
+                "ga:pageviews",
+                "ga:organicSearches",
+                "ga:impressions",
+                "ga:percentNewSessions",
+                "ga:avgTimeOnPage"
+            };
+
+            var analyticsData = new GoogleAnalytics();
+            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics).Rows;
+
+            vm.AnalyticsData = data;
 
             return View(vm);
         }
@@ -70,6 +100,5 @@ namespace Link2Web.Controllers
 
             fbData.FacebookOAuth();
         }
-
     }
 }

@@ -6,7 +6,7 @@ namespace Link2Web.DAL.Repositories
 {
     public interface IProjectRepository: IDisposable
     {
-        IEnumerable<Project> GetProjects();
+        List<Project> GetProjects();
         Project GetProjectById(int id);
         void InsertProject(Project project);
         void DeleteProject(int id);

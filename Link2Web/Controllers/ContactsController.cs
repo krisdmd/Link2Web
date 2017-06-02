@@ -1,18 +1,23 @@
 ﻿using DataTables.Mvc;
 using Link2Web.DAL;
+using Link2Web.DAL.Repositories;
 using Link2Web.Models;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Dynamic;
-using System.Net;
 using System.Web.Mvc;
 
 namespace Link2Web.Controllers
 {
     public class ContactsController : BaseController
     {
-        private Link2WebDbContext db = new Link2WebDbContext();
+        private IContactRepository _context;
+
+        public ContactsController()
+        {
+            _context = new ContactRepository(new Link2WebDbContext());
+        }
 
         // GET: Contacts
         public ActionResult Index()
@@ -21,13 +26,9 @@ namespace Link2Web.Controllers
         }
 
         // GET: Contacts/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Contact contact = db.Contacts.Find(id);
+            Contact contact = _context.GetContactById(id);
             if (contact == null)
             {
                 return HttpNotFound();
@@ -38,7 +39,7 @@ namespace Link2Web.Controllers
         // GET: Contacts/Create
         public ActionResult Create()
         {
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
+            ViewBag.CountryId = new SelectList(_context.GetContacts(), "CountryId", "Name");
             return View();
         }
 
@@ -52,28 +53,24 @@ namespace Link2Web.Controllers
             if (ModelState.IsValid)
             {
                 contact.UserId = User.Identity.GetUserId();
-                db.Contacts.Add(contact);
-                db.SaveChanges();
+                _context.InsertContact(contact);
+                _context.Save();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", contact.CountryId);
+            ViewBag.CountryId = new SelectList(_context.GetContacts(), "CountryId", "Name", contact.CountryId);
             return View(contact);
         }
 
         // GET: Contacts/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Contact contact = db.Contacts.Find(id);
+            Contact contact = _context.GetContactById(id);
             if (contact == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", contact.CountryId);
+            ViewBag.CountryId = new SelectList(_context.GetContacts(), "CountryId", "Name", contact.CountryId);
             return View(contact);
         }
 
@@ -87,22 +84,18 @@ namespace Link2Web.Controllers
             if (ModelState.IsValid)
             {
                 contact.UserId = User.Identity.GetUserId();
-                db.Entry(contact).State = EntityState.Modified;
-                db.SaveChanges();
+                _context.UpdateContact(contact);
+                _context.Save();
                 return RedirectToAction("Index");
             }
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", contact.CountryId);
+            ViewBag.CountryId = new SelectList(_context.GetContacts(), "CountryId", "Name", contact.CountryId);
             return View(contact);
         }
 
         // GET: Contacts/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Contact contact = db.Contacts.Find(id);
+            Contact contact = _context.GetContactById(id);
             if (contact == null)
             {
                 return HttpNotFound();
@@ -115,16 +108,16 @@ namespace Link2Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Contact contact = db.Contacts.Find(id);
-            //db.Contacts.Remove(contact);
-            //db.SaveChanges();
+            _context.DeleteContact(id);
+            _context.Save();
             return RedirectToAction("Index");
         }
 
         public JsonResult GetContacts([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
             var userId = User.Identity.GetUserId();
-            var contacts = db.Contacts.Select(c => new {c.ContactId, c.Name, c.Email, c.City, c.UserId}).Where(c => c.UserId.Equals(userId)).ToList();
+            //.Where(c => c.UserId.Equals(userId)).
+            var contacts = _context.GetContacts().Select(c => new {c.ContactId, c.Name, c.Email, c.City, c.UserId}).ToList().FindAll(c => c.UserId.Contains(userId));
 
             // Apply filters
             if (requestModel.Search.Value != string.Empty)
@@ -160,11 +153,9 @@ namespace Link2Web.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
+            _context.Dispose();
             base.Dispose(disposing);
         }
+
     }
 }

@@ -14,7 +14,7 @@
                 <ul class="nav navbar-nav navbar-right">
 
                     <li class="">
-                        @if (!string.IsNullOrWhiteSpace(ViewData["FullName"].ToString()))
+                        @if (ViewData["FullName"] != null)
                         {
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <img src="@Url.Action("ProfilePicture", "Home" )" alt="">@ViewData["FullName"]

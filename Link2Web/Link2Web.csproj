@@ -366,9 +366,13 @@
       <DependentUpon>201705301412118_links2.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\Repositories\CurrencyRepository.cs" />
+    <Compile Include="DAL\Repositories\ProjectRepository.cs" />
+    <Compile Include="DAL\Repositories\LanguageRepository.cs" />
+    <Compile Include="DAL\Repositories\ContactRepository.cs" />
+    <Compile Include="DAL\Repositories\LinkRepository.cs" />
     <Compile Include="DAL\Repositories\CountryRepository.cs" />
     <Compile Include="DAL\DbAddOrUpdate.cs" />
-    <Compile Include="DAL\Repositories\IContactsRepository.cs" />
+    <Compile Include="DAL\Repositories\IContactRepository.cs" />
     <Compile Include="DAL\Repositories\ILinkStatusRepository.cs" />
     <Compile Include="DAL\Repositories\ISettingTypeRepository.cs" />
     <Compile Include="DAL\Repositories\IProjectRepository.cs" />

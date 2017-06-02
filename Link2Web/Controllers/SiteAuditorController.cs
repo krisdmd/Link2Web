@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Link2Web.Controllers
 {
-    public class SiteAuditorController : Controller
+    public class SiteAuditorController : BaseController
     {
         // GET: SiteAuditor
         public ActionResult Index()

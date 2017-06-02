@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace Link2Web.DAL.Repositories
 {
-    public class CurrencyRepository : ICurrencyRepository
+    public class LanguageRepository: ILanguageRepository
     {
         private Link2WebDbContext _context;
         private bool _disposed;
-        public CurrencyRepository(Link2WebDbContext context)
+        public LanguageRepository(Link2WebDbContext context)
         {
             _context = context;
         }
@@ -32,30 +32,30 @@ namespace Link2Web.DAL.Repositories
             GC.SuppressFinalize(this);
         }
 
-        public IEnumerable<Currency> GetCurrencies()
+        public IEnumerable<Language> GetLanguages()
         {
-            return _context.Currencies.ToList();
+            return _context.Languages.ToList();
         }
 
-        public Currency GetCurrencyById(int id)
+        public Language GetLanguageById(int id)
         {
-            return _context.Currencies.Find(id);
+            return _context.Languages.Find(id);
         }
 
-        public void InsertCurrency(Currency currency)
+        public void InsertLanguage(Language language)
         {
-            _context.Currencies.Add(currency);
+            _context.Languages.Add(language);
         }
 
-        public void DeleteCurrency(int id)
+        public void DeleteLanguage(int id)
         {
-            var currency = _context.Currencies.Find(id);
-            _context.Currencies.Remove(currency);
+            var language = _context.Languages.Find(id);
+            _context.Languages.Remove(language);
         }
 
-        public void UpdateCurrency(Currency currency)
+        public void UpdateLanguage(Language language)
         {
-            _context.Entry(currency).State = EntityState.Modified;
+            _context.Entry(language).State = EntityState.Modified;
         }
 
         public void Save()

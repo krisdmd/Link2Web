@@ -59,7 +59,7 @@ namespace Link2Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
-            [Bind(Include = "ProjectId,LinkId,UserId,WebsiteUrl,AnchorText,DestinationUrl,Description,CreatedOn")] Link
+            [Bind(Include = "ProjectId,LinkId,UserId,WebsiteUrl,AnchorText,DestinationUrl,Description,CreatedOn,ContactId,LinkTypeId")] Link
                 link)
         {
             if (ModelState.IsValid)
@@ -73,6 +73,9 @@ namespace Link2Web.Controllers
             }
 
             ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", link.ProjectId);
+            ViewBag.ContactId = new SelectList(db.Contacts, "ContactId", "Name", link.ContactId);
+            ViewBag.LinkTypeId = new SelectList(db.LinkTypes, "LinkTypeId", "Type", link.LinkTypeId);
+
             return View(link);
         }
 
@@ -89,6 +92,9 @@ namespace Link2Web.Controllers
                 return HttpNotFound();
             }
             ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", link.ProjectId);
+            ViewBag.ContactId = new SelectList(db.Contacts, "ContactId", "Name", link.ContactId);
+            ViewBag.LinkTypeId = new SelectList(db.LinkTypes, "LinkTypeId", "Type", link.LinkTypeId);
+
             return View(link);
         }
 
@@ -98,7 +104,7 @@ namespace Link2Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(
-            [Bind(Include = "ProjectId,LinkId,WebsiteUrl,AnchorText,DestinationUrl,Description,CreatedOn")] Link link)
+            [Bind(Include = "ProjectId,LinkId,WebsiteUrl,AnchorText,DestinationUrl,Description,CreatedOn,ContactId,LinkTypeId")] Link link)
         {
             if (ModelState.IsValid)
             {
@@ -108,6 +114,9 @@ namespace Link2Web.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", link.ProjectId);
+            ViewBag.ContactId = new SelectList(db.Contacts, "ContactId", "Name", link.ContactId);
+            ViewBag.LinkTypeId = new SelectList(db.LinkTypes, "LinkTypeId", "Type", link.LinkTypeId);
+
             return View(link);
         }
 
@@ -141,7 +150,7 @@ namespace Link2Web.Controllers
         {
             var userId = User.Identity.GetUserId();
             var links =
-                db.Links.Select(l => new {l.LinkId, l.AnchorText, l.WebsiteUrl, l.Description, l.UserId})
+                db.Links.Select(l => new {l.LinkId, l.AnchorText, l.WebsiteUrl, l.Description, l.UserId, l.LinkTypeId, l.ContactId})
                     .Where(l => l.UserId.Equals(userId))
                     .ToList();
 

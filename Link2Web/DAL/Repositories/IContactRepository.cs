@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace Link2Web.DAL.Repositories
 {
-    public interface IContactsRepository: IDisposable
+    public interface IContactRepository: IDisposable
     {
-        IEnumerable<Contact> GetContacts();
+        List<Contact> GetContacts();
         Contact GetContactById(int id);
         void InsertContact(Contact contact);
         void DeleteContact(int id);
