@@ -1,5 +1,6 @@
 ﻿using DataTables.Mvc;
 using Link2Web.DAL;
+using Link2Web.DAL.Repositories;
 using Link2Web.Models;
 using Link2Web.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -15,9 +16,13 @@ namespace Link2Web.Controllers
     public class LinksController : BaseController
     {
         private Link2WebDbContext db = new Link2WebDbContext();
+        private ILinkRepository _context;
+
 
         public LinksController()
         {
+            _context = new LinkRepository(new Link2WebDbContext());
+
             Mail.Host = "smtp.gmail.com";
             Mail.Username = "ivolink2web@gmail.com";
             Mail.Password = "#IVO#2017";
@@ -28,17 +33,14 @@ namespace Link2Web.Controllers
         // GET: Links
         public ActionResult Index()
         {
-            return View();
+            return View(_context.GetLinks());
         }
 
         // GET: Links/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Link link = db.Links.Find(id);
+            Link link = _context.GetLinkById(id);
+
             if (link == null)
             {
                 return HttpNotFound();
@@ -50,6 +52,9 @@ namespace Link2Web.Controllers
         public ActionResult Create()
         {
             ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
+            ViewBag.ContactId = new SelectList(db.Contacts, "ContactId", "Name");
+            ViewBag.LinkTypeId = new SelectList(db.LinkTypes, "LinkTypeId", "Type");
+
             return View();
         }
 
@@ -71,10 +76,6 @@ namespace Link2Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", link.ProjectId);
-            ViewBag.ContactId = new SelectList(db.Contacts, "ContactId", "Name", link.ContactId);
-            ViewBag.LinkTypeId = new SelectList(db.LinkTypes, "LinkTypeId", "Type", link.LinkTypeId);
 
             return View(link);
         }

@@ -323,6 +323,10 @@
     <Compile Include="DAL\Migrations\201706031815453_updating-db1.Designer.cs">
       <DependentUpon>201706031815453_updating-db1.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Migrations\201706032156299_updating-db2.cs" />
+    <Compile Include="DAL\Migrations\201706032156299_updating-db2.Designer.cs">
+      <DependentUpon>201706032156299_updating-db2.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\CurrencyViewModel.cs" />
     <Compile Include="BLL\FacebookData.cs" />
     <Compile Include="BLL\GoogleAnalytics.cs" />
@@ -1181,6 +1185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201706031815453_updating-db1.resx">
       <DependentUpon>201706031815453_updating-db1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201706032156299_updating-db2.resx">
+      <DependentUpon>201706032156299_updating-db2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

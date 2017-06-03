@@ -13,16 +13,18 @@ namespace Link2Web.Controllers
     public class ContactsController : BaseController
     {
         private IContactRepository _context;
+        private ICountryRepository _countriesContext;
 
         public ContactsController()
         {
             _context = new ContactRepository(new Link2WebDbContext());
+            _countriesContext = new CountryRepository(new Link2WebDbContext());
         }
 
         // GET: Contacts
         public ActionResult Index()
         {
-            return View();
+            return View(_context.GetContacts());
         }
 
         // GET: Contacts/Details/5
@@ -39,7 +41,7 @@ namespace Link2Web.Controllers
         // GET: Contacts/Create
         public ActionResult Create()
         {
-            ViewBag.CountryId = new SelectList(_context.GetContacts(), "CountryId", "Name");
+            ViewBag.CountryId = new SelectList(_countriesContext.GetCountries(), "CountryId", "Name");
             return View();
         }
 
@@ -58,7 +60,7 @@ namespace Link2Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CountryId = new SelectList(_context.GetContacts(), "CountryId", "Name", contact.CountryId);
+            ViewBag.CountryId = new SelectList(_countriesContext.GetCountries(), "CountryId", "Name", contact.CountryId);
             return View(contact);
         }
 
@@ -70,7 +72,7 @@ namespace Link2Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CountryId = new SelectList(_context.GetContacts(), "CountryId", "Name", contact.CountryId);
+            ViewBag.CountryId = new SelectList(_countriesContext.GetCountries(), "CountryId", "Name", contact.CountryId);
             return View(contact);
         }
 
@@ -88,7 +90,7 @@ namespace Link2Web.Controllers
                 _context.Save();
                 return RedirectToAction("Index");
             }
-            ViewBag.CountryId = new SelectList(_context.GetContacts(), "CountryId", "Name", contact.CountryId);
+            ViewBag.CountryId = new SelectList(_countriesContext.GetCountries(), "CountryId", "Name", contact.CountryId);
             return View(contact);
         }
 

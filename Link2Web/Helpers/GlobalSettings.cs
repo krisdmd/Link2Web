@@ -101,5 +101,23 @@ namespace Link2Web.Helpers
             Init = false;
         }
 
+        public static void ChangeProject()
+        {
+            HttpContext.Current.Session.Remove("fbInit");
+            HttpContext.Current.Session.Remove("FbCallbackAction");
+            HttpContext.Current.Session.Remove("FbCallbackController");
+        }
+
+        public static void ResetProject()
+        {
+            HttpContext.Current.Session.Remove("AccessToken");
+            HttpContext.Current.Session.Remove("ViewProjectId");
+            HttpContext.Current.Session.Remove("LastController");
+            HttpContext.Current.Session.Remove("LastAction");
+            HttpContext.Current.Session.Remove("fbInit");
+            HttpContext.Current.Session.Remove("FbCallbackAction");
+            HttpContext.Current.Session.Remove("FbCallbackController");
+        }
+
     }
 }

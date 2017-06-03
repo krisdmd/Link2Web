@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Link2Web.Models
 {
@@ -50,7 +51,7 @@ namespace Link2Web.Models
         [DefaultValue(true)]
         public bool Active { get; set; }
 
-        public virtual Country Country { get; set; }
-        public virtual Link Links { get; set; }
+        [ForeignKey("UserId")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }
