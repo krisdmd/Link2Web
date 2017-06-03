@@ -1,4 +1,4 @@
-﻿using Link2Web.Models;
+﻿using Link2Web.Areas.Admin.Models;
 using System;
 using System.Collections.Generic;
 

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Link2Web.Models
 {
@@ -18,7 +17,5 @@ namespace Link2Web.Models
             ErrorMessageResourceName = "IsRequired")]
         [Display(Name = "Symbol", ResourceType = typeof(Resources.Resources))]
         public string Symbol { get; set; }
-
-        public virtual ICollection<Project> Projects { get; set; }
     }
 }

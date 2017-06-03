@@ -1,10 +1,10 @@
-﻿using Link2Web.DAL;
-using Link2Web.Models;
+﻿using Link2Web.Areas.Admin.Models;
+using Link2Web.Controllers;
+using Link2Web.DAL;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using Link2Web.Controllers;
 
 namespace Link2Web.Areas.Admin.Controllers
 {

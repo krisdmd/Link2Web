@@ -77,7 +77,7 @@ namespace Link2Web.Controllers
 
                 System.Web.HttpContext.Current.Session["ViewProjectId"] = project.ViewProfileId;
 
-                dbAddorUpdate.AddOrUpdateUserSetting(db, userSettings);
+                dbAddorUpdate.AddOrUpdateUserSetting(db, userSettings, User.Identity.GetUserId());
 
                 return RedirectToAction("Index");
             }
@@ -129,7 +129,7 @@ namespace Link2Web.Controllers
                 };
 
                 System.Web.HttpContext.Current.Session["ViewProjectId"] = project.ViewProfileId;
-                dbAddorUpdate.AddOrUpdateUserSetting(db, userSettings);
+                dbAddorUpdate.AddOrUpdateUserSetting(db, userSettings, User.Identity.GetUserId());
 
                 return RedirectToAction("Index");
             }
@@ -197,7 +197,7 @@ namespace Link2Web.Controllers
             System.Web.HttpContext.Current.Session["ViewProjectId"] = project.ViewProfileId;
 
 
-            dbAddorUpdate.AddOrUpdateUserSetting(db, userSettings);
+            dbAddorUpdate.AddOrUpdateUserSetting(db, userSettings, User.Identity.GetUserId());
 
             return RedirectToAction("Index");
         }

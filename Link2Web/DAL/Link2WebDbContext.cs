@@ -1,4 +1,5 @@
-﻿using Link2Web.DAL.Entities;
+﻿using Link2Web.Areas.Admin.Models;
+using Link2Web.DAL.Entities;
 using Link2Web.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;

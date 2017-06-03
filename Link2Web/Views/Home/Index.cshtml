@@ -1,77 +1,86 @@
-﻿@using Link2Web.Models
+﻿@model Link2Web.ViewModels.HomeViewModel
+
+
 @{
     ViewBag.Title = "Link2Web Dashboard";
 }
 
 
 @section scripts {
-
-    @if (@Model.FacebookPosts == null)
-    {
         <script>
             $(function() {
-                $('#btnConnect').click(function() {
+                $('#btnFacebookConnect').click(function() {
 
                     $(location).attr('href', '/Home/Connect/');
 
                 });
 
+                $('#btnAnalyticsConnect').click(function() {
+
+                    $(location).attr('href', '/Analytics/IndexAsync/');
+
+                });
+
+            });
+        </script>
+
+
+
+    @if (Model.AnalyticsConnected)
+    {
+
+
+        @Styles.Render("~/Content/datatables")
+        @Scripts.Render("~/bundles/datatables")
+
+        <script>
+
+
+            $(function() {
+
+                $('#datatable').DataTable({
+                    "lengthMenu": [[15], [15]],
+                    "serverSide": true,
+                    "processing": true,
+                    "ajax": "@Url.Action("GetVisitors", "Analytics", null, Request.Url.Scheme)",
+                    "columns": [
+                        {
+                            data: 'Dimension',
+                            render: function(data) {
+                                if (data === "") {
+                                    return '00/00/0000';
+                                }
+
+                                f = data.substring(6, 8) + "/" + data.substring(4, 6) + "/" + data.substring(0, 4);
+                                return f;
+                            }
+                        },
+                        {
+                            data: 'Users'
+                        },
+                        {
+                            data: "BounceRate",
+                            render: $.fn.dataTable.render.number(',', '.', 0, '', '%')
+                        },
+                        {
+                            data: 'Pageviews'
+                        },
+                        {
+                            data: 'OrganicSearches'
+                        }
+                    ]
+                });
+
             });
 
         </script>
+
     }
-
-
-    @Styles.Render("~/Content/datatables")
-    @Scripts.Render("~/bundles/datatables")
-
-    <script>
-
-
-        $(function() {
-
-            $('#datatable').DataTable({
-                "lengthMenu": [[15], [15]],
-                "serverSide": true,
-                "processing": true,
-                "ajax": "@Url.Action("GetVisitors", "Analytics", null, Request.Url.Scheme)",
-                "columns": [
-                    {
-                        data: 'Dimension',
-                        render: function (data) {
-                            if(data === ""){
-                                return '00-00-0000';
-                            }
-
-                            f = data.substring(6, 8) + "/" + data.substring(4, 6) + "/" + data.substring(0, 4);
-                            return f;
-                        }  
-                    },
-                    {
-                        data: 'Users'
-                    },
-                    {
-                        data: "BounceRate",
-                        render: $.fn.dataTable.render.number(',', '.', 0, '', '%')
-                    },
-                    {
-                        data: 'Pageviews'
-                    },
-                    {
-                        data: 'OrganicSearches'
-                    }
-                ]
-            });
-
-        });
-
-    </script>
-
 }
 
 
 <div class="row">
-<div class="col-md-4 col-sm-12 col-xs-12">
+<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
             <h2>Facebook <small>Posts</small></h2>
@@ -85,7 +94,7 @@
         </div>
         <div class="x_content">
             
-            @if (@Model.FacebookPosts != null)
+            @if (@Model.FacebookPosts != null && Model.fbConnected)
             {
                 foreach (var p in Model.FacebookPosts)
                 {
@@ -103,9 +112,10 @@
 
                 }
             }
-            else
+
+            @if (@Model.fbConnected == false)
             {
-                <button class="btn btn-primary" id="btnConnect">Connect to Facebook</button>
+                <button class="btn btn-primary" id="btnFacebookConnect">Connect to Facebook</button>
 
             }
 
@@ -113,7 +123,7 @@
     </div>
 </div>
 
-<div class="col-md-8 col-sm-12 col-xs-12">
+<div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
             <h2>Analytics <small>Visitors</small></h2>
@@ -125,26 +135,34 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                <thead>
+            
+            @if (Model.AnalyticsConnected)
+            {
+                <table id="datatable" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
                     <tr>
                         <th>Date</th>
                         <th>Users</th>
                         <th>BounceRate</th>
                         <th>Pageviews</th>
-                        <th>OrganicSearches</th>
+                        <th>Organic Searches</th>
                     </tr>
-                </thead>
-                <tfoot>
+                    </thead>
+                    <tfoot>
                     <tr>
                         <th>Date</th>
                         <th>Users</th>
                         <th>BounceRate</th>
                         <th>Pageviews</th>
-                        <th>OrganicSearches</th>
+                        <th>Organic Searches</th>
                     </tr>
-                </tfoot>
-            </table>
+                    </tfoot>
+                </table>
+            }
+            else
+            {
+                <button class="btn btn-primary" id="btnAnalyticsConnect">Connect to Google Analytics</button>
+            }
         </div>
     </div>
 </div>

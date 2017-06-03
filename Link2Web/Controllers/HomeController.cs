@@ -1,7 +1,10 @@
 ﻿using Link2Web.BLL;
+using Link2Web.DAL;
 using Link2Web.Helpers;
 using Link2Web.ViewModels;
+using Microsoft.AspNet.Identity;
 using System;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -9,46 +12,65 @@ namespace Link2Web.Controllers
 {
     public class HomeController : BaseController
     {
+        private Link2WebDbContext db = new Link2WebDbContext();
+
         public ActionResult Index()
         {
+            var userId = User.Identity.GetUserId();
+
             TempData["LastController"] = "Home";
             TempData["LastAction"] = "Index";
 
-            var vm = new HomeViewModel();
+
+            var vm = new HomeViewModel
+            {
+                AnalyticsConnected = false,
+                fbConnected = false
+            };
 
 
             if (Session["fbInit"] != null)
             {
+                vm.fbConnected = true;
                 var fbData = new FacebookData();
-                vm.FacebookPosts = fbData.GetFacebookPosts("").GetRange(0,9);
+                vm.FacebookPosts = fbData.GetFacebookPosts("").GetRange(0, 9);
             }
 
-            if (GlobalSettings.AuthenticateOauth() == null)
+            if (GlobalSettings.AuthenticateOauth() != null)
             {
-                return RedirectToAction("IndexAsync", "Analytics");
+                vm.AnalyticsConnected = true;
+
+
+                var dimensions = new[]
+                {
+                    "ga:date"
+                };
+
+                var metrics = new[]
+                {
+                    "ga:users",
+                    "ga:adClicks",
+                    "ga:bounceRate",
+                    "ga:pageviews",
+                    "ga:organicSearches",
+                    "ga:impressions",
+                    "ga:percentNewSessions",
+                    "ga:avgTimeOnPage"
+                };
+
+                var analyticsData = new GoogleAnalytics();
+                var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics)
+                    .Rows;
+
+                vm.AnalyticsData = data;
             }
-
-            var dimensions = new[]
-{
-                "ga:date"
-            };
-
-            var metrics = new[]
+            else
             {
-                "ga:users",
-                "ga:adClicks",
-                "ga:bounceRate",
-                "ga:pageviews",
-                "ga:organicSearches",
-                "ga:impressions",
-                "ga:percentNewSessions",
-                "ga:avgTimeOnPage"
-            };
-
-            var analyticsData = new GoogleAnalytics();
-            var data = analyticsData.GetVisitorsData(DateTime.Now.AddDays(-180), DateTime.Now, dimensions, metrics).Rows;
-
-            vm.AnalyticsData = data;
+                if (db.GoogleUsers.Count(g => g.UserId.Equals(userId) && g.RefreshToken != "") > 0)
+                {
+                    return RedirectToAction("IndexAsync", "Analytics");
+                }
+            }
 
             return View(vm);
         }

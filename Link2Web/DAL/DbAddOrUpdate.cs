@@ -1,26 +1,23 @@
 ﻿using Link2Web.Models;
-using System.Data.Entity;
 using System.Linq;
 
 namespace Link2Web.DAL
 {
     public class DbAddOrUpdate
     {
-        public void AddOrUpdateUserSetting(Link2WebDbContext context, UserSetting userSetting)
+        public void AddOrUpdateUserSetting(Link2WebDbContext context, UserSetting userSetting, string userId)
         {
-            var userSettingInDb = context.UserSettings.Count(u => u.Setting == userSetting.Setting) > 0;
+            var userSettingInDb = context.UserSettings.Where(u => u.UserId.Equals(userId)).Count(u => u.Setting == userSetting.Setting) > 0;
 
             if (userSettingInDb)
             {
-                context.UserSettings.Add(userSetting);
+               // context.Entry(userSetting).State = EntityState.Modified;
             }
             else
             {
-                context.Entry(userSetting).State = EntityState.Modified;
+                context.UserSettings.Add(userSetting);
             }
 
-
-           // context.Entry(userSetting).State = (userSettingInDb ? EntityState.Modified : EntityState.Added);
             context.SaveChanges();
         }
     }

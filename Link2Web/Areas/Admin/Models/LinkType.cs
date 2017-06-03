@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Link2Web.Models;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Link2Web.Models
+namespace Link2Web.Areas.Admin.Models
 {
     public class LinkType
     {

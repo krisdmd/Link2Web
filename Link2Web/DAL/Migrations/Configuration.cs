@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Link2Web.Areas.Admin.Models;
 using Link2Web.Models;
 
 namespace Link2Web.DAL.Migrations

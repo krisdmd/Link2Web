@@ -1,4 +1,5 @@
-﻿using Link2Web.Models;
+﻿using Link2Web.Areas.Admin.Models;
+using Link2Web.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace Link2Web.ViewModels

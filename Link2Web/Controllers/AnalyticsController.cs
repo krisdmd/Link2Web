@@ -229,7 +229,8 @@ namespace Link2Web.Controllers
                 "ga:organicSearches",
                 "ga:pageLoadTime",
                 "ga:percentNewSessions",
-                "ga:avgTimeOnPage"
+                "ga:avgTimeOnPage",
+                "ga:timeOnPage"
             };
 
             var analyticsData = new GoogleAnalytics();

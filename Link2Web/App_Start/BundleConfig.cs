@@ -29,7 +29,8 @@ namespace Link2Web
                 "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/datatables").Include(
-                "~/Content/DataTables/css/dataTables.bootstrap.css"));
+                "~/Content/DataTables/css/jquery.dataTables.min.css",
+            "~/Content/DataTables/css/responsive.dataTables.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/link2web").Include(
                 "~/Scripts/custom-link2web.js"));

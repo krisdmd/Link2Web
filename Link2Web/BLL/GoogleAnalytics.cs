@@ -47,17 +47,12 @@ namespace Link2Web.BLL
                     {
                         Dimension = row[0],
                         Users = row[1],
-                        //Clicks = row[2],
                         BounceRate = bounceRate,
                         Pageviews = row[4],
                         OrganicSearches = row[5],
                         PageLoadTime = row[6],
-                        //Impressions = row[7],
                         PercentNewSessions = row[7],
                         AvgTimeOnPage = row[8]
-                        //Date        = datum
-
-
                     };
 
                     data.Rows.Add(rowData);

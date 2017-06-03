@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Link2Web.Areas.Admin.Models;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

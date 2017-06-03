@@ -319,6 +319,10 @@
     <Compile Include="Areas\Admin\Controllers\LinkTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingTypesController.cs" />
+    <Compile Include="DAL\Migrations\201706031815453_updating-db1.cs" />
+    <Compile Include="DAL\Migrations\201706031815453_updating-db1.Designer.cs">
+      <DependentUpon>201706031815453_updating-db1.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\CurrencyViewModel.cs" />
     <Compile Include="BLL\FacebookData.cs" />
     <Compile Include="BLL\GoogleAnalytics.cs" />
@@ -459,24 +463,24 @@
     <Compile Include="Models\AnalyticsData.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\CrawledLinkStatus.cs" />
-    <Compile Include="Models\Currency.cs" />
+    <Compile Include="Areas\Admin\Models\Currency.cs" />
     <Compile Include="Models\EditProfileViewModel.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\FacebookPost.cs" />
-    <Compile Include="Models\Language.cs" />
+    <Compile Include="Areas\Admin\Models\Language.cs" />
     <Compile Include="Models\Contact.cs" />
-    <Compile Include="Models\Country.cs" />
+    <Compile Include="Areas\Admin\Models\Country.cs" />
     <Compile Include="Models\Mail.cs" />
     <Compile Include="ViewModels\FacebookViewModel.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\CrawledLink.cs" />
-    <Compile Include="Models\LinkStatus.cs" />
-    <Compile Include="Models\LinkType.cs" />
+    <Compile Include="Areas\Admin\Models\LinkStatus.cs" />
+    <Compile Include="Areas\Admin\Models\LinkType.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\ProjectSetting.cs" />
-    <Compile Include="Models\Setting.cs" />
-    <Compile Include="Models\SettingType.cs" />
+    <Compile Include="Areas\Admin\Models\Setting.cs" />
+    <Compile Include="Areas\Admin\Models\SettingType.cs" />
     <Compile Include="Models\UserSetting.cs" />
     <Compile Include="Models\WebsiteCrawler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1096,7 +1100,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\clientsecret.json\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\ViewModels\" />
     <Folder Include="Areas\Admin\Views\Home\" />
     <Folder Include="bin\" />
@@ -1175,6 +1178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201706021321201_currencies1.resx">
       <DependentUpon>201706021321201_currencies1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201706031815453_updating-db1.resx">
+      <DependentUpon>201706031815453_updating-db1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

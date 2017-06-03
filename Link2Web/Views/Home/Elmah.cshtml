@@ -3,8 +3,17 @@
     ViewBag.Title = "Elmah";
 }
 
+@section scripts{  
+    <script>
+        function resizeIframe(obj) {
+            obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+            obj.style.width = obj.contentWindow.document.body.scrollWidth + 'px';
+        }
+    </script>
+}
+
 <h2>Elmah</h2>
 
-<iframe height="800" width="100%" scrolling="auto" src="/elmah.axd" style="margin-top:5px;"></iframe>
+<iframe src="/elmah.axd" frameborder="0" scrolling="no" onload="resizeIframe(this)" ></iframe>
 
 

@@ -1,6 +1,6 @@
-﻿using Link2Web.Controllers;
+﻿using Link2Web.Areas.Admin.Models;
+using Link2Web.Controllers;
 using Link2Web.DAL;
-using Link2Web.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -15,7 +15,8 @@ namespace Link2Web.Areas.Admin.Controllers
         // GET: Admin/Settings
         public ActionResult Index()
         {
-            var settings = db.Settings.Include(s => s.SettingType);
+            ViewBag.SettingTypeId = new SelectList(db.SettingTypes, "SettingTypeId", "Type");
+            var settings = db.Settings;
             return View(settings.ToList());
         }
 
