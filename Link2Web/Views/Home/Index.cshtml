@@ -10,18 +10,12 @@
     {
         <script>
             $(function() {
-
-                $('#myModal').modal('show');
-
                 $('#btnConnect').click(function() {
 
                     $(location).attr('href', '/Home/Connect/');
 
                 });
 
-                $('#btnCancel').click(function() {
-                    $('#myModal').modal('toggle');
-                });
             });
 
         </script>
@@ -43,16 +37,25 @@
                 "ajax": "@Url.Action("GetVisitors", "Analytics", null, Request.Url.Scheme)",
                 "columns": [
                     {
-                        data: 'Dimension'
+                        data: 'Dimension',
+                        render: function (data) {
+                            if(data === ""){
+                                return '00-00-0000';
+                            }
+
+                            f = data.substring(6, 8) + "/" + data.substring(4, 6) + "/" + data.substring(0, 4);
+                            return f;
+                        }  
                     },
                     {
                         data: 'Users'
                     },
                     {
-                        data: 'Pageviews'
+                        data: "BounceRate",
+                        render: $.fn.dataTable.render.number(',', '.', 0, '', '%')
                     },
                     {
-                        data: 'BounceRate'
+                        data: 'Pageviews'
                     },
                     {
                         data: 'OrganicSearches'
@@ -100,6 +103,11 @@
 
                 }
             }
+            else
+            {
+                <button class="btn btn-primary" id="btnConnect">Connect to Facebook</button>
+
+            }
 
         </div>
     </div>
@@ -142,26 +150,3 @@
 </div>
 
 </div>
-
-<!-- Bootstrap modal popup -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header alert alert-danger">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Connect to Facebook</h4>
-            </div>
-            <div class="modal-body">
-                <p class="success-message">Are you sure you want to connect to Facebook? </p>
-            </div>
-            <div class="modal-footer">
-                <input type="hidden" id="id" />
-                <button class="btn btn-primary" id="btnConnect">Ok</button>
-                <button class="btn btn-default" id="btnCancel" data-dismiss="modal">Cancel</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End of the boostrap modal popup -->

@@ -40,7 +40,7 @@ namespace Link2Web.BLL
                 foreach (var row in response.Rows)
                 {
                     //var datum = MyFunctions.StringToDateTime(row[0], "yyyMMdd");
-                    var bounceRate = MyFunctions.GetDouble(row[2], 0);
+                    var bounceRate = MyFunctions.GetDouble(row[3], 0);
                     bounceRate = Math.Round(bounceRate, 2);
 
                     var rowData = new AnalyticsData
@@ -49,12 +49,12 @@ namespace Link2Web.BLL
                         Users = row[1],
                         //Clicks = row[2],
                         BounceRate = bounceRate,
-                        Pageviews = row[3],
-                        OrganicSearches = row[4],
-                        PageLoadTime = row[5],
-                        //Impressions = row[6],
-                        PercentNewSessions = row[6],
-                        AvgTimeOnPage = row[7]
+                        Pageviews = row[4],
+                        OrganicSearches = row[5],
+                        PageLoadTime = row[6],
+                        //Impressions = row[7],
+                        PercentNewSessions = row[7],
+                        AvgTimeOnPage = row[8]
                         //Date        = datum
 
 

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using HtmlAgilityPack;
+using System;
 using System.Globalization;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Web;
-using HtmlAgilityPack;
 
 namespace Link2Web.Core
 {
@@ -38,35 +35,16 @@ namespace Link2Web.Core
 
         public static double GetDouble(string value, double defaultValue)
         {
-            double result;
             string output;
+            double result;
 
-            // Check if last seperator==groupSeperator
-            string groupSep = CultureInfo.CurrentCulture.NumberFormat.NumberGroupSeparator;
-            if (value.LastIndexOf(groupSep) + 4 == value.Count())
-            {
-                bool tryParse = double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentCulture, out result);
-                result = tryParse ? result : defaultValue;
-            }
-            else
-            {
-                // Unify string (no spaces, only . )
-                output = value.Trim().Replace(" ", string.Empty).Replace(",", ".");
+            var currentCulture = CultureInfo.InstalledUICulture;
+            var numberFormat = (NumberFormatInfo) currentCulture.NumberFormat.Clone();
+            numberFormat.NumberDecimalSeparator = ".";
 
-                // Split it on points
-                string[] split = output.Split('.');
+            var tryParse = double.TryParse(value, NumberStyles.Any, numberFormat, out result);
+            result = tryParse ? result : defaultValue;
 
-                if (split.Count() > 1)
-                {
-                    // Take all parts except last
-                    output = string.Join(string.Empty, split.Take(split.Count() - 1).ToArray());
-
-                    // Combine token parts with last part
-                    output = string.Format("{0}.{1}", output, split.Last());
-                }
-                // Parse double invariant
-                result = double.Parse(output, CultureInfo.InvariantCulture);
-            }
             return result;
         }
 
