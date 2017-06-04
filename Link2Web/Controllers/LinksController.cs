@@ -18,7 +18,6 @@ namespace Link2Web.Controllers
         private Link2WebDbContext db = new Link2WebDbContext();
         private ILinkRepository _context;
 
-
         public LinksController()
         {
             _context = new LinkRepository(new Link2WebDbContext());
@@ -39,7 +38,8 @@ namespace Link2Web.Controllers
         // GET: Links/Details/5
         public ActionResult Details(int id)
         {
-            Link link = _context.GetLinkById(id);
+            var userId = User.Identity.GetUserId();
+            Link link = _context.GetLinkById(id, userId);
 
             if (link == null)
             {
@@ -67,31 +67,28 @@ namespace Link2Web.Controllers
             [Bind(Include = "ProjectId,LinkId,UserId,WebsiteUrl,AnchorText,DestinationUrl,Description,CreatedOn,ContactId,LinkTypeId")] Link
                 link)
         {
+
             if (ModelState.IsValid)
             {
-                //link.BacklinkFound = MyFunctions.CheckUrlExists("url", "anchor");
-
-                link.UserId = User.Identity.GetUserId();
-                db.Links.Add(link);
-                db.SaveChanges();
+                _context.InsertLink(link);
+                _context.Save();
                 return RedirectToAction("Index");
             }
+
 
             return View(link);
         }
 
         // GET: Links/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Link link = db.Links.Find(id);
+            var userId = User.Identity.GetUserId();
+            Link link = _context.GetLinkById(id, userId);
             if (link == null)
             {
                 return HttpNotFound();
             }
+
             ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", link.ProjectId);
             ViewBag.ContactId = new SelectList(db.Contacts, "ContactId", "Name", link.ContactId);
             ViewBag.LinkTypeId = new SelectList(db.LinkTypes, "LinkTypeId", "Type", link.LinkTypeId);
@@ -122,13 +119,11 @@ namespace Link2Web.Controllers
         }
 
         // GET: Links/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Link link = db.Links.Find(id);
+            var userId = User.Identity.GetUserId();
+            Link link = _context.GetLinkById(id, userId);
+
             if (link == null)
             {
                 return HttpNotFound();
@@ -141,9 +136,8 @@ namespace Link2Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Link link = db.Links.Find(id);
-            db.Links.Remove(link);
-            db.SaveChanges();
+            _context.DeleteLink(id);
+            _context.Save();
             return RedirectToAction("Index");
         }
 

@@ -1,4 +1,4 @@
-﻿using Link2Web.Models;
+﻿using Link2Web.Areas.Admin.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace Link2Web.DAL.Repositories
 {
-    public class ProjectRepository: IProjectRepository
+    public class LinkTypeRepository : ILinkTypeRepository
     {
         private Link2WebDbContext _context;
         private bool _disposed;
-        public ProjectRepository(Link2WebDbContext context)
+        public LinkTypeRepository(Link2WebDbContext context)
         {
             _context = context;
         }
@@ -32,30 +32,30 @@ namespace Link2Web.DAL.Repositories
             GC.SuppressFinalize(this);
         }
 
-        public List<Project> GetProjects()
+        public List<LinkType> GetLinkTypes()
         {
-            return _context.Projects.ToList();
+            return _context.LinkTypes.ToList();
         }
 
-        public Project GetProjectById(int id, string userId)
+        public LinkType GetLinkTypeById(int id)
         {
-            return _context.Projects.FirstOrDefault(p => p.CountryId == id && p.UserId.Equals(userId));
+            return _context.LinkTypes.Find(id);
         }
 
-        public void InsertProject(Project project)
+        public void InsertLinkType(LinkType linkType)
         {
-            _context.Projects.Add(project);
+            _context.LinkTypes.Add(linkType);
         }
 
-        public void DeleteProject(int id)
+        public void DeleteLinkType(int id)
         {
-            var project = _context.Projects.Find(id);
-            _context.Projects.Remove(project);
+            var linkType = _context.LinkTypes.Find(id);
+            _context.LinkTypes.Remove(linkType);
         }
 
-        public void UpdateProject(Project project)
+        public void UpdateLinkType(LinkType linkType)
         {
-            _context.Entry(project).State = EntityState.Modified;
+            _context.Entry(linkType).State = EntityState.Modified;
         }
 
         public void Save()

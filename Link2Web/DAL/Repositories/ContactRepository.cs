@@ -37,9 +37,10 @@ namespace Link2Web.DAL.Repositories
             return _context.Contacts.ToList();
         }
 
-        public Contact GetContactById(int id)
+        public Contact GetContactById(int id, string userId)
         {
-            return _context.Contacts.Find(id);
+            return _context.Contacts.FirstOrDefault(c => c.ContactId == id && c.UserId.Equals(userId));
+
         }
 
         public void InsertContact(Contact contact)

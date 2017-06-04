@@ -327,6 +327,9 @@
     <Compile Include="DAL\Migrations\201706032156299_updating-db2.Designer.cs">
       <DependentUpon>201706032156299_updating-db2.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Repositories\LinkTypeRepository.cs" />
+    <Compile Include="DAL\Repositories\ILinkTypeRepository.cs" />
+    <Compile Include="Helpers\MySession.cs" />
     <Compile Include="ViewModels\CurrencyViewModel.cs" />
     <Compile Include="BLL\FacebookData.cs" />
     <Compile Include="BLL\GoogleAnalytics.cs" />

@@ -1,35 +1,36 @@
 ﻿using Link2Web.Areas.Admin.Models;
 using Link2Web.Controllers;
 using Link2Web.DAL;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
+using Link2Web.DAL.Repositories;
 using System.Web.Mvc;
 
 namespace Link2Web.Areas.Admin.Controllers
 {
     public class LanguagesController : BaseController
     {
-        private Link2WebDbContext db = new Link2WebDbContext();
+        private ILanguageRepository _context;
+
+        public LanguagesController()
+        {
+            _context = new LanguageRepository(new Link2WebDbContext());
+        }
 
         // GET: Admin/Languages
         public ActionResult Index()
         {
-            return View(db.Languages.ToList());
+            return View(_context.GetLanguages());
         }
 
         // GET: Admin/Languages/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Language language = db.Languages.Find(id);
+            Language language = _context.GetLanguageById(id);
+
             if (language == null)
             {
                 return HttpNotFound();
             }
+
             return View(language);
         }
 
@@ -48,8 +49,8 @@ namespace Link2Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Languages.Add(language);
-                db.SaveChanges();
+                _context.InsertLanguage(language);
+                _context.Save();
                 return RedirectToAction("Index");
             }
 
@@ -57,13 +58,10 @@ namespace Link2Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/Languages/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Language language = db.Languages.Find(id);
+            Language language = _context.GetLanguageById(id);
+
             if (language == null)
             {
                 return HttpNotFound();
@@ -80,25 +78,23 @@ namespace Link2Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(language).State = EntityState.Modified;
-                db.SaveChanges();
+                _context.UpdateLanguage(language);
+                _context.Save();
                 return RedirectToAction("Index");
             }
             return View(language);
         }
 
         // GET: Admin/Languages/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Language language = db.Languages.Find(id);
+            Language language = _context.GetLanguageById(id);
+
             if (language == null)
             {
                 return HttpNotFound();
             }
+
             return View(language);
         }
 
@@ -107,18 +103,14 @@ namespace Link2Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Language language = db.Languages.Find(id);
-            db.Languages.Remove(language);
-            db.SaveChanges();
+            _context.GetLanguageById(id);
+            _context.Save();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
+            _context.Dispose();
             base.Dispose(disposing);
         }
     }

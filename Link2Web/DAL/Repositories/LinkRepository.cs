@@ -9,6 +9,7 @@ namespace Link2Web.DAL.Repositories
     public class LinkRepository: ILinkRepository
     {
         private Link2WebDbContext _context;
+
         private bool _disposed;
         public LinkRepository(Link2WebDbContext context)
         {
@@ -37,9 +38,9 @@ namespace Link2Web.DAL.Repositories
             return _context.Links.ToList();
         }
 
-        public Link GetLinkById(int id)
+        public Link GetLinkById(int id, string userId)
         {
-            return _context.Links.Find(id);
+            return _context.Links.FirstOrDefault(l => l.LinkId == id && l.UserId.Equals(userId));
         }
 
         public void InsertLink(Link link)

@@ -7,7 +7,7 @@ namespace Link2Web.DAL.Repositories
     public interface IContactRepository: IDisposable
     {
         List<Contact> GetContacts();
-        Contact GetContactById(int id);
+        Contact GetContactById(int id, string userId);
         void InsertContact(Contact contact);
         void DeleteContact(int id);
         void UpdateContact(Contact contact);
