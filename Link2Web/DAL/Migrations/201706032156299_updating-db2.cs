@@ -1,8 +1,7 @@
 namespace Link2Web.DAL.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class updatingdb2 : DbMigration
     {
         public override void Up()
@@ -15,10 +14,7 @@ namespace Link2Web.DAL.Migrations
             RenameIndex(table: "dbo.AspNetUsers", name: "IX_Country_CountryId1", newName: "__mig_tmp__0");
             RenameIndex(table: "dbo.AspNetUsers", name: "IX_Country_CountryId", newName: "IX_Country_CountryId1");
             RenameIndex(table: "dbo.AspNetUsers", name: "__mig_tmp__0", newName: "IX_Country_CountryId");
-            AlterColumn("dbo.Contacts", "UserId", c => c.String(maxLength: 128));
-            AlterColumn("dbo.Links", "UserId", c => c.String(maxLength: 128));
-            CreateIndex("dbo.Contacts", "UserId");
-            CreateIndex("dbo.Links", "UserId");
+            AddColumn("dbo.Links", "UserId", c => c.String(maxLength: 128));
             DropColumn("dbo.Contacts", "Links_ProjectId");
         }
         

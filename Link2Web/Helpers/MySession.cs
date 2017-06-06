@@ -9,7 +9,7 @@ namespace Link2Web.Helpers
         // private constructor
         private MySession()
         {
-            FillOrder = new List<string>();
+            StoredSessions = new List<MySession>();
         }
 
         // Gets the current session.
@@ -38,9 +38,20 @@ namespace Link2Web.Helpers
         }
 
         // **** add your session properties here, e.g like this:
-        public List<string> FillOrder { get; set; }
-        public string Property1 { get; set; }
-        public DateTime MyDate { get; set; }
-        public int LoginId { get; set; }
+        public List<MySession> StoredSessions { get; set; }
+
+        public string StringValue { get; set; }
+        public DateTime DateValue { get; set; }
+        public int IntValue { get; set; }
+        public string Type { get; set; }
+
+        public enum Types
+        {
+            Project,
+            ApiKeys,
+            Facebook,
+            Google
+        }
     }
+
 }

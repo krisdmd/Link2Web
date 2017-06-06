@@ -45,7 +45,7 @@ namespace Link2Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LanguageId,Name")] Language language)
+        public ActionResult Create([Bind(Include = "LanguageId,Name,Code")] Language language)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +74,7 @@ namespace Link2Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LanguageId,Name")] Language language)
+        public ActionResult Edit([Bind(Include = "LanguageId,Name,Code")] Language language)
         {
             if (ModelState.IsValid)
             {

@@ -13,6 +13,7 @@ namespace Link2Web.DAL.Migrations
             DropForeignKey("dbo.Links", "Status_LinkStatusId", "dbo.LinkStatus");
             DropForeignKey("dbo.Links", "ProjectId", "dbo.Projects");
             DropForeignKey("dbo.Links", "LinkType_LinkTypeId", "dbo.LinkTypes");
+            DropForeignKey("dbo.Links", "StatusId_LinkStatusId", "dbo.LinkStatus");
             DropIndex("dbo.Links", new[] { "ProjectId" });
             DropIndex("dbo.Links", new[] { "Contact_ContactId" });
             DropIndex("dbo.Links", new[] { "ContactId_ContactId" });
@@ -21,6 +22,7 @@ namespace Link2Web.DAL.Migrations
             DropIndex("dbo.Links", new[] { "LinkTypeId_LinkTypeId" });
             DropIndex("dbo.Links", new[] { "LinkStatus_LinkStatusId" });
             DropIndex("dbo.Links", new[] { "Status_LinkStatusId" });
+            DropIndex("dbo.Links", new[] { "StatusId_LinkStatusId" });
             DropColumn("dbo.Links", "StatusId_LinkStatusId");
             RenameColumn(table: "dbo.Links", name: "LinkType_LinkTypeId", newName: "LinkTypeId");
             RenameColumn(table: "dbo.Links", name: "LinkStatus_LinkStatusId", newName: "StatusId_LinkStatusId");
@@ -37,7 +39,7 @@ namespace Link2Web.DAL.Migrations
             DropColumn("dbo.Links", "ContactId_ContactId");
             DropColumn("dbo.Links", "LinkType_LinkTypeId1");
             DropColumn("dbo.Links", "LinkTypeId_LinkTypeId");
-            DropColumn("dbo.Links", "Status_LinkStatusId");
+            DropColumn("dbo.Links", "Status_LinkStatusId");        
         }
         
         public override void Down()

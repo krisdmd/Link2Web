@@ -377,10 +377,6 @@
       <DependentUpon>201705301238102_updatinglink1.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\Migrations\201705301243423_links.cs" />
-    <Compile Include="DAL\Migrations\201705301312513_revert.cs" />
-    <Compile Include="DAL\Migrations\201705301312513_revert.Designer.cs">
-      <DependentUpon>201705301312513_revert.cs</DependentUpon>
-    </Compile>
     <Compile Include="DAL\Migrations\201705301412118_links2.cs" />
     <Compile Include="DAL\Migrations\201705301412118_links2.Designer.cs">
       <DependentUpon>201705301412118_links2.cs</DependentUpon>
@@ -1181,9 +1177,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201705301238102_updatinglink1.resx">
       <DependentUpon>201705301238102_updatinglink1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201705301312513_revert.resx">
-      <DependentUpon>201705301312513_revert.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201705301412118_links2.resx">
       <DependentUpon>201705301412118_links2.cs</DependentUpon>

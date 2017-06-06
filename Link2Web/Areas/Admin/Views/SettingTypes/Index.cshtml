@@ -6,32 +6,35 @@
 
 <div id="main">
 
-    <h2>Index</h2>
+    <h2>Setting types</h2>
 
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th></th>
-        </tr>
 
-        @foreach (var item in Model)
+    <div class="container" id="gridList">
+        <!--Row with two equal columns-->
+        <div class="row" id="gridHeader">
+            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">@Resources.Resources.Type</div>
+            <div class="col-xs-hide col-sm-hide col-md-4 col-lg-4">@Resources.Resources.Visible</div>
+            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4"></div>
+        </div>
+
+        @foreach (var item in Model.ToList())
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Type)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.SettingTypeId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.SettingTypeId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.SettingTypeId })
-                </td>
-            </tr>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">@Html.DisplayFor(modelItem => item.Type)</div>
+                <div class="col-xs-hide col-sm-hide col-md-hide col-lg-4">@Html.DisplayFor(modelItem => item.Visible)</div>
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                    <a class="lnk-space" href='@Url.Action("Edit", "SettingTypes", new {id = item.SettingTypeId})'>
+                        <span class="glyphicon glyphicon-edit"></span> Edit
+                    </a>
+                    <a href='@Url.Action("Delete", "SettingTypes", new {id = item.SettingTypeId})'>
+                        <span class="glyphicon glyphicon-remove"></span> Delete
+                    </a>
+                </div>
+            </div>
         }
 
-    </table>
     </div>
+</div>

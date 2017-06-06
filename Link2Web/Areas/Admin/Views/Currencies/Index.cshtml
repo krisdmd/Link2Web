@@ -15,19 +15,19 @@
 <div class="container" id="gridList">
     <!--Row with two equal columns-->
     <div class="row" id="gridHeader">
-        <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">@Resources.Resources.Code)</div>
-        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">@Resources.Resources.Name)</div>
-        <div class="hidden-xs col-sm-3 col-md-3 col-lg-3">@Resources.Resources.Symbol)</div>
-        <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">@Resources.Resources.Country</div>
+        <div class="hidden-xs col-sm-hide col-md-3">@Resources.Resources.Code</div>
+        <div class="col-xs-6 col-sm-6 col-md-3">@Resources.Resources.Name</div>
+        <div class="hidden-xs col-sm-hide col-md-3">@Resources.Resources.Symbol)</div>
+        <div class="col-xs-6 col-sm-6 col-md-3"></div>
     </div>
 
     @foreach (var item in Model.ToList())
     {
         <div class="row">
-            <div class="hidden-xs col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.Code)</div>
-            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.Name)</div>
-            <div class="hidden-xs col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.Symbol)</div>
-            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+            <div class="hidden-xs col-sm-hide col-md-3">@Html.DisplayFor(modelItem => item.Code)</div>
+            <div class="col-xs-6 col-sm-6 col-md-3">@Html.DisplayFor(modelItem => item.Name)</div>
+            <div class="hidden-xs col-sm-hide col-md-3">@Html.DisplayFor(modelItem => item.Symbol)</div>
+            <div class="col-xs-6 col-sm-6 col-md-3">
                 <a class="lnk-space" href='@Url.Action("Edit", "Currencies", new {id = item.CurrencyId})'>
                     <span class="glyphicon glyphicon-edit"></span> Edit
                 </a>

@@ -4,36 +4,38 @@
     ViewBag.Title = "Settings";
 }
 
-<h2>Settings</h2>
+<div id="main">
+    <h2>Settings</h2>
 
-<p>
-    @Html.ActionLink("Add setting", "Create")
-</p>
+    <p>
+        @Html.ActionLink("Add setting", "Create")
+    </p>
 
-<div class="container" id="gridList">
-    <!--Row with two equal columns-->
-    <div class="row" id="gridHeader">
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">@Html.DisplayNameFor(model => model.Name)</div>
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">@Html.DisplayNameFor(model => model.Value)</div>
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">@Html.DisplayNameFor(model => model.ValueInt)</div>
-    </div>
-
-    @foreach (var item in Model)
-    {
-        <div class="row">
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.Name)</div>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.Value)</div>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.ValueInt)</div>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                <a class="lnk-space" href='@Url.Action("Edit", "Settings", new {id = item.SettingId})'>
-                    <span class="glyphicon glyphicon-edit"></span> Edit
-                </a>
-
-                <a href='@Url.Action("Delete", "Settings", new {id = item.SettingId})'>
-                    <span class="glyphicon glyphicon-remove"></span> Delete
-                </a>
-            </div>
+    <div class="container" id="gridList">
+        <!--Row with two equal columns-->
+        <div class="row" id="gridHeader">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">@Html.DisplayNameFor(model => model.Name)</div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">@Html.DisplayNameFor(model => model.Value)</div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">@Html.DisplayNameFor(model => model.ValueInt)</div>
         </div>
-    }
 
+        @foreach (var item in Model)
+        {
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.Name)</div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.Value)</div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.ValueInt)</div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <a class="lnk-space" href='@Url.Action("Edit", "Settings", new {id = item.SettingId})'>
+                        <span class="glyphicon glyphicon-edit"></span> Edit
+                    </a>
+
+                    <a href='@Url.Action("Delete", "Settings", new {id = item.SettingId})'>
+                        <span class="glyphicon glyphicon-remove"></span> Delete
+                    </a>
+                </div>
+            </div>
+        }
+
+    </div>
 </div>

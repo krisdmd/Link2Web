@@ -18,7 +18,6 @@ namespace Link2Web.DAL.Migrations
             DropIndex("dbo.EditProfileViewModels", new[] { "CountryId_CountryId" });
             DropIndex("dbo.EditProfileViewModels", new[] { "Country_CountryId1" });
             DropIndex("dbo.Links", new[] { "LinkTypeId" });
-            DropColumn("dbo.Links", "WebsiteType_WebsiteTypeId1");
             DropColumn("dbo.Links", "LinkContact_LinkContactId1");     
             DropTable("dbo.EditProfileViewModels");
         }
