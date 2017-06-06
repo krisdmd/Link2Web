@@ -16,6 +16,26 @@ namespace Link2Web.Models
         public int LinkId { get; set; }
         public string UserId { get; set; }
 
+        [Display(Name = "Status", ResourceType = typeof(Resources.Resources))]
+        [HiddenInput(DisplayValue = false)]
+
+        public LinkStatus StatusId { get; set; }
+        [HiddenInput(DisplayValue = false)]
+
+        [Required]
+
+        [Display(Name = "LinkType", ResourceType = typeof(Resources.Resources))]
+        public int LinkTypeId { get; set; }
+
+        [Display(Name = "Contact", ResourceType = typeof(Resources.Resources))]
+        [HiddenInput(DisplayValue = false)]
+        public int ContactId { get; set; }
+
+
+        [Display(Name = "Project", ResourceType = typeof(Resources.Resources))]
+        [HiddenInput(DisplayValue = false)]
+        public int ProjectId { get; set; }
+
         [Display(Name = "WebsiteUrl", ResourceType = typeof (Resources.Resources))]
         [Required(ErrorMessageResourceType = typeof(Resources.Resources),
             ErrorMessageResourceName = "IsRequired")]
@@ -43,29 +63,6 @@ namespace Link2Web.Models
         [Display(Name = "BacklinkFound", ResourceType = typeof (Resources.Resources))]
         [DefaultValue(false)]
         public bool BacklinkFound { get; set; }
-
-        [Display(Name = "Status", ResourceType = typeof (Resources.Resources))]
-        public LinkStatus StatusId { get; set; }
-
-        [Display(Name = "Type", ResourceType = typeof (Resources.Resources))]
-        public LinkType LinkTypeId { get; set; }
-
-        [Display(Name = "Contact", ResourceType = typeof (Resources.Resources))]
-        public Contact ContactId { get; set; }
-
-
-        [Display(Name = "Project", ResourceType = typeof(Resources.Resources))]
-        [HiddenInput(DisplayValue = false)]
-        [Key, ForeignKey("Project")]
-        public int ProjectId { get; set; }
-
-        [Display(Name = "Status", ResourceType = typeof (Resources.Resources))]
-        public virtual LinkStatus Status { get; set; }
-
-        public virtual LinkType LinkType { get; set; }
-        public virtual Contact Contact { get; set; }
-
-        public virtual Project Project { get; set; }
 
         public Link()
         {

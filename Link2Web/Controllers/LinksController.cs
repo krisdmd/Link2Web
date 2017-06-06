@@ -15,12 +15,18 @@ namespace Link2Web.Controllers
 {
     public class LinksController : BaseController
     {
-        private Link2WebDbContext db = new Link2WebDbContext();
         private ILinkRepository _context;
+        private IContactRepository _contactsContext;
+        private ILinkTypeRepository _linkTypeContext;
+        private IProjectRepository _projectContext;
 
         public LinksController()
         {
             _context = new LinkRepository(new Link2WebDbContext());
+            _contactsContext = new ContactRepository(new Link2WebDbContext());
+            _linkTypeContext = new LinkTypeRepository(new Link2WebDbContext());
+            _projectContext = new ProjectRepository(new Link2WebDbContext());
+
 
             Mail.Host = "smtp.gmail.com";
             Mail.Username = "ivolink2web@gmail.com";
@@ -32,7 +38,7 @@ namespace Link2Web.Controllers
         // GET: Links
         public ActionResult Index()
         {
-            return View(_context.GetLinks());
+            return View(_context.GetLinks((int)Session["ProjectId"]));
         }
 
         // GET: Links/Details/5
@@ -51,9 +57,9 @@ namespace Link2Web.Controllers
         // GET: Links/Create
         public ActionResult Create()
         {
-            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
-            ViewBag.ContactId = new SelectList(db.Contacts, "ContactId", "Name");
-            ViewBag.LinkTypeId = new SelectList(db.LinkTypes, "LinkTypeId", "Type");
+            ViewBag.ProjectId = new SelectList(_projectContext.GetProjects(), "ProjectId", "Name");
+            ViewBag.ContactId = new SelectList(_contactsContext.GetContacts(), "ContactId", "Name");
+            ViewBag.LinkTypeId = new SelectList(_linkTypeContext.GetLinkTypes(), "LinkTypeId", "Type");
 
             return View();
         }
@@ -64,17 +70,23 @@ namespace Link2Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
-            [Bind(Include = "ProjectId,LinkId,UserId,WebsiteUrl,AnchorText,DestinationUrl,Description,CreatedOn,ContactId,LinkTypeId")] Link
+            [Bind(
+                Include =
+                    "ProjectId,LinkId,UserId,WebsiteUrl,AnchorText,DestinationUrl,Description,CreatedOn,ContactId,LinkTypeId"
+                )] Link
                 link)
         {
-
             if (ModelState.IsValid)
             {
+                link.UserId = User.Identity.GetUserId();
                 _context.InsertLink(link);
                 _context.Save();
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ProjectId = new SelectList(_projectContext.GetProjects(), "ProjectId", "Name", link.ProjectId);
+            ViewBag.ContactId = new SelectList(_contactsContext.GetContacts(), "ContactId", "Name", link.ContactId);
+            ViewBag.LinkTypeId = new SelectList(_linkTypeContext.GetLinkTypes(), "LinkTypeId", "Type", link.LinkTypeId);
 
             return View(link);
         }
@@ -89,9 +101,9 @@ namespace Link2Web.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", link.ProjectId);
-            ViewBag.ContactId = new SelectList(db.Contacts, "ContactId", "Name", link.ContactId);
-            ViewBag.LinkTypeId = new SelectList(db.LinkTypes, "LinkTypeId", "Type", link.LinkTypeId);
+            ViewBag.ProjectId = new SelectList(_projectContext.GetProjects(), "ProjectId", "Name", link.ProjectId);
+            ViewBag.ContactId = new SelectList(_contactsContext.GetContacts(), "ContactId", "Name", link.ContactId);
+            ViewBag.LinkTypeId = new SelectList(_linkTypeContext.GetLinkTypes(), "LinkTypeId", "Type", link.LinkTypeId);
 
             return View(link);
         }
@@ -107,13 +119,14 @@ namespace Link2Web.Controllers
             if (ModelState.IsValid)
             {
                 link.UserId = User.Identity.GetUserId();
-                db.Entry(link).State = EntityState.Modified;
-                db.SaveChanges();
+                _context.UpdateLink(link);
+                _context.Save();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", link.ProjectId);
-            ViewBag.ContactId = new SelectList(db.Contacts, "ContactId", "Name", link.ContactId);
-            ViewBag.LinkTypeId = new SelectList(db.LinkTypes, "LinkTypeId", "Type", link.LinkTypeId);
+
+            ViewBag.ProjectId = new SelectList(_projectContext.GetProjects(), "ProjectId", "Name", link.ProjectId);
+            ViewBag.ContactId = new SelectList(_contactsContext.GetContacts(), "ContactId", "Name", link.ContactId);
+            ViewBag.LinkTypeId = new SelectList(_linkTypeContext.GetLinkTypes(), "LinkTypeId", "Type", link.LinkTypeId);
 
             return View(link);
         }
@@ -145,7 +158,7 @@ namespace Link2Web.Controllers
         {
             var userId = User.Identity.GetUserId();
             var links =
-                db.Links.Select(l => new {l.LinkId, l.AnchorText, l.WebsiteUrl, l.Description, l.UserId, l.LinkTypeId, l.ContactId})
+                _context.GetLinks((int)Session["ProjectId"]).Select(l => new {l.LinkId, l.AnchorText, l.WebsiteUrl, l.Description, l.UserId})
                     .Where(l => l.UserId.Equals(userId))
                     .ToList();
 
@@ -210,10 +223,7 @@ namespace Link2Web.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
+            _context.Dispose();
             base.Dispose(disposing);
         }
     }

@@ -1,4 +1,4 @@
-﻿@model Link2Web.Models.Currency
+﻿@model Link2Web.Areas.Admin.Models.Currency
 
 @{
     ViewBag.Title = "Create";
@@ -15,26 +15,26 @@
         <div class="col-md-12 col-sm-12 col-xs-12 personal-info">
 
             <div class="form-group row">
-                @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                @Html.LabelFor(model => model.Code, htmlAttributes: new {@class = "control-label col-md-2 col-sm-3 col-xs-12"})
                 <div class="col-md-10 col-sm-9 col-xs-12">
-                    @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
-                    @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Code, new {htmlAttributes = new {@class = "form-control col-md-9 col-xs-12"}})
+                    @Html.ValidationMessageFor(model => model.Code, "", new {@class = "text-danger"})
                 </div>
             </div>
 
             <div class="form-group row">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                @Html.LabelFor(model => model.Name, htmlAttributes: new {@class = "control-label col-md-2 col-sm-3 col-xs-12"})
                 <div class="col-md-10 col-sm-9 col-xs-12">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control col-md-9 col-xs-12"}})
+                    @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
                 </div>
             </div>
 
             <div class="form-group row">
-                @Html.LabelFor(model => model.Symbol, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                @Html.LabelFor(model => model.Symbol, htmlAttributes: new {@class = "control-label col-md-2 col-sm-3 col-xs-12"})
                 <div class="col-md-10 col-sm-9 col-xs-12">
-                    @Html.EditorFor(model => model.Symbol, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
-                    @Html.ValidationMessageFor(model => model.Symbol, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Symbol, new {htmlAttributes = new {@class = "form-control col-md-9 col-xs-12"}})
+                    @Html.ValidationMessageFor(model => model.Symbol, "", new {@class = "text-danger"})
                 </div>
             </div>
 

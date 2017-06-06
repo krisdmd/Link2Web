@@ -32,7 +32,7 @@ namespace Link2Web.DAL.Repositories
             GC.SuppressFinalize(this);
         }
 
-        public List<LinkType> GetLinkTypes()
+        public IEnumerable<LinkType> GetLinkTypes()
         {
             return _context.LinkTypes.ToList();
         }

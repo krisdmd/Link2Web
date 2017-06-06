@@ -1,6 +1,6 @@
-﻿using Link2Web.DAL;
+﻿using Link2Web.Areas.Admin.Models;
+using Link2Web.DAL;
 using Link2Web.DAL.Repositories;
-using Link2Web.Models;
 using System.Net;
 using System.Web.Mvc;
 

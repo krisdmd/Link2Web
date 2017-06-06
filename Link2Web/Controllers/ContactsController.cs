@@ -30,7 +30,8 @@ namespace Link2Web.Controllers
         // GET: Contacts/Details/5
         public ActionResult Details(int id)
         {
-            Contact contact = _context.GetContactById(id);
+            var userId = User.Identity.GetUserId();
+            Contact contact = _context.GetContactById(id, userId);
             if (contact == null)
             {
                 return HttpNotFound();
@@ -67,7 +68,8 @@ namespace Link2Web.Controllers
         // GET: Contacts/Edit/5
         public ActionResult Edit(int id)
         {
-            Contact contact = _context.GetContactById(id);
+            var userId = User.Identity.GetUserId();
+            Contact contact = _context.GetContactById(id, userId);
             if (contact == null)
             {
                 return HttpNotFound();
@@ -97,7 +99,8 @@ namespace Link2Web.Controllers
         // GET: Contacts/Delete/5
         public ActionResult Delete(int id)
         {
-            Contact contact = _context.GetContactById(id);
+            var userId = User.Identity.GetUserId();
+            Contact contact = _context.GetContactById(id, userId);
             if (contact == null)
             {
                 return HttpNotFound();

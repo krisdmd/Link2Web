@@ -32,7 +32,7 @@ namespace Link2Web.DAL.Repositories
             GC.SuppressFinalize(this);
         }
 
-        public List<Project> GetProjects()
+        public IEnumerable<Project> GetProjects()
         {
             return _context.Projects.ToList();
         }

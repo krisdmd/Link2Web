@@ -94,7 +94,7 @@ namespace Link2Web.Helpers
 
                 if (s.Setting == "CurrentProject")
                 {
-                    HttpContext.Current.Session["ViewProjectId"] = db.Projects.FirstOrDefault(p => p.ProjectId == s.ValueInt).ViewProfileId;
+                    HttpContext.Current.Session["ViewProfileId"] = db.Projects.FirstOrDefault(p => p.ProjectId == s.ValueInt)?.ViewProfileId;
                 }
             }
 
@@ -111,7 +111,8 @@ namespace Link2Web.Helpers
         public static void ResetProject()
         {
             HttpContext.Current.Session.Remove("AccessToken");
-            HttpContext.Current.Session.Remove("ViewProjectId");
+            HttpContext.Current.Session.Remove("ViewProfileId");
+            HttpContext.Current.Session.Remove("ProjectId");
             HttpContext.Current.Session.Remove("LastController");
             HttpContext.Current.Session.Remove("LastAction");
             HttpContext.Current.Session.Remove("fbInit");

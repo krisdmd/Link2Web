@@ -327,6 +327,14 @@
     <Compile Include="DAL\Migrations\201706032156299_updating-db2.Designer.cs">
       <DependentUpon>201706032156299_updating-db2.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Migrations\201706060729000_foreignkeylink.cs" />
+    <Compile Include="DAL\Migrations\201706060729000_foreignkeylink.Designer.cs">
+      <DependentUpon>201706060729000_foreignkeylink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201706060754150_updatedlinks.cs" />
+    <Compile Include="DAL\Migrations\201706060754150_updatedlinks.Designer.cs">
+      <DependentUpon>201706060754150_updatedlinks.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Repositories\LinkTypeRepository.cs" />
     <Compile Include="DAL\Repositories\ILinkTypeRepository.cs" />
     <Compile Include="Helpers\MySession.cs" />
@@ -1191,6 +1199,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201706032156299_updating-db2.resx">
       <DependentUpon>201706032156299_updating-db2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201706060729000_foreignkeylink.resx">
+      <DependentUpon>201706060729000_foreignkeylink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201706060754150_updatedlinks.resx">
+      <DependentUpon>201706060754150_updatedlinks.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

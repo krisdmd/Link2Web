@@ -1,4 +1,5 @@
 ﻿using Link2Web.DAL;
+using Link2Web.DAL.Repositories;
 using Link2Web.Helpers;
 using Link2Web.Models;
 using Microsoft.AspNet.Identity;
@@ -12,11 +13,13 @@ namespace Link2Web.Controllers
     public class ProjectController : BaseController
     {
         private Link2WebDbContext db = new Link2WebDbContext();
+        private IContactRepository _contactsContext;
         private DbAddOrUpdate dbAddorUpdate = new DbAddOrUpdate();
 
         public ProjectController()
         {
             GlobalSettings.HideCreateProjectDialog = true;
+            _contactsContext = new ContactRepository(new Link2WebDbContext());
 
         }
 
@@ -75,7 +78,7 @@ namespace Link2Web.Controllers
                     ValueInt = project.ProjectId
                 };
 
-                System.Web.HttpContext.Current.Session["ViewProjectId"] = project.ViewProfileId;
+                System.Web.HttpContext.Current.Session["ViewProfileId"] = project.ViewProfileId;
 
                 dbAddorUpdate.AddOrUpdateUserSetting(userSettings, User.Identity.GetUserId());
 
@@ -128,7 +131,7 @@ namespace Link2Web.Controllers
                     ValueInt = project.ProjectId
                 };
 
-                System.Web.HttpContext.Current.Session["ViewProjectId"] = project.ViewProfileId;
+                System.Web.HttpContext.Current.Session["ViewProfileId"] = project.ViewProfileId;
                 dbAddorUpdate.AddOrUpdateUserSetting(userSettings, User.Identity.GetUserId());
 
                 return RedirectToAction("Index");
@@ -195,7 +198,8 @@ namespace Link2Web.Controllers
                 ValueInt = project.ProjectId
             };
 
-            System.Web.HttpContext.Current.Session["ViewProjectId"] = project.ViewProfileId;
+            Session["ViewProfileId"] = project.ViewProfileId;
+            Session["ProjectId"] = project.ProjectId;
             dbAddorUpdate.AddOrUpdateUserSetting(userSettings, User.Identity.GetUserId());
             GlobalSettings.ChangeProject();
 

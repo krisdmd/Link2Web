@@ -15,6 +15,7 @@
             $('#datatable').DataTable({
                 "serverSide": true,
                 "processing": true,
+                "responsive": true,
                 "ajax": "@Url.Action("GetVisitors", "Analytics", null, Request.Url.Scheme)",
                 "columns": [
                     {

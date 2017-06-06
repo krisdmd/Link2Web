@@ -213,6 +213,9 @@
   <data name="Link" xml:space="preserve">
     <value>Link</value>
   </data>
+  <data name="LinkType" xml:space="preserve">
+    <value>Link type</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>

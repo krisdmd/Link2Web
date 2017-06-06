@@ -26,6 +26,7 @@
                     $('#datatable').DataTable({
                         "serverSide": true,
                         "processing": true,
+                        "responsive": true,
                         "ajax": "@Url.Action("GetContacts", "Contacts", null, Request.Url.Scheme)",
                         "columns": [
                             {

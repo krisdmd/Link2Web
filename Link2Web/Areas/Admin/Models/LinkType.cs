@@ -1,6 +1,4 @@
-﻿using Link2Web.Models;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Link2Web.Areas.Admin.Models
@@ -15,7 +13,5 @@ namespace Link2Web.Areas.Admin.Models
         [Display(Name = "Visible", ResourceType = typeof(Resources.Resources))]
         [DefaultValue(true)]
         public bool Visible { get; set; }
-
-        public ICollection<Link> Links { get; set; }
     }
 }

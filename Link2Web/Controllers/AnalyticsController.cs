@@ -64,6 +64,11 @@ namespace Link2Web.Controllers
         }
         public ActionResult GetVisitors([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
+            if (string.IsNullOrWhiteSpace(Session["ViewProfileId"].ToString()))
+            {
+                return Json("", JsonRequestBehavior.AllowGet);
+            }
+
             var dimensions = new[]
             {
                 "ga:date"
@@ -114,6 +119,11 @@ namespace Link2Web.Controllers
 
         public ActionResult GetVisitorsByKeyword([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
+            if (string.IsNullOrWhiteSpace(Session["ViewProfileId"].ToString()))
+            {
+                return Json("", JsonRequestBehavior.AllowGet);
+            }
+
             var dimensions = new[]
             {
                 "ga:keyword"
@@ -165,6 +175,11 @@ namespace Link2Web.Controllers
 
         public ActionResult GetVisitorsByTopReferer([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
+            if (string.IsNullOrWhiteSpace(Session["ViewProfileId"].ToString()))
+            {
+                return Json("", JsonRequestBehavior.AllowGet);
+            }
+
             var dimensions = new[]
             {
                 "ga:fullReferrer"
@@ -216,6 +231,11 @@ namespace Link2Web.Controllers
 
         public JsonResult GetVisitorsByBrowser([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
+            if (string.IsNullOrWhiteSpace(Session["ViewProfileId"].ToString()))
+            {
+                return Json("", JsonRequestBehavior.AllowGet);
+            }
+
             var dimensions = new[]
             {
                 "ga:browser"

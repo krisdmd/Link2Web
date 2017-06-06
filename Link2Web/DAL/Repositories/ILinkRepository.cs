@@ -6,7 +6,7 @@ namespace Link2Web.DAL.Repositories
 {
     public interface ILinkRepository: IDisposable
     {
-        IEnumerable<Link> GetLinks();
+        IEnumerable<Link> GetLinks(int projectId);
         Link GetLinkById(int id, string userId);
         void InsertLink(Link link);
         void DeleteLink(int id);

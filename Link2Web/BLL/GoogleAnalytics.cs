@@ -12,9 +12,15 @@ namespace Link2Web.BLL
 {
     public class GoogleAnalytics
     {
-        public AnalyticDataPoint GetAnalyticsData(string profileId, string[] dimensions, string[] metrics, DateTime startDate, DateTime endDate)
+        private AnalyticDataPoint GetAnalyticsData(string profileId, string[] dimensions, string[] metrics, DateTime startDate, DateTime endDate)
         {
             AnalyticDataPoint data = new AnalyticDataPoint();
+
+            if (string.IsNullOrWhiteSpace(profileId))
+            {
+                return data;
+            }
+
             if (!profileId.Contains("ga:"))
                 profileId = $"ga:{profileId}";
 
@@ -105,8 +111,7 @@ namespace Link2Web.BLL
         public AnalyticDataPoint GetVisitorsData(DateTime startDate, DateTime endDate, string[] dimensions, string[] metrics)
         {
             var analyticsData = new GoogleAnalytics();
-
-            return analyticsData.GetAnalyticsData(HttpContext.Current.Session["ViewProjectId"].ToString(), dimensions, metrics, startDate, endDate);
+            return analyticsData.GetAnalyticsData(HttpContext.Current.Session["ViewProfileId"].ToString(), dimensions, metrics, startDate, endDate);
         }
 
     }

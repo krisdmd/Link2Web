@@ -32,7 +32,7 @@ namespace Link2Web.DAL.Repositories
             GC.SuppressFinalize(this);
         }
 
-        public List<Contact> GetContacts()
+        public IEnumerable<Contact> GetContacts()
         {
             return _context.Contacts.ToList();
         }

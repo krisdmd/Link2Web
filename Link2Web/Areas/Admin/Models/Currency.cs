@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Link2Web.Models
+namespace Link2Web.Areas.Admin.Models
 {
     public class Currency
     {

@@ -6,7 +6,7 @@ namespace Link2Web.DAL.Repositories
 {
     public interface ILinkTypeRepository: IDisposable
     {
-        List<LinkType> GetLinkTypes();
+        IEnumerable<LinkType> GetLinkTypes();
         LinkType GetLinkTypeById(int id);
         void InsertLinkType(LinkType linkType);
         void DeleteLinkType(int id);
