@@ -319,22 +319,11 @@
     <Compile Include="Areas\Admin\Controllers\LinkTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingTypesController.cs" />
-    <Compile Include="DAL\Migrations\201706031815453_updating-db1.cs" />
-    <Compile Include="DAL\Migrations\201706031815453_updating-db1.Designer.cs">
-      <DependentUpon>201706031815453_updating-db1.cs</DependentUpon>
+    <Compile Include="DAL\Migrations\201706061759114_init.cs" />
+    <Compile Include="DAL\Migrations\201706061759114_init.Designer.cs">
+      <DependentUpon>201706061759114_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="DAL\Migrations\201706032156299_updating-db2.cs" />
-    <Compile Include="DAL\Migrations\201706032156299_updating-db2.Designer.cs">
-      <DependentUpon>201706032156299_updating-db2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201706060729000_foreignkeylink.cs" />
-    <Compile Include="DAL\Migrations\201706060729000_foreignkeylink.Designer.cs">
-      <DependentUpon>201706060729000_foreignkeylink.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201706060754150_updatedlinks.cs" />
-    <Compile Include="DAL\Migrations\201706060754150_updatedlinks.Designer.cs">
-      <DependentUpon>201706060754150_updatedlinks.cs</DependentUpon>
-    </Compile>
+    <Compile Include="DAL\Migrations\Configuration.cs" />
     <Compile Include="DAL\Repositories\LinkTypeRepository.cs" />
     <Compile Include="DAL\Repositories\ILinkTypeRepository.cs" />
     <Compile Include="Helpers\MySession.cs" />
@@ -356,39 +345,6 @@
     <Compile Include="Core\MyFunctions.cs" />
     <Compile Include="DAL\Entities\GoogleUser.cs" />
     <Compile Include="DAL\Entities\Email.cs" />
-    <Compile Include="DAL\Migrations\201705230836239_EmailEntity.cs" />
-    <Compile Include="DAL\Migrations\201705230836239_EmailEntity.Designer.cs">
-      <DependentUpon>201705230836239_EmailEntity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201705240856531_AnalyticsToken.cs" />
-    <Compile Include="DAL\Migrations\201705240856531_AnalyticsToken.Designer.cs">
-      <DependentUpon>201705240856531_AnalyticsToken.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201705240920596_GoogleUser.cs" />
-    <Compile Include="DAL\Migrations\201705240920596_GoogleUser.Designer.cs">
-      <DependentUpon>201705240920596_GoogleUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201705300926050_updatinglink.cs" />
-    <Compile Include="DAL\Migrations\201705300926050_updatinglink.Designer.cs">
-      <DependentUpon>201705300926050_updatinglink.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201705301238102_updatinglink1.cs" />
-    <Compile Include="DAL\Migrations\201705301238102_updatinglink1.Designer.cs">
-      <DependentUpon>201705301238102_updatinglink1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201705301243423_links.cs" />
-    <Compile Include="DAL\Migrations\201705301412118_links2.cs" />
-    <Compile Include="DAL\Migrations\201705301412118_links2.Designer.cs">
-      <DependentUpon>201705301412118_links2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201706021220347_currencyEntity.cs" />
-    <Compile Include="DAL\Migrations\201706021220347_currencyEntity.Designer.cs">
-      <DependentUpon>201706021220347_currencyEntity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201706021321201_currencies1.cs" />
-    <Compile Include="DAL\Migrations\201706021321201_currencies1.Designer.cs">
-      <DependentUpon>201706021321201_currencies1.cs</DependentUpon>
-    </Compile>
     <Compile Include="DAL\Repositories\CurrencyRepository.cs" />
     <Compile Include="DAL\Repositories\ProjectRepository.cs" />
     <Compile Include="DAL\Repositories\LanguageRepository.cs" />
@@ -407,63 +363,6 @@
     <Compile Include="DAL\Repositories\ICountryRepository.cs" />
     <Compile Include="DAL\Link2WebInit.cs" />
     <Compile Include="DAL\Link2WebDbContext.cs" />
-    <Compile Include="DAL\Migrations\201703080925535_AnalyticsVisitors.cs" />
-    <Compile Include="DAL\Migrations\201703080925535_AnalyticsVisitors.Designer.cs">
-      <DependentUpon>201703080925535_AnalyticsVisitors.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201703231053106_updatedb.cs" />
-    <Compile Include="DAL\Migrations\201703231053106_updatedb.Designer.cs">
-      <DependentUpon>201703231053106_updatedb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201703291347528_currencies.cs" />
-    <Compile Include="DAL\Migrations\201703291347528_currencies.Designer.cs">
-      <DependentUpon>201703291347528_currencies.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201704061335148_AddElmah.cs" />
-    <Compile Include="DAL\Migrations\201704061335148_AddElmah.Designer.cs">
-      <DependentUpon>201704061335148_AddElmah.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201704201223548_profile.cs" />
-    <Compile Include="DAL\Migrations\201704201223548_profile.Designer.cs">
-      <DependentUpon>201704201223548_profile.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201704201448128_profile1.cs" />
-    <Compile Include="DAL\Migrations\201704201448128_profile1.Designer.cs">
-      <DependentUpon>201704201448128_profile1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201704241305467_languages.cs" />
-    <Compile Include="DAL\Migrations\201704241305467_languages.Designer.cs">
-      <DependentUpon>201704241305467_languages.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201704241335577_languages1.cs" />
-    <Compile Include="DAL\Migrations\201704241335577_languages1.Designer.cs">
-      <DependentUpon>201704241335577_languages1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201704241410549_adminlanguages.cs" />
-    <Compile Include="DAL\Migrations\201704241410549_adminlanguages.Designer.cs">
-      <DependentUpon>201704241410549_adminlanguages.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201704251404530_updatingsettings.cs" />
-    <Compile Include="DAL\Migrations\201704251404530_updatingsettings.Designer.cs">
-      <DependentUpon>201704251404530_updatingsettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201704271237308_fixingproject.cs" />
-    <Compile Include="DAL\Migrations\201704271237308_fixingproject.Designer.cs">
-      <DependentUpon>201704271237308_fixingproject.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201704281523173_globalsettings.cs" />
-    <Compile Include="DAL\Migrations\201704281523173_globalsettings.Designer.cs">
-      <DependentUpon>201704281523173_globalsettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201705041929574_usersettingsupdated.cs" />
-    <Compile Include="DAL\Migrations\201705041929574_usersettingsupdated.Designer.cs">
-      <DependentUpon>201705041929574_usersettingsupdated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\201705081313427_contact.cs" />
-    <Compile Include="DAL\Migrations\201705081313427_contact.Designer.cs">
-      <DependentUpon>201705081313427_contact.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Migrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1110,7 +1009,7 @@
     <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\clientsecret.json\" />
+    <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\ViewModels\" />
     <Folder Include="Areas\Admin\Views\Home\" />
     <Folder Include="bin\" />
@@ -1121,90 +1020,15 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DAL\Migrations\201703080925535_AnalyticsVisitors.resx">
-      <DependentUpon>201703080925535_AnalyticsVisitors.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201703231053106_updatedb.resx">
-      <DependentUpon>201703231053106_updatedb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201703291347528_currencies.resx">
-      <DependentUpon>201703291347528_currencies.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201704061335148_AddElmah.resx">
-      <DependentUpon>201704061335148_AddElmah.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201704201223548_profile.resx">
-      <DependentUpon>201704201223548_profile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201704201448128_profile1.resx">
-      <DependentUpon>201704201448128_profile1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201704241305467_languages.resx">
-      <DependentUpon>201704241305467_languages.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201704241335577_languages1.resx">
-      <DependentUpon>201704241335577_languages1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201704241410549_adminlanguages.resx">
-      <DependentUpon>201704241410549_adminlanguages.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201704251404530_updatingsettings.resx">
-      <DependentUpon>201704251404530_updatingsettings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201704271237308_fixingproject.resx">
-      <DependentUpon>201704271237308_fixingproject.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201704281523173_globalsettings.resx">
-      <DependentUpon>201704281523173_globalsettings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201705041929574_usersettingsupdated.resx">
-      <DependentUpon>201705041929574_usersettingsupdated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201705081313427_contact.resx">
-      <DependentUpon>201705081313427_contact.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201705230836239_EmailEntity.resx">
-      <DependentUpon>201705230836239_EmailEntity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201705240856531_AnalyticsToken.resx">
-      <DependentUpon>201705240856531_AnalyticsToken.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201705240920596_GoogleUser.resx">
-      <DependentUpon>201705240920596_GoogleUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201705300926050_updatinglink.resx">
-      <DependentUpon>201705300926050_updatinglink.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201705301238102_updatinglink1.resx">
-      <DependentUpon>201705301238102_updatinglink1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201705301412118_links2.resx">
-      <DependentUpon>201705301412118_links2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201706021220347_currencyEntity.resx">
-      <DependentUpon>201706021220347_currencyEntity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201706021321201_currencies1.resx">
-      <DependentUpon>201706021321201_currencies1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201706031815453_updating-db1.resx">
-      <DependentUpon>201706031815453_updating-db1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201706032156299_updating-db2.resx">
-      <DependentUpon>201706032156299_updating-db2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201706060729000_foreignkeylink.resx">
-      <DependentUpon>201706060729000_foreignkeylink.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\Migrations\201706060754150_updatedlinks.resx">
-      <DependentUpon>201706060754150_updatedlinks.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Resources\Resources.csproj">
       <Project>{e4a5f38f-14a3-4f94-8fdf-2883acb5c990}</Project>
       <Name>Resources</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DAL\Migrations\201706061759114_init.resx">
+      <DependentUpon>201706061759114_init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

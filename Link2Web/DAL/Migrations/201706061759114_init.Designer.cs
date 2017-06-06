@@ -7,13 +7,13 @@ namespace Link2Web.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class updatedlinks : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(updatedlinks));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706060754150_updatedlinks"; }
+            get { return "201706061759114_init"; }
         }
         
         string IMigrationMetadata.Source

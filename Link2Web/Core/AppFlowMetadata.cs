@@ -22,8 +22,7 @@ namespace Link2Web.Core
                 },
                 Scopes = new[]
                 {
-                    AnalyticsService.Scope.AnalyticsReadonly,
-                    AnalyticsService.Scope.Analytics
+                    AnalyticsService.Scope.AnalyticsReadonly
                 },
                
                 DataStore = new EfDataStore(),
@@ -67,7 +66,7 @@ namespace Link2Web.Core
                 Scope = string.Join(" ", Scopes),
                 RedirectUri = redirectUri,
                 AccessType = "offline",
-                ApprovalPrompt = "force"
+               ApprovalPrompt = "force"
             };
         }
     }

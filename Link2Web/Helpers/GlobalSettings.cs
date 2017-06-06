@@ -23,7 +23,7 @@ namespace Link2Web.Helpers
             {
                 return HttpContext.Current.Session["FaceBookAccessToken"] == null
                     ? string.Empty
-                    : HttpContext.Current.Session["FaceBookAccessToken"].ToString();
+                    : HttpContext.Current.Session["FaceBookAccessToken"].ToString().Trim();
             }
             set { HttpContext.Current.Session["FaceBookAccessToken"] = value; }
         }
@@ -47,8 +47,8 @@ namespace Link2Web.Helpers
                     GoogleWebAuthorizationBroker.AuthorizeAsync(
                         new ClientSecrets
                         {
-                            ClientId = HttpContext.Current.Session["GoogleClientId"].ToString(),
-                            ClientSecret = HttpContext.Current.Session["GoogleClientSecret"].ToString()
+                            ClientId = HttpContext.Current.Session["GoogleClientId"].ToString().Trim(),
+                            ClientSecret = HttpContext.Current.Session["GoogleClientSecret"].ToString().Trim()
                         }
                         , scopes
                         , HttpContext.Current.Session["User"].ToString()
@@ -58,7 +58,7 @@ namespace Link2Web.Helpers
                 AnalyticsService service = new AnalyticsService(new BaseClientService.Initializer()
                 {
                     HttpClientInitializer = credential,
-                    ApplicationName = "K2Web",
+                    ApplicationName = "ivo",
                 });
                 return service;
             }
@@ -94,6 +94,8 @@ namespace Link2Web.Helpers
 
                 if (s.Setting == "CurrentProject")
                 {
+                    HttpContext.Current.Session["ProjectId"] = db.Projects.FirstOrDefault(p => p.ProjectId == s.ValueInt)?.ProjectId;
+
                     HttpContext.Current.Session["ViewProfileId"] = db.Projects.FirstOrDefault(p => p.ProjectId == s.ValueInt)?.ViewProfileId;
                 }
             }
