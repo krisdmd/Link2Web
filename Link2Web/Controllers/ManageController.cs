@@ -17,7 +17,6 @@ namespace Link2Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private Link2WebDbContext _db = new Link2WebDbContext();
 
         public ManageController()
         {
@@ -250,9 +249,11 @@ namespace Link2Web.Controllers
         // GET: /Manage/EditProfile/1
         public async Task<ActionResult> EditProfile()
         {
+            var db = new Link2WebDbContext();
+
             var userId = User.Identity.GetUserId();
-            var user = _db.Users.FirstOrDefault(u => u.Id.Equals(userId));
-            ViewBag.CountryId = new SelectList(_db.Countries, "CountryId", "Name");
+            var user = db.Users.FirstOrDefault(u => u.Id.Equals(userId));
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
 
             return View(user);
         }
@@ -262,13 +263,30 @@ namespace Link2Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditProfile(ApplicationUser model)
         {
-            ViewBag.CountryId = new SelectList(_db.Countries, "CountryId", "Name", model.CountryId);
+            var db = HttpContext.GetOwinContext().Get<Link2WebDbContext>();
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", model.CountryId);
 
             if (ModelState.IsValid)
             {
+                var user = UserManager.FindById(model.Id);
 
-                _db.Entry(model).State = EntityState.Modified;
-                _db.SaveChanges();
+                user.UserName = model.Email;
+                user.Email = model.Email;
+                user.Address = model.Address;
+                user.City = model.City;
+                user.Zipcode = model.Zipcode;
+                user.FacebookProfileUrl = model.FacebookProfileUrl;
+                user.TwitterProfileUrl = model.TwitterProfileUrl;
+                user.Phone = model.Phone;
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.CountryId = model.CountryId;
+
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+
+                await SignInManager.SignInAsync(user, true, true);
+                return RedirectToAction("EditProfile");
             }
 
             return View(model);

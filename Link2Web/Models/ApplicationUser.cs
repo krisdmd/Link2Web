@@ -50,7 +50,9 @@ namespace Link2Web.Models
         [Display(Name = "ProfilePicture", ResourceType = typeof(Resources.Resources))]
 
         public byte[] ProfilePicture { get; set; }
+
         public virtual Country Country { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
