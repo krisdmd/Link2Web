@@ -13,12 +13,15 @@ namespace Link2Web.Controllers
     public class ProjectController : BaseController
     {
         private Link2WebDbContext db = new Link2WebDbContext();
+        private IProjectRepository _context;
+
         private IContactRepository _contactsContext;
         private DbAddOrUpdate dbAddorUpdate = new DbAddOrUpdate();
 
         public ProjectController()
         {
             GlobalSettings.HideCreateProjectDialog = true;
+            _context = new ProjectRepository(new Link2WebDbContext());
             _contactsContext = new ContactRepository(new Link2WebDbContext());
 
         }
@@ -27,7 +30,7 @@ namespace Link2Web.Controllers
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
-            var projects = db.Projects.Include(p => p.Country).Where(p => p.UserId.Equals(userId));
+            var projects = db.Projects.Include(c => c.Countries).Where(p => p.UserId.Equals(userId));
             return View(projects.ToList());
         }
 

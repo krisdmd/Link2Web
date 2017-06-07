@@ -26,7 +26,7 @@
                 <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">@Html.DisplayFor(modelItem => item.ViewProfileId)</div>
                 <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.Name)</div>
                 <div class="hidden-xs col-sm-3 col-md-3 col-lg-3">@Html.DisplayFor(modelItem => item.Email)</div>
-                <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">@Html.DisplayFor(modelItem => item.Country.Name)</div>
+                <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">@Html.DisplayFor(modelItem => item.Countries.Name)</div>
                 <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                     <a class="lnk-space" href='@Url.Action("Select", "Project", new {id = item.ProjectId})'>
                         <span class="glyphicon glyphicon-new-window"></span> Select

@@ -21,12 +21,13 @@ namespace Link2Web.Models
 
         public string ScreenName { get; set; }
 
-        [Display(Name = "Email", ResourceType = typeof (Resources.Resources))]
-        [Required]
+        [Display(Name = "Email", ResourceType = typeof(Resources.Resources))]
+        [MaxLength(60, ErrorMessage = "Email cannot be longer than 60 characters.")]
+        [Required(ErrorMessage = "Email is required")]
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
-                           @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
-                           @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
-            ErrorMessage = @"Email is not valid")]
+                            @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                            @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
+                            ErrorMessage = "Email is not valid")]
         public string Email { get; set; }
 
         [Display(Name = "Address", ResourceType = typeof (Resources.Resources))]
@@ -53,5 +54,7 @@ namespace Link2Web.Models
 
         [ForeignKey("UserId")]
         public virtual ApplicationUser ApplicationUser { get; set; }
+
+        public virtual Country Countries { get; set; }
     }
 }

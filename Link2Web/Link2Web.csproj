@@ -319,14 +319,29 @@
     <Compile Include="Areas\Admin\Controllers\LinkTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingTypesController.cs" />
-    <Compile Include="DAL\Migrations\201706061759114_init.cs" />
-    <Compile Include="DAL\Migrations\201706061759114_init.Designer.cs">
-      <DependentUpon>201706061759114_init.cs</DependentUpon>
+    <Compile Include="DAL\Migrations\201706070854217_updates.cs" />
+    <Compile Include="DAL\Migrations\201706070854217_updates.Designer.cs">
+      <DependentUpon>201706070854217_updates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201706070854467_updates1.cs" />
+    <Compile Include="DAL\Migrations\201706070854467_updates1.Designer.cs">
+      <DependentUpon>201706070854467_updates1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201706070904343_project.cs" />
+    <Compile Include="DAL\Migrations\201706070904343_project.Designer.cs">
+      <DependentUpon>201706070904343_project.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201706070909559_project1.cs" />
+    <Compile Include="DAL\Migrations\201706070909559_project1.Designer.cs">
+      <DependentUpon>201706070909559_project1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201706070937304_project2.cs" />
+    <Compile Include="DAL\Migrations\201706070937304_project2.Designer.cs">
+      <DependentUpon>201706070937304_project2.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\Migrations\Configuration.cs" />
     <Compile Include="DAL\Repositories\LinkTypeRepository.cs" />
     <Compile Include="DAL\Repositories\ILinkTypeRepository.cs" />
-    <Compile Include="Helpers\MySession.cs" />
     <Compile Include="ViewModels\CurrencyViewModel.cs" />
     <Compile Include="BLL\FacebookData.cs" />
     <Compile Include="BLL\GoogleAnalytics.cs" />
@@ -1026,8 +1041,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DAL\Migrations\201706061759114_init.resx">
-      <DependentUpon>201706061759114_init.cs</DependentUpon>
+    <EmbeddedResource Include="DAL\Migrations\201706070854217_updates.resx">
+      <DependentUpon>201706070854217_updates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201706070854467_updates1.resx">
+      <DependentUpon>201706070854467_updates1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201706070904343_project.resx">
+      <DependentUpon>201706070904343_project.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201706070909559_project1.resx">
+      <DependentUpon>201706070909559_project1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201706070937304_project2.resx">
+      <DependentUpon>201706070937304_project2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

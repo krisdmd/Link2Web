@@ -16,8 +16,6 @@ namespace Link2Web.Models
         public string From { get; set; }
         public string Place { get; set; }
         public string Title { get; set; }
-
-
         public DateTime Createdtime { get; set; }
     }
 

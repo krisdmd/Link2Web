@@ -43,9 +43,10 @@ namespace Link2Web.BLL
                 response = request.Execute();
                 data.ColumnHeaders = response.ColumnHeaders.ToList();
 
+
+                if (response.Rows == null) continue;
                 foreach (var row in response.Rows)
                 {
-                    //var datum = MyFunctions.StringToDateTime(row[0], "yyyMMdd");
                     var bounceRate = MyFunctions.GetDouble(row[3], 0);
                     bounceRate = Math.Round(bounceRate, 2);
 
@@ -63,7 +64,6 @@ namespace Link2Web.BLL
 
                     data.Rows.Add(rowData);
                 }
-
             }
             while (!string.IsNullOrEmpty(response.NextLink));
 

@@ -63,6 +63,8 @@ namespace Link2Web.Models
         [Display(Name = "BacklinkFound", ResourceType = typeof (Resources.Resources))]
         [DefaultValue(false)]
         public bool BacklinkFound { get; set; }
+        public virtual Country Countries { get; set; }
+
 
         public Link()
         {

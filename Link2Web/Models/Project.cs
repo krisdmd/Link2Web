@@ -66,14 +66,12 @@ namespace Link2Web.Models
         [Display(Name = "Visible", ResourceType = typeof (Resources.Resources))]
         public bool Visible { get; set; }
 
-        public virtual Country Country { get; set; }
-        //public virtual CurrencyModel CurrencyModel { get; set; }
-
-        public virtual Language Language { get; set; }
-        public virtual Link Link { get; set; }
-
         [ForeignKey("UserId")]
         public virtual ApplicationUser ApplicationUser { get; set; }
+
+        public virtual Country Countries { get; set; }
+        public virtual Language Languages { get; set; }
+        public virtual Currency Currencies { get; set; }
 
         public Project()
         {

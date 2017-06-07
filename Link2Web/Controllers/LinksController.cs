@@ -38,7 +38,7 @@ namespace Link2Web.Controllers
         // GET: Links
         public ActionResult Index()
         {
-            return View(_context.GetLinks((int)Session["ProjectId"]));
+            return View(_context.GetLinks().Where(p => p.ProjectId == (int)Session["ProjectId"]));
         }
 
         // GET: Links/Details/5
@@ -158,8 +158,8 @@ namespace Link2Web.Controllers
         {
             var userId = User.Identity.GetUserId();
             var links =
-                _context.GetLinks((int)Session["ProjectId"]).Select(l => new {l.LinkId, l.AnchorText, l.WebsiteUrl, l.Description, l.UserId})
-                    .Where(l => l.UserId.Equals(userId))
+                _context.GetLinks().Select(l => new {l.LinkId, l.AnchorText, l.WebsiteUrl, l.Description, l.UserId, l.ProjectId})
+                    .Where(l => l.UserId.Equals(userId) && l.ProjectId == (int)Session["ProjectId"])
                     .ToList();
 
             // Apply filters

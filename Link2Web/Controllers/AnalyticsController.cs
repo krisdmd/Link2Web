@@ -294,7 +294,7 @@ namespace Link2Web.Controllers
                 var service = new AnalyticsService(new BaseClientService.Initializer
                 {
                     HttpClientInitializer = result.Credential,
-                    ApplicationName = "LinksAppie"
+                    ApplicationName = "ivo"
                 });
               
 
