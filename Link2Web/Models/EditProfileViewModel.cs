@@ -1,28 +1,19 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Link2Web.Models
 {
     public class EditProfileViewModel
     {
         public int Id { get; set; }
-        [Required(AllowEmptyStrings = false)]
-        [EmailAddress]
-        [Display(Name = "Email")]
+
+        [Display(Name = "Email", ResourceType = typeof(Resources.Resources))]
+        [MaxLength(60, ErrorMessage = "Email cannot be longer than 60 characters.")]
+        [Required(ErrorMessage = "Email is required")]
+        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                            @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                            @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
+                            ErrorMessage = "Email is not valid")]
         public string Email { get; set; }
-
-        [Required]
-        [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
-
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [System.ComponentModel.DataAnnotations.Compare("Password",
-            ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
 
         [Display(Name = "FirstName", ResourceType = typeof (Resources.Resources))]
         [Required]
@@ -43,16 +34,20 @@ namespace Link2Web.Models
 
         [Display(Name = "Country", ResourceType = typeof (Resources.Resources))]
         [Required]
-        public Country CountryId { get; set; }
+        public int CountryId { get; set; }
 
         [Display(Name = "Phone", ResourceType = typeof (Resources.Resources))]
         public string Phone { get; set; }
 
+        [Display(Name = "TwitterProfileUrl", ResourceType = typeof(Resources.Resources))]
+        public string TwitterProfileUrl { get; set; }
+
+        [Display(Name = "FacebookProfileUrl", ResourceType = typeof(Resources.Resources))]
+        public string FacebookProfileUrl { get; set; }
+
         [Display(Name = "ProfilePicture", ResourceType = typeof (Resources.Resources))]
         public byte[] ProfilePicture { get; set; }
 
-
         public virtual Country Country { get; set; }
-        public IEnumerable<SelectListItem> RolesList { get; set; }
     }
 }

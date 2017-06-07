@@ -339,6 +339,26 @@
     <Compile Include="DAL\Migrations\201706070937304_project2.Designer.cs">
       <DependentUpon>201706070937304_project2.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Migrations\201706071238544_user.cs" />
+    <Compile Include="DAL\Migrations\201706071238544_user.Designer.cs">
+      <DependentUpon>201706071238544_user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201706071255419_user1.cs" />
+    <Compile Include="DAL\Migrations\201706071255419_user1.Designer.cs">
+      <DependentUpon>201706071255419_user1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201706071259586_user2.cs" />
+    <Compile Include="DAL\Migrations\201706071259586_user2.Designer.cs">
+      <DependentUpon>201706071259586_user2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201706071313443_user3.cs" />
+    <Compile Include="DAL\Migrations\201706071313443_user3.Designer.cs">
+      <DependentUpon>201706071313443_user3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Migrations\201706071322217_user4.cs" />
+    <Compile Include="DAL\Migrations\201706071322217_user4.Designer.cs">
+      <DependentUpon>201706071322217_user4.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Migrations\Configuration.cs" />
     <Compile Include="DAL\Repositories\LinkTypeRepository.cs" />
     <Compile Include="DAL\Repositories\ILinkTypeRepository.cs" />
@@ -804,6 +824,7 @@
     <Content Include="Content\DataTables\css\common.scss" />
     <Content Include="Views\Shared\_ErrorDialog.cshtml" />
     <Content Include="Views\Home\Elmah.cshtml" />
+    <Content Include="Views\Manage\EditProfile.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1055,6 +1076,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\Migrations\201706070937304_project2.resx">
       <DependentUpon>201706070937304_project2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201706071238544_user.resx">
+      <DependentUpon>201706071238544_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201706071255419_user1.resx">
+      <DependentUpon>201706071255419_user1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201706071259586_user2.resx">
+      <DependentUpon>201706071259586_user2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201706071313443_user3.resx">
+      <DependentUpon>201706071313443_user3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\Migrations\201706071322217_user4.resx">
+      <DependentUpon>201706071322217_user4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

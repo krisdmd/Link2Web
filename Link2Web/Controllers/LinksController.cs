@@ -38,7 +38,8 @@ namespace Link2Web.Controllers
         // GET: Links
         public ActionResult Index()
         {
-            return View(_context.GetLinks().Where(p => p.ProjectId == (int)Session["ProjectId"]));
+            var userId = User.Identity.GetUserId();
+            return View(_context.GetLinks().Where(l => l.ProjectId == (int)Session["ProjectId"] && l.UserId.Equals(userId)));
         }
 
         // GET: Links/Details/5
@@ -57,8 +58,10 @@ namespace Link2Web.Controllers
         // GET: Links/Create
         public ActionResult Create()
         {
-            ViewBag.ProjectId = new SelectList(_projectContext.GetProjects(), "ProjectId", "Name");
-            ViewBag.ContactId = new SelectList(_contactsContext.GetContacts(), "ContactId", "Name");
+            var userId = User.Identity.GetUserId();
+
+            ViewBag.ProjectId = new SelectList(_projectContext.GetProjects().Where(p => p.UserId.Equals(userId)), "ProjectId", "Name");
+            ViewBag.ContactId = new SelectList(_contactsContext.GetContacts().Where(c => c.UserId.Equals(userId)), "ContactId", "Name");
             ViewBag.LinkTypeId = new SelectList(_linkTypeContext.GetLinkTypes(), "LinkTypeId", "Type");
 
             return View();
@@ -76,6 +79,9 @@ namespace Link2Web.Controllers
                 )] Link
                 link)
         {
+
+            var userId = User.Identity.GetUserId();
+
             if (ModelState.IsValid)
             {
                 link.UserId = User.Identity.GetUserId();
@@ -84,8 +90,8 @@ namespace Link2Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProjectId = new SelectList(_projectContext.GetProjects(), "ProjectId", "Name", link.ProjectId);
-            ViewBag.ContactId = new SelectList(_contactsContext.GetContacts(), "ContactId", "Name", link.ContactId);
+            ViewBag.ProjectId = new SelectList(_projectContext.GetProjects().Where(p => p.UserId.Equals(userId)), "ProjectId", "Name", link.ProjectId);
+            ViewBag.ContactId = new SelectList(_contactsContext.GetContacts().Where(c => c.UserId.Equals(userId)), "ContactId", "Name", link.ContactId);
             ViewBag.LinkTypeId = new SelectList(_linkTypeContext.GetLinkTypes(), "LinkTypeId", "Type", link.LinkTypeId);
 
             return View(link);
@@ -96,13 +102,14 @@ namespace Link2Web.Controllers
         {
             var userId = User.Identity.GetUserId();
             Link link = _context.GetLinkById(id, userId);
+
             if (link == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.ProjectId = new SelectList(_projectContext.GetProjects(), "ProjectId", "Name", link.ProjectId);
-            ViewBag.ContactId = new SelectList(_contactsContext.GetContacts(), "ContactId", "Name", link.ContactId);
+            ViewBag.ProjectId = new SelectList(_projectContext.GetProjects().Where(p => p.UserId.Equals(userId)), "ProjectId", "Name", link.ProjectId);
+            ViewBag.ContactId = new SelectList(_contactsContext.GetContacts().Where(c => c.UserId.Equals(userId)), "ContactId", "Name", link.ContactId);
             ViewBag.LinkTypeId = new SelectList(_linkTypeContext.GetLinkTypes(), "LinkTypeId", "Type", link.LinkTypeId);
 
             return View(link);
@@ -116,6 +123,8 @@ namespace Link2Web.Controllers
         public ActionResult Edit(
             [Bind(Include = "ProjectId,LinkId,WebsiteUrl,AnchorText,DestinationUrl,Description,CreatedOn,ContactId,LinkTypeId")] Link link)
         {
+            var userId = User.Identity.GetUserId();
+
             if (ModelState.IsValid)
             {
                 link.UserId = User.Identity.GetUserId();
@@ -124,8 +133,8 @@ namespace Link2Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProjectId = new SelectList(_projectContext.GetProjects(), "ProjectId", "Name", link.ProjectId);
-            ViewBag.ContactId = new SelectList(_contactsContext.GetContacts(), "ContactId", "Name", link.ContactId);
+            ViewBag.ProjectId = new SelectList(_projectContext.GetProjects().Where(p => p.UserId.Equals(userId)), "ProjectId", "Name", link.ProjectId);
+            ViewBag.ContactId = new SelectList(_contactsContext.GetContacts().Where(c => c.UserId.Equals(userId)), "ContactId", "Name", link.ContactId);
             ViewBag.LinkTypeId = new SelectList(_linkTypeContext.GetLinkTypes(), "LinkTypeId", "Type", link.LinkTypeId);
 
             return View(link);

@@ -17,12 +17,14 @@
                         @if (ViewData["FullName"] != null)
                         {
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-@*                                <img src="@Url.Action("ProfilePicture", "Home" )" alt="">@ViewData["FullName"]*@
+                                Profile
+                                @*                                <img src="@Url.Action("ProfilePicture", "Home" )" alt="">@ViewData["FullName"]*@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
+                          
                                 <li>
-                                    <a href="javascript:;"> Profile</a>
+                                    <a href="@Url.Action("ChangePassword", "Manage")"> Change password</a>
                                 </li>
                                 <li>
                                     <a href="javascript:document.getElementById('dropdownLogoutForm').submit()"><i class="fa fa-sign-out pull-right"></i> Log Out</a>

@@ -3,8 +3,8 @@ using Link2Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -248,50 +248,27 @@ namespace Link2Web.Controllers
         }
 
         // GET: /Manage/EditProfile/1
-        public async Task<ActionResult> EditProfile(string id)
+        public async Task<ActionResult> EditProfile()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            var userId = User.Identity.GetUserId();
+            var user = _db.Users.FirstOrDefault(u => u.Id.Equals(userId));
+            ViewBag.CountryId = new SelectList(_db.Countries, "CountryId", "Name");
 
-            var user = await UserManager.FindByIdAsync(id);
-
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-
-            var vm = new EditProfileViewModel
-            {
-                Email = user.Email,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Address = user.Address,
-                City = user.City,
-                Zipcode = user.Zipcode,
-                CountryId = user.CountryId,
-                Phone = user.Phone
-            };
-
-            return View(vm);
+            return View(user);
         }
 
         // POST: /Manage/EditProfile
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditProfile(EditProfileViewModel model)
+        public async Task<ActionResult> EditProfile(ApplicationUser model)
         {
+            ViewBag.CountryId = new SelectList(_db.Countries, "CountryId", "Name", model.CountryId);
+
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByEmailAsync(model.Email);
 
-                user.FirstName = model.FirstName;
-                user.LastName = model.LastName;
-                user.ProfilePicture = model.ProfilePicture;
-                ViewBag.CountryId = new SelectList(_db.Countries, "CountryId", "Name", model.CountryId);
-
-                return View(model);
+                _db.Entry(model).State = EntityState.Modified;
+                _db.SaveChanges();
             }
 
             return View(model);

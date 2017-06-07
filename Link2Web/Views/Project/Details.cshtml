@@ -1,130 +1,39 @@
-﻿@using Kendo.Mvc.UI
-@model Link2Web.Models.Project
+﻿@model Link2Web.Models.Project
 
 
-<span id="main">
-    <h2>Project details @Html.DisplayFor(model => model.Name)</h2>
+<div id="main">
+<h2>Project details @Html.DisplayFor(model => model.Name)</h2>
 
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 alert alert alert-success alert-dismissible fade in">
-                    Project Details
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    @Html.DisplayNameFor(model => model.Url)
-                </div>
-                <div class="col-lg-6">
-                    Display Name
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    @Html.DisplayFor(model => model.Url)
-                </div>
-                <div class="col-lg-6">
-                    <div class="col">
-                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                </div>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 alert alert alert-success alert-dismissible fade in">
+                Project Details
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-6">
+                @Html.DisplayNameFor(model => model.Url)
+            </div>
+            <div class="col-lg-6">
+                Display Name
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                @Html.DisplayFor(model => model.Url)
+            </div>
+            <div class="col-lg-6">
+                <div class="col">
+                    @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control"}})
+                </div>
+            </div>
 
-
-
-        @*    <h4>Project</h4>*@
-        @*    <hr/>*@
-        @*    <dl class="dl-horizontal">*@
-        @*        <dt>*@
-        @*            @Html.DisplayNameFor(model => model.Country.Name)*@
-        @*        </dt>*@
-        @**@
-            *
-@*        <dd>*@
-
-@*            @Html.DisplayFor(model => model.Country.Name)*@
-
-@*        </dd>*@
-
-@**@
-
-@*        <dt>*@
-
-@*            @Html.DisplayNameFor(model => model.Name)*@
-
-@*        </dt>*@
-
-@**@
-
-@*        <dd>*@
-
-@*            @Html.DisplayFor(model => model.Name)*@
-
-@*        </dd>*@
-
-@**@
-
-@*        <dt>*@
-
-@*            @Html.DisplayNameFor(model => model.Email)*@
-
-@*        </dt>*@
-
-@**@
-
-@*        <dd>*@
-
-@*            @Html.DisplayFor(model => model.Email)*@
-
-@*        </dd>*@
-
-@**@
-
-@*        <dt>*@<dt>
-@*            @Html.DisplayNameFor(model => model.Url)*@
-@*        </dt>*@
-    </dt>
-        @**@
-        @*        <dd>*@<dd>
-
-            @*            @Html.DisplayFor(model => model.Url)*@
-            @*        </dd>*@
-        </dd>
-        @**@
-        @*        <dt>*@<dt>
-
-            @*            @Html.DisplayNameFor(model => model.PreviewImage)*@
-            @*        </dt>*@
-        </dt>
-        @**@
-        @*        <dd>*@<dd>
-
-            @*            @Html.DisplayFor(model => model.PreviewImage)*@
-            @*        </dd>*@
-        </dd>
-        @**@
-
-@*        <dt>*@<dt>
-
-        @*            @Html.DisplayNameFor(model => model.Note)*@
-        @*        </dt>*@
-    </dt>
-        @**@
-        @*        <dd>*@<dd>
-
-            @*            @Html.DisplayFor(model => model.Note)*@
-            @*        </dd>*@
-        </dd>
-        @**@
-        @*    </dl>*@
-        @*    </div>*@
-
-    }
-    </span>
+        </div>
+    </div>
+}
+</div>

@@ -51,7 +51,7 @@ namespace Link2Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ContactId,CountryId,Name,ScreenName,Email,Address,City,Zipcode,Phone")] Contact contact)
+        public ActionResult Create([Bind(Include = "ContactId,CountryId,Name,ScreenName,Email,Address,City,Zipcode,Phone,TwitterProfileUrl,FacebookProfileUrl,Active")] Contact contact)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace Link2Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ContactId,CountryId,Name,ScreenName,Email,Address,City,Zipcode,Phone")] Contact contact)
+        public ActionResult Edit([Bind(Include = "ContactId,CountryId,Name,ScreenName,Email,Address,City,Zipcode,Phone,TwitterProfileUrl,FacebookProfileUrl,Active")] Contact contact)
         {
             if (ModelState.IsValid)
             {
@@ -121,7 +121,6 @@ namespace Link2Web.Controllers
         public JsonResult GetContacts([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
             var userId = User.Identity.GetUserId();
-            //.Where(c => c.UserId.Equals(userId)).
             var contacts = _context.GetContacts().Select(c => new {c.ContactId, c.Name, c.Email, c.City, c.UserId}).ToList().FindAll(c => c.UserId.Contains(userId));
 
             // Apply filters

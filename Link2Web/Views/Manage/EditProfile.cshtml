@@ -1,0 +1,118 @@
+﻿@model Link2Web.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "EditProfile";
+}
+
+<h2>Edit profile</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 alert alert-success alert-dismissible fade in">
+                Details
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new {@class = "control-label col-md-2 col-sm-3 col-xs-12"})
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.EditorFor(model => model.FirstName, new {htmlAttributes = new {@class = "form-control col-md-9 col-xs-12"}})
+                @Html.ValidationMessageFor(model => model.FirstName, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new {@class = "control-label col-md-2 col-sm-3 col-xs-12"})
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.EditorFor(model => model.LastName, new {htmlAttributes = new {@class = "form-control col-md-9 col-xs-12"}})
+                @Html.ValidationMessageFor(model => model.LastName, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new {@class = "control-label col-md-2 col-sm-3 col-xs-12"})
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@class = "form-control col-md-9 col-xs-12"}})
+                @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 alert alert-info alert-link fade in">
+                @Resources.Resources.Address
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Zipcode, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.EditorFor(model => model.Zipcode, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
+                @Html.ValidationMessageFor(model => model.Zipcode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.DropDownListFor(model => model.CountryId, null, htmlAttributes: new { @class = "form-control col-md-10 col-sm-9 col-xs-12" })
+                @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
+                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.FacebookProfileUrl, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.EditorFor(model => model.FacebookProfileUrl, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
+                @Html.ValidationMessageFor(model => model.FacebookProfileUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.TwitterProfileUrl, htmlAttributes: new {@class = "control-label col-md-2 col-sm-3 col-xs-12"})
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                @Html.EditorFor(model => model.TwitterProfileUrl, new {htmlAttributes = new {@class = "form-control col-md-9 col-xs-12"}})
+                @Html.ValidationMessageFor(model => model.TwitterProfileUrl, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <input type="submit" class="btn btn-primary" value="Save Changes">
+                <span></span>
+                <input type="reset" class="btn btn-default" value="Cancel">
+            </div>
+        </div>
+    </div>
+}

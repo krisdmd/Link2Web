@@ -1,4 +1,5 @@
-﻿using Link2Web.Helpers;
+﻿using Link2Web.DAL;
+using Link2Web.Helpers;
 using Link2Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -146,7 +147,10 @@ namespace Link2Web.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            var db = new Link2WebDbContext();
             GlobalSettings.HideCreateProjectDialog = true;
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
+
             return View();
         }
 
@@ -181,6 +185,7 @@ namespace Link2Web.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     ProfilePicture = imageData
+                    
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

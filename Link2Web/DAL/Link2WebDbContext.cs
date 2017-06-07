@@ -37,6 +37,5 @@ namespace Link2Web.DAL
         {
             return new Link2WebDbContext();
         }
-
     }
 }

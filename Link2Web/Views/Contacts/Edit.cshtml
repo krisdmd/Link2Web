@@ -90,13 +90,28 @@
             </div>
 
             <div class="form-group row">
-                @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                @Html.LabelFor(model => model.Phone, htmlAttributes: new {@class = "control-label col-md-2 col-sm-3 col-xs-12"})
                 <div class="col-md-10 col-sm-9 col-xs-12">
-                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
-                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Phone, new {htmlAttributes = new {@class = "form-control col-md-9 col-xs-12"}})
+                    @Html.ValidationMessageFor(model => model.Phone, "", new {@class = "text-danger"})
                 </div>
             </div>
 
+            <div class="form-group row">
+                @Html.LabelFor(model => model.FacebookProfileUrl, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                    @Html.EditorFor(model => model.FacebookProfileUrl, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
+                    @Html.ValidationMessageFor(model => model.FacebookProfileUrl, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.TwitterProfileUrl, htmlAttributes: new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                    @Html.EditorFor(model => model.TwitterProfileUrl, new { htmlAttributes = new { @class = "form-control col-md-9 col-xs-12" } })
+                    @Html.ValidationMessageFor(model => model.TwitterProfileUrl, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
             <div class="form-group row">
                 <div class="col-sm-12">
