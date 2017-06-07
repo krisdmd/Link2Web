@@ -249,10 +249,10 @@ namespace Link2Web.Controllers
         // GET: /Manage/EditProfile/1
         public async Task<ActionResult> EditProfile()
         {
-            var db = new Link2WebDbContext();
+            var db = HttpContext.GetOwinContext().Get<Link2WebDbContext>();
 
             var userId = User.Identity.GetUserId();
-            var user = db.Users.FirstOrDefault(u => u.Id.Equals(userId));
+            var user = UserManager.FindById(userId);
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
 
             return View(user);

@@ -13,6 +13,9 @@
         $('#btnContinueDelete').click(function() {
             window.location = "/Contacts/DeleteConfirmed/" + item_to_delete;
         });
+        $('#btnOk').click(function () {
+            location.reload();
+        });
     </script>
 }
 
@@ -59,7 +62,7 @@
                 <p class="success-message">Are you sure you want to delete contact @Model.Name? </p>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary">Ok</button>
+                <button class="btn btn-primary" id="btnOk">Ok</button>
                 <button class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
         </div>

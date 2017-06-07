@@ -80,10 +80,10 @@
                                         //hide ok button as it is not necessary
                                         $('.delete-confirm').css('display', 'none');
                                         $('.success-message').html('').html('The contact has been successfully removed.');
+                                        location.reload();
                                     }
                                 },
                                 error: function(err) {
-                                    alert(err);
                                     if (!$('.modal-header').hasClass('alert-danger')) {
                                         $('.modal-header').removeClass('alert-success').addClass('alert-danger');
                                         $('.delete-confirm').css('display', 'none');
@@ -91,6 +91,7 @@
                                     $('.success-message').html(err.statusText);
                                 }
                             });
+
                         }
                     });
 
